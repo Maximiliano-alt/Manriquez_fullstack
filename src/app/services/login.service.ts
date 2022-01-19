@@ -22,6 +22,6 @@ export interface User{
 }
 
 export interface res{
-  status:number,
-  mensaje:string
+  status:number,//200 o 500
+  mensaje:string //token en login y en caso contrario mensaje
 }

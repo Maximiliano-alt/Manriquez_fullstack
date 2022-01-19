@@ -11,8 +11,8 @@ export class CreateUserComponent implements OnInit {
   constructor(private newService: CreateUserService) { }
 
   user:User={
-    rut:"New User",
-    password:"Password"
+    rut:"New User 2",
+    password:"Password2"
   }
 
   ngOnInit(): void {

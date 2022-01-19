@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   user:User={
     rut:"20068493-1",
-    password:"Armada1a1278"
+    password:"Armada11278"
     
   
   }
