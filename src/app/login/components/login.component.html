@@ -7,27 +7,33 @@
     <img src="assets\page\Icono perfil.svg" class="icono-perfil">
   </div>
   <div class="container">
-  
+
     <img src="" alt="" class="icon">
-    <form action="">
+    <form [formGroup]="form" action="">
       <div class="perfil">
         <img src="assets\page\Icono perfil.svg" alt="" class="icon-perfil">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input type="name" matInput formControlName="" placeholder="Nombre">
+
+        </mat-form-field>
         <input type="text" value="Rut">
       </div>
       <div class="pass">
         <img src="assets\page\Icono contraseña.svg" alt="" class="icon-perfil">
         <input type="password" value="Contraseña">
       </div>
-  
+
       <input type="checkbox">
-  
+
       <button type="submit">Iniciar sesión</button>
       <p>¿No tienes cuenta?</p>
       <button type="submit">Registrarse</button>
       <p>Privacidad</p>
     </form>
-  
+
   </div>
-  
+
 
 </div>
