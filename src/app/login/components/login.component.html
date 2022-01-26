@@ -12,31 +12,32 @@
 
   <div class="container">
     <div class="container-form">
-      <form action="">
+      <form  action="">
         <div class="Input">
           <div class="icon-perfil">
             <img src="assets\page\Icono perfil.svg" alt="">
           </div>
-          <input type="text" placeholder=" Rut">
+          <input [formControl]="rut" placeholder=" Rut">
         </div>
         <div class="Input">
           <div class="icon-perfil">
             <img src="assets\page\Icono contraseña.svg" alt="">
           </div>
-          <input type="password" placeholder=" Contraseña">
+          <input  formControlName="pass" type="password" placeholder=" Contraseña">
+        </div>
+        <div class="footer-container">
+          <div class="check">
+            <input type="checkbox"> 
+            <p>Recordarme</p>
+          </div> 
+          <div class="forget-pass">
+            <a href="">¿Olvidaste tu contraseña?</a>
+          </div> 
+        </div>
+        <div class="butt-inciar">
+          <button type="submit" >Iniciar sesión</button>
         </div>
       </form>
-      <div class="footer-container">
-        <div class="check">
-          <input type="checkbox"> 
-          <p>Recordarme</p>
-        </div> 
-        <div class="forget-pass">
-          <a href="">¿Olvidaste tu contraseña?</a>
-        </div> 
-      </div>
-      <button type="submit" class="butt-inciar">Iniciar sesión</button>
-    </div> 
   </div>
   <div class="reg">
     <div class="reg-p">
