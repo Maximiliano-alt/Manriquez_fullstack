@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/components/login.component';
-import { RegisterComponent } from './register/components/register.component';
 
 
 
 const routes: Routes = [
+  //para ruta vacia
   //aca dentro de todas las rutas path
-
-  {path:'', redirectTo:'/login',pathMatch:'full'},//para ruta vacia
-  {path:'login',component: LoginComponent},
-  {path:'register',component: RegisterComponent},
-
+  {
+    path:'auth',loadChildren: ()=> import('./auth/auth.module').then(modulo => modulo.AuthModule)},
+  {
+    path:'**',redirectTo:'auth'// falta ruta 404
+  }
 ];
 
 @NgModule({

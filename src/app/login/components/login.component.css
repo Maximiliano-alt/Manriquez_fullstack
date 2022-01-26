@@ -90,7 +90,11 @@ form{
   box-shadow: inset 0px 3px 6px #00000029;
   color: #fff;
 }
-
+.input-error{
+  position: absolute;
+  margin-top: 20px;
+  color: red;
+}
 .icon-perfil{
   display: flex;
   width: 10%;
@@ -173,7 +177,7 @@ input::placeholder{
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  
+
 }
 
 .reg-b button{
