@@ -5,11 +5,13 @@ import { LoginComponent } from './login/components/login.component';
 
 
 const routes: Routes = [
+  //para ruta vacia
   //aca dentro de todas las rutas path
-
-  {path:'', redirectTo:'/login',pathMatch:'full'},//para ruta vacia
-  {path:'login',component: LoginComponent},
-
+  {
+    path:'auth',loadChildren: ()=> import('./auth/auth.module').then(modulo => modulo.AuthModule)},
+  {
+    path:'**',redirectTo:'auth'// falta ruta 404
+  }
 ];
 
 @NgModule({
