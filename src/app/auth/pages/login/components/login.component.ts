@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.pass = new FormControl('',[//20636614-1
       Validators.required,
       Validators.minLength(8),
-      Validators.pattern(/^[a-zA-Z0-9]*$/)
+      Validators.pattern(/^[A-Z].[a-z].[0-9].*$/)
     ]);
     this.pass.valueChanges.subscribe(
       value =>{
