@@ -1,8 +1,122 @@
-<div class="navbar">
-   <button mat-icon-button>
-    <mat-icon>
-        list
-    </mat-icon>
-   </button>
+<div *ngIf="button_overlay==0" class="container">
+    <div class="navbar">
+        <button (click)="button_overlay_methods(1)" mat-icon-button>
+            <mat-icon>
+                list
+            </mat-icon>
+        </button>
+     </div>
+
+    <div class="icon">
+        <img src="../../../../assets/page/Pisosmanriquez.logo-02.png" alt="">
+    </div>
+     
+    <div class="menu-item">
+        <div class="item">
+            <div class="item-button">
+                <a href="/" mat-list-item style="text-decoration: none;">
+                    <mat-icon>
+                        check_circle
+                    </mat-icon> 
+                </a>
+                <h1>Ventas</h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-button">
+                <a href="/" mat-list-item style="text-decoration: none;">
+                    <mat-icon >
+                        <img src="../../../../assets/page/Productos.svg" alt="">
+                    </mat-icon> 
+                </a>
+                <h1>Productos</h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-button">
+                <a href="/" mat-list-item style="text-decoration: none;">
+                    <mat-icon >
+                        <img src="../../../../assets/page/pendientes.svg" alt="">
+                    </mat-icon> 
+                </a>
+                <h1>Pendientes</h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-button">
+                <a href="/" mat-list-item style="text-decoration: none;">
+                    <mat-icon >
+                        <img src="../../../../assets/page/Finanzas.svg" alt="">
+                    </mat-icon> 
+                </a>
+                <h1>Finanzas</h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-button">
+                <a href="/" mat-list-item style="text-decoration: none;">
+                    <mat-icon >
+                        <img src="../../../../assets/page/proveedor.svg" alt="">
+                    </mat-icon> 
+                </a>
+                <h1>Proveedores</h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-button">
+                <a href="/" mat-list-item style="text-decoration: none;">
+                    <mat-icon >
+                        <img src="../../../../assets/page/Clientes.svg" alt="">
+                    </mat-icon> 
+                </a>
+                <h1>Clientes</h1>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- overlay -->
+<div *ngIf="button_overlay==1 " class="menuBar">
+    <div class="navbar">
+        <button (click)="button_overlay_methods(0)" mat-icon-button>
+            <mat-icon>
+            list
+            </mat-icon>
+        </button>
+        <span>Menu Bar</span>
+        <button (click)="button_overlay_methods(0)" mat-icon-button>
+            <mat-icon>
+                <img src="../../../../assets/page/atras.svg" alt="">
+            </mat-icon>
+        </button>
+    </div>
+
+    <div class="menu-items">
+        <div class="menu-item-bar">
+            Ventas
+        </div>
+        <div class="menu-item-bar">
+            Productos
+        </div>
+        <div class="menu-item-bar">
+            Pendientes
+        </div>
+        <div class="menu-item-bar">
+            Finanzas
+        </div>
+        <div class="menu-item-bar">
+            Proveedores
+        </div>
+        <div class="menu-item-bar">
+            Clientes
+        </div>
+    </div>
+
+    <div class="footer">
+        <button>
+            Cerrar Sesion
+        </button>
+        
+    </div>
+
+</div>

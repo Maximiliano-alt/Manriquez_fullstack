@@ -11,7 +11,7 @@ const routes: Routes =[
     component: HomeComponent,
     children:[
       // aca van los childrens
-
+      
 
     ]
 
