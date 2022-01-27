@@ -11,7 +11,10 @@ const routes: Routes =[
     component: HomeComponent,
     children:[
       // aca van los childrens
-      
+      {
+        path:'home',
+        component:HomeComponent,
+      }
 
     ]
 
