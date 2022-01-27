@@ -1,10 +1,12 @@
-<div class="navbar">
-    <button (click)="button_overlay_methods(1)" mat-icon-button>
+<div *ngIf="button_overlay==0" class="navbar" >
+    <button (click)=" button_overlay_methods(1)"  mat-icon-button>
         <mat-icon>
             list
         </mat-icon>
     </button>
  </div>
+
+<app-navbar (indicador)="button_overlay_methods($event)" [button_overlay] = button_overlay></app-navbar>
 
 <div *ngIf="button_overlay==0" class="container">
     
@@ -80,51 +82,4 @@
         </div>
     </div>
     
-</div>
-
-<!-- overlay -->
-<div *ngIf="button_overlay==1 " class="menuBar">
-    <div class="navbar">
-        <button (click)="button_overlay_methods(0)" mat-icon-button>
-            <mat-icon>
-            list
-            </mat-icon>
-        </button>
-        <span>Menu Bar</span>
-        <button (click)="button_overlay_methods(0)" mat-icon-button>
-            <mat-icon>
-                <img src="../../../../assets/page/atras.svg" alt="">
-            </mat-icon>
-        </button>
-    </div>
-
-    <div class="container-itemns">
-        <div class="menu-items">
-            <div class="menu-item-bar">
-                Ventas
-            </div>
-            <div class="menu-item-bar">
-                Productos
-            </div>
-            <div class="menu-item-bar">
-                Pendientes
-            </div>
-            <div class="menu-item-bar">
-                Finanzas
-            </div>
-            <div class="menu-item-bar">
-                Proveedores
-            </div>
-            <div class="menu-item-bar">
-                Clientes
-            </div>
-        </div>
-    </div>
-
-    <footer (click)="LogOut()" class="footer">
-        <button (click)="LogOut()">
-            Cerrar Sesion
-        </button>
-    </footer>
-
 </div>
