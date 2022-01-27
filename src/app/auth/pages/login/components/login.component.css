@@ -53,7 +53,7 @@ p, a,button{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7%;
+  margin-top: 4%;
 }
 .container-form{
   width: 333px;
@@ -205,12 +205,35 @@ footer{
 
 footer p{
   margin: auto;
-}
-@media screen and (min-width: 550px){
+} 
+@media screen and (min-width: 570px){
+  
+.container{
 
+  margin-top: 4%;
 }
-@media screen and (min-width: 750px){
+  .reg{
+    height: 30%;
+  }
+}
 
+.footer-container{
+  transform: translateY(50%);
+}
+.butt-inciar{
+  transform: translateY(55%);
+}
+
+@media screen and (min-width: 720px){
+
+  .container{
+      margin-top: 0%;
+    }
+
+  .input-error{
+    margin-top: 7%;
+  }
+ 
 }
 
 @media screen and (min-width: 1024px){
