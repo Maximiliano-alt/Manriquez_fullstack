@@ -16,6 +16,9 @@ const routes: Routes = [
     path:'auth',loadChildren: ()=> import('./auth/auth.module').then(modulo => modulo.AuthModule)
   },
   {
+    path: 'proveedores', loadChildren:()=>import('./proveedores/proveedores.module').then(modulo=> modulo.ProveedoresModule)
+  },
+  {
     // para rutas inexistentes redirecciona hacia auth
     path:'**',redirectTo:'/auth',pathMatch:"full"
   },
