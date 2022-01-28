@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     ]);
     this.rut.valueChanges.subscribe(
       value =>{
-        this.user.rut = value
+        this.user.rut = value 
       }
     );
     this.pass = new FormControl('',[//20636614-1
