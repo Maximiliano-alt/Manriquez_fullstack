@@ -2,19 +2,27 @@
 html,body{
 	margin:0;
 	padding: 0;
+  background-color: rgba(0, 0, 0, 0.69);
+
 }
 
 html {
-	background-image: url("assets/page/bkgr.png");
+  display: flex;
+  justify-content: center;
+	background-image: url("assets/page/bkgr.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	
+  background-position:center;
+
 }
 
 @media screen and (min-width: 560px){
 	html{
-		background-image: url("assets/page/bkgr_rotate.png");
+		background-image: url("assets/page/bkgr.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

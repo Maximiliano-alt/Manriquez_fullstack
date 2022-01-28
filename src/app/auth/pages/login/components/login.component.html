@@ -11,25 +11,24 @@
   </div>
 
   <div class="container">
-    <div class="container-form">
       <form  (ngSubmit)="saveInfo($event)" action="">
         <div class="Input">
           <div class="icon-perfil">
             <img src="assets\page\Icono perfil.svg" alt="">
           </div>
           <input [formControl]="rut" placeholder=" Rut">
-          <p *ngIf="rut.invalid" class="input-error">* Campo <strong>requerido ej: 12345678-1</strong> </p>
+          <p *ngIf="rut.invalid" class="input-error"><strong>* Campo requerido ej: 12345678-1</strong> </p>
         </div>
         <div class="Input">
           <div class="icon-perfil">
             <img src="assets\page\Icono contraseña.svg" alt="">
           </div>
           <input [formControl]="pass" formControlName="pass" type="password" placeholder=" Contraseña">
-          <p *ngIf="pass.invalid" class="input-error">* Campo <strong>requerido ,utilizar mayusculas, minusculas y numeros</strong> </p>
+          <p *ngIf="pass.invalid" class="input-error"><strong>* Campo requerido <br> * Utilizar mayusculas, luego minusculas y numeros</strong> </p>
         </div>
         <div class="footer-container">
           <div class="check">
-            <input [formControl]="checkbox" type="checkbox">
+            <input [formControl]="checkbox" type="checkbox" class="checkbox">
             <p>Recordarme</p>
           </div>
           <div class="forget-pass">
@@ -40,7 +39,7 @@
           <button type="submit" >Iniciar sesión</button>
         </div>
       </form>
-  </div>
+
   <div class="reg">
     <div class="reg-p">
       <p>¿No tienes cuenta?</p>
@@ -49,7 +48,6 @@
       <button type="submit">Registrarse</button>
     </div>
   </div>
-  <footer>
-    <p>Privacidad</p>
-  </footer>
 </div>
+
+<router-outlet></router-outlet>
