@@ -120,12 +120,7 @@ span{
     align-items: center;
     justify-content: center;
 }
-.menu-items{
-    width: 50%;
-    height: 77%;
-    margin-left: 92px;
-    margin-right: 92px;
-}
+
 
 
 
@@ -135,7 +130,21 @@ span{
 
 
 
-
+@media screen and (max-width:384px) {
+    .container{
+        width: 100vw;
+    }
+    .container-item-menu{
+        width: 100%;
+        margin:0 !important;
+    }
+    .menu-item{
+        width: 100%;
+        margin-right:26px ;
+    }
+    
+    
+}
 
 @media screen and (min-width:1023px) {
     .menu-item{
