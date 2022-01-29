@@ -19,7 +19,10 @@ const routes: Routes = [
     path: 'proveedores', loadChildren:()=>import('./proveedores/proveedores.module').then(modulo=> modulo.ProveedoresModule)
   },
   {
-    path:'home',loadChildren:()=> import('./home/home.module').then(modulo =>modulo.HomeModule)
+    path:'app',loadChildren:()=> import('./home/home.module').then(modulo =>modulo.HomeModule)
+  },
+  {
+    path:'ventas',loadChildren:()=> import('./ventas/ventas.module').then(modulo => modulo.VentasModule)
   },
   {
     // para rutas inexistentes redirecciona hacia auth

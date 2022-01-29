@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  button_overlay = 0;
+
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
   }
+
+  button_overlay_methods(valor:number){
+    this.button_overlay = valor;
+  }
+  
 
 }
