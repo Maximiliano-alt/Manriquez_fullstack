@@ -1,0 +1,70 @@
+/* Proveedores */
+
+
+.filtro {
+  width: 99.7vw;
+  height: 46px;
+  background: #f25c05 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #ffffff;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-search input {
+  width: 180px;
+  margin: 0px 29.75px;
+  height: 23px;
+  border-radius: 13px;
+  border: none;
+  opacity: 1;
+}
+mat-icon{
+  color:#fff;
+}
+.arrow{
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  opacity: 0.6;
+}
+
+img{
+
+  top: 112px;
+  left: 173px;
+  width: 29px;
+  height: 15px;
+  opacity: 1;
+  filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg) brightness(110%) contrast(110%);
+}
+.invertir{
+  transform: scaleY(-1);
+}
+.list-proveedores {
+  height: 100%;
+  margin: 0px 29px;
+  overflow-y: scroll;
+}
+.list-proveedores mat-list-item {
+  margin-bottom: 10px;
+  height: 65px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: inset 0px 3px 6px #00000029;
+  opacity: 0.8;
+}
+
+.back-fondo {
+  width: 100vw;
+  height: 540px;
+  padding-top: 17px;
+  padding-bottom: 15px;
+  background-color: #000;
+  opacity: 0.8;
+}
