@@ -2,11 +2,12 @@
 
     /* contenedor master */
     width: 100vw !important;
-    height: 82%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     transform: translate(0, 53px);
+    overflow: hidden;
 
 
 }
@@ -174,10 +175,12 @@
 }
 
 @media screen and (min-width:1024px) {
-    .container-ventas{
+    .container-ventas{ 
+        height: 0;
         visibility: hidden;
     }
     .up{
+        height: 0;
         visibility: hidden;
     }
     .container-general{
