@@ -264,6 +264,10 @@
         border-top: none;
         border-bottom: none;
     }
+    .search .input input{
+       height: 40px;
+       border-radius: 40px;
+    }
     
 
 }

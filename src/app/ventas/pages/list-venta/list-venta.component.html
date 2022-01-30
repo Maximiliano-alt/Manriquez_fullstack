@@ -1,7 +1,9 @@
 <app-navbar [var]="{route:'/app/home',title:'Ventas'}" ></app-navbar>
 <div class="search">
     <div class="icon">
-        <mat-icon>add_circle_outline</mat-icon>
+        <a style="text-decoration: none;" href="/ventas/addVenta">
+            <mat-icon>add_circle_outline</mat-icon>
+        </a>
     </div>
     <div class="input">
         <input type="text">
@@ -14,7 +16,7 @@
 <div class="container-general">
 
     <div style="margin-top: 4px;" class="up">
-        <mat-icon>expand_less</mat-icon>
+        <mat-icon >expand_less</mat-icon>
     </div>
 
     <div class="container-ventas">
