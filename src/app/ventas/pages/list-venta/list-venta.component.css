@@ -7,8 +7,7 @@
     flex-direction: column;
     justify-content: center;
     transform: translate(0, 53px);
-
-
+    overflow: hidden;
 }
 
 .search{
