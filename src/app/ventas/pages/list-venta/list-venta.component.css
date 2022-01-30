@@ -2,14 +2,12 @@
 
     /* contenedor master */
     width: 100vw !important;
-    height: 80%;
+    height: 82%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     transform: translate(0, 53px);
     overflow: hidden;
-
-
 }
 
 .search{
@@ -175,12 +173,10 @@
 }
 
 @media screen and (min-width:1024px) {
-    .container-ventas{ 
-        height: 0;
+    .container-ventas{
         visibility: hidden;
     }
     .up{
-        height: 0;
         visibility: hidden;
     }
     .container-general{
