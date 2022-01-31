@@ -1,4 +1,7 @@
 /* Proveedores */
+.navbar{
+  height: 55px;
+}
 
 .filtro {
   width: 99.7vw;

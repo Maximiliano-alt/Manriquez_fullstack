@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProveedoresComponent } from './pages/proveedores/proveedores.component';
-import { MainComponent } from './pages/main/main.component';
 import { NewProveedorComponent } from './pages/new-proveedor/new-proveedor.component';
+import { MainComponent } from './pages/main/main.component';
 
 const routes: Routes = [
   {
