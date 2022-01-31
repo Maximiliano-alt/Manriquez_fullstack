@@ -37,13 +37,17 @@ mat-list {
   justify-content: center;
 }
 mat-list-item {
+  /* width: 302px; */
 
+  /* height: 28px; */
   text-align: center;
   margin-bottom: 25px;
 }
 .header {
-    width: auto;
-    height: 28px;
+  width: auto;
+  height: 28px;
+  width: auto;
+  height: 28px;
   background: #f25c05 0% 0% no-repeat padding-box;
 }
 .input {
