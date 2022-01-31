@@ -1,0 +1,84 @@
+<app-navbar [var]="{route:'/ventas/loadVentas',title:'Venta unica'}" ></app-navbar>
+<div class="container-general">
+    <div class="data">
+        <div class="data-nav">
+            Cliente N 1: Aracelly Balboa
+        </div>
+        <div class="data-contenido">
+            <div class="data-linea">
+                <b>Cantidad: </b><p>&nbsp;5 productos(s)</p>
+            </div>
+            <div *ngIf="this.estado == 'pagado'" class="data-linea">
+                <b>Estado: </b><p style="color: #007508;">&nbsp;pagado</p>
+            </div>
+            <div *ngIf="this.estado == 'pendiente'" class="data-linea">
+                <b>Estado: </b><p style="color: #FF0000;">&nbsp;pendiente</p>
+            </div>
+            <div class="data-linea">
+                <b>Envio: </b><p>&nbsp;pendiente</p>
+            </div>
+        </div>
+        <div class="data-valor">
+            $12000
+        </div>
+    </div>
+
+    <!-- botones -->
+    <div class="buttons">
+        <div  class="button">
+            Modificar estado
+        </div>
+        <div *ngIf="this.estado == 'pagado'" class="button">
+            Crear orden de compra
+        </div>
+        <div *ngIf="this.estado == 'pendiente'" class="button">
+            Crear cotizacion
+        </div>
+        <div *ngIf="this.estado == 'pagado'"  class="button">
+            Crear guia de venta
+        </div>
+        <div  class="button">
+            Eliminar
+        </div>
+        <div style="margin: 0;" (click)="delete()" class="button">
+            Ver productos
+        </div>
+        
+    </div>
+
+    <!-- buttons grandes -->
+    <div class="buttons-1024">
+        <div class="button-pares">
+            <div (click)="modificarEstado()" style="margin-right: 31px;" class="button-par">
+                Modificar estado
+            </div>
+            <div *ngIf="this.estado == 'pendiente'" class="button-par">
+                <!-- falta definicion de requerimiento -->
+                Crear Cotizacion
+            </div>
+            <div *ngIf="this.estado == 'pagado'" class="button-par">
+                <!-- falta definicion de requerimiento -->
+                Crear orden de compra
+            </div>
+        </div>
+        <div class="button-pares">
+            <div  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
+                <!-- falta definicion del requerimiento -->
+                Crear guia de venta
+            </div>
+            <div *ngIf="this.estado == 'pendiente'"   style="margin-right: 31px;" (click)="delete()"  class="button-par">
+               Ver productos
+            </div>
+            <div style="margin: 0;" (click)="delete()"  class="button-par">
+               Eliminar
+            </div>
+        </div>
+        <div *ngIf="this.estado == 'pagado'" (click)="ver_producto()" style="margin: 0; width: 100%;"  class="button">
+            Ver productos
+        </div>
+        
+
+        
+    </div>
+
+</div>
