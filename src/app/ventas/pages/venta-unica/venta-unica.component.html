@@ -1,0 +1,42 @@
+<app-navbar [var]="{route:'/ventas/loadVentas',title:'Venta unica'}" ></app-navbar>
+<div class="container-general">
+    <div class="data">
+        <div class="data-nav">
+            Cliente N 1: Aracelly Balboa
+        </div>
+        <div class="data-contenido">
+            <div class="data-linea">
+                <b>Cantidad: </b><p>&nbsp;5 productos(s)</p>
+            </div>
+            <div *ngIf="this.estado == 'pagado'" class="data-linea">
+                <b>Estado: </b><p style="color: #007508;">&nbsp;pagado</p>
+            </div>
+            <div *ngIf="this.estado == 'por pagar'" class="data-linea">
+                <b>Estado: </b><p style="color: #FF0000;">&nbsp;por pagar</p>
+            </div>
+            <div class="data-linea">
+                <b>Envio: </b><p>&nbsp;pendiente</p>
+            </div>
+        </div>
+        <div class="data-valor">
+            $12000
+        </div>
+    </div>
+
+    <!-- botones -->
+    <div class="buttons">
+        <div (click)="ver_producto()" class="button">
+            Ver productos
+        </div>
+        <div (click)="cotizacion()" class="button">
+            Crear cotizacion
+        </div>
+        <div (click)="modificarEstado()" class="button">
+            Ver productos
+        </div>
+        <div style="margin: 0;" (click)="delete()" class="button">
+            Ver productos
+        </div>
+    </div>
+
+</div>
