@@ -49,8 +49,7 @@ img{
 
 }
 .offcanvas-body{
-    background-color: transparent;
-    opacity: 0.3;
+    background-color: black;
    
 }
 .offcanvas-header{
@@ -58,4 +57,9 @@ img{
     background: #F25C05 0% 0% no-repeat padding-box;
     display: flex;
     justify-content: right;
+}
+
+.nav-item{
+    width: 100%;
+    font-size: 20px;
 }
