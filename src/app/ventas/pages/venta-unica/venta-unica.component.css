@@ -67,3 +67,61 @@
     color: white;
     margin-bottom: 28px;
 }
+.buttons-1024{
+    visibility: hidden;
+    height: 0px;
+}
+@media screen  and (min-width:768px){
+    .data{
+        width: 512px;
+        height: 309px;
+    }
+    .data-contenido{
+        height: 171px;
+        font-size: 15px;
+    }
+    .data-nav{
+        height: 69px;
+        font-size: 20px;
+    }
+    .data-valor{
+        height: 69px;
+        font-size: 20px;
+    }
+    .buttons{
+        visibility: hidden;
+        height: 0px;
+    }
+    .buttons-1024{
+        visibility: visible;
+        height: 227px;
+        width: 513px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 42px;
+        align-items: center;    
+    }
+    .button-pares{
+        display: flex;
+        flex-direction: row;
+    }
+    .button-par{
+        width: 241px;
+        height: 50px;
+        background: #F25C05 0% 0% no-repeat padding-box;
+        border-radius: 30px;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-bottom: 28px;
+        font-size: 18px;
+    }
+    .button{
+        width: 404px;
+        height: 50px;
+        font-size: 18px;
+    }
+
+}
