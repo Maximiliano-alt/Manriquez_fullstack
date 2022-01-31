@@ -11,8 +11,8 @@
             <div *ngIf="this.estado == 'pagado'" class="data-linea">
                 <b>Estado: </b><p style="color: #007508;">&nbsp;pagado</p>
             </div>
-            <div *ngIf="this.estado == 'por pagar'" class="data-linea">
-                <b>Estado: </b><p style="color: #FF0000;">&nbsp;por pagar</p>
+            <div *ngIf="this.estado == 'pendiente'" class="data-linea">
+                <b>Estado: </b><p style="color: #FF0000;">&nbsp;pendiente</p>
             </div>
             <div class="data-linea">
                 <b>Envio: </b><p>&nbsp;pendiente</p>
@@ -25,18 +25,25 @@
 
     <!-- botones -->
     <div class="buttons">
-        <div (click)="ver_producto()" class="button">
-            Ver productos
+        <div  class="button">
+            Modificar estado
         </div>
-        <div (click)="cotizacion()" class="button">
+        <div *ngIf="this.estado == 'pagado'" class="button">
+            Crear orden de compra
+        </div>
+        <div *ngIf="this.estado == 'pendiente'" class="button">
             Crear cotizacion
         </div>
-        <div (click)="modificarEstado()" class="button">
-            Ver productos
+        <div *ngIf="this.estado == 'pagado'"  class="button">
+            Crear guia de venta
+        </div>
+        <div  class="button">
+            Eliminar
         </div>
         <div style="margin: 0;" (click)="delete()" class="button">
             Ver productos
         </div>
+        
     </div>
 
     <!-- buttons grandes -->
@@ -45,21 +52,28 @@
             <div (click)="modificarEstado()" style="margin-right: 31px;" class="button-par">
                 Modificar estado
             </div>
-            <div  class="button-par">
+            <div *ngIf="this.estado == 'pendiente'" class="button-par">
+                <!-- falta definicion de requerimiento -->
+                Crear Cotizacion
+            </div>
+            <div *ngIf="this.estado == 'pagado'" class="button-par">
                 <!-- falta definicion de requerimiento -->
                 Crear orden de compra
             </div>
         </div>
         <div class="button-pares">
-            <div  style="margin-right: 31px;" class="button-par">
+            <div  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
                 <!-- falta definicion del requerimiento -->
                 Crear guia de venta
+            </div>
+            <div *ngIf="this.estado == 'pendiente'"   style="margin-right: 31px;" (click)="delete()"  class="button-par">
+               Ver productos
             </div>
             <div style="margin: 0;" (click)="delete()"  class="button-par">
                Eliminar
             </div>
         </div>
-        <div (click)="ver_producto()" style="margin: 0; width: 100%;"  class="button">
+        <div *ngIf="this.estado == 'pagado'" (click)="ver_producto()" style="margin: 0; width: 100%;"  class="button">
             Ver productos
         </div>
         
