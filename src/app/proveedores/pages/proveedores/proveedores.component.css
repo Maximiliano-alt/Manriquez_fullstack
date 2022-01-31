@@ -24,6 +24,10 @@
 mat-icon {
   color: #fff;
 }
+.invertir-color {
+  filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg)
+    brightness(110%) contrast(110%);
+}
 .arrow {
   height: 35px;
   display: flex;
@@ -37,10 +41,8 @@ img {
   top: 112px;
   left: 173px;
   width: 29px;
-  height: 15px;
+  height: 22px;
   opacity: 1;
-  filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg)
-    brightness(110%) contrast(110%);
 }
 
 .invertir {
@@ -69,14 +71,22 @@ mat-list-item {
   background: #ffffff 0% 0% no-repeat padding-box;
 }
 
-mat-list mat-list-item  img .logo{
-  color: #000;
-}
-
 .back-fondo {
   width: 100vw;
   height: 540px;
   padding-top: 17px;
   padding-bottom: 15px;
   background-color: rgba(0, 0, 0, 0.5);
+}
+mat-list-item p{
+  font-size: 12px;
+  font: normal normal normal 12px/18px Roboto;
+}
+p {
+  margin: 0;
+  margin-left: 7px;
+}
+.container-num {
+  margin-left: 34.4px;
+  font: normal normal medium 15px/20px Roboto;
 }
