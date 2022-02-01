@@ -22,6 +22,9 @@ const routes: Routes = [
     path:'ventas',loadChildren:()=> import('./ventas/ventas.module').then(modulo => modulo.VentasModule)
   },
   {
+    path:'clientes',loadChildren:()=> import('./clientes/clientes.module').then(modulo => modulo.ClientesModule)
+  },
+  {
     // para rutas inexistentes redirecciona hacia auth
     path:'**',redirectTo:'/auth',pathMatch:"full"
   },
