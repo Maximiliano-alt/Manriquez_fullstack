@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 
-
 const routes: Routes = [
   //para ruta vacia
   //aca dentro de todas las rutas path
@@ -20,6 +19,9 @@ const routes: Routes = [
   },
   {
     path:'ventas',loadChildren:()=> import('./ventas/ventas.module').then(modulo => modulo.VentasModule)
+  },
+  {
+    path:'pendientes',loadChildren:()=> import('./pendientes/pendientes.module').then(modulo => modulo.PendientesModule)
   },
   {
     // para rutas inexistentes redirecciona hacia auth
