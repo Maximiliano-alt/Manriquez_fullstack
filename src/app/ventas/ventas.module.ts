@@ -6,12 +6,14 @@ import { RoutingVentasModule } from './routing-ventas.module';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { VentaUnicaComponent } from './pages/venta-unica/venta-unica.component';
+import { ListProductoComponent } from './pages/list-producto/list-producto.component';
 
 @NgModule({
   declarations: [
     ListVentaComponent,
     AddVentaComponent,
     VentaUnicaComponent,
+    ListProductoComponent,
   
   ],
   imports: [

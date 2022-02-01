@@ -4,6 +4,7 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { ListVentaComponent } from './pages/list-venta/list-venta.component';
 import { AddVentaComponent } from './pages/add-venta/add-venta.component';
 import { VentaUnicaComponent } from './pages/venta-unica/venta-unica.component';
+import { ListProductoComponent } from './pages/list-producto/list-producto.component';
 
 
 const rutas : Routes=[
@@ -24,6 +25,10 @@ const rutas : Routes=[
   {
     path:'venta/:id',
     component:VentaUnicaComponent,
+  },
+  {
+    path:'productos/:id',
+    component: ListProductoComponent
   },
   {
     path:'**',
