@@ -58,3 +58,8 @@ img{
     display: flex;
     justify-content: right;
 }
+
+.nav-item{
+    width: 100%;
+    font-size: 20px;
+}

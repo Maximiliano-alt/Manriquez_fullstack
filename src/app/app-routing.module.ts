@@ -20,8 +20,11 @@ const routes: Routes = [
   {
     path:'ventas',loadChildren:()=> import('./ventas/ventas.module').then(modulo => modulo.VentasModule)
   },
-  {
+   {
     path:'pendientes',loadChildren:()=> import('./pendientes/pendientes.module').then(modulo => modulo.PendientesModule)
+  },
+ {
+    path:'clientes',loadChildren:()=> import('./clientes/clientes.module').then(modulo => modulo.ClientesModule)
   },
   {
     // para rutas inexistentes redirecciona hacia auth
