@@ -1,0 +1,82 @@
+<app-navbar [var]="{route:'/app/home',title:'Clientes'}" ></app-navbar>
+
+
+<div class="container-general">
+    <div  class="up">
+        <mat-icon style="transform: translate(0,-15px);">expand_less</mat-icon>
+    </div>
+    <div  class="container">
+        
+    
+        <div class="container-productos">
+            
+            <div class="item" *ngFor="let cliente of this.array">
+                
+                <div class="data">
+                    <div class="data-line">
+                        <b>Nombre:</b><p>&nbsp;Juan Larenas</p>
+                    </div>
+                    <div class="data-line">
+                        <b>Rut:</b><p>&nbsp;20068493-1</p>
+                    </div>
+                </div>
+                <div class="button">
+                    <div class="data-line">
+                        <b>N</b><p>&nbsp;1</p>
+                    </div>
+                   <button> <mat-icon style="transform: translate(0,10px); font-size: 25px;" >visibility</mat-icon></button>   
+                   <button > <mat-icon style="transform: translate(65px,-10px);">more_horiz</mat-icon></button>   
+                </div>
+            </div>
+            
+            
+        </div>
+    
+    
+        
+    </div>
+
+    <div class="up">
+        <mat-icon style="transform: translate(0,15px);">expand_more</mat-icon>
+    </div> 
+
+    
+
+    <div class="container-carrusel">
+        <div class="carrusel">
+            <div (click)="nf_for_preview()" class="button-preview">
+                <mat-icon>expand_less</mat-icon>
+            </div>
+            <div class="item-carrusel">
+
+                <div class="item" *ngFor="let cliente of segmento">
+                    <div class="item-data">
+                        <div class="line">
+                            <b>Nombre: </b> <p>&nbsp;Juan Larenas</p>
+                        </div>
+                        <div class="line">
+                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                        </div>
+                    </div>
+                    <div style="transform: translate(0,15px);" class="buttons">
+                        <div class="data-line">
+                            <b>N°</b><p>&nbsp;{{cliente}}</p>
+                        </div>
+                       <button style="transform: translate(0,5px);"> <mat-icon >visibility</mat-icon></button>   
+                       <button style="transform: translate(43px,-20px);"> <mat-icon >more_horiz</mat-icon></button>   
+     
+                    </div>
+                </div>
+                
+            </div>
+            <div (click)="nf_for_next()" class="button-next">
+                <mat-icon>expand_less</mat-icon>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
