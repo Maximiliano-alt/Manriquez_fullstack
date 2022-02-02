@@ -1,68 +1,73 @@
 .container-general{
-    margin-top: 53px;
+
     /* contenedor master */
     width: 100vw !important;
-    height: 90%;
+    height: 84%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transform: translate(0, 53px);
     overflow: hidden;
-    opacity: 0.8;
-}.container-productos{
-    width: 300px;
 }
-.container{
-    width: 100%;
-    max-height: 80%;
-    overflow-y: scroll;
+.search{
+    
+    /* elemento barra de busqueda en fila */
+    width: 100vw;
+    height: 7%;
+    background: #F25C05 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-top: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    transform: translate(0,53px);
+
+}
+.search .icon{
+    width: 15%;
+    margin: 0 5px 0 5px;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
 }
-.item{
-    height: 65px;
+.search .icon mat-icon{
+    color: white;
+    font-size: 25px;
+    opacity: 1;
+    display: flex;
+}
+.search .input{
+    width: 64%;
+    margin: 0 5px 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search .input input{
     width: 100%;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    opacity: 0.8;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
+    box-shadow: inset 3px 3px 6px #00000029;
+    border-radius: 13px;
+    opacity: 1;
+    border: none;
 }
-.data{
-    width: 156px;
+.search .search-button{
+    width: 15%;
+    margin: 0 5px 0 5px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: translate(25px);
 }
-.data-line{
-    display: flex;
-    flex-direction: row;
-    height: 20px;
+.search .search-button{
+    width: 15%;
+    margin: 0 5px 0 5px;
 }
-.button .data-line{
-    width: 20px;
-}
-.button{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 200px;
-}
-.button mat-icon{
-    font-size: 20px;
-}
-b{
-    height: 12px;
-    font-size: 12px;
-}
-p{
-    height: 12px;
-    font-size: 12px;
-}
-.button .data-line{
-    transform: translate(140px,5px);
+.search .search-button mat-icon{
+    color: white;
+    font-size: 25px;
+    opacity: 1;
 }
 .up{
   
@@ -73,67 +78,106 @@ p{
     justify-content: center;
 }
 .up mat-icon{
-    
     color: rgb(49, 49, 49);
     height: 100%;
     width: 50%;
     text-align: center;
     font-size: 50px;
+
+}
+.container-clientes{
+    width: 100vw;
+    height: 100%;
+    background-color: black;
+    color: white;
+    opacity: 0.6;
+    overflow-y: hidden;
+    padding: 15px 15px 0px 15px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.item{
+    padding: 10px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    width: 290px;
+    height: 65px;
+    margin-bottom: 10px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    opacity: 1;
 }
 
-button{
-    border: none;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translate(0,2px);
-}
-.button p{
-    height: 50%;
-}
-mat-icon{
-    font-size: 19px;
-}
 .container-carrusel{
     visibility: hidden;
     height: 0;
 }
-
-
-@media screen  and (min-width:768px){
-    .container-productos{
-        width: 390px;
-    }
-    .data .data-line b{
-        font-size: 15px;
-    }
-    .data .data-line p{
-        font-size: 15px;
-    }
-    .data{
-        transform: translate(50px);
-    }
-    .button{
-        transform: translate(50px);
-    }
-    .button .data-line{
-        width: 40px;
-    }
+.item-data{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
-
-@media screen and (min-width:1024px) {
-    .container-productos{
+.item-button{
+    width:40%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.button-eye{
+    width: 40%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.button-number{
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    width: 60%;
+    height: 90%;
+}
+button{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+}
+.button-number-item{
+    display: flex;
+    flex-direction: row;
+    width: 20px;
+    transform: translate(20px);
+}
+.button-number button mat-icon{
+    transform: translate(0,-10px);
+}
+.data-line{
+    display: flex;
+    flex-direction: row;
+}
+.data-line p{
+    font-size: 12px;
+    height: 5px;
+}
+.data-line b{
+    font-size: 12px;
+    height: 5px;
+}
+@media screen and (min-width:1024px){
+    .container-clientes{
         visibility: hidden;
+        height: 0;
     }
-    
-
-    .container{
-        overflow: hidden;
+    .up{
+        visibility: hidden;
+        height: 0;
+    }    .container-ventas{
+        visibility: hidden;
     }
     .up{
         visibility: hidden;
@@ -148,7 +192,7 @@ mat-icon{
         visibility: visible;
         position: fixed;
         width: 100%;
-        height: 90%;
+        height: 525px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -179,8 +223,8 @@ mat-icon{
         opacity: 1;
     }
     .item-carrusel{
-        width: 700px;
-        height: 492.65px;
+        width: 1007px;
+        height: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
@@ -200,12 +244,10 @@ mat-icon{
         opacity: 1;
     }
     .item{
-        width: 320px;
+        width: 95%;
         height: 150px;
-        margin: 20px;
+
         display: flex;
-        align-items: center;
-        justify-content: center;
         flex-direction: row;
     }
 
@@ -230,31 +272,39 @@ mat-icon{
        height: 40px;
        border-radius: 40px;
     }
-   
-    .item{
+    .left-component{
         display: flex;
         flex-direction: row;
-
     }
-    .item-data{
+    .data{
         display: flex;
+        align-items: center;
+        justify-content: center;
         flex-direction: column;
+        width: 70%;
     }
-    .line{
+    .data-line b{
+        font-size:17px;
+        height: 25px;
+        
+    }
+    .data-line p{
+        font-size:13px;
+        height: 25px;
+    }
+    .button-number{
         display: flex;
-        flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
-    .line p{
-        font-size: 15px;
+    .button-eye{
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    
-    .line b{
-        font-size: 15px;
+    .button-number-item{
+        transform: translate(-20px,0);
     }
-    .buttons .data-line{
-        transform: translate(50px);
-    }
-    
 
 }
 @media screen and (min-width:1440px) {
@@ -284,3 +334,5 @@ mat-icon{
         width: 1px;
     }
 }
+
+

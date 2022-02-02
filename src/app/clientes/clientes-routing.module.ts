@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes,RouterModule } from '@angular/router';
 import { ListClientesComponent } from './pages/list-clientes/list-clientes.component';
+import { VentasClienteComponent } from './pages/ventas-cliente/ventas-cliente.component';
 const routes: Routes=[
   {
     path:'',
@@ -10,6 +11,10 @@ const routes: Routes=[
   {
     path:'clientes',
     component: ListClientesComponent
+  },
+  {
+    path:'ventasCliente/:id',
+    component: VentasClienteComponent,
   },
   {
     path:'**',

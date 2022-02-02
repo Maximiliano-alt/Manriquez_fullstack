@@ -4,10 +4,12 @@ import { ListClientesComponent } from './pages/list-clientes/list-clientes.compo
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
+import { VentasClienteComponent } from './pages/ventas-cliente/ventas-cliente.component';
 
 @NgModule({
   declarations: [
-    ListClientesComponent
+    ListClientesComponent,
+    VentasClienteComponent
   ],
   imports: [
     CommonModule,
