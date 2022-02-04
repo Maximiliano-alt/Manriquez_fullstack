@@ -5,11 +5,13 @@ import { ClientesRoutingModule } from './clientes-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { VentasClienteComponent } from './pages/ventas-cliente/ventas-cliente.component';
+import { AddClienteComponent } from './pages/add-cliente/add-cliente.component';
 
 @NgModule({
   declarations: [
     ListClientesComponent,
-    VentasClienteComponent
+    VentasClienteComponent,
+    AddClienteComponent
   ],
   imports: [
     CommonModule,
