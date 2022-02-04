@@ -4,10 +4,12 @@ import { ListPendientesComponent } from './pages/list-pendientes/list-pendientes
 import { PendientesRoutingModule } from './pendientes-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
+import { PreviewComponent } from './pages/preview/preview.component';
 
 @NgModule({
   declarations: [
-    ListPendientesComponent
+    ListPendientesComponent,
+    PreviewComponent
   ],
   imports: [
     CommonModule,
