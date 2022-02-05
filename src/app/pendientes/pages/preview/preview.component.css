@@ -35,7 +35,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	padding-left: 73px;
 }
 .obs{
 	width: 100%;
@@ -44,8 +44,7 @@
 	justify-content: center;
 }
 .obs .data{
-	text-align: center;
-	width: 70%;
+	width: 71%;
 }
 .goBack-button{
 	width: 100%;
@@ -62,21 +61,49 @@ button{
 	border-radius: 38px;
 	border-color: transparent;
 	color: #FFFFFF;
+	font-size: 110%;
 }
 
-@media screen and (min-width: 900px){
+@media screen and (min-width: 650px){
+	.preview-container{
+		width: 394px;
+		height: 373px;
+	}
+	.title{
+		font-size: 118%;
+		padding-top: 30px;
+	}
+	.description{
+		padding-left: 85px;
+	}
+	.obs .data{
+		width: 73%;
+	}
+	.data{
+		font-size: 115%;
+	}
+	button{
+		font-size: 135%;
+	}
+
+}
+
+@media screen and (min-width: 1024px){
 	.preview-container{
 		width: 476px;
 		height: 442px;
 	}
 	.title{
-		font-size: 120%;
+		font-size: 125%;
 		padding-top: 35px;
+	}
+	.description{
+		padding-left: 110px;
 	}
 	.data{
 		font-size: 130%;
 	}
 	button{
-		font-size: 135%;
+		font-size: 145%;
 	}
 }
