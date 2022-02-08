@@ -1,0 +1,74 @@
+<app-navbar [var]="{route:'/app/home',title:'Productos'}" ></app-navbar>
+<div class="search">
+    <div class="icon">
+        <a style="text-decoration: none;" href="/productos/add">
+            <mat-icon>add_circle_outline</mat-icon>
+        </a>
+    </div>
+    <div class="input">
+        <input type="text">
+    </div>
+    <div class="search-button">
+        <mat-icon>search</mat-icon>
+    </div>
+</div>
+
+
+<div class="container-general">
+
+        <button  (click)="nf_for_preview()" class="preview" ><mat-icon >expand_less</mat-icon></button>
+  
+  
+
+
+
+
+    <!-- lista de la data -->
+    <div class="container-products">
+
+        <!-- aca parte la lista -->
+      
+        <div class="item" *ngFor="let venta of this.segmento">
+            
+            <div class="data">
+                <div class="data-line">
+                    <b>Nombre:</b>&nbsp;polera Nike blanca
+                </div>
+                <div class="data-line">
+                    <b>Talla:</b>&nbsp;estandar
+                </div>
+                <div class="data-line">
+                    <b>Stock:</b>&nbsp;18
+                </div>
+                <div class="data-line">
+                    <b>Precio:</b>&nbsp;$15.000
+                </div>
+                <div class="data-line">
+                    <b>Vendidos:</b>&nbsp;9
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="data-line">
+                    <b>N°</b>&nbsp;{{venta}}
+                </div>
+               
+                <button class="visibility">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <button class="more">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+                
+            </div>
+
+        </div>
+
+
+    </div>
+    
+   
+
+    
+        <button (click)="nf_for_next()" class="next" ><mat-icon >expand_more</mat-icon></button>
+    
+</div>
