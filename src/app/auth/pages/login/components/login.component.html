@@ -11,20 +11,27 @@
   </div>
 
   <div class="container">
+
       <form  (ngSubmit)="saveInfo($event)" action="">
+        
         <div class="Input">
-          <div class="icon-perfil">
-            <img src="assets\page\Icono perfil.svg" alt="">
+          <div class="class-input">
+            <div class="icon-perfil">
+              <img src="assets\page\Icono perfil.svg" alt="">
+            </div>
+            <input [formControl]="rut" placeholder=" Rut">
           </div>
-          <input [formControl]="rut" placeholder=" Rut">
-          <p *ngIf="rut.invalid" class="input-error"><strong>* Campo requerido ej: 12345678-1</strong> </p>
+          <p style="margin-top: 50px;" *ngIf="rut.invalid" class="input-error"><strong>* Campo requerido ej: 12345678-1</strong> </p>
         </div>
         <div class="Input">
-          <div class="icon-perfil">
-            <img src="assets\page\Icono contraseña.svg" alt="">
+          <div class="class-input">
+            <div class="icon-perfil">
+              <img src="assets\page\Icono contraseña.svg" alt="">
+            </div>
+            <input [formControl]="pass" formControlName="pass" type="password" placeholder=" Contraseña">
           </div>
-          <input [formControl]="pass" formControlName="pass" type="password" placeholder=" Contraseña">
-          <p *ngIf="pass.invalid" class="input-error"><strong>* Campo requerido <br> * Utilizar mayusculas, luego minusculas y numeros</strong> </p>
+          <p style="margin-top: 50px;" *ngIf="pass.invalid" class="input-error"><strong>* Campo requerido <br> * Utilizar mayusculas, luego minusculas y luego numeros</strong> </p>
+        
         </div>
         <div class="footer-container">
           <div class="check">
@@ -36,7 +43,7 @@
           </div>
         </div>
         <div class="butt-inciar">
-          <button type="submit" >Iniciar sesión</button>
+          <button (click)=" logIn(user)" type="submit" >Iniciar sesión</button>
         </div>
       </form>
 

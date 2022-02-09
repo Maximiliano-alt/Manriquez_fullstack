@@ -1,4 +1,4 @@
-<app-navbar ></app-navbar>
+<app-navbar [var]="{route:'null',title:'Bienvenido Usuario'}" ></app-navbar>
 
 <div class="body2">
     <div class="container">
@@ -13,7 +13,7 @@
             <div class="menu-item">
                 <div class="item">
                     <div class="item-button">
-                        <a href="/" mat-list-item style="text-decoration: none;">
+                        <a href="/ventas" mat-list-item style="text-decoration: none;">
                             <mat-icon>
                                 check_circle
                             </mat-icon>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="item">
                     <div class="item-button">
-                        <a href="/" mat-list-item style="text-decoration: none;">
+                        <a [routerLink]="['/productos']" mat-list-item style="text-decoration: none;">
                             <mat-icon >
                                 <img src="../../../../assets/page/Productos.svg" alt="">
                             </mat-icon>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="item">
                     <div class="item-button">
-                        <a href="/" mat-list-item style="text-decoration: none;">
+                        <a [routerLink]="['/pendientes']" mat-list-item style="text-decoration: none;">
                             <mat-icon >
                                 <img src="../../../../assets/page/pendientes.svg" alt="">
                             </mat-icon>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="item">
                     <div class="item-button">
-                        <a href="/" mat-list-item style="text-decoration: none;">
+                        <a href="/clientes" mat-list-item style="text-decoration: none;">
                             <mat-icon >
                                 <img src="../../../../assets/page/Clientes.svg" alt="">
                             </mat-icon>

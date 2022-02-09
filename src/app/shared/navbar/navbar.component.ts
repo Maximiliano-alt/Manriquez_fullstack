@@ -11,4 +11,11 @@ import { Component, OnInit,EventEmitter,Input,Output } from '@angular/core';
 export class NavbarComponent {
   
 
+  @Input()
+  var:any={
+    route:'',
+    title:''
+  }
+  @Output()
+  emit: EventEmitter<any> = new EventEmitter();
 }

@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 
-
 const routes: Routes = [
   //para ruta vacia
   //aca dentro de todas las rutas path
   {
     // para rutas vacias renderea a auth
-    path:'',redirectTo:'/auth',pathMatch:"full"
+    path:'',redirectTo:'auth',pathMatch:"full"
   },
   {
     // al momento de renderear auth renderea a sus childrens
@@ -17,6 +16,18 @@ const routes: Routes = [
   },
   {
     path:'app',loadChildren:()=> import('./home/home.module').then(modulo =>modulo.HomeModule)
+  },
+  {
+    path:'ventas',loadChildren:()=> import('./ventas/ventas.module').then(modulo => modulo.VentasModule)
+  },
+   {
+    path:'pendientes',loadChildren:()=> import('./pendientes/pendientes.module').then(modulo => modulo.PendientesModule)
+  },
+ {
+    path:'clientes',loadChildren:()=> import('./clientes/clientes.module').then(modulo => modulo.ClientesModule)
+  },
+  {
+    path:'productos',loadChildren:()=> import('./products/products.module').then(modulo=>modulo.ProductsModule)
   },
   {
     // para rutas inexistentes redirecciona hacia auth

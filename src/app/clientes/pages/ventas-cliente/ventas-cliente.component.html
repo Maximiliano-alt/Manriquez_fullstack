@@ -1,0 +1,68 @@
+<app-navbar [var]="{route:'/clientes',title:'Venta Cliente'}" ></app-navbar>
+
+
+<div class="search">
+    <div class="icon">
+      
+    </div>
+    <div class="input">
+        <input type="text">
+    </div>
+    <div class="search-button">
+        <mat-icon>search</mat-icon>
+    </div>
+</div>
+
+<div class="container-general">
+    <div class="container">
+        <div class="data-cliente">
+            <div class="nav-data">
+                Aracelly Balboa
+            </div>
+            <div class="data">
+                <div class="nav-data-line">
+                    <b>Rut: </b> <p>&nbsp;Aracelly Balboa</p>
+                </div>
+                <div class="nav-data-line">
+                    <b>Direccion: </b> <p>&nbsp;Santa margarita 1157 Villa alemana</p>
+                </div>
+                <div class="nav-data-line">
+                    <b>Telefono: </b> <p>&nbsp;945876907</p>
+                </div>
+                <div class="nav-data-line">
+                    <b>Correo: </b> <p>&nbsp;marcelo.estay@alumnos.uv.cl</p>
+                    <button style="border: none; background-color: transparent;"> <mat-icon>delete</mat-icon></button>
+
+                </div>
+            </div>
+        </div>
+    
+        <div   style="margin-top: 4px;" class="up1"> 
+            <mat-icon (click)=" nf_for_preview()" >expand_less</mat-icon>
+        </div>
+    
+        <div class="item-list" >
+            <div class="item" *ngFor="let ventas of this.segmento">
+                <div class="data">
+                    <div class="data-line">
+                        <b>Fecha: </b> <p>&nbsp;XX/XX/XXXX</p>
+                    </div>
+                    <div class="data-line">
+                        <b>Valor: </b> <p>&nbsp;$156.000</p>
+                    </div>
+                </div>
+                <div class="buttons">
+                   <mat-icon class="eye">visibility</mat-icon>
+                   <mat-icon class="more">more_horiz</mat-icon>
+                    <div class="data-line">
+                        <b>N°</b> <p>&nbsp;{{ventas}}</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div  style="margin-top: 4px;" class="up2"> 
+           <mat-icon (click)=" nf_for_next()" >expand_more</mat-icon>
+        </div>
+    </div>
+</div>

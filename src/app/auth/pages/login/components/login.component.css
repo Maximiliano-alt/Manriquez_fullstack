@@ -27,14 +27,13 @@ p, a,button{
 .radio-container{
   display: flex;
   width: 100%;
-  height: 15%;
+  height: 100px;
   justify-content: center;
 }
 
 .icono-perfil{
   display: flex;
-  width: 151px;
-  height: 150px;
+  width: 100px;
   border-radius: 50%;
   background-color: #F25C05;
   transform: translateY(1%);
@@ -49,11 +48,11 @@ p, a,button{
 
 .container{
   width: 100%;
-  height: 35%;
+  height: calc(100%-20%-100px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 7%;
+  align-items: top;
+  margin-top: 1%;
 }
 .container-form{
   width: 333px;
@@ -72,21 +71,31 @@ form{
   display: flex;
   flex-direction: column;
   align-self: center;
-  transform: translateY(25%);
+
 }
 
 .Input {
   display: flex;
-  height: 45%;
-  flex-direction: row;
-  justify-content: center;
+  height: 20%;
+  flex-direction: column;
+  /* justify-content: center; */
   margin: 4% 0;
+
+
+}
+.class-input{
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+
 }
 
+
 .Input input{
-  width: 80%;
+  width: 100%;
   background-color: #F25C05;
   opacity: 60%;
+  height: 100%;
   border: none;
   box-shadow: inset 0px 3px 6px #00000029;
   color: #fff;
@@ -111,16 +120,18 @@ form{
 }
 .footer-container{
   width: 110%;
-  height: 39%;
+  height: 9%;
   display: flex;
   align-items: center;
   transform: translateY(40px);
+  margin-bottom: 20%;
 }
 
 .check{
   display: flex;
-  align-items: center;
+
   width: 35%;
+  margin-right: 40px;
 }
 
 .check input{
@@ -141,10 +152,10 @@ form{
 
 .butt-inciar {
   display: flex;
-  height: 200px;
+  height: 50px;
   flex-direction: column;
   justify-content: end;
-  transform: translateY(20px);
+  
 }
 
 .butt-inciar button{
@@ -169,7 +180,7 @@ input::placeholder{
   height: 20%;
   display: flex;
   flex-direction: column;
-  transform: translateY(95px);
+  
 }
 .reg-p{
   height: 65%;
@@ -179,7 +190,7 @@ input::placeholder{
 }
 
 .reg-b{
-  height: 200px;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -206,64 +217,53 @@ footer{
 footer p{
   margin: auto;
 }
-@media screen and (min-width: 550px){
 
+
+@media screen and (min-width:688px) {
+  form{
+  width: 500px;
+  }
+  .footer-container{
+    margin-bottom: 40px;
+  }
 }
-@media screen and (min-width: 750px){
 
-}
-
-@media screen and (min-width: 1024px){
-  p, a{
-    font-size: 90%;
-  }
-  .logo-container{
-    height: 10%;
-  }
-  .logo{
-    height: 90%;
-    width: 25%;
-    margin: 0 0 0 66px;
-    justify-content: flex-start;
-    padding-top: 3%;
-    padding-left: 3%;
-  }
-  .icono-perfil{
-    width: 11.5%;
-    height: 118%;
-  }
-  .conainer{
-    height: 40%;
-  }
-  .container-form{
-    width: 32%;
-    height: 100%;
-  }
-  .check{
-    width: 40%;
-    }
-  .forget-pass {
-    width: 60%;
-  }
+@media screen and (min-width:1366px) {
   .reg{
-    height: 25%;
+    transform: translate(600%,-650%);
+    width: 15%;
   }
-  .reg-b button{
-    width: 16%;
-  }
-  footer{
-    height: 15%;
-  }
-}
-
-@media screen and (min-width: 1100px)
-{
-  .logo{
-    width: 20%;
-    height: 100%;
+  .logo-container img{
+    transform: translate(-150%,10%);
+    top: 51px;
+    left: 66px;
+    width: 322px;
+    height: 121px;
   }
 }
-
-
-
-
+@media screen and (min-width:1390px) {
+  .reg{
+    transform: translate(550%,-670%);
+    width: 15%;
+  }
+  .logo-container img{
+    transform: translate(-150%,10%);
+    top: 51px;
+    left: 66px;
+    width: 322px;
+    height: 121px;
+  }
+}
+@media screen and (min-width:1920px) {
+  .reg{
+    transform: translate(600%,-670%);
+    width: 15%;
+  }
+  .logo-container img{
+    transform: translate(-200%,10%);
+    top: 51px;
+    left: 66px;
+    width: 322px;
+    height: 121px;
+  }
+}
