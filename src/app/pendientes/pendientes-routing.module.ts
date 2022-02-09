@@ -7,18 +7,21 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 
 	{
-		path:'',component: ListPendientesComponent,
-	},
-	{
-		path:'pendientes',component: ListPendientesComponent,
-
-	},
-	{
-		path:'preview',component:	PreviewComponent,
-	},
-	{
-		path: '**',redirectTo:'/pendientes',
+		path:'',
+		children:[
+			{
+				path:'pendientes',component: ListPendientesComponent,
+		
+			},
+			{
+				path:'preview',component:	PreviewComponent,
+			},
+			{
+				path: '**',redirectTo:'pendientes',
+			}
+		]
 	}
+	
 ]
 
 

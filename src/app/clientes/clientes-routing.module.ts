@@ -7,23 +7,25 @@ import { AddClienteComponent } from './pages/add-cliente/add-cliente.component';
 const routes: Routes=[
   {
     path:'',
-    component: ListClientesComponent
-  },
-  {
-    path:'clientes',
-    component: ListClientesComponent
-  },
-  {
-    path:'ventasCliente/:id',
-    component: VentasClienteComponent,
-  },
-  {
-    path:'add/cliente',component:AddClienteComponent
-  },
-  {
-    path:'**',
-    component: ListClientesComponent
+    children:[
+      {
+        path:'clientes',
+        component: ListClientesComponent
+      },
+      {
+        path:'ventasCliente/:id',
+        component: VentasClienteComponent,
+      },
+      {
+        path:'add/cliente',component:AddClienteComponent
+      },
+      {
+        path:'**',
+        redirectTo:'clientes'
+      }
+    ]
   }
+  
 
 ]
 
