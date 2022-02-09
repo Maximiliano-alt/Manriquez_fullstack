@@ -11,20 +11,26 @@ const routes:Routes=[
   // primera ruta
   {
     path:'',
-    component:HomeProductsComponent
-  },
-  {
-    path:'add',
-    component:AddProductsComponent,
-  },
-  {
-    path:'detail/:id',
-    component:DetailProductsComponent
-  },
-  {
-    path:'**',
-    redirectTo:'/productos'
+    children:[
+      {
+        path:'home-productos',
+        component:HomeProductsComponent,
+      },
+      {
+        path:'add',
+        component:AddProductsComponent,
+      },
+      {
+        path:'detail/:id',
+        component:DetailProductsComponent
+      },
+      {
+        path:'**',
+        redirectTo:'home-productos'
+      }
+    ]
   }
+  
 
 ]
 

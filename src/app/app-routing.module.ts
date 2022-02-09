@@ -8,7 +8,7 @@ const routes: Routes = [
   //aca dentro de todas las rutas path
   {
     // para rutas vacias renderea a auth
-    path:'',redirectTo:'/auth',pathMatch:"full"
+    path:'',redirectTo:'auth',pathMatch:"full"
   },
   {
     // al momento de renderear auth renderea a sus childrens

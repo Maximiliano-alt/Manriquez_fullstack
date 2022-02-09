@@ -11,29 +11,31 @@ const rutas : Routes=[
 
   { 
     path:'',
-    component:ListVentaComponent,
+    children:[
+      {
+        path:'loadVentas',
+        component:ListVentaComponent
+      },
+      {
+        path:'addVenta',
+        component:AddVentaComponent,
+      },
+      {
+        path:'venta/:id',
+        component:VentaUnicaComponent,
+      },
+      {
+        path:'productos/:id',
+        component: ListProductoComponent
+      },
+      {
+        path:'**',
+        redirectTo:'loadVentas',
+      }
+    ]
     
-  },
-  {
-    path:'loadVentas',
-    component:ListVentaComponent
-  },
-  {
-    path:'addVenta',
-    component:AddVentaComponent,
-  },
-  {
-    path:'venta/:id',
-    component:VentaUnicaComponent,
-  },
-  {
-    path:'productos/:id',
-    component: ListProductoComponent
-  },
-  {
-    path:'**',
-    component:ListVentaComponent
   }
+  
 
 
 
