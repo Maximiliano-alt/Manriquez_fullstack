@@ -30,6 +30,9 @@ const routes: Routes = [
     path:'productos',loadChildren:()=> import('./products/products.module').then(modulo=>modulo.ProductsModule)
   },
   {
+    path:'estadisticas',loadChildren:()=>import('./graphics/graphics.module').then(m=>m.GraphicsModule)
+  },
+  {
     // para rutas inexistentes redirecciona hacia auth
     path:'**',redirectTo:'/auth',pathMatch:"full"
   },
