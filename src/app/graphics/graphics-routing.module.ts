@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ClientGraphicsComponent } from './pages/client-graphics/client-graphics.component';
 import { HomeGraphicsComponent } from './pages/home-graphics/home-graphics.component';
 
 const routes: Routes = [
@@ -10,6 +11,10 @@ const routes: Routes = [
       {
         path:'home',
         component:HomeGraphicsComponent,
+      },
+      {
+        path:'clientes',
+        component:ClientGraphicsComponent
       },
       {
         path:'**',
