@@ -47,10 +47,12 @@ export class VentasGraphicsComponent implements OnInit {
       dateIn.getTime()>Date.now() || 
       dateOut.getTime()>Date.now() ||
       this.valueIn==undefined || 
-      this.valueOut==undefined
+      this.valueOut==undefined ||
+      dateIn.getTime() == dateOut.getTime()
       
     ){
-      this.alertaDate = 1
+      this.alertaDate = 1;
+      this.creacionGrafica = 0;
       return 0;
     }
     else{
