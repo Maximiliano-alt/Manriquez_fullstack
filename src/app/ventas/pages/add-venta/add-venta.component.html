@@ -4,22 +4,24 @@
      <!-- aca comienza el search -->
     <div class="search-cliente">
         <div class="button-search">
-            <button>
+            <button (click)=" searchCliente(this.rut)">
                 <mat-icon>search</mat-icon>
             </button>
         </div>
         <div class="input-search">
-            <input type="text">
+            <input [(ngModel)]="this.rut" type="text" placeholder="Ingrese el rut del cliente">
+      
         </div>
     </div>
 
     <!-- search cliente nueva -->
     <div class="search-cliente-grande">
         <div class="input-search">
-            <input type="text">
+            <input [(ngModel)]="this.rut" type="text" placeholder="Ingrese el rut del cliente">
+            
         </div>
         <div class="button-search">
-            <button>
+            <button (click)=" searchCliente(this.rut)">
                 <mat-icon>search</mat-icon>
             </button>
         </div>
@@ -30,26 +32,30 @@
 
     <!-- data cliente -->
     <div class="data-cliente-container">
-        <div class="nav-data">
-            Cliente: Aracelly Balboa
+        <div class="nav-data" *ngIf="this.cliente.nombre!=''">
+            Cliente: {{this.cliente.nombre}}
         </div>
-        <div class="data-cliente">
-            <p> <b>Direccion:</b> &nbsp;Santa Margarita 1157 Villa Alemana </p>
-            <p> <b>Telefono:</b>&nbsp; +56945876907 </p>
-            <p><b>Correo:</b>&nbsp; marcelo.estay@alumnos.uv.cl </p>
-            <p><b>Rut:</b> &nbsp;20068493-1</p>
+        <div class="data-cliente" *ngIf="this.cliente.nombre!=''">
+            <p> <b>Direccion:</b> &nbsp; {{this.cliente.direccion}} </p>
+            <p> <b>Telefono:</b>&nbsp; {{this.cliente.telefono}} </p>
+            <p><b>Correo:</b>&nbsp; {{this.cliente.correo}} </p>
+            <p><b>Rut:</b> &nbsp;{{this.cliente.rut}}</p>
         </div>
+        <h1 style="color:black; font-size: 20px; margin: auto;" *ngIf="this.cliente.nombre=='' && this.buscado == 0">Ingrese el rut del cliente para mostrar informacion</h1>
+        <h1 style="color:black; font-size: 20px; margin: auto;" *ngIf="this.cliente.nombre=='' && this.buscado == 1">El usuario no fue encontrado</h1>
+        <a *ngIf="this.cliente.nombre=='' && this.buscado == 1" style="color:black; font-size: 15px; margin: auto;" [routerLink]="['/clientes/add/cliente']">Haz click aqui para agregar uno nuevo!</a>
     </div>
 
     <!-- search productos -->
     <div  style="margin-bottom: 10px;" class="search-productos">
+        
+        <div class="input-search">
+            <input type="text">
+        </div>
         <div class="button-search">
             <button>
                 <mat-icon>search</mat-icon>
             </button>
-        </div>
-        <div class="input-search">
-            <input type="text">
         </div>
     </div>
 
