@@ -14,7 +14,7 @@ const routes: Routes = [
 		
 			},
 			{
-				path:'preview',component:	PreviewComponent,
+				path:'preview/:id',component:	PreviewComponent,
 			},
 			{
 				path: '**',redirectTo:'pendientes',

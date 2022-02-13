@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeProductsComponent } from './pages/home-products/home-products.component';
 import { AddProductsComponent } from './pages/add-products/add-products.component';
 import { DetailProductsComponent } from './pages/detail-products/detail-products.component';
-
+import { CatProductsComponent } from './pages/cat-products/cat-products.component';
+import { CreateCategoryComponent } from './pages/create-category/create-category.component';
 
 const routes:Routes=[
 
@@ -13,7 +14,7 @@ const routes:Routes=[
     path:'',
     children:[
       {
-        path:'home-productos',
+        path:'products-category',
         component:HomeProductsComponent,
       },
       {
@@ -21,12 +22,20 @@ const routes:Routes=[
         component:AddProductsComponent,
       },
       {
+        path:'category',
+        component:CatProductsComponent,
+      },
+       {
+        path:'add-category',
+        component:CreateCategoryComponent,
+      },
+      {
         path:'detail/:id',
         component:DetailProductsComponent
       },
       {
         path:'**',
-        redirectTo:'home-productos'
+        redirectTo:'category'
       }
     ]
   }

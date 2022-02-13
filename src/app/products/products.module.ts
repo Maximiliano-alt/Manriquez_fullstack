@@ -6,11 +6,15 @@ import { MaterialModule } from '../material/material.module';
 import { HomeProductsComponent } from './pages/home-products/home-products.component';
 import { AddProductsComponent } from './pages/add-products/add-products.component';
 import { DetailProductsComponent } from './pages/detail-products/detail-products.component';
+import { CatProductsComponent } from './pages/cat-products/cat-products.component';
+import { CreateCategoryComponent } from './pages/create-category/create-category.component';
 @NgModule({
   declarations: [
     HomeProductsComponent,
     AddProductsComponent,
-    DetailProductsComponent
+    DetailProductsComponent,
+    CatProductsComponent,
+    CreateCategoryComponent
   ],
   imports: [
     CommonModule,

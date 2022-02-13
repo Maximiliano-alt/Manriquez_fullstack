@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { VentaUnicaComponent } from './pages/venta-unica/venta-unica.component';
 import { ListProductoComponent } from './pages/list-producto/list-producto.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     ListVentaComponent,
@@ -20,7 +20,8 @@ import { ListProductoComponent } from './pages/list-producto/list-producto.compo
     CommonModule,
     RoutingVentasModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class VentasModule { }

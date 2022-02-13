@@ -1,0 +1,20 @@
+<app-navbar [var]="{route:'/app/home',title:'Estadísticas'}" ></app-navbar>
+
+
+
+<div class="container-general">
+    
+    <a id="clientes" style="margin-top: 88px;" [routerLink]="['/estadisticas/clientes']">
+        <mat-icon>groups</mat-icon>
+        <label>Clientes</label>
+    </a>
+    <a id="productos" style="margin-top: 41px;" [routerLink]="['/app/home']">
+        <mat-icon><img src="../../../../assets/page/Productos.svg" alt=""></mat-icon>
+        <label>Productos</label>
+    </a>
+    <a id="ventas" style="margin-top: 41px;" [routerLink]="['/estadisticas/ventas']">
+        <mat-icon><img src="../../../../assets/page/check ventas.svg" alt=""></mat-icon>
+        <label>Ventas</label>
+    </a>
+
+</div>
