@@ -45,7 +45,8 @@ export class RegisterComponent implements OnInit {
 
     this.email = new FormControl('',[
       Validators.required,
-      Validators.email
+      Validators.email,
+      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
     ]);
     this.email.valueChanges.subscribe(
       value =>{
@@ -54,7 +55,7 @@ export class RegisterComponent implements OnInit {
     );
 
 
-    this.pass = new FormControl('',[//20636614-1
+    this.pass = new FormControl('',[
       Validators.required,
       Validators.minLength(8),
       Validators.pattern(/^[A-Z].*[a-z].[0-9].*$/)
@@ -65,10 +66,8 @@ export class RegisterComponent implements OnInit {
       }
     );
 
-    this.rePass = new FormControl('',[//20636614-1
+    this.rePass = new FormControl('',[
       Validators.required,
-      Validators.minLength(8),
-      Validators.pattern(/^[A-Z].*[a-z].[0-9].*$/)
     ]);
     this.rePass.valueChanges.subscribe(
       value =>{
