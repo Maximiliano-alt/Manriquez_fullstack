@@ -13,7 +13,7 @@
   <div class="container">
 
       <form  (ngSubmit)="saveInfo($event)" action="">
-        
+
         <div class="Input">
           <div class="class-input">
             <div class="icon-perfil">
@@ -21,7 +21,7 @@
             </div>
             <input [formControl]="rut" placeholder=" Rut">
           </div>
-          <p style="margin-top: 50px;" *ngIf="rut.invalid" class="input-error"><strong>* Campo requerido ej: 12345678-1</strong> </p>
+          <p style="margin-top: 50px;" *ngIf="rut.invalid && rut.touched" class="input-error"><strong>* Campo requerido ej: 12345678-1</strong> </p>
         </div>
         <div class="Input">
           <div class="class-input">
@@ -30,8 +30,8 @@
             </div>
             <input [formControl]="pass" formControlName="pass" type="password" placeholder=" Contraseña">
           </div>
-          <p style="margin-top: 50px;" *ngIf="pass.invalid" class="input-error"><strong>* Campo requerido <br> * Utilizar mayusculas, luego minusculas y luego numeros</strong> </p>
-        
+          <p style="margin-top: 50px;" *ngIf="pass.invalid && pass.touched" class="input-error"><strong>* Campo requerido <br> * Utilizar mayusculas, luego minusculas y luego numeros</strong> </p>
+
         </div>
         <div class="footer-container">
           <div class="check">
@@ -52,7 +52,7 @@
       <p>¿No tienes cuenta?</p>
     </div>
     <div class="reg-b">
-      <button type="submit">Registrarse</button>
+       <a routerLink='/auth/register' routerLinkActive="active"><button type="submit">Registrarse</button></a>
     </div>
   </div>
 </div>
