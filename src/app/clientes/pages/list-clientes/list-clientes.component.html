@@ -3,7 +3,7 @@
 
 <div class="search">
     <div class="icon">
-        <a style="text-decoration: none;" href="/clientes/add/cliente">
+        <a style="text-decoration: none;" routerLink="/clientes/add/cliente">
             <mat-icon>add_circle_outline</mat-icon>
         </a>
     </div>
@@ -17,14 +17,14 @@
 
 <div class="container-general">
 
-    <div style="margin-top: 4px;" class="up"> 
+    <div style="margin-top: 4px;" class="up">
         <button style="background-color: transparent;
-                       border: none; 
+                       border: none;
         " (click)="nf_for_preview()"><mat-icon >expand_less</mat-icon></button>
     </div>
 
     <div class="container-clientes">
-       
+
         <div class="item" *ngFor="let cliente of this.segmento">
             <div class="item-data">
                 <div class="data-line">
@@ -39,7 +39,7 @@
                     <a style="text-decoration: none;" [routerLink]="['/clientes/ventasCliente/'+cliente]">
                         <button><mat-icon>visibility</mat-icon></button>
                     </a>
-                    
+
                 </div>
                 <div class="button-number">
                     <div class="button-number-item">
@@ -49,13 +49,13 @@
                 </div>
             </div>
         </div>
-                    
+
     </div>
 
 
     <div class="up">
         <button style="background-color: transparent;
-                       border: none; 
+                       border: none;
         " (click)="nf_for_next()"><mat-icon >expand_more</mat-icon></button>
     </div>
 
@@ -67,7 +67,7 @@
             </div>
             <div class="item-carrusel">
                 <div class="item" *ngFor="let cliente of segmento">
-                  
+
                     <div class="data">
                         <div class="data-line">
                             <b>Cliente:</b> <p>&nbsp;nombre del cliente</p>
@@ -75,7 +75,7 @@
                         <div class="data-line">
                             <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
                         </div>
-                        
+
                     </div>
                     <div class="left-component">
                         <div class="button-eye">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div (click)="nf_for_next()" class="button-next">
                 <mat-icon>expand_less</mat-icon>
