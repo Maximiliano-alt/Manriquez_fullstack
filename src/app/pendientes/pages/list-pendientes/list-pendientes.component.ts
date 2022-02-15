@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { PendientesService } from '../../service/pendientes.service';
 @Component({
   selector: 'app-list-pendientes',
   templateUrl: './list-pendientes.component.html',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPendientesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: PendientesService) { }
 
   ngOnInit(): void {
+    this.getPendientes()
+  }
+
+  getPendientes(){
+    
   }
 
 }
