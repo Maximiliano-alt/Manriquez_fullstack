@@ -1,0 +1,56 @@
+<div class="container-general">
+
+    <div class="data">
+        <!-- boton de arriba -->
+
+        <button (click)="nf_for_preview()">
+            <mat-icon>expand_less</mat-icon>
+        </button>
+
+
+        <!-- esta es la data completa -->
+        <div class="lista">
+
+            <!-- cada item de la lista -->
+            <div class="item6" *ngFor="let item of this.segmento">
+                <div class="clientes" *ngIf="this.input.indicador == 'clientes'">
+                    <div class="item-data">
+                        <div class="data-line">
+                            <b>Cliente:</b> <p>&nbsp;nombre del cliente</p>
+                        </div>
+                        <div class="data-line">
+                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                        </div>
+                    </div>
+                    <div class="item-button">
+                        <div class="button-eye">
+                            <a style="text-decoration: none;">
+                                <button ><mat-icon id="visibility">visibility</mat-icon></button>
+                            </a>
+                            
+                        </div>
+                        <div class="button-number">
+                            <div id="number-item" class="button-number-item">
+                                <b>N°</b> <p>{{item}}</p>
+                            </div>
+                            <button><mat-icon id="more">more_horiz</mat-icon></button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="item4">
+
+            </div>
+        </div>
+
+
+
+        <!-- boton de abajo -->
+        <button (click)="nf_for_next()">
+            <mat-icon>expand_more</mat-icon>
+        </button>
+    </div>
+
+
+</div>
