@@ -16,6 +16,12 @@ export class GraphicsService {
     )
   }
 
+  getVentas(){
+    return this.http.get<ventasGraphics>(environment.baseUrl+'/get/ventas/estadistica').pipe(
+      delay(1500)
+    )
+  }
+
 
 }
 
@@ -33,4 +39,17 @@ export interface cliente{
     nombre:string,
     totalDeCompra:number,
   }
+
+
+export interface ventasGraphics{
+  status:number,
+  data:[
+    ventas
+  ]
+   
+}
+export interface ventas{
+  fecha:number,
+  totalDeVenta:number
+}
 

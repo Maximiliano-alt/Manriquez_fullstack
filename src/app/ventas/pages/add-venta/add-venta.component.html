@@ -1,7 +1,7 @@
 <app-navbar [var]="{route:'/ventas',title:'Agregar nueva venta'}" ></app-navbar>
-<div class="container-general">
+ <div class="container-general">
 
-     <!-- aca comienza el search -->
+
     <div class="search-cliente">
         <div class="button-search">
             <button (click)=" searchCliente(this.rut)">
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <!-- search cliente nueva -->
+  
     <div class="search-cliente-grande">
         <div class="input-search">
             <input [(ngModel)]="this.rut" type="text" placeholder="Ingrese el rut del cliente">
@@ -27,10 +27,8 @@
         </div>
        
     </div>
-    <!-- aca termina el search -->
+  
 
-
-    <!-- data cliente -->
     <div class="data-cliente-container">
         <div class="nav-data" *ngIf="this.cliente.nombre!=''">
             Cliente: {{this.cliente.nombre}}
@@ -46,7 +44,7 @@
         <a *ngIf="this.cliente.nombre=='' && this.buscado == 1" style="color:black; font-size: 15px; margin: auto;" [routerLink]="['/clientes/add/cliente']">Haz click aqui para agregar uno nuevo!</a>
     </div>
 
-    <!-- search productos -->
+    
     <div  style="margin-bottom: 10px;" class="search-productos">
         
         <div class="input-search">
@@ -59,7 +57,7 @@
         </div>
     </div>
 
-    <!-- container productos! -->
+    
 
     <div class="productos">
        <div class="productos-data">
