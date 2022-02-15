@@ -1,10 +1,10 @@
 /* Proveedores */
-.navbar{
+.navbar {
   height: 55px;
 }
 
 .filtro {
-  width: 99.7vw;
+  width: 100vw;
   height: 46px;
   background: #f25c05 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
@@ -22,8 +22,8 @@
   height: 23px;
   border-radius: 13px;
   border: none;
-  opacity: 1;
 }
+
 mat-icon {
   color: #fff;
 }
@@ -32,12 +32,10 @@ mat-icon {
     brightness(110%) contrast(110%);
 }
 .arrow {
-  height: 35px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(100, 100, 100, 0.002);
+  min-height: 34px;
+  min-width: 100vw;
+  text-align: center;
+  background-color: rgba(100, 100, 100, 0.09);
 }
 
 img {
@@ -45,24 +43,31 @@ img {
   left: 173px;
   width: 29px;
   height: 22px;
-  opacity: 1;
 }
-
-.invertir {
-  transform: scaleY(-1);
-}
-.list-proveedores {
-  height: 100%;
-  margin: 0px 29px;
-  overflow-y: scroll;
-}
-mat-list {
+.container {
+  min-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-mat-list-item {
+.invertir {
+  transform: scaleY(-1);
+}
+
+.list-proveedores {
+  height: 100%;
+  margin: 0px 29px;
+  /* overflow-y: scroll; */
+}
+mat-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-list mat-list-item {
   height: 65px;
   margin-bottom: 10px;
 }
@@ -75,13 +80,13 @@ mat-list-item {
 }
 
 .back-fondo {
-  width: 100vw;
-  height: 540px;
+  width: 100%;
+  height: 100%;
   padding-top: 17px;
   padding-bottom: 15px;
   background-color: rgba(0, 0, 0, 0.5);
 }
-mat-list-item p{
+mat-list-item p {
   font-size: 12px;
   font: normal normal normal 12px/18px Roboto;
 }
@@ -92,4 +97,43 @@ p {
 .container-num {
   margin-left: 34.4px;
   font: normal normal medium 15px/20px Roboto;
+}
+
+@media (min-width: 900px) {
+  .item{
+    width: 491px;
+    height: 0px;
+  }
+
+  .container {
+    flex-direction: row;
+    height: 80%;
+  }
+  .arrow {
+    transform: rotate(270deg);
+    min-width: 350px;
+  }
+  .back-fondo {
+    margin: 0px auto;
+    width: 100vw;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+
+  .filtro {
+    color: none;
+  }
+
+  .form-search input {
+    top: 111px;
+    left: 283px;
+    width: 802px;
+    height: 36px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: inset 3px 3px 6px #00000029;
+    border-radius: 18px;
+  }
 }

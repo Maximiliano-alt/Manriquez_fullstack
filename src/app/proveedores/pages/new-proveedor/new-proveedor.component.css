@@ -1,7 +1,6 @@
 .navbar{
     height: 55px;
   }
-  
 .back-fondo {
   width: 100vw;
   height: 540px;
@@ -41,9 +40,6 @@ mat-list {
   justify-content: center;
 }
 mat-list-item {
-  /* width: 302px; */
-
-  /* height: 28px; */
   text-align: center;
   margin-bottom: 25px;
 }
