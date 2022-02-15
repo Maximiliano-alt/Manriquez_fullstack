@@ -23,7 +23,7 @@
     </div>
 
 
-    <div class="spiner" *ngIf="barChartData.labels!.length==0">
+    <div class="spiner" *ngIf="barChartData.labels!.length==0 && creacionGrafica==1">
         <div style="margin:auto" class="spinner-border" role="status" >
         </div>
         <span>Cargando grafica...</span>
@@ -38,6 +38,8 @@
               [type]="barChartType">
             </canvas>
           </div>
+         
+
         
     </div>
 </div>
