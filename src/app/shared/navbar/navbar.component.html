@@ -1,15 +1,15 @@
 <nav class="navbar navbar-light  fixed-top">
     <div class="container-fluid">
-      
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <i class="fas fa-list"></i>
       </button>
       <a class="navbar-brand" >{{this.var.title}}</a>
       <button class="navbar-toggler" type="button"  aria-controls="offcanvasNavbar">
-        <a *ngIf="this.var.route != 'null'" href="{{this.var.route}}"><img src="../../../assets/page/atras.svg"></a>
+        <a *ngIf="this.var.route != 'null'" routerLink="{{this.var.route}}"><img src="../../../assets/page/atras.svg"></a>
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header" >
+        <div class="offcanvas-header">
+            <a routerLink="/app"> <img src="../../../assets\page\Pisosmanriquez.logo-02.png" alt=""></a>
             <button  type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
         <div class="offcanvas-body">
@@ -17,27 +17,29 @@
             <li class="nav-item">
               <a class="nav-link active" style="color: white;" aria-current="page">Panel de control</a>
             </li>
-            
+
           </ul>
           <div class="container-itemns">
             <div class="menu-items">
                 <div class="menu-item-bar">
-                    Ventas
+                    <a routerLink="/ventas"  style="text-decoration: none;">Ventas</a>
                 </div>
                 <div class="menu-item-bar">
-                    Productos
+                  <a routerLink="/productos" style="text-decoration: none;">Productos</a>
                 </div>
                 <div class="menu-item-bar">
-                    Pendientes
+                  <a routerLink="/pendientes" style="text-decoration: none;">Pendientes</a>
                 </div>
                 <div class="menu-item-bar">
-                    Finanzas
+                  <a routerLink="/estadisticas" style="text-decoration: none;">Finanzas</a>
+
                 </div>
                 <div class="menu-item-bar">
-                    Proveedores
+                  <a routerLink="/proveedores" style="text-decoration: none;">Proveedores</a>
+
                 </div>
                 <div class="menu-item-bar">
-                    Clientes
+                  <a routerLink="/clientes" style="text-decoration: none;">Clientes</a>
                 </div>
             </div>
         </div>
@@ -49,7 +51,7 @@
 
 <!-- <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-        
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-list"></i>
         </button>
@@ -77,5 +79,5 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </nav> -->

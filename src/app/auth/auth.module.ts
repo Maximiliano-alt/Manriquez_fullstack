@@ -12,12 +12,12 @@ import { LoginComponent } from './pages/login/components/login.component';
 // Componentes extras
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     RegisterComponent,
     LoginComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -26,7 +26,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    
+    RouterModule
   ]
 })
 export class AuthModule { }

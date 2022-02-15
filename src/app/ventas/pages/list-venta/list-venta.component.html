@@ -1,7 +1,7 @@
 <app-navbar [var]="{route:'/app/home',title:'Ventas'}" ></app-navbar>
 <div class="search">
     <div class="icon">
-        <a style="text-decoration: none;" href="/ventas/addVenta">
+        <a style="text-decoration: none;" routerLink="/ventas/addVenta">
             <mat-icon>add_circle_outline</mat-icon>
         </a>
     </div>
@@ -15,14 +15,14 @@
 
 <div class="container-general">
 
-    <div style="margin-top: 4px;" class="up"> 
+    <div style="margin-top: 4px;" class="up">
         <button style="background-color: transparent;
-                       border: none; 
+                       border: none;
         " (click)="nf_for_preview()"><mat-icon >expand_less</mat-icon></button>
     </div>
 
     <div class="container-ventas">
-       
+
         <div class="item" *ngFor="let venta of this.segmento">
             <div class="data">
                 <div class="data-item">
@@ -58,13 +58,13 @@
                 </div>
             </div>
         </div>
-                    
+
     </div>
 
 
     <div class="up">
         <button style="background-color: transparent;
-                       border: none; 
+                       border: none;
         " (click)="nf_for_next()"><mat-icon >expand_more</mat-icon></button>
     </div>
 
@@ -77,7 +77,7 @@
             </div>
             <div class="item-carrusel">
                 <div class="item" *ngFor="let venta of segmento">
-                  
+
                     <div class="data">
                         <div class="data-item">
                             Cliente:&nbsp;Aracelly Balboa
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div (click)="nf_for_next()" class="button-next">
                 <mat-icon>expand_less</mat-icon>
