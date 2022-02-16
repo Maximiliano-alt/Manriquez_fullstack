@@ -1,12 +1,12 @@
 nav{
     width: 100vw;
     background: #F25C05 0% 0% no-repeat padding-box;
-    
+
 }
 
 .container-fluid a{
     color: white;
-    
+
 }
 img{
     width: 29px;
@@ -49,16 +49,20 @@ img{
 
 }
 .offcanvas-body{
-    background-color: black;
-   
+    background-color: #000000;
+
 }
 .offcanvas-header{
     width: 100%;
     background: #F25C05 0% 0% no-repeat padding-box;
     display: flex;
-    justify-content: right;
-}
 
+}
+.offcanvas-header img{
+  height: 50px;
+  width: 160px;
+  filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg) brightness(110%) contrast(110%);
+}
 .nav-item{
     width: 100%;
     font-size: 20px;

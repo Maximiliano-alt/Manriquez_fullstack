@@ -1,0 +1,211 @@
+.container-general{
+    width: 100vw !important;
+    height: 82% ;
+    transform: translate(0, 53px);
+    display: flex;
+}
+.data{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.up{
+    height: 5%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F25C05 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: none;
+    opacity: 0.2;
+}
+.up mat-icon{
+    color: rgb(49, 49, 49);
+    height: 100%;
+    width: 50%;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.up:hover{
+    background: #F25C05 0% 0% no-repeat padding-box;
+    opacity: 0.8;
+}
+.up:hover > mat-icon{
+    color: #FFFFFF;
+}
+
+.lista{ 
+    width: 80%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    opacity: 0.8;
+}
+
+.item6{
+    padding: 10px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    width: 100%;
+    height: 65px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.clientes{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.item-data{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0px 0px 10px;
+}
+
+.data-line{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    font-size: 80%;
+}
+.item-eye{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.view{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: transparent;
+    border: none;
+}
+.view a{
+    width: 25px;
+    align-self: center;
+}
+.item-number{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.item-number .number{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+}
+.item-number .more {
+    width: 100%;
+    height: 60%;
+}
+.more-button{
+    border: none;
+    background-color: transparent;
+}
+.more-button img{
+    width: 30px;
+}
+
+@media screen and (min-width: 1024px){
+    .data-line, .number{
+        font-size: 120%;
+    }
+    .container-general{
+        height: 79%;
+    }
+    .data{
+        max-width: 1000px;
+        height: 80%;
+        flex-direction: row;
+        align-items: center;
+        margin: auto;
+        margin-top: 5%;
+    }
+    .up{
+        margin-top: 0;
+        height: 100%;
+        width: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .up mat-icon{
+        height: 10%;
+        width: 710%;
+        background: #F25C05 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        opacity: 0.2;
+        transform: rotate(-90deg);
+    }
+    .lista{
+        width: 90%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(100px, 50%));
+        grid-template-rows: repeat(3, minmax(100px, 33.3%));
+        grid-row-gap: 12px;
+        grid-column-gap: 20px;
+        background-color: transparent;
+        margin: 20px 25px 0 25px;
+    }
+    .item6{
+        width: 100%;
+        height: 100%;
+    }
+    .item-data{
+        width: 80%;
+        padding: 0;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    .data-line{
+        width: 90%;
+        height: 25%;
+        display: flex;
+        justify-content: center;
+    }
+    .item-eye{
+        width: 10%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .view {
+        height: 25%;
+        transform: translateX(-15px);
+    }
+    .item-number{
+        width: 10%;
+    }
+    .item-number .number{
+        width: 100%;
+        height: 75%;
+        margin-top: 5px;
+    }
+    .item-number .more {
+        height: 33px;
+    }
+    .more-button {
+        transform: translateX(-20px);
+    }
+    .more-button img{
+        width: 35px;
+    }
+}
+

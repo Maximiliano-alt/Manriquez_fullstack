@@ -7,12 +7,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 .buttons{
     margin-top: 88px;
     width: 100%;
 }
 a{
+    margin: 0 10px 0 10px;
     text-decoration: none;
     color: white;
     left: 117px;
@@ -39,30 +41,18 @@ img{
     width: 70px;
     filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg) brightness(110%) contrast(110%);
 }
-@media screen and (min-width:768px){
-    #clientes{
-        transform: translate(-200px,50px);
+@media screen and (min-width:728px){
+    .container-general{
+        display: flex;
+        flex-direction: row;
     }
-    #productos{
-        transform: translate(0,-107px);
-    }
-    #ventas{
-        transform: translate(200px,-264px);
-    }
-}
-
-@media screen and (min-width:1024px){
     a{
         width: 202px;
         height: 168px;
     }
-    #clientes{
-        transform: translate(-300px,200px);
-    }
-    #productos{
-        transform: translate(0,-9px);
-    }
-    #ventas{
-        transform: translate(300px,-217px);
-    }
+}
+
+@media screen and (min-width:1024px){
+    
+    
 }

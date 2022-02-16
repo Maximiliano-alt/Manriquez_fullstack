@@ -12,7 +12,13 @@ export class GraphicsService {
 
   getCliente(){
     return this.http.get<resCliente>(environment.baseUrl+'/getCliente/estadistica').pipe(
-      delay(1500)
+      delay(1000)
+    )
+  }
+
+  getVentas(){
+    return this.http.get<ventasGraphics>(environment.baseUrl+'/get/ventas/estadistica').pipe(
+      delay(1000)
     )
   }
 
@@ -33,4 +39,17 @@ export interface cliente{
     nombre:string,
     totalDeCompra:number,
   }
+
+
+export interface ventasGraphics{
+  status:number,
+  data:[
+    ventas
+  ]
+   
+}
+export interface ventas{
+  fecha:number,
+  totalDeVenta:number
+}
 
