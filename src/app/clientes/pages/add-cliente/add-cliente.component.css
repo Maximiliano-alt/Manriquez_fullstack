@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     background-color: transparent;
-    
+
 }
 
 .container-general .form-class{
@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 34px;
-  
+
 }
 
 .container-general .form-class .form-input{
@@ -42,6 +42,11 @@
     opacity: 0.8;
     border: none;
 }
+.input-error{
+  position: absolute;
+  margin-top: 35px;
+  color: red;
+}
 .buttons{
     width: 100%;
     height: 84px;
@@ -49,7 +54,7 @@
     flex-direction: column;
 }
 .buttons .guardar{
-    font-size: 12px;    
+    font-size: 12px;
     width: 100%;
     height: 32px;
     margin-bottom: 20px;
@@ -77,13 +82,13 @@
     width: 0;
 }
 @media screen and (min-width:760px) {
-    
+
     .container-general{
         visibility: hidden;
         width: 0px;
         height: 0px;
-    }    
-   
+    }
+
     .form-grande
     {
         visibility: visible;
@@ -93,8 +98,8 @@
         display: flex;
         flex-direction: column;
     }
-    
-    
+
+
     .line-container{
         display: flex;
         align-items: center;

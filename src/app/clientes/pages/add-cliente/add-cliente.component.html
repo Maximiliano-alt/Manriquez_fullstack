@@ -14,16 +14,18 @@
             <div class="form-input-nav">
                 Nombre
             </div>
-            <input [(ngModel)]="this.clienteDefault.nombre" type="text">
+            <input [formControl]="name" [(ngModel)]="this.clienteDefault.nombre" type="text">
+            <p style="margin-top: 50px;" *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
 
         <!-- input nuevo -->
 
         <div class="form-input">
             <div class="form-input-nav">
-                Direccion
+                Dirección
             </div>
-            <input [(ngModel)]="this.clienteDefault.direccion" type="text">
+            <input [formControl]="direction" [(ngModel)]="this.clienteDefault.direccion" type="text">
+            <p style="margin-top: 50px;" *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
 
         <!-- input nuevo -->
@@ -31,9 +33,10 @@
         <div class="form-input">
 
             <div class="form-input-nav">
-                Telefono
+                Teléfono
             </div>
-            <input [(ngModel)]="this.clienteDefault.telefono" type="text">
+            <input [formControl]="phone" [(ngModel)]="this.clienteDefault.telefono" type="text">
+            <p style="margin-top: 50px;" *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
 
         <!-- input nuevo -->
@@ -41,7 +44,8 @@
             <div class="form-input-nav">
                 Correo
             </div>
-            <input [(ngModel)]="this.clienteDefault.correo" type="text">
+            <input [formControl]="email" [(ngModel)]="this.clienteDefault.correo" type="text">
+            <p style="margin-top: 50px;" *ngIf="email.invalid && email.touched" class="input-error"><strong>* Campo requerido</strong> ej: nombre@mail.com </p>
         </div>
 
         <!-- input nuevo -->
@@ -50,72 +54,78 @@
             <div class="form-input-nav">
                 Rut
             </div>
-            <input [(ngModel)]="this.clienteDefault.rut" type="text">
+            <input [formControl]="rut" [(ngModel)]="this.clienteDefault.rut" type="text">
+            <p style="margin-top: 50px;" *ngIf="rut.invalid && rut.touched" class="input-error"><strong>* Campo requerido</strong> ej: 12345678-1 </p>
         </div>
-        
+
 
 
         <div class="buttons">
-            <button (click)="this.add_cliente(this.clienteDefault)" class="guardar">
+            <button [disabled]="name.invalid || rut.invalid || phone.invalid || email.invalid || direction.invalid" (click)="this.add_cliente(this.clienteDefault)" class="guardar">
                 Guardar
             </button>
             <button (click)="this.renew()" class="cancelar">
-            
+
                 Cancelar
             </button>
         </div>
 
 
-        
+
     </div>
 
 
 
-    
-    
+
+
     <!-- fin contenedor form -->
 </div>
 
 <div class="form-grande">
     <div style="margin-top: 50px;" class="line-container">
         <div class="input" style="margin-right: 90px;">
-            <div class="nav"> 
+            <div class="nav">
                 Nombre
             </div>
-            <input [(ngModel)]="this.clienteDefault.nombre" type="text">
+            <input [formControl]="name" [(ngModel)]="this.clienteDefault.nombre" type="text">
+            <p style="margin-top: 112px;" *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
         <div class="input">
-            <div class="nav"> 
+            <div class="nav">
                 Direccion
             </div>
-            <input [(ngModel)]="this.clienteDefault.direccion" type="text">
+            <input [formControl]="direction" [(ngModel)]="this.clienteDefault.direccion" type="text">
+            <p style="margin-top: 112px;" *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
     </div>
     <div style="margin-top: 64px;" class="line-container">
         <div class="input" style="margin-right: 90px;">
-            <div class="nav"> 
-                Telefono
+            <div class="nav">
+                Teléfono
             </div>
-            <input [(ngModel)]="this.clienteDefault.telefono" type="text">
+            <input [formControl]="phone" [(ngModel)]="this.clienteDefault.telefono" type="text">
+            <p style="margin-top: 112px;" *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
         <div class="input">
-            <div class="nav"> 
+            <div class="nav">
                 Correo
             </div>
-            <input [(ngModel)]="this.clienteDefault.correo" type="text">
+            <input [formControl]="email" [(ngModel)]="this.clienteDefault.correo" type="text">
+            <p style="margin-top: 112px;" *ngIf="email.invalid && email.touched" class="input-error"><strong>* Campo requerido</strong> ej: nombre@mail.com </p>
         </div>
     </div>
-    <div style="margin-top: 64px;" class="line-container"> 
+    <div style="margin-top: 64px;" class="line-container">
         <div class="input">
-            <div class="nav"> 
+            <div class="nav">
                 Rut
             </div>
-            <input [(ngModel)]="this.clienteDefault.rut" type="text">
+            <input [formControl]="rut" [(ngModel)]="this.clienteDefault.rut" type="text">
+            <p style="margin-top: 112px;" *ngIf="rut.invalid && rut.touched" class="input-error"><strong>* Campo requerido</strong> ej: 12345678-1 </p>
         </div>
-        
+
     </div>
     <div style="margin-top: 72px;" class="buttons">
-        <button (click)="this.add_cliente(this.clienteDefault)" class="button1">
+        <button [disabled]="name.invalid || rut.invalid || phone.invalid || email.invalid || direction.invalid" (click)="this.add_cliente(this.clienteDefault)" class="button1">
             Guardar
         </button>
 
@@ -123,5 +133,5 @@
             Cancelar
         </button>
     </div>
-    
+
 </div>
