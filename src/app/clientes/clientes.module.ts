@@ -7,7 +7,7 @@ import { MaterialModule } from '../material/material.module';
 import { VentasClienteComponent } from './pages/ventas-cliente/ventas-cliente.component';
 import { AddClienteComponent } from './pages/add-cliente/add-cliente.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     ListClientesComponent,
@@ -19,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     ClientesRoutingModule,
     SharedModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ClientesModule { }
