@@ -91,10 +91,13 @@ form{
   color: #fff;
 }
 .input-error{
-  font-size: 12px;
-  transform: translateY(-20px);
+  font-size: 9px;
+  margin-top: 25px;
   position: absolute;
   color: red;
+}
+.different{
+  margin-top: 45px;
 }
 .icon-perfil{
   display: flex;
@@ -130,7 +133,28 @@ input::placeholder{
   color: #FFFF;
   font-family: 'Roboto', sans-serif;
 }
+@media screen and (min-width:400px ){
+  .input-error{
+    font-size: 11px;
+  }
 
+}
+@media screen and (min-height: 700px){
+  .input-error{
+    margin-top: 30px;
+  }
+  .different{
+    margin-top: 49px;
+  }
+}
+@media screen and (min-height: 800px){
+  .input-error{
+    margin-top: 35px;
+  }
+  .different{
+    margin-top: 49px;
+  }
+}
 @media screen and (min-width: 1024px){
   .head{
     height: 30%;
@@ -166,9 +190,10 @@ input::placeholder{
   }
   .input-error{
     font-size: 13px;
-    transform: translateY(-10px);
-
-
+    margin-top: 41px;
+  }
+  .different{
+    margin-top: 70px;
   }
   .butt-reg button{
     width: 50%;
@@ -182,8 +207,12 @@ input::placeholder{
   }
   .input-error{
     font-size: 14px;
-    transform: translateY(-6px);
-
-
+    margin-top: 60px;
+  }
+  .different{
+    margin-top: 80px;
   }
 }
+
+
+
