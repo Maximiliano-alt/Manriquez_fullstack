@@ -13,6 +13,7 @@
 
             <!-- cada item de la lista -->
             <div class="item6" *ngFor="let item of this.segmento">
+                <!-- clientes -->
                 <div class="clientes" *ngIf="this.input.indicador == 'clientes'">
                     <div class="item-data">
                         <div class="data-line">
@@ -38,6 +39,34 @@
                     </div>
                     
                 </div>
+                <!-- clientes -->
+                <!-- proveedores -->
+                <div class="clientes" *ngIf="this.input.indicador == 'proveedores'">
+                    <div class="item-data">
+                        <div class="data-line">
+                            <b>Nombre:</b> <p>&nbsp;Juan Larenas</p>
+                        </div>
+                        <div class="data-line">
+                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                        </div>
+                    </div>
+                    <div class="item-button">
+                        <div class="button-eye">
+                            <a style="text-decoration: none;">
+                                <button ><mat-icon id="visibility"> <img src="../../../../assets/page/proveedor 2.svg" alt="" /></mat-icon></button>
+                            </a>
+                            
+                        </div>
+                        <div class="button-number">
+                            <div id="number-item" class="button-number-item">
+                                <b>N°</b> <p>{{item}}</p>
+                            </div>
+                            <button><mat-icon id="more">more_horiz</mat-icon></button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- proveedores -->
             </div>
             <div class="item4">
 

@@ -1,39 +1,104 @@
-<div class="navbar">
-    <app-navbar [var]="{route:'/proveedores/lista',title:'Añadir Proveedor'}" ></app-navbar>
-</div>
+<app-navbar
+  [var]="{ route: '/proveedores/lista', title: 'Añadir Proveedor' }"
+></app-navbar>
+
 <div class="back-fondo">
-  <div class="inputs">
-    <mat-list>
-      <mat-list-item>
-        <h3 matLine class="header">Nombre</h3>
-        <input matLine class="input" />
-      </mat-list-item>
-      <mat-list-item>
-        <h3 matLine class="header">Nombre de contacto</h3>
-        <input matLine class="input" />
-      </mat-list-item>
-      <mat-list-item>
-        <h3 matLine class="header">Dirección</h3>
-        <input matLine class="input" />
-      </mat-list-item>
-      <mat-list-item>
-        <h3 matLine class="header">Télefono</h3>
-        <input matLine class="input" />
-      </mat-list-item>
-      <mat-list-item>
-        <h3 matLine class="header">Atención</h3>
-        <input matLine class="input" />
-      </mat-list-item>
-      <mat-list-item>
-        <h3 matLine class="header">Correo atención</h3>
-        <input matLine class="input" />
-      </mat-list-item>
-    </mat-list>
-  </div>
+  <div *ngIf="view; then inicial; else siguiente"></div>
 </div>
 
 <div class="arrow">
-  <mat-icon>
-    <img class="invertir" src="../../../../assets/page/arriba abajo.svg" />
-  </mat-icon>
+  <button (click)="cambiarView()">
+    <mat-icon>
+      <img [ngStyle]="{'transform': view? 'scaleY(-1)':'scaleY(1)'}" src="../../../../assets/page/arriba abajo.svg" />
+    </mat-icon>
+  </button>
 </div>
+
+<ng-template #inicial>
+  <div class="inputs">
+    <div class="box">
+      <div class="header">
+        <p>Nombre</p>
+      </div>
+      <div class="input">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="box">
+      <div class="header">
+        <p>Nombre contacto</p>
+      </div>
+      <div class="input">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="box">
+      <div class="header">
+        <p>Dirección</p>
+      </div>
+      <div class="input">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="box">
+      <div class="header">
+        <p>Teléfono</p>
+      </div>
+      <div class="input">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="box">
+      <div class="header">
+        <p>Atención</p>
+      </div>
+      <div class="input">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="box">
+      <div class="header">
+        <p>Correo atención</p>
+      </div>
+      <div class="input">
+        <input type="text" />
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #siguiente>
+  <div class="inputs">
+    <div class="box">
+      <div class="header">
+        <p>Retira Sr/a</p>
+      </div>
+      <div class="input">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="box">
+      <div class="header">
+        <p>N° guía</p>
+      </div>
+      <div class="input">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="box">
+      <div class="header">
+        <p>Comentario</p>
+      </div>
+      <div class="input">
+        <textarea></textarea>
+      </div>
+    </div>
+    <div class="box">
+      <button class="button">Guardar</button>
+
+    </div>
+    <div class="box">
+    <button class="button">Cancelar</button>
+    </div>
+  </div>
+</ng-template>

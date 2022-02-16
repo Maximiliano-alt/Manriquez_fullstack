@@ -1,60 +1,15 @@
-<div class="navbar">
-  <app-navbar [var]="{ route: '/app/home', title: 'Proveedores' }"></app-navbar>
-</div>
-<div class="filtro">
-  <button mat-icon-button>
-    <img
-      routerLink="/proveedores/new"
-      class="invertir-color"
-      src="../../../../assets/page/add_circle_create_expand_new_plus_icon_123218.svg"
-    />
-  </button>
-
-  <form class="form-search">
+<app-navbar [var]="{ route: '/app/home', title: 'Proveedores' }"></app-navbar>
+<div class="search">
+  <div class="icon">
+    <a style="text-decoration: none" routerLink="/proveedores/new">
+      <mat-icon>add_circle_outline</mat-icon>
+    </a>
+  </div>
+  <div class="input">
     <input type="text" />
-  </form>
-  <button mat-icon-button>
-    <img
-      class="invertir-color"
-      src="../../../../assets/page/searcher_magnifyng_glass_search_locate_find_icon_123813.svg"
-    />
-  </button>
-</div>
-
-<div class="container">
-  <div class="arrow invertir-derecho invertir-color" (click)="nf_for_preview()">
-    <mat-icon>
-      <img src="../../../../assets/page/arriba abajo.svg" />
-    </mat-icon>
   </div>
-  <div class="back-fondo">
-    <div class="item" *ngFor="let proveedor of segmento">
-      <div class="list-proveedores">
-        <mat-list>
-          <div class="item-list">
-            <mat-list-item>
-              <p matLine>Nombre: Juan Larenas</p>
-              <p matLine>Rut: 12.121.123-2</p>
-              <img src="../../../../assets/page/proveedor 2.svg" alt="" />
-              <div class="container-num">
-                <p>N°{{ proveedor }}</p>
-                <img
-                  src="../../../../assets/page/options_more_icon_208209.svg"
-                  alt=""
-                />
-              </div>
-            </mat-list-item>
-          </div>
-        </mat-list>
-      </div>
-    </div>
-  </div>
-  <div class="arrow" (click)="nf_for_next()">
-    <mat-icon>
-      <img
-        class="invertir invertir-color"
-        src="../../../../assets/page/arriba abajo.svg"
-      />
-    </mat-icon>
+  <div class="search-button">
+    <mat-icon>search</mat-icon>
   </div>
 </div>
+<app-lista [input]="{ indicador: 'proveedores', data: array }"></app-lista>

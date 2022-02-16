@@ -3,14 +3,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-new-proveedor',
   templateUrl: './new-proveedor.component.html',
-  styleUrls: ['./new-proveedor.component.css']
+  styleUrls: ['./new-proveedor.component.css'],
 })
 export class NewProveedorComponent implements OnInit {
-
-
-  constructor() {
-
-  }
+  view: boolean = false;
+  constructor() {}
 
   ngOnInit(): void {}
+
+  cambiarView() {
+    this.view = !this.view;
+  }
 }

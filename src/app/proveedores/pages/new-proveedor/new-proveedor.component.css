@@ -1,13 +1,16 @@
-.navbar{
-    height: 55px;
-  }
 .back-fondo {
+  padding-top: 97px;
   width: 100vw;
-  height: 540px;
+  min-height: 70%;
   background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
 }
 .invertir {
   transform: scaleY(-1);
+}
+button {
+  background-color: transparent;
+  border: none;
 }
 
 img {
@@ -22,37 +25,79 @@ img {
 .arrow {
   height: 38px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+
   background-color: rgba(100, 100, 100, 0.002);
 }
 .inputs {
-  height: 100%;
   margin: 0px 36px;
-  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-mat-list {
-  margin-top: 42px;
+
+.box {
+  width: 302px;
+  height: 100%;
+  margin-bottom: 25px;
+}
+.box:last-child {
+  margin-bottom: 59px;
+}
+.header {
+  top: 97px;
+  left: 37px;
+  width: 100%;
+  height: 28px;
+  background: #f25c05 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-mat-list-item {
-  text-align: center;
-  margin-bottom: 25px;
-}
-.header {
-  width: auto;
-  height: 28px;
-  width: auto;
-  height: 28px;
-  background: #f25c05 0% 0% no-repeat padding-box;
-}
-.input {
-  width: auto;
+.input input {
+  width: 100%;
   height: 30px;
   background: #ffffff 0% 0% no-repeat padding-box;
   opacity: 0.8;
+  outline: none;
 }
+p {
+  top: 103px;
+  left: 165px;
+  height: 16px;
+  font: normal normal medium 12px/16px Roboto;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+textarea {
+  width: 100%;
+  height: 192px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 0.8;
+  resize: none;
+  outline: none;
+}
+.button {
+  top: 498px;
+  left: 37px;
+  width: 302px;
+  height: 32px;
+  background: #f25c05 0% 0% no-repeat padding-box;
+  border-radius: 16px;
+  opacity: 1;
+}
+
+.box .button{
+  font: normal normal medium 12px/16px Roboto;
+letter-spacing: 0px;
+color: #FFFFFF;
+}
+
+
