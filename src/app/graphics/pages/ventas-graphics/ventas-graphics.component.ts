@@ -47,19 +47,42 @@ export class VentasGraphicsComponent implements OnInit {
   }
 
   goGraphicsRange(dateIn:Date,dateOut:Date,data:ventas[]){
+    this.barChartData = {
+      labels: [],
+      datasets: [
+        { data: [ ], label: 'Total de ventas' },
+        
+      ]
+    };
+    this.alertaDate = 0;
     var aux = this.service.goGraphicsRange(dateIn,dateOut,data)
     if(aux == null){
+      
       this.alertaDate = 1;
+      this.creacionGrafica = 0
     }
     if(aux != null){
+      this.creacionGrafica = 1
       aux.forEach(element => {
-        console.log(new Date(element.fecha))
+
+        var label = (new Date(element.fecha).toString().split(" "))[1]+'-'+
+                    (new Date(element.fecha).toString().split(" "))[2]
+        var value = element.totalDeVenta
+        this.agregarData(label,value)
       });
+      console.log(this.barChartData.labels,this.barChartData.datasets)
     }
     
   }
 
   armarGraficaMes(){
+    this.barChartData = {
+      labels: [],
+      datasets: [
+        { data: [ ], label: 'Total de ventas' },
+        
+      ]
+    };
     const data = Date.now()
     var dataLetra = new Date(data)
     var spliter = dataLetra.toString().split(" ")
@@ -87,6 +110,7 @@ export class VentasGraphicsComponent implements OnInit {
 
 
   agregarData(mes:string,valor:number){
+
     // sacamos el index del valor que vamos a introducir
     const index = this.barChartData.labels?.indexOf(mes)
     
