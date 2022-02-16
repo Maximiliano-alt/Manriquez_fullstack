@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { GraphicsService,ventas } from '../../services/graphics.service';
-
-
+import { GraphicsService,ventas} from '../../services/graphics.service';
 
 
 @Component({
@@ -48,31 +46,17 @@ export class VentasGraphicsComponent implements OnInit {
     )
   }
 
-  valueM():number|undefined{
-    const dateIn = new Date(this.valueIn)
-    const dateOut = new Date(this.valueOut)
-    
-    if(dateIn.getTime() >dateOut.getTime() || 
-      dateIn.getTime()>Date.now() || 
-      dateOut.getTime()>Date.now() ||
-      this.valueIn==undefined || 
-      this.valueOut==undefined ||
-      dateIn.getTime() == dateOut.getTime()
-      
-    ){
+  goGraphicsRange(dateIn:Date,dateOut:Date,data:ventas[]){
+    var aux = this.service.goGraphicsRange(dateIn,dateOut,data)
+    if(aux == null){
       this.alertaDate = 1;
-      this.creacionGrafica = 0;
-      return 0;
     }
-    else{
-      this.alertaDate = 0
-      this.creacionGrafica = 1;
-      
-     
+    if(aux != null){
+      aux.forEach(element => {
+        console.log(new Date(element.fecha))
+      });
     }
     
-    
-    return 1
   }
 
   armarGraficaMes(){

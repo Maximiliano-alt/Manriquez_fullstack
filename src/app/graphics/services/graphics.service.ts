@@ -22,6 +22,38 @@ export class GraphicsService {
     )
   }
 
+  goGraphicsRange(dateIn:Date,dateOut:Date,data:ventas[]){
+    if(dateIn == undefined || dateOut ==undefined){
+      return null
+    }
+    if(dateIn > dateOut){
+      return null
+    }
+    if(dateOut>new Date(Date.now())){
+      return null
+    }
+    else{
+      var aux = this.dateForRange(dateIn,dateOut,data)
+      return aux
+    }
+    
+  }
+
+  dateForRange(dateIn:Date,dateOut:Date,data:ventas[]){
+    var dataLocal:ventas[] = []
+    data.forEach((e)=>{
+    
+      if( new Date(dateIn).getTime() <= e.fecha && e.fecha <= new Date(dateOut).getTime()){
+        console.log(e)
+      }
+      
+    })
+    return dataLocal;
+  }
+
+
+
+
 
 }
 
