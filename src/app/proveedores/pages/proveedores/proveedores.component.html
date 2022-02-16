@@ -21,7 +21,6 @@
   </button>
 </div>
 
-
 <div class="container">
   <div class="arrow invertir-derecho invertir-color" (click)="nf_for_preview()">
     <mat-icon>
@@ -32,18 +31,20 @@
     <div class="item" *ngFor="let proveedor of segmento">
       <div class="list-proveedores">
         <mat-list>
-          <mat-list-item>
-            <p matLine>Nombre: Juan Larenas</p>
-            <p matLine>Rut: 12.121.123-2</p>
-            <img src="../../../../assets/page/proveedor 2.svg" alt="" />
-            <div class="container-num">
-              <p>N°{{ proveedor }}</p>
-              <img
-                src="../../../../assets/page/options_more_icon_208209.svg"
-                alt=""
-              />
-            </div>
-          </mat-list-item>
+          <div class="item-list">
+            <mat-list-item>
+              <p matLine>Nombre: Juan Larenas</p>
+              <p matLine>Rut: 12.121.123-2</p>
+              <img src="../../../../assets/page/proveedor 2.svg" alt="" />
+              <div class="container-num">
+                <p>N°{{ proveedor }}</p>
+                <img
+                  src="../../../../assets/page/options_more_icon_208209.svg"
+                  alt=""
+                />
+              </div>
+            </mat-list-item>
+          </div>
         </mat-list>
       </div>
     </div>
