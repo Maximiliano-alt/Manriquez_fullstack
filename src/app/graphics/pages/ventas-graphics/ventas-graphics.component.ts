@@ -39,7 +39,13 @@ export class VentasGraphicsComponent implements OnInit {
 
 
   ngOnInit(): void {
-   this.getVentas()
+    this.service.getVentas().subscribe(
+      res=>{
+        res.data.forEach( element => {
+          this.listVentas.push(element)
+        });
+      }
+    )
   }
 
   valueM():number|undefined{
@@ -60,7 +66,7 @@ export class VentasGraphicsComponent implements OnInit {
     }
     else{
       this.alertaDate = 0
-      this.armarGraficaMes();
+      this.creacionGrafica = 1;
       
      
     }
@@ -69,40 +75,49 @@ export class VentasGraphicsComponent implements OnInit {
     return 1
   }
 
-
-  getVentas(){
-    this.service.getVentas().subscribe(
-      res=>{
-        res.data.forEach(element => {
-          this.listVentas.push(element)
-        });
-      }
-    )
-  }
-
   armarGraficaMes(){
-    this.listVentas.forEach(e=>{
-      this.arrojaNombreMes(e.fecha,e.totalDeVenta)
+    const data = Date.now()
+    var dataLetra = new Date(data)
+    var spliter = dataLetra.toString().split(" ")
+    var anio = spliter[3]
+
+    this.creacionGrafica = 1
+    this.listVentas.forEach( e=>{
+      const anioData = (new Date(e.fecha).toString().split(" ")[3])
+      
+      if(anio == anioData){
+        this.arrojaNombreMes(e.fecha,e.totalDeVenta)    
+      } 
     })
-    this.creacionGrafica = 1;
+    
   }
 
-  arrojaNombreMes(data:number,valor:number){
+  async arrojaNombreMes(data:number,valor:number){
+    
     const dataNew = new Date(data)
     const spliter = dataNew.toString().split(" ")  
-    const dia = spliter[2]
+    console.log(spliter)
     const mes = spliter[1]
     this.agregarData(mes,valor)
   }
 
 
   agregarData(mes:string,valor:number){
-    this.barChartData.labels?.push(mes);
-    this.barChartData.datasets[0].data.push(valor)
-
-    console.log(
-      this.barChartData.labels
-    )
+    // sacamos el index del valor que vamos a introducir
+    const index = this.barChartData.labels?.indexOf(mes)
+    
+    if(index!>=0){
+    
+      // se encontro el valor (Esta!)
+      this.barChartData.datasets[0].data[index!] = this.barChartData.datasets[0].data[index!]+valor
+    }
+    else if(index == -1){
+      
+      this.barChartData.labels?.push(mes);
+      this.barChartData.datasets[0].data.push(valor)
+    }
+    
+   
   }
 
 

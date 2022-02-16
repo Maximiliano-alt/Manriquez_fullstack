@@ -3,7 +3,13 @@
 
 <div class="container-general">
 
-    <div class="filter">
+  <div class="spiner" *ngIf="this.listVentas.length == 0">
+    <div style="margin:auto" class="spinner-border" role="status" >
+    </div>
+    <span>Cargando pagina...</span>
+  </div>
+
+    <div class="filter" *ngIf="this.listVentas.length !=0">
 
             <h1>Instructivo</h1>
             <p>Para poder crear el grafico de ventas debes escoger una fecha de inicio <br>
@@ -21,9 +27,12 @@
                 Revisa el rango de fechas seleccionado
             </p>
     </div>
+    <div class="buttons" *ngIf="this.listVentas.length != 0">
+      <button (click)="armarGraficaMes()">Ordenar por mes</button>
+      <button>Ordenar por semana</button>
+    </div>
 
-
-    <div class="spiner" *ngIf="barChartData.labels!.length==0 && creacionGrafica==1">
+    <div class="spiner" *ngIf="(barChartData.labels!.length==0 && creacionGrafica==1)">
         <div style="margin:auto" class="spinner-border" role="status" >
         </div>
         <span>Cargando grafica...</span>
