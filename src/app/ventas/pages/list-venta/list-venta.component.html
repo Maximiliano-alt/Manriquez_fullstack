@@ -1,7 +1,9 @@
 <app-navbar [var]="{route:'/app/home',title:'Ventas'}" ></app-navbar>
 <div class="search">
     <div class="icon">
-        <mat-icon>add_circle_outline</mat-icon>
+        <a style="text-decoration: none;" routerLink="/ventas/addVenta">
+            <mat-icon>add_circle_outline</mat-icon>
+        </a>
     </div>
     <div class="input">
         <input type="text">
@@ -14,157 +16,56 @@
 <div class="container-general">
 
     <div style="margin-top: 4px;" class="up">
-        <mat-icon>expand_less</mat-icon>
+        <button style="background-color: transparent;
+                       border: none;
+        " (click)="nf_for_preview()"><mat-icon >expand_less</mat-icon></button>
     </div>
 
     <div class="container-ventas">
-       
-            <div class="item">
-                <div class="data">
-                    <div class="data-item">
-                        Cliente:&nbsp;Aracelly Balboa
+
+        <div class="item" *ngFor="let venta of this.segmento">
+            <div class="data">
+                <div class="data-item">
+                    Cliente:&nbsp;Aracelly Balboa
+                </div>
+                <div class="data-item">
+                    Cantidad: 5 productos(s)
+                </div>
+                <div class="data-item">
+                    Estado:
+                    <div *ngIf="estado=='por pagar'" class="data-item-estado-por-pagar">
+                        &nbsp; por pagar
                     </div>
-                    <div class="data-item">
-                        Cantidad: 5 productos(s)
-                    </div>
-                    <div class="data-item">
-                        Estado:
-                        <div *ngIf="estado=='por pagar'" class="data-item-estado-por-pagar">
-                            &nbsp; por pagar
-                        </div>
-                        <div *ngIf="estado=='pagado'" class="data-item-estado-pagado">
-                            &nbsp; pagado
-                        </div>
-                    </div>
-                    <div class="data-item">
-                        Envio: &nbsp;pendiente
-                    </div>
-                    <div class="data-item">
-                        Total: &nbsp; $12.000
+                    <div *ngIf="estado=='pagado'" class="data-item-estado-pagado">
+                        &nbsp; pagado
                     </div>
                 </div>
-                <div class="left-component">
-                    <div class="left-component-number">
-                        <h4>N°1</h4>
-                    </div>
-                    <div class="left-component-ver-mas">
-                        <button>
-                            Ver mas+
-                        </button>
-                    </div>
+                <div class="data-item">
+                    Envio: &nbsp;pendiente
+                </div>
+                <div class="data-item">
+                    Total: &nbsp; $12.000
                 </div>
             </div>
-            <div class="item">
-                <div class="data">
-                    <div class="data-item">
-                        Cliente:&nbsp;Aracelly Balboa
-                    </div>
-                    <div class="data-item">
-                        Cantidad: 5 productos(s)
-                    </div>
-                    <div class="data-item">
-                        Estado:
-                        <div *ngIf="estado=='por pagar'" class="data-item-estado-por-pagar">
-                            &nbsp; por pagar
-                        </div>
-                        <div *ngIf="estado=='pagado'" class="data-item-estado-pagado">
-                            &nbsp; pagado
-                        </div>
-                    </div>
-                    <div class="data-item">
-                        Envio: &nbsp;pendiente
-                    </div>
-                    <div class="data-item">
-                        Total: &nbsp; $12.000
-                    </div>
+            <div class="left-component">
+                <div class="left-component-number">
+                    <h4>N°{{venta}}</h4>
                 </div>
-                <div class="left-component">
-                    <div class="left-component-number">
-                        <h4>N°1</h4>
-                    </div>
-                    <div class="left-component-ver-mas">
-                        <button>
-                            Ver mas+
-                        </button>
-                    </div>
+                <div class="left-component-ver-mas">
+                    <a [routerLink]="['/ventas/venta/123123']"><button >
+                        Ver mas+
+                    </button></a>
                 </div>
             </div>
-            <div class="item">
-                <div class="data">
-                    <div class="data-item">
-                        Cliente:&nbsp;Aracelly Balboa
-                    </div>
-                    <div class="data-item">
-                        Cantidad: 5 productos(s)
-                    </div>
-                    <div class="data-item">
-                        Estado:
-                        <div *ngIf="estado=='por pagar'" class="data-item-estado-por-pagar">
-                            &nbsp; por pagar
-                        </div>
-                        <div *ngIf="estado=='pagado'" class="data-item-estado-pagado">
-                            &nbsp; pagado
-                        </div>
-                    </div>
-                    <div class="data-item">
-                        Envio: &nbsp;pendiente
-                    </div>
-                    <div class="data-item">
-                        Total: &nbsp; $12.000
-                    </div>
-                </div>
-                <div class="left-component">
-                    <div class="left-component-number">
-                        <h4>N°1</h4>
-                    </div>
-                    <div class="left-component-ver-mas">
-                        <button>
-                            Ver mas+
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="data">
-                    <div class="data-item">
-                        Cliente:&nbsp;Aracelly Balboa
-                    </div>
-                    <div class="data-item">
-                        Cantidad: 5 productos(s)
-                    </div>
-                    <div class="data-item">
-                        Estado:
-                        <div *ngIf="estado=='por pagar'" class="data-item-estado-por-pagar">
-                            &nbsp; por pagar
-                        </div>
-                        <div *ngIf="estado=='pagado'" class="data-item-estado-pagado">
-                            &nbsp; pagado
-                        </div>
-                    </div>
-                    <div class="data-item">
-                        Envio: &nbsp;pendiente
-                    </div>
-                    <div class="data-item">
-                        Total: &nbsp; $12.000
-                    </div>
-                </div>
-                <div class="left-component">
-                    <div class="left-component-number">
-                        <h4>N°1</h4>
-                    </div>
-                    <div class="left-component-ver-mas">
-                        <button>
-                            Ver mas+
-                        </button>
-                    </div>
-                </div>
-            </div>
-        
+        </div>
+
     </div>
 
 
     <div class="up">
-        <mat-icon>expand_more</mat-icon>
+        <button style="background-color: transparent;
+                       border: none;
+        " (click)="nf_for_next()"><mat-icon >expand_more</mat-icon></button>
     </div>
 
 
@@ -176,7 +77,7 @@
             </div>
             <div class="item-carrusel">
                 <div class="item" *ngFor="let venta of segmento">
-                    {{venta}}
+
                     <div class="data">
                         <div class="data-item">
                             Cliente:&nbsp;Aracelly Balboa
@@ -202,16 +103,16 @@
                     </div>
                     <div class="left-component">
                         <div class="left-component-number">
-                            <h4>N°1</h4>
+                            <h4>N°{{venta}}</h4>
                         </div>
                         <div class="left-component-ver-mas">
-                            <button>
+                            <a [routerLink]="['/ventas/venta/123123']"><button >
                                 Ver mas+
-                            </button>
+                            </button></a>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div (click)="nf_for_next()" class="button-next">
                 <mat-icon>expand_less</mat-icon>

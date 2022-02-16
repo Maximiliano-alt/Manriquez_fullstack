@@ -1,0 +1,215 @@
+<app-navbar [var]="{route:'/ventas/venta/'+id,title:'Lista de compra'}" ></app-navbar>
+
+
+
+<div class="container-general">
+    <div  class="up">
+        <mat-icon >expand_less</mat-icon>
+    </div>
+    <div  class="container">
+        
+    
+        <div class="container-productos">
+           
+                <div class="item">
+                    <div class="data">
+                        <div class="data-item">
+                            <b>Nombre:</b><p>&nbsp;producto 1</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Precio:</b><p>&nbsp;$13000</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Unidad:</b><p>&nbsp;m2</p>
+                        </div>            
+                    </div>
+                    <div class="button">
+                        <b>Cantidad:</b>
+                        <button>
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <p>1</p>
+                        <button>
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <b>Eliminar</b>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="data">
+                        <div class="data-item">
+                            <b>Nombre:</b><p>&nbsp;producto 1</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Precio:</b><p>&nbsp;$13000</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Unidad:</b><p>&nbsp;m2</p>
+                        </div>            
+                    </div>
+                    <div class="button">
+                        <b>Cantidad:</b>
+                        <button>
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <p>1</p>
+                        <button>
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <b>Eliminar</b>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="data">
+                        <div class="data-item">
+                            <b>Nombre:</b><p>&nbsp;producto 1</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Precio:</b><p>&nbsp;$13000</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Unidad:</b><p>&nbsp;m2</p>
+                        </div>            
+                    </div>
+                    <div class="button">
+                        <b>Cantidad:</b>
+                        <button>
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <p>1</p>
+                        <button>
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <b>Eliminar</b>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="data">
+                        <div class="data-item">
+                            <b>Nombre:</b><p>&nbsp;producto 1</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Precio:</b><p>&nbsp;$13000</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Unidad:</b><p>&nbsp;m2</p>
+                        </div>            
+                    </div>
+                    <div class="button">
+                        <b>Cantidad:</b>
+                        <button>
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <p>1</p>
+                        <button>
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <b>Eliminar</b>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="data">
+                        <div class="data-item">
+                            <b>Nombre:</b><p>&nbsp;producto 1</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Precio:</b><p>&nbsp;$13000</p>
+                        </div>
+                        <div class="data-item">
+                            <b>Unidad:</b><p>&nbsp;m2</p>
+                        </div>            
+                    </div>
+                    <div class="button">
+                        <b>Cantidad:</b>
+                        <button>
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <p>1</p>
+                        <button>
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <b>Eliminar</b>
+                    </div>
+                </div> 
+            
+        </div>
+    
+    
+        
+    </div>
+
+    <div class="up">
+        <mat-icon>expand_more</mat-icon>
+    </div> 
+
+    
+
+    <div class="container-carrusel">
+        <div class="carrusel">
+            <div (click)="nf_for_preview()" class="button-preview">
+                <mat-icon>expand_less</mat-icon>
+            </div>
+            <div class="item-carrusel">
+                <div class="item" *ngFor="let venta of segmento">
+                    <div class="item-data">
+                        <div class="item-line">
+                            <b> {{venta}}Nombre: </b>
+                            <p>&nbsp;Producto 1</p>
+                        </div>
+                        <div class="item-line">
+                            <b>Precio: </b>
+                            <p>&nbsp;13.000</p>
+
+                        </div>
+                        <div class="item-line">
+                            <b>Unidad: </b>  
+                            <p>&nbsp;m2</p>            
+                        </div>
+                    </div>
+                    <div class="item-button-grande">
+                       
+                            <b>Cantidad:</b>
+                            <button>
+                                <mat-icon>remove</mat-icon>
+                            </button>
+                            <p>1</p>
+                            <button>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                            <button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <b>Eliminar</b>
+                     
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div (click)="nf_for_next()" class="button-next">
+                <mat-icon>expand_less</mat-icon>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+

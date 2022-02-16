@@ -1,0 +1,19 @@
+<app-navbar [var]="{route:'/app/home',title:'Clientes'}" ></app-navbar>
+
+
+<div class="search">
+    <div class="icon">
+        <a style="text-decoration: none;" routerLink="/clientes/add/cliente">
+            <mat-icon>add_circle_outline</mat-icon>
+        </a>
+    </div>
+    <div class="input">
+        <input type="text">
+    </div>
+    <div class="search-button">
+        <mat-icon>search</mat-icon>
+    </div>
+</div>
+
+
+<app-lista [input]="{indicador:'clientes',data:array}"></app-lista>

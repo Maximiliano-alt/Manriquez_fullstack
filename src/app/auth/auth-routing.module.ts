@@ -5,21 +5,27 @@ import { RegisterComponent } from './pages/register/components/register.componen
 const routes: Routes = [
 
 {
-  path: '',
-  component: LoginComponent,
-},
-{
-  path:'login',
-  component: LoginComponent,
-},
-{
-  path:'register',
-  component: RegisterComponent,
-},
-{
-  path: '**',
-  redirectTo: 'login'
+  path:'',
+  children:[
+    {
+      path:'',
+      redirectTo:'login',
+    },
+    {
+      path:'login',
+      component: LoginComponent,
+    },
+    {
+      path:'register',
+      component: RegisterComponent,
+    },
+    {
+      path: '**',
+      redirectTo: 'login'
+    }
+  ]
 }
+
 
 ];
 

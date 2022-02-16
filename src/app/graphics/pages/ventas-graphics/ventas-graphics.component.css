@@ -1,0 +1,38 @@
+.container-general{
+    width: 100vw;
+    height: 90%;
+    margin-top: auto;
+    color: white;
+    transform: translate(0,53px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    margin-top: 50px;
+}
+
+span{
+    margin: 0 10px 0 10px;
+}
+
+.date{
+    border-radius: 5px;
+    border: none;
+    border-color: transparent;
+    text-align: center;
+}
+.busqueda{
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.grafica{
+    margin-top: 50px;
+    width:700px;
+}
+.spiner{
+    margin: auto;
+}

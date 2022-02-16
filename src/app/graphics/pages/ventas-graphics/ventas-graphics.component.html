@@ -1,0 +1,45 @@
+<app-navbar [var]="{route:'/estadisticas/cliente',title:'Finanzas Ventas'}" ></app-navbar>
+
+
+<div class="container-general">
+
+    <div class="filter">
+
+            <h1>Instructivo</h1>
+            <p>Para poder crear el grafico de ventas debes escoger una fecha de inicio <br>
+                y una fecha de termino con el fin de poder capturar la informacion dentro del rango.
+            </p>
+
+            <span>Fecha de inicio</span>
+            <input class="date" [(ngModel)]="this.valueIn" type="date">
+            <span>Fecha de Termino</span>
+            <input class="date" [(ngModel)]="this.valueOut" type="date">
+            
+            <button (click)="valueM()" class="busqueda">Crear grafica</button>
+
+            <p *ngIf="this.alertaDate==1" style="color: red;">
+                Revisa el rango de fechas seleccionado
+            </p>
+    </div>
+
+
+    <div class="spiner" *ngIf="barChartData.labels!.length==0 && creacionGrafica==1">
+        <div style="margin:auto" class="spinner-border" role="status" >
+        </div>
+        <span>Cargando grafica...</span>
+      </div>
+
+    <div class="graphica" *ngIf="barChartData.labels!.length!=0 && this.creacionGrafica == 1">
+        
+        <div class="grafica">
+            <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [type]="barChartType">
+            </canvas>
+          </div>
+         
+
+        
+    </div>
+</div>

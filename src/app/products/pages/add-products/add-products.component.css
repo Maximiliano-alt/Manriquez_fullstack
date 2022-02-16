@@ -1,0 +1,200 @@
+.container-general{
+
+    /* contenedor master */
+    width: 100vw !important;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(0, 53px);
+    overflow: hidden;
+    opacity: 1;
+    color: white;
+}
+.input-nombre{
+    margin-top: 29px;
+    width: 290px;
+    height: 58px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.9;
+}
+.nav-nombre{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F25C05;
+}
+input{
+    height: 45%;
+    width: 100%;
+    border: none;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    text-align: center;
+    opacity: 0.9;
+}
+.par-input{
+    margin-top: 29px;
+    width: 290px;
+    height: 58px;
+    display: flex;
+    flex-direction: row;
+}
+.input-precio{
+    width: 45%;
+    height: 100%;
+}
+.input-color{
+    margin-left: 10%;
+    width: 45%;
+    height: 100%;
+}
+.nav-precio{
+    width: 100%;
+    height: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F25C05;
+}
+.nav-color{
+    width: 100%;
+    height: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F25C05;
+}
+
+.input-descripcion{
+    height:88px ;
+    width: 290px;
+    margin-top: 24px;
+}
+textarea{
+    width: 290px;
+    height: 50%;
+}
+.input-img{
+    height:88px ;
+    width: 290px;
+    margin-top: 24px;
+    display: flex;
+    
+}
+.file-input{
+    height:88px ;
+    width: 290px;
+    margin-top: 24px;
+}
+.file-input input{
+    padding:7px;
+    color: black;
+}
+.guardar{
+    top: 554px;
+    left: 37px;
+    width: 302px;
+    height: 32px;
+    background: #F25C05 0% 0% no-repeat padding-box;
+    border-radius: 16px;
+    border: none;
+    color: white;
+    margin-top: 21px;
+    opacity: 1;
+}
+.cancelar{
+    top: 554px;
+    left: 37px;
+    width: 302px;
+    height: 32px;
+    background: #F25C05 0% 0% no-repeat padding-box;
+    border-radius: 16px;
+    border: none;
+    color: white;
+    margin-top: 21px;
+    opacity: 1;
+}
+
+@media screen and (min-width:768px){
+    .guardar {
+        width: 400px;
+        height: 30px;
+    }
+    .cancelar {
+        width: 400px;
+        height: 30px;
+    }
+    .file-input{
+        height:100px ;
+        width: 400px;
+        margin-top: 24px;
+    }
+    .input-descripcion{
+        height:100px ;
+        width: 400px;
+        margin-top: 24px;
+    }
+    textarea{
+        width: 400px;
+    }
+    .par-input{
+        width: 400px;
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+    }
+    .input-nombre{
+        width: 400px;
+        height: 100px;
+    }
+    input{
+        font-size: 17px;
+    }
+}
+@media screen and (min-width:1024px){
+    .container-general{
+        width: 100vw !important;
+        height: 90%;
+    }
+    .left{
+        transform: translate(-300px);
+        margin-top: 100px;
+    }
+    .rigth{
+        transform: translate(200px,-380px);
+    }
+    .input-descripcion{
+        height: 189px;
+    }
+    .nav-nombre{
+        height: 40px;
+    }
+    .file-input{
+        height: 100px;
+    }
+    textarea{
+        height: 80%;
+    }
+    .guardar{
+        position: fixed;
+        height: 40px;
+        transform: translate(430px);
+    }
+    .cancelar{
+        position: fixed;
+        height: 40px;
+        transform: translate(930px);
+    }
+    .input-nombre input{
+        height: 64%;
+    }
+
+
+
+
+    
+}

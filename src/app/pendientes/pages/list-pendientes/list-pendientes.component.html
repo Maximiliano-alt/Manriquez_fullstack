@@ -1,0 +1,131 @@
+<app-navbar [var]="{route:'/app/home/',title:'Pendientes'}" ></app-navbar>
+
+<div class="search">
+    <div class="icon">
+        <a style="text-decoration: none;" routerLink="/ventas/addVenta">
+            <mat-icon>add_circle_outline</mat-icon>
+        </a>
+    </div>
+    <div class="input">
+        <input type="text">
+    </div>
+    <div class="search-button">
+        <mat-icon>search</mat-icon>
+    </div>
+</div>
+
+<div class="container-general">
+
+    <div class="up">
+        <mat-icon >expand_less</mat-icon>
+    </div>
+
+    <div class="container-ventas">
+
+            <div class="item">
+            	<div class="item-info">
+            		<div class="data-info">
+            			Tipo de pendiente: Despacho
+            		</div>
+            		<div class="data-info">
+            			Fecha: xx/xx/xxx
+            		</div>
+            	</div>
+            	<div class="preview">
+                    <button class="preview-button">
+                        <a style="text-decoration: none; color: black;" [routerLink]="['/pendientes/preview/',123]"><img src="assets\page\view.svg" alt=""></a>
+                    </button>
+            	</div>
+            	<div class="item-number">
+            		<div class="number">
+            			N°1
+            		</div>
+            		<div class="more">
+                        <button class="more-button">
+                            <img src="assets\page\options_more_icon_208209.svg" alt="">
+                        </button>
+                    </div>
+            	</div>
+            </div>
+            <div class="item">
+            	<div class="item-info">
+            		<div class="data-info">
+            			Tipo de pendiente: Despacho
+            		</div>
+            		<div class="data-info">
+            			Fecha: xx/xx/xxx
+            		</div>
+            	</div>
+            	<div class="preview">
+                    <button class="preview-button">
+                        <a style="text-decoration: none; color: black;" [routerLink]="['/pendientes/preview/',123]"><img src="assets\page\view.svg" alt=""></a>
+                    </button>
+                </div>
+            	<div class="item-number">
+            		<div class="number">
+            			N°2
+            		</div>
+            		<div class="more">
+                        <button class="more-button">
+                            <img src="assets\page\options_more_icon_208209.svg" alt="">
+                        </button>
+                    </div>
+            	</div>
+            </div>
+            <div class="item">
+            	<div class="item-info">
+            		<div class="data-info">
+            			Tipo de pendiente: Despacho
+            		</div>
+            		<div class="data-info">
+            			Fecha: xx/xx/xxx
+            		</div>
+            	</div>
+            	<div class="preview">
+                    <button class="preview-button">
+                        <a style="text-decoration: none; color: black;" [routerLink]="['/pendientes/preview/',123]"><img src="assets\page\view.svg" alt=""></a>
+                    </button>
+                </div>
+            	<div class="item-number">
+            		<div class="number">
+            			N°3
+            		</div>
+            		<div class="more">
+                        <button class="more-button">
+                            <img src="assets\page\options_more_icon_208209.svg" alt="">
+                        </button>
+            		</div>
+            	</div>
+            </div>
+            <div class="item">
+            	<div class="item-info">
+            		<div class="data-info">
+            			Tipo de pendiente: Despacho
+            		</div>
+            		<div class="data-info">
+            			Fecha: xx/xx/xxx
+            		</div>
+            	</div>
+            	<div class="preview">
+                    <button class="preview-button">
+                        <a style="text-decoration: none; color: black;" [routerLink]="['/pendientes/preview/',123]"><img src="assets\page\view.svg" alt=""></a>
+                    </button>
+                </div>
+            	<div class="item-number">
+            		<div class="number">
+            			N°4
+            		</div>
+            		<div class="more">
+                        <button class="more-button">
+                            <img src="assets\page\options_more_icon_208209.svg" alt="">
+                        </button>
+                    </div>
+            	</div>
+            </div>
+    </div>
+
+    <div class="up">
+        <mat-icon>expand_more</mat-icon>
+    </div>
+
+</div>

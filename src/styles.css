@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 html,body{
+
 	margin:0;
 	padding: 0;
   background-color: rgba(0, 0, 0, 0.69);
@@ -24,5 +25,5 @@ html {
 	}
 }
 
-html, body { min-height: 100vh; }
+html, body { min-height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

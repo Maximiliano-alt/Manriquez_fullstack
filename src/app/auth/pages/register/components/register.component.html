@@ -1,45 +1,67 @@
 <div class="principal">
+  <div class="head">
+    <div class="logo">
+      <img src="../assets/page/Pisosmanriquez.logo-02.png" class="logo" alt="">
+    </div>
 
-  <div class="logo-container">
-    <img src="../assets/page/Pisosmanriquez.logo-02.png" class="logo" alt="">
-  </div>
-
-  <div class="radio-container">
-    <div class="icono-perfil">
-      <img src="assets\page\Icono perfil.svg">
+    <div class="radio">
+      <div class="icono-perfil">
+        <img src="assets\page\Icono perfil.svg">
+      </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="container-form">
-      <form action="">
-        <div class="Input">
+    <form action="">
+      <div class="Input">
+
+        <div class="Input-data">
           <div class="icon-perfil">
             <img src="assets\page\Icono perfil.svg" alt="">
           </div>
-          <input type="text" placeholder="Rut">
-        </div>
-       
+          <input [formControl]="name" type="text" placeholder="Nombre de Usuario">
+          <p style="margin-top: 50px;" *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
 
-        <div class="Input">
+        </div>
+        <div class="Input-data">
+          <div class="icon-perfil">
+            <img src="assets\page\Icono perfil.svg" alt="">
+          </div>
+          <input [formControl]="rut" type="text" placeholder="Rut">
+          <p style="margin-top: 50px;" *ngIf="rut.invalid && rut.touched" class="input-error"><strong>* Campo requerido</strong> ej: 12345678-1 </p>
+        </div>
+        <div class="Input-data">
+          <div class="icon-perfil">
+            <img src="assets\page\email.svg" alt="">
+          </div>
+          <input [formControl]="email" type="email" placeholder="Email">
+          <p style="margin-top: 50px;" *ngIf="email.invalid && email.touched" class="input-error"><strong>* Campo requerido</strong> ej: nombre@mail.com </p>
+        </div>
+
+        <div class="Input-data">
           <div class="icon-perfil">
             <img src="assets\page\Icono contraseña.svg" alt="">
           </div>
-          <input type="password" placeholder="Contraseña">
+          <input [formControl]="pass" type="password" placeholder="Contraseña">
+          <p style="margin-top: 50px;" *ngIf="pass.invalid && pass.touched" class="input-error"><strong>* Campo requerido</strong>* Utilizar mayusculas, luego minusculas y luego numeros </p>
+
+
         </div>
-        <div class="Input">
+        <div class="Input-data">
           <div class="icon-perfil">
             <img src="assets\page\Icono contraseña.svg" alt="">
           </div>
-          <input type="password" placeholder="Repetir Contraseña">
+          <input [formControl]="rePass" type="password" placeholder="Repetir Contraseña">
+          <p style="margin-top: 50px;" *ngIf="(rePass.invalid && rePass.touched)" class="input-error"><strong>* Campo requerido</strong>* Utilizar mayusculas, luego minusculas y luego numeros </p>
+          <p style="margin-top: 63px;" *ngIf="(pass.value != rePass.value) &&rePass.touched" class="input-error"><strong>contrasena distinta</strong> </p>
         </div>
-        <div class="butt-reg">
-          <button type="submit">Registrarse</button>
-        </div>
-      </form>
-    </div> 
+
+      </div>
+      <div class="butt-reg">
+        <button type="submit">Registrarse</button>
+      </div>
+    </form>
   </div>
-  <footer>
-    <p>Privacidad</p>
-  </footer>
+  <p>pass:{{pass.value}}</p>
+  <p>rePass:{{rePass.value}}</p>
 </div>

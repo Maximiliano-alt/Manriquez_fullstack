@@ -1,0 +1,127 @@
+<app-navbar [var]="{route:'/clientes/clientes',title:'Añadir cliente'}" ></app-navbar>
+
+
+<div class="container-general">
+    <!-- contenedor master -->
+
+    <div class="form-class">
+        <!-- este guarda los inputs -->
+
+
+        <!-- input nuevo -->
+
+        <div class="form-input">
+            <div class="form-input-nav">
+                Nombre
+            </div>
+            <input [(ngModel)]="this.clienteDefault.nombre" type="text">
+        </div>
+
+        <!-- input nuevo -->
+
+        <div class="form-input">
+            <div class="form-input-nav">
+                Direccion
+            </div>
+            <input [(ngModel)]="this.clienteDefault.direccion" type="text">
+        </div>
+
+        <!-- input nuevo -->
+
+        <div class="form-input">
+
+            <div class="form-input-nav">
+                Telefono
+            </div>
+            <input [(ngModel)]="this.clienteDefault.telefono" type="text">
+        </div>
+
+        <!-- input nuevo -->
+        <div class="form-input">
+            <div class="form-input-nav">
+                Correo
+            </div>
+            <input [(ngModel)]="this.clienteDefault.correo" type="text">
+        </div>
+
+        <!-- input nuevo -->
+
+        <div class="form-input">
+            <div class="form-input-nav">
+                Rut
+            </div>
+            <input [(ngModel)]="this.clienteDefault.rut" type="text">
+        </div>
+        
+
+
+        <div class="buttons">
+            <button (click)="this.add_cliente(this.clienteDefault)" class="guardar">
+                Guardar
+            </button>
+            <button (click)="this.renew()" class="cancelar">
+            
+                Cancelar
+            </button>
+        </div>
+
+
+        
+    </div>
+
+
+
+    
+    
+    <!-- fin contenedor form -->
+</div>
+
+<div class="form-grande">
+    <div style="margin-top: 50px;" class="line-container">
+        <div class="input" style="margin-right: 90px;">
+            <div class="nav"> 
+                Nombre
+            </div>
+            <input [(ngModel)]="this.clienteDefault.nombre" type="text">
+        </div>
+        <div class="input">
+            <div class="nav"> 
+                Direccion
+            </div>
+            <input [(ngModel)]="this.clienteDefault.direccion" type="text">
+        </div>
+    </div>
+    <div style="margin-top: 64px;" class="line-container">
+        <div class="input" style="margin-right: 90px;">
+            <div class="nav"> 
+                Telefono
+            </div>
+            <input [(ngModel)]="this.clienteDefault.telefono" type="text">
+        </div>
+        <div class="input">
+            <div class="nav"> 
+                Correo
+            </div>
+            <input [(ngModel)]="this.clienteDefault.correo" type="text">
+        </div>
+    </div>
+    <div style="margin-top: 64px;" class="line-container"> 
+        <div class="input">
+            <div class="nav"> 
+                Rut
+            </div>
+            <input [(ngModel)]="this.clienteDefault.rut" type="text">
+        </div>
+        
+    </div>
+    <div style="margin-top: 72px;" class="buttons">
+        <button (click)="this.add_cliente(this.clienteDefault)" class="button1">
+            Guardar
+        </button>
+
+        <button (click)="this.renew()" class="button2">
+            Cancelar
+        </button>
+    </div>
+    
+</div>
