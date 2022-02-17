@@ -14,7 +14,7 @@
             <!-- cada item de la lista -->
             <div class="item6" *ngFor="let item of this.segmento">
                 <!-- clientes -->
-                <div class="clientes" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'proveedores'">
+                <div class="clientes" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'proveedores' || this.input.indicador == 'pendientes'">
                     <div class="item-data">
                         <!-- cliente -->
                         <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
@@ -30,6 +30,7 @@
                         <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
                             <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
                         </div>
+                        <!-- pendiente-->
                         <div class="data-line" *ngIf="this.input.indicador == 'pendientes'">
                             <b>Tipo de pendiente:</b> <p>&nbsp;Despacho</p>
                         </div>
@@ -37,18 +38,19 @@
                             <b>Fecha: </b> <p>&nbsp;XX/XX/XXXXX</p>
                         </div>
                     </div>
-
-                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes'">
+                    <!-- cliente o pendiente-->
+                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'pendientes'">
                         <button class="view">
                             <a style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
                         </button>
                     </div>
+                    <!-- proveedor-->
                     <div class="item-book" *ngIf="this.input.indicador == 'proveedores'">
                         <button class="view">
                             <a style="text-decoration: none; color: black;"><img src="../../../../assets/page/proveedor 2.svg" alt="" /></a>
                         </button>
                     </div>
-
+                    <!-- cliente, proovedor o pendiente-->
                     <div class="item-number">
                         <div class="number">
                             <b>N°</b> <b>{{item}}</b>
