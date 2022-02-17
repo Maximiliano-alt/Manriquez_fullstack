@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
-import { AuthService,user } from 'src/app/auth/service/auth.service';
+import { AuthService,userLogin } from 'src/app/auth/service/auth.service';
 
 
 
@@ -11,9 +11,9 @@ import { AuthService,user } from 'src/app/auth/service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  user:user = {
-    rut:'',
-    pass:'',
+  user:userLogin = {
+    rut:"",
+    pass:"",
   }
 
   rut: FormControl;
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  logIn(data:user){
+  logIn(data:userLogin){
     console.log(data)
     if(this.rut.valid && this.pass.valid){
       var aux  = this.service.login(data)

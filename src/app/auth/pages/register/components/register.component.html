@@ -58,7 +58,8 @@
 
       </div>
       <div class="butt-reg">
-        <button type="submit" [disabled]="name.invalid || rut.invalid || email.invalid || pass.invalid || rePass.invalid">Registrarse</button>
+
+        <button type="submit" (click)="register(this.user)" [disabled]="name.invalid || rut.invalid || email.invalid || pass.invalid || rePass.invalid">Registrarse</button>
 
       </div>
     </form>

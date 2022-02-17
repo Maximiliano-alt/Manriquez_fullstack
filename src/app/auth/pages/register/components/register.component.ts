@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { User } from 'src/app/services/create-user.service';
+import { AuthService,user } from 'src/app/auth/service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,19 +15,21 @@ export class RegisterComponent implements OnInit {
   pass:FormControl;
   rePass:FormControl;
 
-  user:User = {
-    rut:'',
-    password:'',
+  user:user = {
+    nombre:"",
+    rut:"",
+    email:"",
+    pass:"",
   }
 
 
-  constructor() {
+  constructor(private service:AuthService) {
     this.name = new FormControl('',[
       Validators.required,
     ]);
     this.name.valueChanges.subscribe(
       value =>{
-        this.user.rut = value
+        this.user.nombre = value
       }
     );
 
@@ -35,7 +37,8 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.minLength(9),
       Validators.maxLength(10),
-      // Validators.pattern(/^[0-9].-*$/)
+      Validators.pattern(/[0-9].-[0-9].*$/)
+
     ]);
     this.rut.valueChanges.subscribe(
       value =>{
@@ -50,7 +53,7 @@ export class RegisterComponent implements OnInit {
     ]);
     this.email.valueChanges.subscribe(
       value =>{
-        this.user.rut = value
+        this.user.email = value
       }
     );
 
@@ -62,21 +65,44 @@ export class RegisterComponent implements OnInit {
     ]);
     this.pass.valueChanges.subscribe(
       value =>{
-        this.user.password = value
+        this.user.pass = value
       }
     );
 
     this.rePass = new FormControl('',[
       Validators.required,
+      
     ]);
     this.rePass.valueChanges.subscribe(
       value =>{
-        this.user.password = value
+        this.user.pass = value
       }
     );
   }
 
   ngOnInit(): void {
+  }
+
+  register(data:user){
+    // name: FormControl;
+    // rut: FormControl;
+    // email:FormControl;
+    // pass:FormControl;
+    // rePass:FormControl;
+    
+    if(this.name.valid&& 
+       this.rut.valid&&
+       this.email.valid&&
+       this.pass.valid && 
+       this.rePass.valid && 
+       (this.pass.value === this.rePass.value)
+       ) {
+        this.service.register(data).subscribe(
+          res=>{
+            console.log(res.status)
+          }
+        )
+    }
   }
 
   saveInfo(event:Event){
@@ -91,4 +117,5 @@ export class RegisterComponent implements OnInit {
     }
 
   }
+
 }
