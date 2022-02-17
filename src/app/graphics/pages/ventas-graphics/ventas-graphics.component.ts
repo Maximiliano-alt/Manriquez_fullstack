@@ -70,9 +70,27 @@ export class VentasGraphicsComponent implements OnInit {
         var value = element.totalDeVenta
         this.agregarData(label,value)
       });
-      console.log(this.barChartData.labels,this.barChartData.datasets)
     }
     
+  }
+
+  goGraphicsHistory(){
+    // reiniciamos el grafico!
+    this.barChartData = {
+      labels: [],
+      datasets: [
+        { data: [ ], label: 'Total de ventas' },
+        
+      ]
+    };
+    this.alertaDate = 0;
+
+    this.listVentas.forEach((e)=>{
+      var spliter = new Date(e.fecha).toString().split(" ") //separamos la fecha
+      this.agregarData(spliter[3],e.totalDeVenta)
+    })
+    this.creacionGrafica = 1
+
   }
 
   armarGraficaMes(){
@@ -103,7 +121,6 @@ export class VentasGraphicsComponent implements OnInit {
     
     const dataNew = new Date(data)
     const spliter = dataNew.toString().split(" ")  
-    console.log(spliter)
     const mes = spliter[1]
     this.agregarData(mes,valor)
   }

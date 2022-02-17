@@ -72,6 +72,12 @@ export class GraphicsService {
   }
 
 
+  goGraphicsHistory(data:ventas[]){
+    var anio = ''
+    data.forEach((e)=>{
+      var spliter = new Date(e.fecha).toString().split(" ") //separamos la fecha
+    })
+  }
 
 
 
