@@ -52,6 +52,18 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('_pipo')!= null){
+      this.service.validarToken({token:localStorage.getItem('_pipo')}).subscribe(
+        res=>{
+          if(res.status==200)
+          {
+            localStorage.setItem('_pipo',res.mensaje)
+            this.router.navigate(['/app'])
+          }
+      }
+      )
+      
+    }
   }
   saveInfo(event:Event){
 
@@ -65,16 +77,14 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(data:userLogin){
-
-
-    if(this.rut.valid && this.pass.valid){
+   
+    if(this.rut.valid && this.pass.valid ){
 
       this.service.login(data).subscribe(
         res =>{
           if(res.status==200){
             Swal.fire({icon: 'success',text: 'Inicio de sesión exitoso'})
-            this.service.createCookie(res.mensaje);
-
+            this.service.createCookie(res.mensaje,this.checkbox.value)
             this.router.navigate(['/app'])
           }
           else if(res.status==500){
