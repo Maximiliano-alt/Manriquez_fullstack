@@ -24,7 +24,7 @@
             <span>Fecha de Termino</span>
             <input class="date" [(ngModel)]="this.valueOut" type="date">
             
-            <button (click)="goGraphicsRange(this.valueIn,this.valueOut,listVentas)" class="busqueda">Crear grafica</button>
+            <button id="crearGrafica" (click)="goGraphicsRange(this.valueIn,this.valueOut,listVentas)" class="busqueda">Crear grafica</button>
 
             <p *ngIf="this.alertaDate==1" style="color: red;">
                 Revisa el rango de fechas seleccionado
