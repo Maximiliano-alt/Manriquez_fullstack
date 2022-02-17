@@ -3,7 +3,8 @@ import { Validators, FormControl } from '@angular/forms';
 import { AuthService,userLogin } from 'src/app/auth/service/auth.service';
 
 import { CookieService } from 'ngx-cookie-service';
-
+import Swal from 'sweetalert2';
+import {Router} from "@angular/router"
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   pass: FormControl;
   checkbox:FormControl;
 
-  constructor(private service:AuthService, private cookie: CookieService ) {
+  constructor(private service:AuthService, private cookie: CookieService, private router:Router ) {
     this.rut = new FormControl('',[
       Validators.required,
       Validators.minLength(9),
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     ]);
     this.rut.valueChanges.subscribe(
       value =>{
-        this.user.rut = value 
+        this.user.rut = value
       }
     );
     this.pass = new FormControl('',[//20636614-1
@@ -53,10 +54,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   saveInfo(event:Event){
-   
+
     event.preventDefault();
     if(this.rut.valid && this.pass.valid){
-      
+
     }
     else{
       console.log('envio no valido')
@@ -65,12 +66,27 @@ export class LoginComponent implements OnInit {
 
   logIn(data:userLogin){
 
-    
+
     if(this.rut.valid && this.pass.valid){
-      var aux  = this.service.login(data)
-      if(aux.status==200){
-        console.log(aux.mensaje)
-      }
+
+      this.service.login(data).subscribe(
+        res =>{
+          if(res.status==200){
+            Swal.fire({icon: 'success',text: 'Inicio de sesión exitoso'})
+            this.service.createCookie(res.mensaje);
+
+            this.router.navigate(['/app'])
+          }
+          else if(res.status==500){
+            Swal.fire({icon: 'warning',title: 'Oops...',text: 'contraseña incorrecta '});
+          }
+          else{
+            Swal.fire({icon: 'warning',title: 'Oops...',text: 'Usuario no encontrado'});
+          }
+        }
+      )
+
+
     }
   }
 }
