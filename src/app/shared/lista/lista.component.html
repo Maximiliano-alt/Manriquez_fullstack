@@ -3,7 +3,7 @@
     <div class="data">
         <!-- boton de arriba -->
 
-        <button (click)="nf_for_preview()">
+        <button class="up" (click)="nf_for_preview()">
             <mat-icon>expand_less</mat-icon>
         </button>
 
@@ -23,21 +23,23 @@
                             <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
                         </div>
                     </div>
-                    <div class="item-button">
-                        <div class="button-eye">
-                            <a style="text-decoration: none;">
-                                <button ><mat-icon id="visibility">visibility</mat-icon></button>
-                            </a>
-                            
-                        </div>
-                        <div class="button-number">
-                            <div id="number-item" class="button-number-item">
-                                <b>N°</b> <p>{{item}}</p>
-                            </div>
-                            <button><mat-icon id="more">more_horiz</mat-icon></button>
-                        </div>
+
+                    <div class="item-eye">
+                        <button class="view">
+                            <a style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
+                        </button>
                     </div>
-                    
+
+                    <div class="item-number">
+                        <div class="number">
+                            <b>N°</b> <b>{{item}}</b>
+                        </div>
+                        <div class="more">
+                            <button class="more-button">
+                                <img src="assets\page\options_more_icon_208209.svg" alt="">
+                            </button>
+                        </div>
+                    </div>               
                 </div>
                 <!-- clientes -->
                 <!-- proveedores -->
@@ -67,16 +69,16 @@
                     
                 </div>
                 <!-- proveedores -->
+
+                
             </div>
             <div class="item4">
 
             </div>
         </div>
 
-
-
         <!-- boton de abajo -->
-        <button (click)="nf_for_next()">
+        <button class="up" (click)="nf_for_next()">
             <mat-icon>expand_more</mat-icon>
         </button>
     </div>

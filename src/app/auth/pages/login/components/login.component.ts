@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
-import { User } from 'src/app/services/create-user.service';
+import { AuthService,user } from 'src/app/auth/service/auth.service';
+
 
 
 @Component({
@@ -10,21 +11,21 @@ import { User } from 'src/app/services/create-user.service';
 })
 export class LoginComponent implements OnInit {
 
-  user:User = {
+  user:user = {
     rut:'',
-    password:'',
+    pass:'',
   }
 
   rut: FormControl;
   pass: FormControl;
   checkbox:FormControl;
 
-  constructor() {
+  constructor(private service:AuthService ) {
     this.rut = new FormControl('',[
       Validators.required,
       Validators.minLength(9),
       Validators.maxLength(10),
-      Validators.pattern(/^[0-9].-*$/)
+      Validators.pattern(/[0-9].-[0-9].*$/)
     ]);
     this.rut.valueChanges.subscribe(
       value =>{
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
     ]);
     this.pass.valueChanges.subscribe(
       value =>{
-        this.user.password = value
+        this.user.pass = value
       }
     );
     this.checkbox = new FormControl();
@@ -55,18 +56,20 @@ export class LoginComponent implements OnInit {
    
     event.preventDefault();
     if(this.rut.valid && this.pass.valid){
-      console.log(this.rut.value);
-      console.log(this.pass.value);
-    }
-    console.log('envio no valido')
-  }
-
-  logIn(data:User){
-    if(data.password=='' || data.rut == ''){
-      console.log("Ingreso no valido!")
+      
     }
     else{
-      console.log(data)
+      console.log('envio no valido')
+    }
+  }
+
+  logIn(data:user){
+    console.log(data)
+    if(this.rut.valid && this.pass.valid){
+      var aux  = this.service.login(data)
+      if(aux.status==200){
+        console.log(aux.mensaje)
+      }
     }
   }
 }

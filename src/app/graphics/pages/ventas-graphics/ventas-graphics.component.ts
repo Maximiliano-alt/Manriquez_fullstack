@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { GraphicsService,ventas } from '../../services/graphics.service';
-
-
+import { GraphicsService,ventas} from '../../services/graphics.service';
 
 
 @Component({
@@ -39,70 +37,112 @@ export class VentasGraphicsComponent implements OnInit {
 
 
   ngOnInit(): void {
-   this.getVentas()
-  }
-
-  valueM():number|undefined{
-    const dateIn = new Date(this.valueIn)
-    const dateOut = new Date(this.valueOut)
-    
-    if(dateIn.getTime() >dateOut.getTime() || 
-      dateIn.getTime()>Date.now() || 
-      dateOut.getTime()>Date.now() ||
-      this.valueIn==undefined || 
-      this.valueOut==undefined ||
-      dateIn.getTime() == dateOut.getTime()
-      
-    ){
-      this.alertaDate = 1;
-      this.creacionGrafica = 0;
-      return 0;
-    }
-    else{
-      this.alertaDate = 0
-      this.armarGraficaMes();
-      
-     
-    }
-    
-    
-    return 1
-  }
-
-
-  getVentas(){
     this.service.getVentas().subscribe(
       res=>{
-        res.data.forEach(element => {
+        res.data.forEach( element => {
           this.listVentas.push(element)
         });
       }
     )
   }
 
-  armarGraficaMes(){
-    this.listVentas.forEach(e=>{
-      this.arrojaNombreMes(e.fecha,e.totalDeVenta)
-    })
-    this.creacionGrafica = 1;
+  goGraphicsRange(dateIn:Date,dateOut:Date,data:ventas[]){
+    this.barChartData = {
+      labels: [],
+      datasets: [
+        { data: [ ], label: 'Total de ventas' },
+        
+      ]
+    };
+    this.alertaDate = 0;
+    var aux = this.service.goGraphicsRange(dateIn,dateOut,data)
+    if(aux == null){
+      
+      this.alertaDate = 1;
+      this.creacionGrafica = 0
+    }
+    if(aux != null){
+      this.creacionGrafica = 1
+      aux.forEach(element => {
+
+        var label = (new Date(element.fecha).toString().split(" "))[1]+'-'+
+                    (new Date(element.fecha).toString().split(" "))[2]
+        var value = element.totalDeVenta
+        this.agregarData(label,value)
+      });
+    }
+    
   }
 
-  arrojaNombreMes(data:number,valor:number){
+  goGraphicsHistory(){
+    // reiniciamos el grafico!
+    this.barChartData = {
+      labels: [],
+      datasets: [
+        { data: [ ], label: 'Total de ventas' },
+        
+      ]
+    };
+    this.alertaDate = 0;
+
+    this.listVentas.forEach((e)=>{
+      var spliter = new Date(e.fecha).toString().split(" ") //separamos la fecha
+      this.agregarData(spliter[3],e.totalDeVenta)
+    })
+    this.creacionGrafica = 1
+
+  }
+
+  armarGraficaMes(){
+    this.barChartData = {
+      labels: [],
+      datasets: [
+        { data: [ ], label: 'Total de ventas' },
+        
+      ]
+    };
+    const data = Date.now()
+    var dataLetra = new Date(data)
+    var spliter = dataLetra.toString().split(" ")
+    var anio = spliter[3]
+
+    this.creacionGrafica = 1
+    this.listVentas.forEach( e=>{
+      const anioData = (new Date(e.fecha).toString().split(" ")[3])
+      
+      if(anio == anioData){
+        this.arrojaNombreMes(e.fecha,e.totalDeVenta)    
+      } 
+    })
+    
+  }
+
+  async arrojaNombreMes(data:number,valor:number){
+    
     const dataNew = new Date(data)
     const spliter = dataNew.toString().split(" ")  
-    const dia = spliter[2]
     const mes = spliter[1]
     this.agregarData(mes,valor)
   }
 
 
   agregarData(mes:string,valor:number){
-    this.barChartData.labels?.push(mes);
-    this.barChartData.datasets[0].data.push(valor)
 
-    console.log(
-      this.barChartData.labels
-    )
+    // sacamos el index del valor que vamos a introducir
+    const index = this.barChartData.labels?.indexOf(mes)
+    
+    if(index!>=0){
+    
+      // se encontro el valor (Esta!)
+      this.barChartData.datasets[0].data[index!] = this.barChartData.datasets[0].data[index!]+valor
+    }
+    else if(index == -1){
+      
+      this.barChartData.labels?.push(mes);
+      this.barChartData.datasets[0].data.push(valor)
+    }
+    
+   
   }
 
 

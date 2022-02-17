@@ -3,11 +3,20 @@
 
 <div class="container-general">
 
-    <div class="filter">
+  <div class="spiner" *ngIf="this.listVentas.length == 0">
+    <div style="margin:auto" class="spinner-border" role="status" >
+    </div>
+    <span>Cargando pagina...</span>
+  </div>
+
+    <div class="filter" *ngIf="this.listVentas.length !=0">
 
             <h1>Instructivo</h1>
-            <p>Para poder crear el grafico de ventas debes escoger una fecha de inicio <br>
-                y una fecha de termino con el fin de poder capturar la informacion dentro del rango.
+            <p>Para poder crear el grafico de ventas semanal debes escoger una fecha de inicio 
+                y una fecha de termino<br> considerando un rango de 7 dias con el fin de poder
+                generar una grafica de ventas de dicha semana <br>
+                y luego presionar en crear grafica. <br>
+                * Para otras graficas solo debes presionar los botones que indican el tipo
             </p>
 
             <span>Fecha de inicio</span>
@@ -15,15 +24,19 @@
             <span>Fecha de Termino</span>
             <input class="date" [(ngModel)]="this.valueOut" type="date">
             
-            <button (click)="valueM()" class="busqueda">Crear grafica</button>
+            <button id="crearGrafica" (click)="goGraphicsRange(this.valueIn,this.valueOut,listVentas)" class="busqueda">Crear grafica</button>
 
             <p *ngIf="this.alertaDate==1" style="color: red;">
                 Revisa el rango de fechas seleccionado
             </p>
     </div>
+    <div class="buttons" *ngIf="this.listVentas.length != 0">
+      <button (click)="armarGraficaMes()">Ordenar por mes</button>
+      <button (click)="goGraphicsHistory()">Grafico Historico</button>
+    </div>
 
 
-    <div class="spiner" *ngIf="barChartData.labels!.length==0 && creacionGrafica==1">
+    <div class="spiner" *ngIf="(barChartData.labels!.length==0 && creacionGrafica==1)">
         <div style="margin:auto" class="spinner-border" role="status" >
         </div>
         <span>Cargando grafica...</span>
@@ -39,7 +52,5 @@
             </canvas>
           </div>
          
-
-        
     </div>
 </div>
