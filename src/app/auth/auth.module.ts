@@ -27,6 +27,6 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     FormsModule,
     RouterModule
-  ]
+    ]
 })
 export class AuthModule { }
