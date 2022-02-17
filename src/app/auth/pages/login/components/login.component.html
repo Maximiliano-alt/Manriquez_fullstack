@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="butt-inciar">
-          <button (click)=" logIn(user)" type="submit" >Iniciar sesión</button>
+          <button [disabled]="rut.invalid || pass.invalid" type="submit" >Iniciar sesión</button>
         </div>
       </form>
 

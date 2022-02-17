@@ -3,7 +3,7 @@
     <div class="data">
         <!-- boton de arriba -->
 
-        <button (click)="nf_for_preview()">
+        <button class="up" (click)="nf_for_preview()">
             <mat-icon>expand_less</mat-icon>
         </button>
 
@@ -13,43 +13,61 @@
 
             <!-- cada item de la lista -->
             <div class="item6" *ngFor="let item of this.segmento">
-                <div class="clientes" *ngIf="this.input.indicador == 'clientes'">
+                <!-- clientes -->
+                <div class="clientes" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'proveedores'">
                     <div class="item-data">
-                        <div class="data-line">
+                        <!-- cliente -->
+                        <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
                             <b>Cliente:</b> <p>&nbsp;nombre del cliente</p>
                         </div>
-                        <div class="data-line">
+                        <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
                             <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
                         </div>
-                    </div>
-                    <div class="item-button">
-                        <div class="button-eye">
-                            <a style="text-decoration: none;">
-                                <button ><mat-icon id="visibility">visibility</mat-icon></button>
-                            </a>
-                            
+                        <!-- proveedor -->
+                        <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
+                            <b>Nombre:</b> <p>&nbsp;Juan Larenas</p>
                         </div>
-                        <div class="button-number">
-                            <div id="number-item" class="button-number-item">
-                                <b>N°</b> <p>{{item}}</p>
-                            </div>
-                            <button><mat-icon id="more">more_horiz</mat-icon></button>
+                        <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
+                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                        </div>
+                        <div class="data-line" *ngIf="this.input.indicador == 'pendientes'">
+                            <b>Tipo de pendiente:</b> <p>&nbsp;Despacho</p>
+                        </div>
+                        <div class="data-line" *ngIf="this.input.indicador == 'pendientes'">
+                            <b>Fecha: </b> <p>&nbsp;XX/XX/XXXXX</p>
                         </div>
                     </div>
-                    
-                </div>
 
-                
+                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes'">
+                        <button class="view">
+                            <a style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
+                        </button>
+                    </div>
+                    <div class="item-book" *ngIf="this.input.indicador == 'proveedores'">
+                        <button class="view">
+                            <a style="text-decoration: none; color: black;"><img src="../../../../assets/page/proveedor 2.svg" alt="" /></a>
+                        </button>
+                    </div>
+
+                    <div class="item-number">
+                        <div class="number">
+                            <b>N°</b> <b>{{item}}</b>
+                        </div>
+                        <div class="more">
+                            <button class="more-button">
+                                <img src="assets\page\options_more_icon_208209.svg" alt="">
+                            </button>
+                        </div>
+                    </div>               
+                </div>             
             </div>
             <div class="item4">
 
             </div>
         </div>
 
-
-
         <!-- boton de abajo -->
-        <button (click)="nf_for_next()">
+        <button class="up" (click)="nf_for_next()">
             <mat-icon>expand_more</mat-icon>
         </button>
     </div>

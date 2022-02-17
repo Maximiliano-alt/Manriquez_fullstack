@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
       Validators.minLength(9),
       Validators.maxLength(10),
       Validators.pattern(/[0-9].-[0-9].*$/)
+
     ]);
     this.rut.valueChanges.subscribe(
       value =>{
@@ -102,6 +103,19 @@ export class RegisterComponent implements OnInit {
           }
         )
     }
+  }
+
+  saveInfo(event:Event){
+
+    event.preventDefault();
+    if(this.rut.valid && this.pass.valid){
+      console.log(this.rut.value);
+      console.log(this.pass.value);
+    }
+    else{
+      console.log('envio no valido')
+    }
+
   }
 
 }

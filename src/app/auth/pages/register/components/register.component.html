@@ -12,7 +12,7 @@
   </div>
 
   <div class="container">
-    <form action="">
+    <form (ngSubmit)="saveInfo($event)" action="">
       <div class="Input">
 
         <div class="Input-data">
@@ -20,7 +20,7 @@
             <img src="assets\page\Icono perfil.svg" alt="">
           </div>
           <input [formControl]="name" type="text" placeholder="Nombre de Usuario">
-          <p style="margin-top: 50px;" *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
+          <p  *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
 
         </div>
         <div class="Input-data">
@@ -28,14 +28,14 @@
             <img src="assets\page\Icono perfil.svg" alt="">
           </div>
           <input [formControl]="rut" type="text" placeholder="Rut">
-          <p style="margin-top: 50px;" *ngIf="rut.invalid && rut.touched" class="input-error"><strong>* Campo requerido</strong> ej: 12345678-1 </p>
+          <p  *ngIf="rut.invalid && rut.touched" class="input-error"><strong>* Campo requerido</strong> ej: 12345678-1 </p>
         </div>
         <div class="Input-data">
           <div class="icon-perfil">
             <img src="assets\page\email.svg" alt="">
           </div>
           <input [formControl]="email" type="email" placeholder="Email">
-          <p style="margin-top: 50px;" *ngIf="email.invalid && email.touched" class="input-error"><strong>* Campo requerido</strong> ej: nombre@mail.com </p>
+          <p  *ngIf="email.invalid && email.touched" class="input-error"><strong>* Campo requerido</strong> ej: nombre@mail.com </p>
         </div>
 
         <div class="Input-data">
@@ -43,7 +43,7 @@
             <img src="assets\page\Icono contraseña.svg" alt="">
           </div>
           <input [formControl]="pass" type="password" placeholder="Contraseña">
-          <p style="margin-top: 50px;" *ngIf="pass.invalid && pass.touched" class="input-error"><strong>* Campo requerido</strong>* Utilizar mayusculas, luego minusculas y luego numeros </p>
+          <p  *ngIf="pass.invalid && pass.touched" class="input-error"><strong>* Campo requerido</strong>* Utilizar mayusculas, luego minusculas y luego numeros </p>
 
 
         </div>
@@ -52,16 +52,17 @@
             <img src="assets\page\Icono contraseña.svg" alt="">
           </div>
           <input [formControl]="rePass" type="password" placeholder="Repetir Contraseña">
-          <p style="margin-top: 50px;" *ngIf="(rePass.invalid && rePass.touched)" class="input-error"><strong>* Campo requerido</strong>* Utilizar mayusculas, luego minusculas y luego numeros </p>
-          <p style="margin-top: 63px;" *ngIf="(pass.value != rePass.value) &&rePass.touched" class="input-error"><strong>contrasena distinta</strong> </p>
+          <p  *ngIf="(rePass.invalid && rePass.touched)" class="input-error"><strong>* Campo requerido</strong>* Utilizar mayusculas, luego minusculas y luego numeros </p>
+          <p   *ngIf="(pass.value != rePass.value) &&rePass.touched" class="input-error different"><strong>contrasena distinta</strong> </p>
         </div>
 
       </div>
       <div class="butt-reg">
-        <button (click)="register(this.user)" type="submit">Registrarse</button>
+
+        <button type="submit" (click)="register(this.user)" [disabled]="name.invalid || rut.invalid || email.invalid || pass.invalid || rePass.invalid">Registrarse</button>
+
       </div>
     </form>
   </div>
-  <p>pass:{{pass.value}}</p>
-  <p>rePass:{{rePass.value}}</p>
+
 </div>
