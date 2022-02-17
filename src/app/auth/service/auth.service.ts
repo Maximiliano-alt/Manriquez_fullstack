@@ -7,22 +7,40 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private http: HttpClient,private cookie: CookieService) { }
+  token:string|null
+  constructor(private http: HttpClient,private cookie: CookieService) {
+    this.token = localStorage.getItem('_pipo')
+   }
 
   login(data:userLogin){
     return this.http.post<res>(environment.baseUrl+'/login',data)
   }
-  createCookie(data:string){
-    var date = new Date();
-        date.setTime(date.getTime() + (20 * 1000));
-        this.cookie.set('_pipo',data, { expires: date })
+
+
+  
+  createCookie(data:string,check:boolean){
+    localStorage.setItem('_pipo',data)
+    this.token = localStorage.getItem('_pipo')
   }
+
+  
   register(data:user){
     return this.http.post<res>(environment.baseUrl+'/new',data)
   }
 
+  validarToken(data:token){
+    return this.http.post<res>(environment.baseUrl +'/validate',data)
+  }
 
+
+  sendMail(date:userLogin){
+    return this.http.post<res>(environment.baseUrl+'/sendMail',date)
+  }
+
+
+}
+export interface token{
+  token:string|null
 }
 export interface user{
   nombre:string,
