@@ -18,22 +18,22 @@ const routes: Routes = [
     path: 'proveedores', loadChildren:()=>import('./proveedores/proveedores.module').then(modulo=> modulo.ProveedoresModule)
   },
   {
-    path:'app',loadChildren:()=> import('./home/home.module').then(modulo =>modulo.HomeModule),canLoad:[AuthGuard],canActivate:[AuthGuard]
+    path:'app',loadChildren:()=> import('./home/home.module').then(modulo =>modulo.HomeModule)
   },
   {
-    path:'ventas',loadChildren:()=> import('./ventas/ventas.module').then(modulo => modulo.VentasModule),canLoad:[AuthGuard]
+    path:'ventas',loadChildren:()=> import('./ventas/ventas.module').then(modulo => modulo.VentasModule)
   },
    {
-    path:'pendientes',loadChildren:()=> import('./pendientes/pendientes.module').then(modulo => modulo.PendientesModule),canLoad:[AuthGuard]
+    path:'pendientes',loadChildren:()=> import('./pendientes/pendientes.module').then(modulo => modulo.PendientesModule)
   },
  {
-    path:'clientes',loadChildren:()=> import('./clientes/clientes.module').then(modulo => modulo.ClientesModule),canLoad:[AuthGuard]
+    path:'clientes',loadChildren:()=> import('./clientes/clientes.module').then(modulo => modulo.ClientesModule)
   },
   {
-    path:'productos',loadChildren:()=> import('./products/products.module').then(modulo=>modulo.ProductsModule),canLoad:[AuthGuard]
+    path:'productos',loadChildren:()=> import('./products/products.module').then(modulo=>modulo.ProductsModule)
   },
   {
-    path:'estadisticas',loadChildren:()=>import('./graphics/graphics.module').then(m=>m.GraphicsModule),canLoad:[AuthGuard]
+    path:'estadisticas',loadChildren:()=>import('./graphics/graphics.module').then(m=>m.GraphicsModule)
   },
   {
     // para rutas inexistentes redirecciona hacia auth
