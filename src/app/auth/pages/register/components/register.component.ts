@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService,user } from 'src/app/auth/service/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -70,7 +71,7 @@ export class RegisterComponent implements OnInit {
 
     this.rePass = new FormControl('',[
       Validators.required,
-      
+
     ]);
     this.rePass.valueChanges.subscribe(
       value =>{
@@ -88,17 +89,23 @@ export class RegisterComponent implements OnInit {
     // email:FormControl;
     // pass:FormControl;
     // rePass:FormControl;
-    
-    if(this.name.valid&& 
+
+    if(this.name.valid&&
        this.rut.valid&&
        this.email.valid&&
-       this.pass.valid && 
-       this.rePass.valid && 
+       this.pass.valid &&
+       this.rePass.valid &&
        (this.pass.value === this.rePass.value)
        ) {
         this.service.register(data).subscribe(
           res=>{
             console.log(res.status)
+            if(res.status == 200){
+              Swal.fire({icon: 'success',text: 'Agregado con exito'})
+            }
+            else{
+              Swal.fire({icon: 'warning',title: 'Oops...',text: 'Usuario existente'});
+            }
           }
         )
     }
