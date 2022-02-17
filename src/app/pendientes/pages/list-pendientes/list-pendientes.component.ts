@@ -7,6 +7,7 @@ import { PendientesService } from '../../service/pendientes.service';
 })
 export class ListPendientesComponent implements OnInit {
 
+  array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
   constructor(private service: PendientesService) { }
 
   ngOnInit(): void {
