@@ -15,13 +15,9 @@ export class AuthService {
     console.log(this.cookie.get('_pipo'))
     aux.subscribe(
       res=>{
-        var date = Date.now();
-        var expired = new Date(date).toString().split(" ")
-        var dateTime= expired[4].split(":")
-        const newMinuto =parseInt( dateTime[1])+1
-        dateTime[1] = newMinuto.toString()
-        console.log(dateTime)
-        this.cookie.set('_pipo',res.mensaje)
+        var date = new Date();
+        date.setTime(date.getTime() + (20 * 1000));
+        this.cookie.set('_pipo',res.mensaje, { expires: date })
       }
     )
     return {status:200,mensaje:"login exitoso"}
