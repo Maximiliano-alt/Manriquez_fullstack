@@ -13,19 +13,33 @@
 
             <!-- cada item de la lista -->
             <div class="item6" *ngFor="let item of this.segmento">
-                <div class="clientes" *ngIf="this.input.indicador == 'clientes'">
+                <!-- clientes -->
+                <div class="clientes" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'proveedores'">
                     <div class="item-data">
-                        <div class="data-line">
+                        <!-- cliente -->
+                        <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
                             <b>Cliente:</b> <p>&nbsp;nombre del cliente</p>
                         </div>
-                        <div class="data-line">
+                        <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
+                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                        </div>
+                        <!-- proveedor -->
+                        <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
+                            <b>Nombre:</b> <p>&nbsp;Juan Larenas</p>
+                        </div>
+                        <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
                             <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
                         </div>
                     </div>
 
-                    <div class="item-eye">
+                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes'">
                         <button class="view">
                             <a style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
+                        </button>
+                    </div>
+                    <div class="item-book" *ngIf="this.input.indicador == 'proveedores'">
+                        <button class="view">
+                            <a style="text-decoration: none; color: black;"><img src="../../../../assets/page/proveedor 2.svg" alt="" /></a>
                         </button>
                     </div>
 
@@ -40,6 +54,34 @@
                         </div>
                     </div>               
                 </div>
+                <!-- clientes -->
+                <!-- proveedores -->
+                <!-- <div class="proveedor" *ngIf="this.input.indicador == 'proveedores'">
+                    <div class="item-data">
+                        <div class="data-line">
+                            <b>Nombre:</b> <p>&nbsp;Juan Larenas</p>
+                        </div>
+                        <div class="data-line">
+                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                        </div>
+                    </div>
+                    <div class="item-button">
+                        <div class="button-eye">
+                            <a style="text-decoration: none;">
+                                <button ><mat-icon id="visibility"> <img src="../../../../assets/page/proveedor 2.svg" alt="" /></mat-icon></button>
+                            </a>
+                            
+                        </div>
+                        <div class="button-number">
+                            <div id="number-item" class="button-number-item">
+                                <b>N°</b> <p>{{item}}</p>
+                            </div>
+                            <button><mat-icon id="more">more_horiz</mat-icon></button>
+                        </div>
+                    </div>
+                    
+                </div> -->
+                <!-- proveedores -->
 
                 
             </div>
