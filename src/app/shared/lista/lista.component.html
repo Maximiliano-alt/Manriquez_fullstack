@@ -15,11 +15,17 @@
             <div class="item6" *ngFor="let item of this.segmento">
                 <div class="clientes" *ngIf="this.input.indicador == 'clientes'">
                     <div class="item-data">
-                        <div class="data-line">
+                        <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
                             <b>Cliente:</b> <p>&nbsp;nombre del cliente</p>
                         </div>
-                        <div class="data-line">
+                        <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
                             <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                        </div>
+                        <div class="data-line" *ngIf="this.input.indicador == 'pendientes'">
+                            <b>Tipo de pendiente:</b> <p>&nbsp;Despacho</p>
+                        </div>
+                        <div class="data-line" *ngIf="this.input.indicador == 'pendientes'">
+                            <b>Fecha: </b> <p>&nbsp;XX/XX/XXXXX</p>
                         </div>
                     </div>
 
