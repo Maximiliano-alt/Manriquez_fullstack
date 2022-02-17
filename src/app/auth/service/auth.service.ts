@@ -11,18 +11,13 @@ export class AuthService {
   constructor(private http: HttpClient,private cookie: CookieService) { }
 
   login(data:userLogin){
-    var aux = this.http.post<res>(environment.baseUrl+'/login',data)
-    console.log(this.cookie.get('_pipo'))
-    aux.subscribe(
-      res=>{
-        var date = new Date();
-        date.setTime(date.getTime() + (20 * 1000));
-        this.cookie.set('_pipo',res.mensaje, { expires: date })
-      }
-    )
-    return {status:200,mensaje:"login exitoso"}
+    return this.http.post<res>(environment.baseUrl+'/login',data)
   }
-
+  createCookie(data:string){
+    var date = new Date();
+        date.setTime(date.getTime() + (20 * 1000));
+        this.cookie.set('_pipo',data, { expires: date })
+  }
   register(data:user){
     return this.http.post<res>(environment.baseUrl+'/new',data)
   }
