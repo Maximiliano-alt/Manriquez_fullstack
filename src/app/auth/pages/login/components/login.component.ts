@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { AuthService,userLogin } from 'src/app/auth/service/auth.service';
 
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   pass: FormControl;
   checkbox:FormControl;
 
-  constructor(private service:AuthService ) {
+  constructor(private service:AuthService, private cookie: CookieService ) {
     this.rut = new FormControl('',[
       Validators.required,
       Validators.minLength(9),
@@ -64,7 +64,8 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(data:userLogin){
-    console.log(data)
+
+    
     if(this.rut.valid && this.pass.valid){
       var aux  = this.service.login(data)
       if(aux.status==200){
