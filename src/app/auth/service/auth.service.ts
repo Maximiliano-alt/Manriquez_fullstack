@@ -33,6 +33,11 @@ export class AuthService {
   }
 
 
+  sendMail(date:userLogin){
+    return this.http.post<res>(environment.baseUrl+'/sendMail',date)
+  }
+
+
 }
 export interface token{
   token:string|null

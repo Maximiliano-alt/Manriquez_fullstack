@@ -13,10 +13,12 @@ import { LoginComponent } from './pages/login/components/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SendMailComponent } from './pages/send-mail/send-mail.component';
 @NgModule({
   declarations: [
     RegisterComponent,
     LoginComponent,
+    SendMailComponent,
 
   ],
   imports: [
