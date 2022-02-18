@@ -2,46 +2,64 @@
 
 
 <div class="container-general">
-   
+
     <div class="left">
         <div class="input-nombre">
             <div class="nav-nombre">
                 Nombre
             </div>
-            <input type="text">
+            <input [formControl]="name" type="text">
+            <p id="name-error"  *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
-    
+
         <div class="par-input">
-           
+
             <div class="input-precio">
                 <div class="nav-precio">
                     Precio
                 </div>
-                <input type="text">
+                <input  [formControl]="price" value="$" type="text">
+                <p  *ngIf="price.invalid && price.touched" class="input-error"><strong>* Campo requerido, solo numeros</strong> </p>
             </div>
-            
+
             <div class="input-color">
                 <div class="nav-color">
                     Color
                 </div>
-                <input type="text">
+                <input [formControl]="color" type="text">
+                <p  *ngIf="color.invalid && color.touched" class="input-error"><strong>* Campo requerido</strong> </p>
             </div>
         </div>
-    
+
         <div class="par-input">
-           
+
             <div class="input-precio">
                 <div class="nav-precio">
                     Stock
                 </div>
-                <input type="text">
+                <input [formControl]="stock" type="text">
+                <p  *ngIf="stock.invalid && stock.touched" class="input-error"><strong>* Campo requerido, solo numeros</strong> </p>
             </div>
-            
+
             <div class="input-color">
                 <div class="nav-color">
-                    Estado
+                  Categoria
                 </div>
-                <input type="text">
+
+
+                  <select [formControl]="category" name="categoria" class="categoria">
+                    <!--utilizar ngfor  -->
+
+                    <option value="PISOS FLOTANTESs">PISOS FLOTANTES</option>
+                    <option value="PISOS MADERA">PISOS MADERA</option>
+                    <option value="PISOS  VINÍLICOS">PISOS  VINÍLICOS</option>
+                    <option value="PASTO SINTETICO">PASTO SINTETICO</option>
+                    <option value="CERAMICOS-PORCELANATOS">CERAMICOS-PORCELANATOS</option>
+                    <option value="ALFOMBRAS">ALFOMBRAS</option>
+                    <option value="CORTINAS ROLLER">CORTINAS ROLLER</option>
+                    <option value="PAPELES MURALES">PAPELES MURALES</option>
+                  </select>
+                  <p  *ngIf="category.invalid && category.touched" class="input-error"><strong>* Campo requerido</strong> </p>
             </div>
         </div>
     </div>
@@ -51,7 +69,8 @@
         <div class="nav-nombre">
             Descripcion
         </div>
-        <textarea placeholder="ingrese descripcion" ></textarea>
+        <textarea [formControl]="description" placeholder="ingrese descripcion" ></textarea>
+        <p style="margin-top: -4px;" *ngIf="description.invalid && description.touched" class="input-error"><strong>* Campo requerido</strong> </p>
     </div>
 
      <div class="file-input">
@@ -60,9 +79,9 @@
         </div>
         <input type="file">
     </div>
-    </div>   
+    </div>
 
-    <button class="guardar">
+    <button (click)="createProduct(this.product)" [disabled]="name.invalid || price.invalid  || color.invalid || stock.invalid ||category.invalid || description.invalid" class="guardar">
         Guardar
     </button>
     <button class="cancelar">
