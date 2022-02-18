@@ -14,12 +14,14 @@ export class ProductsService {
   }
 
 }
+
 export interface product{
-  nombre: string;
-  price: number;
-  color:string;
-  stock:number;
-  category:string;
-  description:string;
-  imagen: string;
+  nombre: string,
+  valor: number,
+  descripcion: string,
+  categoria:string,
+  stock:number,
+  vecesComprado:number,
+  color:string,
+  imagen:string,
 }

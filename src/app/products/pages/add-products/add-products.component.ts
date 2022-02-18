@@ -12,13 +12,16 @@ export class AddProductsComponent implements OnInit {
 
   product:product = {
     nombre: "",
-    price: 0,
-    color: "",
+    valor: 0,
+    descripcion:"",
+    categoria:"",
     stock:0,
-    category:"",
-    description:"",
-    imagen: ""
+    vecesComprado:0,
+    color: "",
+    imagen: "",
+    
   }
+
 
   name: FormControl;
   price: FormControl;
@@ -46,7 +49,7 @@ export class AddProductsComponent implements OnInit {
     ]);
     this.price.valueChanges.subscribe(
       value =>{
-        this.product.price = value
+        this.product.valor = value
       }
     );
 
@@ -77,7 +80,7 @@ export class AddProductsComponent implements OnInit {
     ]);
     this.category.valueChanges.subscribe(
       value =>{
-        this.product.category = value
+        this.product.categoria = value
       }
     );
 
@@ -87,7 +90,7 @@ export class AddProductsComponent implements OnInit {
     ]);
     this.description.valueChanges.subscribe(
       value =>{
-        this.product.description = value
+        this.product.descripcion = value
       }
     );
 
