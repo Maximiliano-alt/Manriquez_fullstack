@@ -22,12 +22,18 @@ export class GraphicsService {
     )
   }
 
-  getProductos(){
-    return this.http.get<producto[]>(environment.baseUrl+'/get/producto').pipe(
+  getProductosForCategory(data:string){
+      return this.http.post<producto[]>(environment.baseUrl+'/get/producto/category',{data}).pipe(
       delay(1500)
     )
   }
 
+
+  getCategoria(){
+    return this.http.get<categoria[]>(environment.baseUrl+'/get/categoria').pipe(
+      delay(2000)
+    )
+  }
 
 
 
@@ -125,3 +131,6 @@ export interface producto{
   vecesComprado:number,
 }
 
+export interface categoria{
+  nombre:string,
+}
