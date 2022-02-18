@@ -4,23 +4,60 @@
 
 <div class="container-general">
 
-    <div class="spiner" *ngIf="barChartData.labels!.length==0">
-        <div style="margin:auto" class="spinner-border" role="status" >
-        </div>
-        <span>Cargando grafica...</span>
+    
+
+    <div class="pagina" *ngIf="this.listaCategorias.length != 0 ">
+      <h1>Instrucciones</h1>
+      <p>Debes seleccionar una categoria para traer el rankig de esta misma!</p>
+
+      <div class="button">
+        <button (click)="getProductos(categoria.nombre)" *ngFor="let categoria of this.listaCategorias">{{categoria.nombre}}</button>
       </div>
 
-      <div class="graphica" *ngIf="barChartData.labels!.length!=0">
-        
-        <div class="grafica">
-            <canvas baseChart
-              [data]="barChartData"
-              [options]="barChartOptions"
-              [type]="barChartType">
-            </canvas>
+      <div class="container-items">
+        <div class="item" *ngFor="let producto of this.listaProductos,let indice=index">
+          <div class="data">
+            <div class="descripcion">
+              <div class="line">
+                <strong>Nombre: &nbsp;</strong> {{producto.nombre}}
+              </div>
+              <div class="line">
+                <strong>Valor: &nbsp;</strong> {{producto.valor}}
+                
+              </div>
+              <div class="line">
+                <strong>Cantidades Compradas: &nbsp;</strong> {{producto.vecesComprado}}
+                
+              </div>
+              <div class="line">
+                <strong>Nombre: &nbsp;</strong> {{producto.stock}}
+              </div>
+              
+
+
+            </div>
+            <p>N {{indice+1}}</p>
           </div>
-         
+        </div>
+      </div>
+
+     
+    </div>
+    <!-- spiners -->
+    <div class="spiner" *ngIf="this.aviso == 0 && this.click == 1  && return!= 2">
+      <div style="margin:auto" class="spinner-border" role="status" >
+      </div>
+      <span>Cargando listado...</span>
     </div>
 
+    <div class="spiner" *ngIf="return== 2">
+      <span>No hay productos de esta categoria</span>
+    </div>
 
+    <div class="spiner" *ngIf="this.listaCategorias.length==0">
+      <div style="margin:auto" class="spinner-border" role="status" >
+      </div>
+      <span>Cargando pagina...</span>
+    </div>
+    
 </div>
