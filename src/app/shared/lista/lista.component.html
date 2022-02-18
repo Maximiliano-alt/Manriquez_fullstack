@@ -10,11 +10,9 @@
 
         <!-- esta es la data completa -->
         <div class="lista">
-
-            <!-- cada item de la lista -->
-            <div class="item6" *ngFor="let item of this.segmento">
-                <!-- clientes -->
-                <div class="clientes" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'proveedores' || this.input.indicador == 'pendientes'">
+            <!-- clientes, proveedores, pendientes-->
+            <div class="item" *ngFor="let item of this.segmento">
+                <div class="CPP" *ngIf="this.limitador == 6">
                     <div class="item-data">
                         <!-- cliente -->
                         <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
@@ -46,7 +44,7 @@
                     </div>
                     <!-- proveedor-->
                     <div class="item-book" *ngIf="this.input.indicador == 'proveedores'">
-                        <button class="view">
+                        <button class="edit">
                             <a style="text-decoration: none; color: black;"><img src="../../../../assets/page/proveedor 2.svg" alt="" /></a>
                         </button>
                     </div>
@@ -61,11 +59,34 @@
                             </button>
                         </div>
                     </div>               
-                </div>             
+                </div>
+                <div class="CPLV" *ngIf="this.limitador == 4">
+                    <div class="item-view">
+                        <div class="preview">
+                            <button class="preview-button">
+                                <a style="text-decoration: none; color: black;" [routerLink]="['/productos/products-category']"><img src="assets\page\view.svg" alt=""></a>
+                            </button>
+                        </div>
+                        <div class="mas">
+                            <button class="mas-button">
+                                <img src="assets\page\options_more_icon_208209.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <div class="data-info">
+                            Pisos Flotantes
+                        </div>
+                    </div>
+                    <div class="item-edit">
+                        <button>
+                            <img src="assets\page\modificar icon.svg" alt="">
+                        </button>
+                    </div>
+                </div>           
             </div>
-            <div class="item4">
+            <!-- category-productos, productos, list-compra, ventas-->
 
-            </div>
         </div>
 
         <!-- boton de abajo -->

@@ -42,8 +42,7 @@ export class ListaComponent implements OnInit {
   ngOnInit(): void {
     if(this.input.indicador == 'clientes' ||
     this.input.indicador == 'pendientes' ||
-    this.input.indicador == 'proveedores' ||
-    this.input.indicador == 'clientes')
+    this.input.indicador == 'proveedores')
     {
       this.limitador = 6;
       this.indice_espera = this.limitador
@@ -53,8 +52,6 @@ export class ListaComponent implements OnInit {
       this.limitador = 4;
       this.indice_espera = this.limitador
     }
-
-
 
 
     this.resto = this.input.data.length%this.limitador //elementos que quedan por recorrer

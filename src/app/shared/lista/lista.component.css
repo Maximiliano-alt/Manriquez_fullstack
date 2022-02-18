@@ -43,23 +43,20 @@
 .lista{ 
     width: 80%;
     height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(auto-fill, minmax(min-content, 25%));
+    grid-row-gap: 7px;
     opacity: 0.8;
 }
 
-.item6{
-    padding: 10px;
+.item{
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    width: 100%;
-    height: 65px;
-    margin-bottom: 10px;
     color: black;
+    display: flex;
 }
-
-.clientes{
+/* CLIENTES Y PENDIENTES **************************************************************************/
+.CPP{
     width: 100%;
     height: 100%;
     display: flex;
@@ -162,9 +159,9 @@
         grid-row-gap: 12px;
         grid-column-gap: 20px;
         background-color: transparent;
-        margin: 20px 25px 0 25px;
+        margin: 0 25px 0 25px;
     }
-    .item6{
+    .item{
         width: 100%;
         height: 100%;
     }
@@ -175,7 +172,7 @@
         align-items: flex-end;
     }
     .data-line{
-        width: 90%;
+        width: 80%;
         height: 25%;
         display: flex;
         justify-content: center;
@@ -211,16 +208,140 @@
         width: 35px;
     }
 }
-
-/* PROVEEDORES */
-
-.item-book {
-  margin: auto 0px;
-  width: 10%;
-  height: 100%;
+/* CAT-PRODUCTS ****************************************************************************/
+.CPLV{
+    width: 100%;
+    height: 100%;
+    display: flex;
 }
+.item-view{
+    width: 25%;
+    height: 100%;
+    display: flex;
+}
+.item-view div{
+    width: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.preview-button{
+    background-color: transparent;
+    border: none;
+}
+.preview-button a img{
+    width: 25px;
+}
+.mas-button{
+    background-color: transparent;
+    border: none;
+}
+.mas-button img{
+    width: 25px;
+}
+
+.item-info{
+    width: 55%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.data-info{
+    font-weight: bold;
+}
+
+.item-edit{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.item-edit button{
+    width: 35px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+}
+.item-edit button img{
+    width: 25px;
+}
+
+@media screen and (min-width: 1024px){
+    .item-view{
+        width: 20%;
+    }
+    .item-view div{
+        width: 50px;
+    }
+    .preview-button a img{
+        width: 35px;
+    }
+    .mas-button{
+        transform: translateX(304px);
+    }
+    .mas-button img{
+        width: 35px;
+    }
+
+    .item-info{
+        width: 60%;
+        text-align: center;
+    }
+    .data-info{
+        font-size: 120%;
+    }
+
+    .item-edit{
+        width: 20%;
+        justify-content: center;
+        padding-top: 2%;
+    }
+    .item-edit button{
+        width: 45px;
+        height: 40px;
+    }
+    .item-edit button img{
+        width: 30px;
+    }
+    
+}
+
+/* PROVEEDORES *****************************************************************************/
+.item-book{
+    width: 15%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.edit{
+    width: 75%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+}
+.edit a , .edit img{
+    width: 27px; 
+}
+
 @media screen and (min-width: 1024px) {
-  .item-book {
-    transform: translate(-270px, 70px) scale(1.8);
-  }
+    .item-book{
+        width: 10%;
+        height: 100%;
+    }
+    .edit {
+        width: 100%;
+        height: 35%;
+        display: flex;
+        justify-content: center;
+        transform: translate(-290px, -8px);
+    }
+    .edit a , .edit img{
+        width: 45px; 
+    }
 }
