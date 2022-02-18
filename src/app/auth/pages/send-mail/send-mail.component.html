@@ -24,11 +24,29 @@
         
         <input value="{{this.user.email}}" type="email" placeholder="Email" disabled>
 
-        <input type="text" placeholder="Codigo" required>
+        <input [(ngModel)]="this.codigo" type="text" placeholder="Codigo" required>
         <strong  style="margin-left: 20px; color: white;">* El codigo fue enviado a {{this.user.email}}</strong>
 
         <p  *ngIf="email.invalid && email.touched" class="input-error"><strong>* Campo requerido</strong> ej: nombre@mail.com </p>
-        <button >Ir a cambiar contraseña</button>
+        <button (click)="this.enviarCodigo()">Ir a cambiar contraseña</button>
+        
+        
+    </div>
+    <div class="input" *ngIf="this.indicador == 2">
+        <h1>Ingresa nueva contraseña</h1>
+        <p>Ingresa tu nueva contraseña al sistema, recuerda que ambas deben ser iguales.
+        </p>
+        
+        <input [formControl]="pass" type="password" placeholder="Contraseña" >
+        <p  *ngIf="pass.invalid && pass.touched" class="input-error"><strong>* Campo requerido</strong>* Utilizar mayusculas, luego minusculas y luego numeros </p>
+
+        <input [formControl]="rePass" type="password" placeholder="Repetir Contraseña">
+          <p  *ngIf="(rePass.invalid && rePass.touched)" class="input-error"><strong>* Campo requerido</strong>* Utilizar mayusculas, luego minusculas y luego numeros </p>
+          <p   *ngIf="(pass.value != rePass.value) &&rePass.touched" class="input-error different"><strong>contrasena distinta</strong> </p>
+
+
+    
+        <button (click)=" modificarPass()">Cambiar contraseña</button>
         
         
     </div>

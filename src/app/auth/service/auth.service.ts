@@ -38,7 +38,18 @@ export class AuthService {
   }
 
 
+  saveCodigoValidacion(rut:string,codigo:string){
+    return this.http.post<res>(environment.baseUrl+'/enviarCodigo',{rut,codigo})
+  }
+
+  modifyPassword(rut:string,pass:string){
+    return this.http.post<res>(environment.baseUrl+'/modifyPass',{rut,pass})
+  }
+
+
 }
+
+
 export interface token{
   token:string|null
 }
@@ -47,6 +58,7 @@ export interface user{
   rut:string,
   email:string,
   pass:string,
+  validacion:string,
 }
 export interface userLogin{
   rut:string,
@@ -56,4 +68,9 @@ export interface userLogin{
 export interface res{
   status:number,//200 o 500
   mensaje:string //token en login y en caso contrario mensaje
+}
+
+export interface codigo{
+  rut:string,
+  codigo:string,
 }
