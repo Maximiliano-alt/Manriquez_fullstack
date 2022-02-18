@@ -22,6 +22,12 @@ export class GraphicsService {
     )
   }
 
+  getProductos(){
+    return this.http.get<producto[]>(environment.baseUrl+'/get/producto').pipe(
+      delay(1500)
+    )
+  }
+
 
 
 
@@ -109,5 +115,13 @@ export interface ventasGraphics{
 export interface ventas{
   fecha:number,
   totalDeVenta:number
+}
+export interface producto{
+  nombre: string,
+  valor: number,
+  descripcion: string,
+  categoria:string,
+  stock:number,
+  vecesComprado:number,
 }
 
