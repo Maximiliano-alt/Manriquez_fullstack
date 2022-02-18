@@ -50,3 +50,22 @@
     font-size: 25px;
     opacity: 1;
 }
+@media screen and (min-width: 1024px){
+    .search{
+        height: 13%;
+        background-color: transparent;
+        border: 0;
+
+    }
+    .search .icon a mat-icon{
+        font-size: 45px;
+        transform: translate(25px, -11px);
+    }
+    .search .input input{
+        height: 37%;
+    }
+    .search .search-button mat-icon{
+        font-size: 47px;
+        transform: translate(-45px, -10px);
+    }
+}
