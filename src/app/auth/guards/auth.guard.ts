@@ -32,16 +32,13 @@ export class AuthGuard implements CanActivate,  CanLoad {
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
     
-      var data = localStorage.getItem('_pipo')
-      if(data==null){
-        this.router.navigate(['/auth/login'])
-        return false
-      }
-      else{
-       
+    var data = localStorage.getItem('_pipo')
+    if(data==null){
+      this.router.navigate(['/auth/login'])
+      return false
+    }
+    else{
       return true
-      }
-  
-    
+    }
   }
 }
