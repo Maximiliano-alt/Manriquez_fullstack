@@ -1,0 +1,26 @@
+<app-navbar [var]="{route:'/estadisticas/home',title:'Estadísticas'}" ></app-navbar>
+
+
+
+<div class="container-general">
+
+    <div class="spiner" *ngIf="barChartData.labels!.length==0">
+        <div style="margin:auto" class="spinner-border" role="status" >
+        </div>
+        <span>Cargando grafica...</span>
+      </div>
+
+      <div class="graphica" *ngIf="barChartData.labels!.length!=0">
+        
+        <div class="grafica">
+            <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [type]="barChartType">
+            </canvas>
+          </div>
+         
+    </div>
+
+
+</div>

@@ -7,21 +7,60 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class AuthService {
+  token:string|null
+  constructor(private http: HttpClient,private cookie: CookieService) {
+    this.token = localStorage.getItem('_pipo')
+   }
 
-  constructor(private http: HttpClient,private cookie: CookieService) { }
-
-  login(data:user){
-    var aux = this.http.post<res>(environment.baseUrl+'/login',data)
-    
-    aux.subscribe(
-      res=>{
-        this.cookie.set('token',res.mensaje)
-      }
-    )
-    return {status:200,mensaje:"login exitoso"}
+  login(data:userLogin){
+    return this.http.post<res>(environment.baseUrl+'/login',data)
   }
+
+
+  
+  createCookie(data:string,check:boolean){
+    localStorage.setItem('_pipo',data)
+    this.token = localStorage.getItem('_pipo')
+  }
+
+  
+  register(data:user){
+    return this.http.post<res>(environment.baseUrl+'/new',data)
+  }
+
+  validarToken(data:token){
+    return this.http.post<res>(environment.baseUrl +'/validate',data)
+  }
+
+
+  sendMail(date:userLogin){
+    return this.http.post<res>(environment.baseUrl+'/sendMail',date)
+  }
+
+
+  saveCodigoValidacion(rut:string,codigo:string){
+    return this.http.post<res>(environment.baseUrl+'/enviarCodigo',{rut,codigo})
+  }
+
+  modifyPassword(rut:string,pass:string){
+    return this.http.post<res>(environment.baseUrl+'/modifyPass',{rut,pass})
+  }
+
+
+}
+
+
+export interface token{
+  token:string|null
 }
 export interface user{
+  nombre:string,
+  rut:string,
+  email:string,
+  pass:string,
+  validacion:string,
+}
+export interface userLogin{
   rut:string,
   pass:string,
 }
@@ -29,4 +68,9 @@ export interface user{
 export interface res{
   status:number,//200 o 500
   mensaje:string //token en login y en caso contrario mensaje
+}
+
+export interface codigo{
+  rut:string,
+  codigo:string,
 }
