@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
     rut:"",
     email:"",
     pass:"",
+    validacion:"",
   }
 
 
