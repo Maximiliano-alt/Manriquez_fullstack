@@ -73,11 +73,9 @@ export class ListaComponent implements OnInit {
     if(this.inicio_slice == (this.input.data.length - this.resto) && this.resto != 0){
 
       for (let index = (this.input.data.length-this.resto); index < this.input.data.length; index++) {
-        this.input.data.find((element:any)=>{
-          if(element==this.input.data[index]){
-            this.segmento.push(element)
-          }
-        })
+        if(this.input.data[index]!=undefined){
+          this.segmento.push(this.input.data.find((element:any)=>element==this.input.data[index])!) 
+        }
 
       }
 
@@ -95,15 +93,16 @@ export class ListaComponent implements OnInit {
       else{
        
         for (let index = this.inicio_slice; index < this.indice_espera; index++) {
-          this.input.data.find((element:any)=>{
-            if(element==this.input.data[index]){
-              this.segmento.push(element)
-            }
-          })
+          if(this.input.data[index]!=undefined){
+            this.segmento.push(this.input.data.find((element:any)=>element==this.input.data[index])!) 
+          }
+  
         }
         //aniadimos 6 unidades par poder recorrer el ng-for con 6 ventas
+       if(this.indice_espera<this.input.data.length){
         this.indice_espera = this.indice_espera + this.limitador;
         this.inicio_slice = this.inicio_slice + this.limitador;
+       }
 
         return 1;
       }
