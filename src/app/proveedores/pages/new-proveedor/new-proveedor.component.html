@@ -4,7 +4,8 @@
 <div class="arrow translate">
   <button (click)="cambiarView()">
     <mat-icon>
-      <img  src= "../../../../assets/page/arriba abajo.svg" />
+      <img  [ngStyle]="{'opacity': width < 1024 ? '0':'1'}" 
+      src= "../../../../assets/page/arriba abajo.svg" />
     </mat-icon>
   </button>
 </div>
@@ -12,10 +13,11 @@
   <div *ngIf="view; then inicial; else siguiente"></div>
 </div>
 
-<div class="arrow">
+<div class="arrow intervir">
   <button (click)="cambiarView()">
     <mat-icon>
-      <img [ngStyle]="{'transform': view? 'scaleY(-1)':'scaleY(1)'}" src="../../../../assets/page/arriba abajo.svg" />
+      <img [ngStyle]="{'transform': (view && widthBoolean) ? 'scaleY(-1)':'scaleY(1)'}" 
+      src="../../../../assets/page/arriba abajo.svg" />
     </mat-icon>
   </button>
 </div>

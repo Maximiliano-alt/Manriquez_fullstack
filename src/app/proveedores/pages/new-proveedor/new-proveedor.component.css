@@ -16,8 +16,7 @@ img {
   width: 29px;
   height: 15px;
   opacity: 1;
-  filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg)
-    brightness(110%) contrast(110%);
+
 }
 .arrow {
   height: 38px;
@@ -25,7 +24,7 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(100, 100, 100, 0.002);
+  /* background-color: rgba(100, 100, 100, 0.002); */
   transform: scaleY(-1);
 }
 
@@ -113,8 +112,8 @@ textarea {
 
 @media (min-width: 1024px) {
   .back-fondo {
-    margin-top: 40px;
-    padding-top: 60px;
+    margin-top: 67px;
+    /* padding-top: 60px; */
   }
 
   .inputs {
@@ -197,4 +196,11 @@ textarea {
 
 .translate {
   transform: translateY(45px);
+}
+.invertir{
+  transform: scaleY(-1);
+}
+.arrow :hover{
+  filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg)
+  brightness(110%) contrast(110%);
 }
