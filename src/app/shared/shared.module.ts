@@ -5,11 +5,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ListaComponent } from './lista/lista.component';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
+import {FiltroVentaPipe} from './pipes/filtro_venta.pipe'
 
 @NgModule({
   declarations: [
     NavbarComponent,
     ListaComponent,
+    FiltroVentaPipe
   ],
 
   imports: [
