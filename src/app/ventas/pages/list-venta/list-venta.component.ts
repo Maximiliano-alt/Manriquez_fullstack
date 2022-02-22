@@ -18,7 +18,7 @@ export class ListVentaComponent implements OnInit {
   inicio:any=0;
 
 
-  segmento:any=[]
+  segmento:venta[] =[]
   constructor(private servicio: VentasService) { }
 
   ngOnInit(): void {
@@ -33,10 +33,9 @@ export class ListVentaComponent implements OnInit {
         
         res.forEach((e)=>{
           this.array.push(e)
-         
+          console.log(e)
           if(this.array.length == res.length){
             this.nf_for_next()
-            
           }
         })
       }
@@ -45,38 +44,53 @@ export class ListVentaComponent implements OnInit {
 
 
   nf_for_next():any{
-    var aux = this.segmento;
-    this.segmento = [];
-
-
-    if(this.inicio_slice == (this.array.length - this.resto) && this.resto != 0){
-
-      for (let index = (this.array.length-this.resto); index < this.array.length; index++) {
-        this.segmento.push(this.array.find(element=>element==this.array[index])) 
-      }
    
-      return 0;
-    }
-    else{
-
-      // recorremos del principio hasta llegar al resto
-
-      if(this.resto == 0 && this.indice_espera == this.array.length+4){
+   
+      var aux = this.segmento;
+      this.segmento = [];
+  
+  
+      if(this.inicio_slice == (this.array.length - this.resto) && this.resto != 0){
         
-        this.segmento = aux;
+        for (let index = (this.array.length-this.resto); index < this.array.length; index++) {
+         
+          if(this.array[index]!=undefined){
+            this.segmento.push(this.array.find(element=>element==this.array[index])!) 
+          }
+        }
+     
         return 0;
       }
       else{
-        for (let index = this.inicio_slice; index < this.indice_espera; index++) {
-          this.segmento.push(this.array.find(element=>element==this.array[index])) 
+        console.log("entre al par")
+        // recorremos del principio hasta llegar al resto
+        
+        if(this.resto == 0 && this.indice_espera == this.array.length+4){
           
+          this.segmento = aux;
+          return 0;
         }
-        //aniadimos 4 unidades par poder recorrer el ng-for con 4 ventas
-        this.indice_espera = this.indice_espera + 4;
-        this.inicio_slice = this.inicio_slice + 4;  
-        return 1;
+        else{
+          console.log("entre al par2")
+          for (let index = this.inicio_slice; index < this.indice_espera; index++) {
+            if(this.array[index]!=undefined){
+              this.segmento.push(this.array.find(element=>element==this.array[index])!) 
+            }
+            
+            
+          }
+          //aniadimos 4 unidades par poder recorrer el ng-for con 4 ventas
+          if(this.indice_espera<this.array.length){
+            this.indice_espera = this.indice_espera + 4;
+            this.inicio_slice = this.inicio_slice + 4;  
+          }
+          
+         
+          return 1;
+        }
       }
-    }
+    
+    
     
     
   
@@ -96,7 +110,9 @@ export class ListVentaComponent implements OnInit {
       this.inicio_slice = this.inicio_slice - 4;
       this.indice_espera = this.indice_espera -4;
       for (let index = this.inicio_slice; index < this.indice_espera; index++) {
-        this.segmento.push(this.array.find(element=>element==this.array[index])) 
+        if(this.array[index]!=undefined){
+          this.segmento.push(this.array.find(element=>element==this.array[index])!) 
+        }
         
       }
       return 1;
