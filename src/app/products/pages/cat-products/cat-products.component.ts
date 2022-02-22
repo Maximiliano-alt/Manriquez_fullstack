@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cat-products.component.css']
 })
 export class CatProductsComponent implements OnInit {
-
+	
   constructor() { }
-
+  array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
   ngOnInit(): void {
   }
 

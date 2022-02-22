@@ -22,6 +22,18 @@ export class GraphicsService {
     )
   }
 
+  getProductosForCategory(data:string){
+      return this.http.post<producto[]>(environment.baseUrl+'/get/producto/category',{data}).pipe(
+      delay(1500)
+    )
+  }
+
+
+  getCategoria(){
+    return this.http.get<categoria[]>(environment.baseUrl+'/get/categoria').pipe(
+      delay(2000)
+    )
+  }
 
 
 
@@ -110,4 +122,15 @@ export interface ventas{
   fecha:number,
   totalDeVenta:number
 }
+export interface producto{
+  nombre: string,
+  valor: number,
+  descripcion: string,
+  categoria:string,
+  stock:number,
+  vecesComprado:number,
+}
 
+export interface categoria{
+  nombre:string,
+}

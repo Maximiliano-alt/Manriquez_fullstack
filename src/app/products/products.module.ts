@@ -8,6 +8,7 @@ import { AddProductsComponent } from './pages/add-products/add-products.componen
 import { DetailProductsComponent } from './pages/detail-products/detail-products.component';
 import { CatProductsComponent } from './pages/cat-products/cat-products.component';
 import { CreateCategoryComponent } from './pages/create-category/create-category.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeProductsComponent,
@@ -20,7 +21,9 @@ import { CreateCategoryComponent } from './pages/create-category/create-category
     CommonModule,
     SharedModule,
     MaterialModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductsModule { }
