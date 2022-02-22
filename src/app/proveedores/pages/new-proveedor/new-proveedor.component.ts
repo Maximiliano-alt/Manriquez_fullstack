@@ -6,12 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-proveedor.component.css'],
 })
 export class NewProveedorComponent implements OnInit {
-  view: boolean = false;
+  view: boolean = true;
   constructor() {}
 
   ngOnInit(): void {}
 
   cambiarView() {
     this.view = !this.view;
+  
   }
 }
