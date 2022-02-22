@@ -23,7 +23,8 @@ import {FiltroVentaPipe} from './pipes/filtro_venta.pipe'
   ],
   exports:[
     NavbarComponent,
-    ListaComponent
+    ListaComponent,
+    FiltroVentaPipe
   ]
 })
 export class SharedModule { }
