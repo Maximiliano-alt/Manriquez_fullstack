@@ -45,8 +45,8 @@ button{
     margin: auto;
     margin-top: 10px;
     width: 300px;
-    max-height:250px;
-   overflow-y: scroll;
+    max-height:40vh;
+    overflow-y: scroll;
 }
 .descripcion{
     width: 80%;
@@ -84,7 +84,21 @@ button{
     flex-direction: row;
 
 }
+@media screen and (min-width:768px){
 
+    .container-items{
+        margin-top:50px;
+        margin-top: 10px;
+        width: 500px;
+        max-height:80vh;
+        overflow-y: scroll;
+    }
+    .item{
+       width: 100%;
+    
+    }
+
+}
 
 @media screen and (max-width:425px) {
     .filter{

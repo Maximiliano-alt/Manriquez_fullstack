@@ -23,7 +23,7 @@
 
     <div class="container-ventas">
 
-        <div class="item" *ngFor="let venta of this.segmento">
+        <div class="item" *ngFor="let venta of this.segmento ,let indice=index" >
             <div class="data">
                 <div class="data-item">
                     Cliente:&nbsp;Aracelly Balboa
@@ -49,7 +49,7 @@
             </div>
             <div class="left-component">
                 <div class="left-component-number">
-                    <h4>N°{{venta}}</h4>
+                    <h4>N°{{indice+1}}</h4>
                 </div>
                 <div class="left-component-ver-mas">
                     <a [routerLink]="['/ventas/venta/123123']"><button >
@@ -76,34 +76,34 @@
                 <mat-icon>expand_less</mat-icon>
             </div>
             <div class="item-carrusel">
-                <div class="item" *ngFor="let venta of segmento">
+                <div class="item" *ngFor="let venta of segmento, let indice=index">
 
                     <div class="data">
                         <div class="data-item">
-                            Cliente:&nbsp;Aracelly Balboa
+                            Cliente:&nbsp;{{venta.cliente.nombre}}
                         </div>
                         <div class="data-item">
-                            Cantidad: 5 productos(s)
+                            Cantidad: {{venta.productos.length}} productos(s)
                         </div>
                         <div class="data-item">
                             Estado:
                             <div *ngIf="estado=='por pagar'" class="data-item-estado-por-pagar">
-                                &nbsp; por pagar
+                                &nbsp; {{venta.estado}}
                             </div>
                             <div *ngIf="estado=='pagado'" class="data-item-estado-pagado">
-                                &nbsp; pagado
+                                &nbsp; {{venta.estado}}
                             </div>
                         </div>
                         <div class="data-item">
-                            Envio: &nbsp;pendiente
+                            Envio: &nbsp;{{venta.envio}}
                         </div>
                         <div class="data-item">
-                            Total: &nbsp; $12.000
+                            Total: &nbsp; {{venta.totalDeVenta}}
                         </div>
                     </div>
                     <div class="left-component">
                         <div class="left-component-number">
-                            <h4>N°{{venta}}</h4>
+                            <h4>N°{{indice+1}}</h4>
                         </div>
                         <div class="left-component-ver-mas">
                             <a [routerLink]="['/ventas/venta/123123']"><button >
