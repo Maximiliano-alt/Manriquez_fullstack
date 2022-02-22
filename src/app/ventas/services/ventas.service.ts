@@ -23,6 +23,10 @@ export class VentasService {
     return this.http.get<any>(environment.baseUrl+'/search/cliente/'+rut)
   }
 
+  getProductos(){
+    return this.http.get<producto[]>(environment.baseUrl+'/get/producto')
+  }
+
 }
 
 
@@ -49,5 +53,16 @@ export interface venta{
     fecha: number, //valor automatico en hora minuto segundo y fecha
     servicios: string,
     porcentaje: number
+}
+
+export interface producto{
+  nombre: string,
+  valor: number,
+  descripcion: string,
+  categoria:string,
+  stock:number,
+  vecesComprado:number,
+  color:string,
+  imagen:string,
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VentasService } from '../../services/ventas.service';
+import { VentasService,producto } from '../../services/ventas.service';
 import { cliente } from 'src/app/clientes/service/cliente.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { cliente } from 'src/app/clientes/service/cliente.service';
   styleUrls: ['./add-venta.component.css']
 })
 export class AddVentaComponent implements OnInit {
-
+  marcadorListaProducto = 0;
   rut!:string;
   cliente:cliente={
     nombre: '',
@@ -22,12 +22,32 @@ export class AddVentaComponent implements OnInit {
   []
   };
 
+  listaProductos:producto[]=[]
+
   buscado = 0;
 
   
   constructor(private service:VentasService) { }
 
   ngOnInit(): void {
+    this.getProductos()
+  }
+
+
+  getProductos(){
+
+    this.marcadorListaProducto = 0;
+    this.service.getProductos().subscribe(
+      res=>{
+        res.forEach(element => {
+          this.listaProductos.push(element)
+          if(this.listaProductos.length == res.length){
+            this.marcadorListaProducto = 1
+          }
+        });
+
+      }
+    )
   }
 
 
