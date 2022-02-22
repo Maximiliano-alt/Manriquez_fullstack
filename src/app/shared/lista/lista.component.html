@@ -10,8 +10,8 @@
 
         <!-- esta es la data completa -->
         <div class="lista">
-            <!-- clientes, proveedores, pendientes-->
             <div class="item" *ngFor="let item of this.segmento">
+                <!-- clientes, proveedores, pendientes-->
                 <div class="CPP" *ngIf="this.limitador == 6">
                     <div class="item-data">
                         <!-- cliente -->
@@ -60,8 +60,10 @@
                         </div>
                     </div>               
                 </div>
+                <!-- category-productos, productos, list-compra, ventas-->
                 <div class="CPLV" *ngIf="this.limitador == 4">
-                    <div class="item-view">
+                    <!-- category-productos-->
+                    <div class="item-view"  *ngIf="this.input.indicador == 'cat-products'">
                         <div class="preview">
                             <button class="preview-button">
                                 <a style="text-decoration: none; color: black;" [routerLink]="['/productos/products-category']"><img src="assets\page\view.svg" alt=""></a>
@@ -73,19 +75,51 @@
                             </button>
                         </div>
                     </div>
-                    <div class="item-info">
+                    <div class="item-info"  *ngIf="this.input.indicador == 'cat-products'">
                         <div class="data-info">
                             Pisos Flotantes
                         </div>
                     </div>
-                    <div class="item-edit">
+                    <div class="item-edit"  *ngIf="this.input.indicador == 'cat-products'">
                         <button>
                             <img src="assets\page\modificar icon.svg" alt="">
                         </button>
                     </div>
+                    <!--products-->
+                    <div class="item-data2" *ngIf="this.input.indicador == 'products'">
+                        <div class="data-line2">
+                            <b>Nombre:</b>&nbsp;Polera Nike blanca
+                        </div>
+                        <div class="data-line2">
+                            <b>Talla:</b>&nbsp;Estandar
+                        </div>
+                        <div class="data-line2">
+                            <b>Stock:</b>&nbsp;18
+                        </div>
+                        <div class="data-line2">
+                            <b>Precio:</b>&nbsp;$15.000
+                        </div>
+                        <div class="data-line2">
+                            <b>Vendidos:</b>&nbsp;9
+                        </div>
+                    </div>
+                    <div class="item-eye2" *ngIf="this.input.indicador == 'products'">
+                        <button class="view2">
+                            <a style="text-decoration: none; color: black;"[routerLink]="['/productos/detail/',123]"><img src="assets\page\view.svg" alt=""></a>
+                        </button>
+                    </div>
+                    <div class="item-number2" *ngIf="this.input.indicador == 'products'">
+                        <div class="number2">
+                            <b>N°</b> <b>{{item}}</b>
+                        </div>
+                        <div class="more2">
+                            <button class="more-button2">
+                                <img src="assets\page\options_more_icon_208209.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
                 </div>           
             </div>
-            <!-- category-productos, productos, list-compra, ventas-->
 
         </div>
 
