@@ -20,6 +20,12 @@ export class ProductsService {
     )
   }
 
+  getProduct(data:string){
+    return this.http.post<product[]>(environment.baseUrl+'/get/producto/category',{data}).pipe(
+      delay(2000)
+    )
+  }
+
 }
 
 export interface product{
