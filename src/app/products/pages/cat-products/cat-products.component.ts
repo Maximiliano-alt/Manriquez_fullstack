@@ -8,21 +8,23 @@ import { ProductsService,categoria } from '../../services/products.service';
 export class CatProductsComponent implements OnInit {
 	
   constructor(private service: ProductsService) { }
-  // array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
-  array:categoria[]=[]
+
+
+  array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+  // array:categoria[]=[]
   ngOnInit(): void {
-    this.getCategoria()
+    // this.getCategoria()
   }
 
 
-  getCategoria(){
-    this.service.getCategoria().subscribe(
-      res=>{
-        res.forEach((e:categoria)=>{
-          this.array.push(e)
-        })
-      }
-    )
-  }
+  // getCategoria(){
+  //   this.service.getCategoria().subscribe(
+  //     res=>{
+  //       res.forEach((e:categoria)=>{
+  //         this.array.push(e)
+  //       })
+  //     }
+  //   )
+  // }
 
 }
