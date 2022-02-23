@@ -13,4 +13,4 @@
         <mat-icon>search</mat-icon>
     </div>
 </div>
-<app-lista [input]="{indicador:'cat-products',data:array}"></app-lista>
+<app-lista *ngIf="this.array.length != 0" [input]="{indicador:'cat-products',data:array}"></app-lista>
