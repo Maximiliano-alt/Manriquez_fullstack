@@ -1,7 +1,7 @@
+import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { GraphicsService,producto } from 'src/app/graphics/services/graphics.service';
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { GraphicsService,producto ,categoria} from 'src/app/graphics/services/graphics.service';
+
 
 
 @Component({
@@ -10,61 +10,97 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./productos-graphics.component.css']
 })
 export class ProductosGraphicsComponent implements OnInit {
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+ 
 
   constructor(private service: GraphicsService) { }
-
+  aviso:number = 0
+  click:number = 0
+  return:number = 0
+  
   listaProductos: producto[] = []; //lista de productos
-
+  listaCategorias :categoria[]=[]
   ngOnInit(): void {
-    this.getProductos()
+    this.getCategoria()
+    
   }
 
 
-  //datasets
-  public barChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-  };
-  public barChartType: ChartType = 'bar';
+ 
 
-  public barChartData: ChartData<'bar'> = {
-    labels: [],
-    datasets: [
-      { data: [ ], label: 'Compras' },
-      
-    ]
-  };
-  //
-
-
-  getProductos(){
-    this.service.getProductos().subscribe(
+  getCategoria(){
+    this.listaCategorias=[]
+    this.service.getCategoria().subscribe(
       res=>{
         res.forEach((e)=>{
-         this.agregarData(e.nombre,e.vecesComprado)
+          this.listaCategorias.push(e)
         })
       }
     )
   }
 
 
-  agregarData(nombre:string,valor:number){
+  //traemos los productos
+  getProductos(data:string){
+    this.aviso = 0;
+    this.click = 1;
+    this.return = 0;
+    this.listaProductos.splice(0,this.listaProductos.length); //lista de productos
+    this.service.getProductosForCategory(data).subscribe(
+      res=>{
+        if(res.length == 0){
+          this.return = 2;
+        }
+        
+        res.forEach((e)=>{
+          this.listaProductos.push(e);  
+          this.ordenacionMayorAMenor(res.length)
+          .then((data)=>{if(data==1){
+            
+          }})   
+        })
+        
+      }
+    )
+  } 
 
-    // sacamos el index del valor que vamos a introducir
-    const index = this.barChartData.labels?.indexOf(nombre)
+
+  //ordenamos la lista de mayor a menor
+  ordenacionMayorAMenor(largo:number){
+    return new Promise((resolve,reject)=>{
+      if(this.listaProductos.length != largo){
+        
+      }
+      else{
+        for (let index1 = 0; index1 < this.listaProductos.length; index1++) {
+          
+          for (let index2 = 0; index2 < this.listaProductos.length; index2++) {
+            var a = this.listaProductos[index1].vecesComprado;
+            var b = this.listaProductos[index2].vecesComprado;
+            if(a>b){
+              var aux = this.listaProductos[index1];
+              this.listaProductos[index1] = this.listaProductos[index2];
+              this.listaProductos[index2] = aux
     
-    if(index!>=0){
-    
-      // se encontro el valor (Esta!)
-      this.barChartData.datasets[0].data[index!] = this.barChartData.datasets[0].data[index!]+valor
-    }
-    else if(index == -1){
-      
-      this.barChartData.labels?.push(nombre);
-      this.barChartData.datasets[0].data.push(valor)
-    }
+            }
+            
+          }
+          
+        }
+        this.aviso = 1;
+        this.click = 0;
+       
+        
+      }
+      resolve(1)
+    })
     
    
   }
+
+
+
+
+ 
+  
 
 }

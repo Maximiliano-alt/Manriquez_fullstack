@@ -181,98 +181,49 @@ input{
     height: 0;
 }
 @media screen and (min-width:1024px) {
-    .productos{
-       width: 525px;
+    .container-general{
+        display: flex;
+        flex-direction: column;
+        height: 60vh;
+    }   
+    .inputs{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
     }
-    .search-productos{
-        width: 500px;
-        margin: 10px 0 0 0 ;
+    .container-general__left{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .container-general__rigth{
+        
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     .data-cliente-container{
-        width: 527px;
-        height: 284px;
-        margin-top: 50px;
-    } 
-    .data-cliente{
-       margin-top: 10px;
-    }  
-    .data-cliente p{
-        font-size: 20px;
-        height: 24px;
-        margin-bottom: 17px;
+        width: 400px;
     }
-    .buttons{
-        display: flex;
-        flex-direction: row;
-        height: 50px;
-        width: 528px;
-        transform: translate(20px);
+    .data-cliente-container h1{
+        padding: 20px;
     }
-    
-    .button-footer{
-        width: 241px;
-        height: 50px;
-        margin-right:46px;
-        border-radius: 40px;
-        font-size: 18px;
-
-    }
-    .button-footer button{
-        margin: 0;
-       
-    }
-    .button-ver-productos{
-        visibility: visible;
-        width: 528px;
-        height: 50px;
-        background: #F25C05 0% 0% no-repeat padding-box;
-        border-radius: 25px;
-        opacity: 1;
-        margin-top: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .button-ver-productos button{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-     }
-    .search-cliente{
-        visibility: hidden;
-        height: 0;
-    }
-    .search-cliente-grande{
-        margin-top: 20px;
-        visibility: visible;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        height: 50px;
-        width: 70%;
-    }
-    .input-search{
-        width: 802px;
-        height: 50px;
-        
-    }
-    .input-search input{
-        width: 100%;
-        height: 80%;
-        border-radius: 40px;
-        background-color: white;
-    }
-    .button-search button mat-icon{
-        font-size: 40px;
-        transform: translate(5px,-7px);
+    .productos{
+        width: 400px;
+        height: 300px;
     }
     .producto{
-        width: 90%;
+        width: 100%;
     }
-    .button-search{
-        transform: translate(0,-5px);
+    .productos-data{
+        height: 100%;
     }
     
 }
