@@ -7,7 +7,7 @@ import { VentasService,venta } from '../../services/ventas.service';
   styleUrls: ['./list-venta.component.css']
 })
 export class ListVentaComponent implements OnInit {
-  estado="pagado";
+  /*estado="pagado";
   indice_espera = 4;
   inicio_slice = 0;
   index_aux = 0;
@@ -18,16 +18,17 @@ export class ListVentaComponent implements OnInit {
   inicio:any=0;
 
 
-  segmento:venta[] =[]
-  constructor(private servicio: VentasService) { }
+  segmento:venta[] =[]*/
+  array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+  constructor() { }//constructor(private servicio: VentasService)
 
   ngOnInit(): void {
-    this.resto = this.array.length%4
-    this.getVentas()
+    //this.resto = this.array.length%4
+    //this.getVentas()
   }
 
 
-  getVentas(){
+  /*getVentas(){
     this.servicio.getVenta().subscribe(
       res=>{
         
@@ -119,7 +120,7 @@ export class ListVentaComponent implements OnInit {
     }
     
    
-  }
+  }*/
 
 
 }
