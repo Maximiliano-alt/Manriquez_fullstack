@@ -1,18 +1,4 @@
-.container-general{
-
-    /* contenedor master */
-    width: 100vw !important;
-    height: 84%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transform: translate(0, 53px);
-    overflow: hidden;
-}
-
-
 .search{
-    
     /* elemento barra de busqueda en fila */
     width: 100vw;
     height: 7%;
@@ -28,21 +14,19 @@
 
 }
 .search .icon{
-    width: 15%;
-    margin: 0 5px 0 5px;
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.search .icon mat-icon{
+.search .icon a mat-icon{
     color: white;
     font-size: 25px;
     opacity: 1;
     display: flex;
 }
 .search .input{
-    width: 64%;
-    margin: 0 5px 0 5px;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,186 +40,32 @@
     border: none;
 }
 .search .search-button{
-    width: 15%;
-    margin: 0 5px 0 5px;
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.search .search-button{
-    width: 15%;
-    margin: 0 5px 0 5px;
 }
 .search .search-button mat-icon{
     color: white;
     font-size: 25px;
     opacity: 1;
 }
-
-.preview{
-    margin-top: 5px;
-    height: 5%;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border: none; 
-        
-}
-.preview mat-icon{
-    color: rgb(49, 49, 49);
-    height: 100%;
-    width: 50%;
-    text-align: center;
-    font-size: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.next{
-    margin-top: 5px;
-    height: 5%;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border: none; 
-        
-}
-.next mat-icon{
-    color: rgb(49, 49, 49);
-    height: 100%;
-    width: 50%;
-    text-align: center;
-    font-size: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-.container-products{
-
-    width: 100vw;
-    height: 100%;
-    background-color: black;
-    color: white;
-    opacity: 0.8;
-    overflow-y: hidden;
-    padding: 15px 15px 0px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   
-
-   
-}
-
-.item{
-    padding: 10px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    width: 100%;
-    height: 22%;
-    margin-bottom: 10px;
-    color: black;
-    display: flex;
-    flex-direction: row;
-}
-.data{
-
-    /* se ordena en columnas */
-    
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.data-line{
-    width: 100%;
-    height: 18%;
-    font-size: 85%;
-}
-
-.buttons{
-
-    /* se ordena en fila */
-
-    display: flex;
-    flex-direction: row;
-
-    width: 40%;
-
-}
-.buttons .data-line{
-    width: 100%;
-    transform: translate(65px);
-    text-align: right;
-}
-button{
-    background-color: transparent;
-    border: none;
-  
-}
-
-
-@media screen and (min-width:768px){
-    .data .data-line{
-        height: 100%;
-        font-size: 100%;
-    }
-}
-@media screen and (min-width:1024px) {
-    .container-general{
-        align-items: center;
-    }
-    .container-products{
-        height: 500px;
-        width: 800px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        background-color: transparent;
-        
-    }
-    .item{
-        width: 90%;
-        height:150px;
-        margin: auto;
-
-        
-    }
-    .preview{
-        transform: rotate(270deg) translate(-280px,-420px);
-        width: 1000px;
-    }
-    .preview mat-icon{
-        background: #F25C05 0% 0% no-repeat padding-box;
-        box-shadow: 0px 3px 6px #00000029;
-        opacity: 0.2;
-        color: white;
-       
-    }
-    .next{
-        transform: rotate(-90deg) translate(280px,420px);
-        width: 1000px;
-    }
-    .next mat-icon{
-        background: #F25C05 0% 0% no-repeat padding-box;
-        box-shadow: 0px 3px 6px #00000029;
-        opacity: 0.2;
-        color: white;
-       
-    }
+@media screen and (min-width: 1024px){
     .search{
+        height: 13%;
         background-color: transparent;
-        border: none;
+        border: 0;
+
+    }
+    .search .icon a mat-icon{
+        font-size: 45px;
+        transform: translate(25px, -11px);
     }
     .search .input input{
-        height: 40px;
-        border-radius: 40px;
-     }
-     
+        height: 37%;
+    }
+    .search .search-button mat-icon{
+        font-size: 47px;
+        transform: translate(-45px, -10px);
+    }
 }
