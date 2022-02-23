@@ -41,17 +41,20 @@
 }
 
 .lista{ 
-    width: 85%;
+    width: 100%;
     height: 90%;
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: repeat(auto-fill, minmax(min-content, 19%));
-    align-content: center;
+    grid-template-columns: repeat(1, 100%);
+    grid-template-rows: repeat(auto-fill, minmax(50px, 22%));
     grid-row-gap: 10px;
+    align-content: center;
+    justify-items: center;
+    padding: 15px 0 15px 0;
     opacity: 0.8;
 }
 
 .item{
+    width: 85%;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: inset 0px 3px 6px #00000029;
     display: flex;
@@ -83,14 +86,14 @@
 }
 .item-eye{
     width: 15%;
-    height: 100%;
+    height: 65%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
 }
 .view{
-    width: 65%;
+    width: 35px;
     height: 55%;
     display: flex;
     flex-direction: column;
@@ -191,8 +194,8 @@
         justify-content: flex-end;
     }
     .view {
-        height: 34px;
-        transform: translate(-20px, -8px);
+        height: 25px;
+        transform: translate(-20px, -16px);
     }
     .item-number{
         width: 10%;
@@ -225,7 +228,7 @@
     align-items: center;
 }
 .edit{
-    width: 75%;
+    width: 30px;
     height: 80%;
     display: flex;
     justify-content: center;
@@ -362,7 +365,7 @@
 /* PRODUCTS ****************************************************************************/
 
 .item-data2{
-    width: 70%;
+    width: 60%;
     height: 95%;
     display: flex;
     flex-direction: column;
@@ -378,12 +381,12 @@
 }
 
 .item-eye2{
-        width: 10%;
+    width: 20%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 .view2{
     width: 38px;
@@ -435,5 +438,23 @@
         height: 26%;
         justify-content: flex-start;
         align-items: flex-end;
+    }
+}
+/* VENTAS ****************************************************************************/
+
+.item-eye2 .view-more{
+    width: 87px;
+    height: 27px;
+    background: #F25C05 0% 0% no-repeat padding-box;
+    border-radius: 14px;
+    border: none;
+    transform: translateY(35%);
+}
+
+@media screen and (min-width: 1024px){
+    .item-eye2 .view-more{
+        width: 115px;
+        height: 35px;
+        border-radius: 27px;
     }
 }
