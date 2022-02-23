@@ -55,7 +55,6 @@ export class ListaComponent implements OnInit {
 
 
     this.resto = this.input.data.length%this.limitador //elementos que quedan por recorrer
-
     
 
     this.nf_for_next()

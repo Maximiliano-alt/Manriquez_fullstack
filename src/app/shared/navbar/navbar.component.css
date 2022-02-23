@@ -8,6 +8,9 @@ nav{
     color: white;
 
 }
+.navbar-brand{
+    font-size: 18px;
+}
 img{
     width: 29px;
     filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg) brightness(110%) contrast(110%);
