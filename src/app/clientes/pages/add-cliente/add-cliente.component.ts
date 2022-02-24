@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { ClienteService,cliente } from '../../service/cliente.service';
-
+import { ClienteService } from '../../service/cliente.service';
+import { cliente } from 'src/app/ventas/services/ventas.service';
 
 @Component({
   selector: 'app-add-cliente',

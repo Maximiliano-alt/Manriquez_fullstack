@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { delay } from 'rxjs/operators';
 
 
 @Injectable({
@@ -15,6 +16,12 @@ export class ClienteService {
     return this.http.post(environment.baseUrl+'/createCliente',data);
   }
 
+  getClientes(){
+    return this.http.get<cliente[]>(environment.baseUrl+'/verClientes').pipe(
+      delay(2000)
+    )
+  }
+
 
 
 
@@ -22,12 +29,10 @@ export class ClienteService {
 
 export interface cliente{
   nombre: string,
-  direccion: String,
-  telefono: String,
-  correo: String,
-  rut: String,
-  totalDeCompra:Number,
-  historial:
-  //historial de compras
-  []
+  direccion: string,
+  telefono: string,
+  correo: string,
+  rut: string,
+  totalDeCompra:number,
+  
 }

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { cliente } from 'src/app/clientes/service/cliente.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -113,4 +113,14 @@ export interface producto{
   vecesComprado:number,
   color:string,
   imagen:string,
+}
+
+export interface cliente{
+  nombre: '',
+  direccion: '',
+  telefono: '',
+  correo: '',
+  rut: '',
+  totalDeCompra:0,
+  historial:[]
 }
