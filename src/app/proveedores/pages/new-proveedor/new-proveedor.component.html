@@ -1,125 +1,136 @@
 <app-navbar
   [var]="{ route: '/proveedores/lista', title: 'Añadir Proveedor' }"
 ></app-navbar>
+
 <div class="arrow translate">
   <button (click)="cambiarView()">
     <mat-icon>
-      <img  [ngStyle]="{'opacity': width < 1024 ? '0':'1'}" 
-      src= "../../../../assets/page/arriba abajo.svg" />
+      <img
+        class="arrowIcon"
+        [ngStyle]="{ opacity: width < 1024 ? '0' : '1' }"
+        src="../../../../assets/page/arriba abajo.svg"
+      />
     </mat-icon>
   </button>
 </div>
+
 <div class="back-fondo">
   <div *ngIf="view; then inicial; else siguiente"></div>
 </div>
 
-<div class="arrow intervir">
-  <button (click)="cambiarView()">
+<div class="arrow">
+  <button (click)="cambiarView()" >
     <mat-icon>
-      <img [ngStyle]="{'transform': (view && widthBoolean) ? 'scaleY(-1)':'scaleY(1)'}" 
-      src="../../../../assets/page/arriba abajo.svg" />
+      <img
+        class="arrowIcon"
+        [ngStyle]="{
+          transform: view && widthBoolean ? 'scaleY(1)' : 'scaleY(-1)'
+        }"
+        src="../../../../assets/page/arriba abajo.svg"
+      />
     </mat-icon>
   </button>
 </div>
 
-
 <ng-template #inicial>
-  <div class="inputs">
-    <div class="data-inicial">
-      <div class="box">
-        <div class="header">
-          <p>Nombre</p>
+  <form>
+    <div class="inputs">
+      <div class="data-inicial">
+        <div class="box">
+          <div class="header">
+            <p>Nombre</p>
+          </div>
+          <div class="input">
+            <input type="text" />
+          </div>
         </div>
-        <div class="input">
-          <input type="text" />
+        <div class="box">
+          <div class="header">
+            <p>Nombre contacto</p>
+          </div>
+          <div class="input">
+            <input type="text" />
+          </div>
         </div>
-      </div>
-      <div class="box">
-        <div class="header">
-          <p>Nombre contacto</p>
+        <div class="box">
+          <div class="header">
+            <p>Dirección</p>
+          </div>
+          <div class="input">
+            <input type="text" />
+          </div>
         </div>
-        <div class="input">
-          <input type="text" />
+        <div class="box">
+          <div class="header">
+            <p>Teléfono</p>
+          </div>
+          <div class="input">
+            <input type="text" />
+          </div>
         </div>
-      </div>
-      <div class="box">
-        <div class="header">
-          <p>Dirección</p>
+        <div class="box">
+          <div class="header">
+            <p>Atención</p>
+          </div>
+          <div class="input">
+            <input type="text" />
+          </div>
         </div>
-        <div class="input">
-          <input type="text" />
-        </div>
-      </div>
-      <div class="box">
-        <div class="header">
-          <p>Teléfono</p>
-        </div>
-        <div class="input">
-          <input type="text" />
-        </div>
-      </div>
-      <div class="box">
-        <div class="header">
-          <p>Atención</p>
-        </div>
-        <div class="input">
-          <input type="text" />
-        </div>
-      </div>
-      <div class="box">
-        <div class="header">
-          <p>Correo atención</p>
-        </div>
-        <div class="input">
-          <input type="text" />
+        <div class="box">
+          <div class="header">
+            <p>Correo atención</p>
+          </div>
+          <div class="input">
+            <input type="text" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </ng-template>
 
 <ng-template #siguiente>
-  <div class="inputs">
-    <div class="data-siguiente">
-      <div class="row">
-        <div class="box">
-          <div class="header">
-            <p>Retira Sr/a</p>
+  <form>
+    <div class="inputs">
+      <div class="data-siguiente">
+        <div class="row">
+          <div class="box">
+            <div class="header">
+              <p>Retira Sr/a</p>
+            </div>
+            <div class="input">
+              <input type="text" />
+            </div>
           </div>
-          <div class="input">
-            <input type="text" />
-          </div>
-        </div>
-        <div class="box">
-          <div class="header">
-            <p>N° guía</p>
-          </div>
-          <div class="input">
-            <input type="text" />
-          </div>
-        </div>
-      </div>
-      <div class="comentario">
-        <div class="box">
-          <div class="header">
-            <p>Comentario</p>
-          </div>
-          <div class="input">
-            <textarea></textarea>
+          <div class="box">
+            <div class="header">
+              <p>N° guía</p>
+            </div>
+            <div class="input">
+              <input type="text" />
+            </div>
           </div>
         </div>
-      </div>
+        <div class="comentario">
+          <div class="box">
+            <div class="header">
+              <p>Comentario</p>
+            </div>
+            <div class="input">
+              <textarea></textarea>
+            </div>
+          </div>
+        </div>
 
-      <div class="button-group">
-        <div class="box">
-          <button class="button">Guardar</button>
-        </div>
-        <div class="box">
-        <button class="button">Cancelar</button>
+        <div class="button-group">
+          <div class="box">
+            <button class="button">Guardar</button>
+          </div>
+          <div class="box">
+            <button class="button">Cancelar</button>
+          </div>
         </div>
       </div>
     </div>
-
-
-  </div>
+  </form>
 </ng-template>

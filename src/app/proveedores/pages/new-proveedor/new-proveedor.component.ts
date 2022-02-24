@@ -20,8 +20,8 @@ export class NewProveedorComponent implements OnInit {
 
   cambiarView() {
     this.view = !this.view;
-    if(this.width >=1024) {this.widthBoolean = false;}
-    else this.widthBoolean = true;  
+    if(this.width <1024) {this.widthBoolean = true;}
+    else this.widthBoolean = false;  
   }
 
   onResize(event: any) {
