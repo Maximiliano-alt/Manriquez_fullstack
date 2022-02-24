@@ -61,11 +61,10 @@
 
 
         <div class="buttons">
-            <button [disabled]="name.invalid || rut.invalid || phone.invalid || email.invalid || direction.invalid" (click)="this.add_cliente(this.clienteDefault)" class="guardar">
+            <button (click)="this.add_cliente()"   class="guardar">
                 Guardar
             </button>
             <button (click)="this.renew()" class="cancelar">
-
                 Cancelar
             </button>
         </div>
@@ -125,7 +124,7 @@
 
     </div>
     <div style="margin-top: 72px;" class="buttons">
-        <button [disabled]="name.invalid || rut.invalid || phone.invalid || email.invalid || direction.invalid" (click)="this.add_cliente(this.clienteDefault)" class="button1">
+        <button (click)="this.add_cliente()"  class="button1">
             Guardar
         </button>
 
