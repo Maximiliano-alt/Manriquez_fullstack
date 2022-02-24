@@ -12,4 +12,12 @@
         <mat-icon>search</mat-icon>
     </div>
 </div>
-<app-lista [input]="{indicador:'ventas',data:array}"></app-lista>
+
+<div class="spiner" *ngIf="this.array.length == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando pagina...</span>
+</div>
+
+
+<app-lista *ngIf="this.array.length !=0" [input]="{indicador:'ventas',data:array}"></app-lista>

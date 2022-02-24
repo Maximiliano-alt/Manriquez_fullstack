@@ -1,165 +1,77 @@
 <app-navbar [var]="{route:'/ventas/venta/'+id,title:'Lista de compra'}" ></app-navbar>
 
-
-
-<div class="container-general">
-    <div  class="up">
-        <mat-icon >expand_less</mat-icon>
+<div class="spiner" *ngIf="this.array.length == 0">
+    <div  class="spinner-border" role="status" >
     </div>
-    <div  class="container">
+    <span>Cargando pagina...</span>
+</div>
+
+
+<div class="container-general" *ngIf="this.array.length != 0">
+    <div  class="up">
+       <button (click)=" nf_for_preview()"> <mat-icon >expand_less</mat-icon></button>
+    </div>
+    
         
     
         <div class="container-productos">
            
-                <div class="item">
+                <div class="item" *ngFor="let venta of segmento">
                     <div class="data">
                         <div class="data-item">
-                            <b>Nombre:</b><p>&nbsp;producto 1</p>
+                            <b>Nombre: </b>
+                            <p>&nbsp;Producto 1</p>
+                            <!-- <b>Nombre: </b>
+                            <p>&nbsp;{{venta.nombre}}</p> -->
                         </div>
                         <div class="data-item">
-                            <b>Precio:</b><p>&nbsp;$13000</p>
+                            <b>Precio: </b>
+                            <p>&nbsp;13.000</p>
+                            <!-- <b>Precio: </b>
+                            <p>&nbsp;{{venta.valor}}</p> -->
                         </div>
                         <div class="data-item">
                             <b>Unidad:</b><p>&nbsp;m2</p>
                         </div>            
                     </div>
                     <div class="button">
-                        <b>Cantidad:</b>
-                        <button>
+                        <!-- <b>Cantidad:</b><p>&nbsp;{{venta.cantidad}}</p> -->
+                        <b>Cantidad:</b><p>&nbsp;10</p>
+
+
+                        <!-- (click)="modify(this.array,venta,this.id,'R')" -->
+                        <button >
                             <mat-icon>remove</mat-icon>
                         </button>
                         <p>1</p>
-                        <button>
+
+
+                        <!-- (click)="modify(this.array,venta,this.id,'A')" -->
+                        <button >
                             <mat-icon>add</mat-icon>
                         </button>
-                        <button>
+
+                        <!-- (click)="modify(this.array,venta,this.id,'D')" -->
+                        <button >
                             <mat-icon>delete</mat-icon>
                         </button>
                         <b>Eliminar</b>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="data">
-                        <div class="data-item">
-                            <b>Nombre:</b><p>&nbsp;producto 1</p>
-                        </div>
-                        <div class="data-item">
-                            <b>Precio:</b><p>&nbsp;$13000</p>
-                        </div>
-                        <div class="data-item">
-                            <b>Unidad:</b><p>&nbsp;m2</p>
-                        </div>            
-                    </div>
-                    <div class="button">
-                        <b>Cantidad:</b>
-                        <button>
-                            <mat-icon>remove</mat-icon>
-                        </button>
-                        <p>1</p>
-                        <button>
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        <button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <b>Eliminar</b>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="data">
-                        <div class="data-item">
-                            <b>Nombre:</b><p>&nbsp;producto 1</p>
-                        </div>
-                        <div class="data-item">
-                            <b>Precio:</b><p>&nbsp;$13000</p>
-                        </div>
-                        <div class="data-item">
-                            <b>Unidad:</b><p>&nbsp;m2</p>
-                        </div>            
-                    </div>
-                    <div class="button">
-                        <b>Cantidad:</b>
-                        <button>
-                            <mat-icon>remove</mat-icon>
-                        </button>
-                        <p>1</p>
-                        <button>
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        <button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <b>Eliminar</b>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="data">
-                        <div class="data-item">
-                            <b>Nombre:</b><p>&nbsp;producto 1</p>
-                        </div>
-                        <div class="data-item">
-                            <b>Precio:</b><p>&nbsp;$13000</p>
-                        </div>
-                        <div class="data-item">
-                            <b>Unidad:</b><p>&nbsp;m2</p>
-                        </div>            
-                    </div>
-                    <div class="button">
-                        <b>Cantidad:</b>
-                        <button>
-                            <mat-icon>remove</mat-icon>
-                        </button>
-                        <p>1</p>
-                        <button>
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        <button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <b>Eliminar</b>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="data">
-                        <div class="data-item">
-                            <b>Nombre:</b><p>&nbsp;producto 1</p>
-                        </div>
-                        <div class="data-item">
-                            <b>Precio:</b><p>&nbsp;$13000</p>
-                        </div>
-                        <div class="data-item">
-                            <b>Unidad:</b><p>&nbsp;m2</p>
-                        </div>            
-                    </div>
-                    <div class="button">
-                        <b>Cantidad:</b>
-                        <button>
-                            <mat-icon>remove</mat-icon>
-                        </button>
-                        <p>1</p>
-                        <button>
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        <button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <b>Eliminar</b>
-                    </div>
-                </div> 
             
         </div>
     
     
         
-    </div>
+    
 
     <div class="up">
-        <mat-icon>expand_more</mat-icon>
+        <button (click)="nf_for_next()"><mat-icon>expand_more</mat-icon></button>
     </div> 
 
     
 
-    <div class="container-carrusel">
+    <div class="container-carrusel" *ngIf="this.array.length != 0">
         <div class="carrusel">
             <div (click)="nf_for_preview()" class="button-preview">
                 <mat-icon>expand_less</mat-icon>
@@ -168,13 +80,16 @@
                 <div class="item" *ngFor="let venta of segmento">
                     <div class="item-data">
                         <div class="item-line">
-                            <b> {{venta}}Nombre: </b>
+                            <b>Nombre: </b>
                             <p>&nbsp;Producto 1</p>
+                            <!-- <b>Nombre: </b>
+                            <p>&nbsp;{{venta.nombre}}</p> -->
                         </div>
                         <div class="item-line">
                             <b>Precio: </b>
                             <p>&nbsp;13.000</p>
-
+                            <!-- <b>Precio: </b>
+                            <p>&nbsp;{{venta.valor}}</p> -->
                         </div>
                         <div class="item-line">
                             <b>Unidad: </b>  
@@ -184,14 +99,20 @@
                     <div class="item-button-grande">
                        
                             <b>Cantidad:</b>
-                            <button>
+                            <!-- (click)="modify(this.array,venta,this.id,'R')" -->
+                            <button >
                                 <mat-icon>remove</mat-icon>
                             </button>
                             <p>1</p>
-                            <button>
+
+                            <!-- (click)="modify(this.array,venta,this.id,'A')" -->
+                            <button >
                                 <mat-icon>add</mat-icon>
                             </button>
-                            <button>
+
+
+                            <!-- (click)="modify(this.array,venta,this.id,'D')" -->
+                            <button >
                                 <mat-icon>delete</mat-icon>
                             </button>
                             <b>Eliminar</b>

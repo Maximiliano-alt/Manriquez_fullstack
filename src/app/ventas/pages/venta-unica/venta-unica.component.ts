@@ -7,10 +7,10 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class VentaUnicaComponent implements OnInit {
   estado="pagado"; //pendiente o pagado
-  categoria:any="";
+  id:any="";
   constructor( private router:Router, private route: ActivatedRoute) {
-    this.categoria = this.route.snapshot.paramMap.get('id')
-    console.log(this.categoria)
+    this.id = this.route.snapshot.paramMap.get('id')
+    console.log(this.id)
    }
 
   ngOnInit(): void {
