@@ -16,12 +16,12 @@
                     <div class="item-data">
                         <!-- cliente -->
                         <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
-                            <!-- <b>Cliente:</b> <p>&nbsp;nombre del cliente</p> -->
-                            <b>Cliente:</b> <p>&nbsp;{{item.nombre}}</p>
+                            <b>Cliente:</b> <p>&nbsp;nombre del cliente</p>
+                            <!-- <b>Cliente:</b> <p>&nbsp;{{item.nombre}}</p> -->
                         </div>
                         <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
-                            <!-- <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p> -->
-                            <b>Rut: </b> <p>&nbsp;{{item.rut}}</p>
+                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                            <!-- <b>Rut: </b> <p>&nbsp;{{item.rut}}</p> -->
                         </div>
                         <!-- proveedor -->
                         <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
@@ -39,7 +39,12 @@
                         </div>
                     </div>
                     <!-- cliente o pendiente-->
-                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'pendientes'">
+                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes' ">
+                        <button class="view">
+                          <a [routerLink]="['/clientes/ventasCliente/'+item.rut]" style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
+                        </button>
+                    </div>
+                    <div class="item-eye" *ngIf="this.input.indicador == 'pendientes'">
                         <button class="view">
                             <a style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
                         </button>

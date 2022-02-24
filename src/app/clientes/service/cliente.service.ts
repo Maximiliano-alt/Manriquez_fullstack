@@ -22,7 +22,17 @@ export class ClienteService {
     )
   }
 
+  getOneClient(data:string){
+    return this.http.get<cliente>(environment.baseUrl+'/search/cliente/'+data).pipe(
+      delay(2000)
+    )
+  }
 
+  getVentasClient(data:string){
+    return this.http.get(environment.baseUrl+'/get/ventas/for/client/'+data).pipe(
+      delay(2000)
+    )
+  }
 
 
 }
@@ -36,3 +46,14 @@ export interface cliente{
   totalDeCompra:number,
   
 }
+export interface ventaCliente{
+  nombre: string,
+  direccion: string,
+  telefono: string,
+  correo: string,
+  rut: string,
+  totalDeCompra:number,
+  historial:[]
+}
+
+
