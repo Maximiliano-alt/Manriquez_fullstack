@@ -128,6 +128,12 @@
     width: 30px;
 }
 
+@media screen and (min-width: 550px){
+    .item{
+        width: 470px;
+    }
+}
+
 @media screen and (min-width: 1024px){
     .data-line, .number{
         font-size: 120%;
