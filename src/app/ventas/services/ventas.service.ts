@@ -67,6 +67,12 @@ export class VentasService {
     return this.http.post(environment.baseUrl+'/venta/delete/producto',{aux,idVenta});
   }
 
+  getVentaAndCliente(data:string,rut:string){
+    return this.http.post(environment.baseUrl+'/get/venta/cliente',{data,rut}).pipe(
+      delay(2000)
+    )
+  }
+
 }
 
 
