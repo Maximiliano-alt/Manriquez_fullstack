@@ -18,11 +18,11 @@ export class VentasClienteComponent implements OnInit {
   final = 0;
 
 
-  // array=[
-  //   1,2,3,4,5,6,7,8,9,10,11,12,13,
-  // ]
+  array=[
+    1,2,3,4,5,6,7,8,9,10,11,12,13,
+  ]
 
-  array:venta[]=[]
+  // array:venta[]=[]
 
   inicio:any=0;
 
@@ -37,50 +37,52 @@ export class VentasClienteComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem('dataToken',this.rut)
     this.resto = this.array.length%4
-    // this.nf_for_next();
-    this.getCliente()
+    this.nf_for_next();
+    // this.getCliente()
   }
 
-  getCliente(){
-    this.service.getOneClient(this.rut).subscribe(
-      (res:any)=>{
-        if(res.status == 200){
-          this.cliente = res.data
-          this.getVentasCliente();
-        }
-        else{
-          Swal.fire({
-            title: '',
-            text: 'Este usuario no se encuentra',
-            icon: 'error',
-          })
-        }
-      }
-    )
-  }
+  // getCliente(){
+  //   this.service.getOneClient(this.rut).subscribe(
+  //     (res:any)=>{
+  //       if(res.status == 200){
+  //         this.cliente = res.data
+  //         this.getVentasCliente();
+  //       }
+  //       else{
+  //         Swal.fire({
+  //           title: '',
+  //           text: 'Este usuario no se encuentra',
+  //           icon: 'error',
+  //         })
+  //         this.router.navigate(['/clientes/clientes'])    
+  //       }
+  //     }
+  //   )
+  // }
 
 
-  getVentasCliente(){
-    this.service.getVentasClient(this.rut).subscribe(
-      (res:any)=>{
-        if(res.historial){
-          res.historial.forEach((element:venta) => {
-            this.array.push(element);
-          });
-          if(res.historial.length == this.array.length){
-            this.nf_for_next()
-          }
-        }
-        else{
-          Swal.fire({
-            title: '',
-            text: 'Usuario incorrecto!',
-            icon: 'error',
-          })
-        }
-      }
-    )
-  }
+  // getVentasCliente(){
+  //   this.service.getVentasClient(this.rut).subscribe(
+  //     (res:any)=>{
+  //       if(res.historial){
+  //         res.historial.forEach((element:venta) => {
+  //           this.array.push(element);
+  //         });
+  //         if(res.historial.length == this.array.length){
+  //           this.nf_for_next()
+  //         }
+  //       }
+  //       else{
+  //         Swal.fire({
+  //           title: '',
+  //           text: 'Usuario incorrecto!',
+  //           icon: 'error',
+  //         })
+  //          this.router.navigate(['/clientes/clientes'])
+  //       }
+  //     }
+  //   )
+  // }
 
   nf_for_next():number{
     var aux = this.segmento;
