@@ -1,65 +1,70 @@
 .container-general{
     width: 100vw;
     height: 90%;
-    margin-top: auto;
     color: white;
     transform: translate(0,53px);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.search-cliente{
-    width:300px;
-    height: 40px;
-    margin-top: 5px;
+.input-info{
+    width: 100%;
+    height: 38%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
-.search-productos{
-    width:300px;
-    height: 40px;
-    margin-top: 5px;
+.search-cliente, .search-productos{
+    width: 100%;
+    height: 30%;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 mat-icon{
     color: white;
+    transform: scale(1.5);
 }
 button{
     background-color: transparent;
     border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-
 }
 
 input{
     text-align: center;
 }
-.input-search{
-    width: 70%;
+
+.button-search{
+    width: 22%;
+    height: 100%;
+    display: flex;
 }
+.button-search button{
+    margin: auto;
+}
+
+.input-search{
+    width: 78%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .input-search input{
- 
-    width: 220px;
-    height: 26px;
+    width: 75%;
+    height: 30px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: inset 3px 3px 6px #00000029;
     border-radius: 15px;
     opacity: 0.8;
 }
-.data-cliente-container{
-    margin-top: 20px;
+.data-cliente-container, .productos{
+    width: 80%;
+    height: 70%;
     display: flex;
     flex-direction: column;
-    min-height: 157px;
-    width: 302px;
+    justify-content: flex-end;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     opacity: 0.8;
 }
@@ -96,18 +101,9 @@ input{
     width: 100%;
     text-align: center;
 }
-.productos{
-    width: 302px;
-    height:183px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    opacity: 0.8;
-    display: flex;
-    flex-direction: column;
-    color: black;
-}
+
 .productos-data{
     width: 100%;
-    height: 148px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -116,7 +112,7 @@ input{
 }
 .navbar-productos{
     width: 100%;
-    height: 35px;
+    height: 46%;
     background: #F25C05 0% 0% no-repeat padding-box;
     opacity: 1;
     display: flex;
@@ -125,7 +121,7 @@ input{
     color: white;
 }
 .producto{
-    width: 282px;
+    width: 100%;
     min-height: 57px;
     background: #dcdbdb 0% 0% no-repeat padding-box;
     opacity:1;
@@ -160,70 +156,72 @@ input{
 .button mat-icon{
     color: white;
 }
+.buttons{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
 .button-footer{
-    margin-top: 10px;
     width: 312px;
-    height: 32px;
+    height: 30%;
     background: #F25C05 0% 0% no-repeat padding-box;
     border-radius: 16px;
     opacity: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    margin-top: 15px;   
 }
-.button-ver-productos{
-    visibility: hidden;
-    height: 0;
+
+@media screen and (min-width:550px){
+    .search-cliente, .search-productos{
+
+    }
+    .input-info{
+        width: 550px;
+        height: 39%;
+    }
+    .buttons{
+        height: 18%;
+    }
 }
-.search-cliente-grande{
-    visibility: hidden;
-    height: 0;
-}
+
 @media screen and (min-width:1024px) {
     .container-general{
-        display: flex;
-        flex-direction: column;
-        height: 60vh;
-    }   
-    .inputs{
-        width: 100%;
-        height: 100%;
-        display: flex;
         flex-direction: row;
-    }
-    .container-general__left{
-        width: 50%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
     }
-    .container-general__rigth{
-        
+    .input-info{
+        width: 360px;
+        height: 100%;
+    }
+    #container-productos{
+        transform: translateX(300px);
+    }
+    .search-cliente, .search-productos{
+        height: 20%;
+    }
+    .data-cliente-container, .productos{
+        width: 90%;
+        height: 50%;
+    }
+    .buttons{
+        width: 307px;
+        height: 100%;
+        flex-direction: row;
+        transform: translateX(-370px);
+    }
+    .button-footer{
         width: 50%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
+        height: 10%;
         align-items: center;
-        justify-content: center;
+        margin-left: 15px;   
     }
-    .data-cliente-container{
-        width: 400px;
+    .navbar-productos{
+        height: 15%;
     }
-    .data-cliente-container h1{
-        padding: 20px;
-    }
-    .productos{
-        width: 400px;
-        height: 300px;
-    }
-    .producto{
-        width: 100%;
-    }
-    .productos-data{
-        height: 100%;
-    }
-    
+
 }
