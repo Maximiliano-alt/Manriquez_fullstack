@@ -18,7 +18,6 @@ export class ListProductVentaComponent implements OnInit {
   index_aux = 0;
   resto=0;
   final = 0;
-
   // array = [1,2,3,4,5,6,7,8,9,10,12,13]
   
   array:productoComprado[]=[]
@@ -43,6 +42,32 @@ export class ListProductVentaComponent implements OnInit {
     this.getData()
 
   }
+
+ modify(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
+    
+    // operacion s r d
+    
+    this.service.deleteProduct(array,producto,idVenta,operacion).subscribe(
+      (res:any)=>{
+        if(res.status==200){
+          this.array = []
+          this.indice_espera = 4;
+          this.inicio_slice = 0;
+          this.actualizarCliente(this.id,this.rut,this.array,producto,operacion)
+          this.getData()
+        
+        }
+        else{
+          Swal.fire({
+            title: 'Error!',
+          text: 'No se pudo editar el producto',
+          icon: 'error',})
+        }
+        
+      }
+    )
+  }
+
 
   getData(){
     this.service.getVentaAndCliente(this.id,this.rut).subscribe(
@@ -144,6 +169,18 @@ export class ListProductVentaComponent implements OnInit {
   }
 
 
+
+
+  actualizarCliente(idVenta:string,rut:string,array:any,producto:any,indicador:string){
+    this.serviceCliente.actualizarVenta(idVenta,rut,this.array,producto,indicador)
+    .subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+
+
+  }
 
 
 }

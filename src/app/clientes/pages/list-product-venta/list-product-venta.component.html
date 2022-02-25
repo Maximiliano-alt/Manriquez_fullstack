@@ -1,4 +1,4 @@
-<app-navbar [var]="{route:'/ventas/venta/'+id,title:'Carrito'}" ></app-navbar>
+<app-navbar [var]="{route:'/clientes/cliente/venta/'+this.id,title:'Carrito'}" ></app-navbar>
 
 <div class="spiner" *ngIf="this.array.length == 0">
     <div  class="spinner-border" role="status" >
@@ -39,19 +39,19 @@
                         <!-- <b>Cantidad:</b><p>&nbsp;10</p> -->
 
                         <!-- (click)="modify(this.array,venta,this.id,'R')" -->
-                        <button >
+                        <button (click)="modify(this.array,venta,this.id,'R')" *ngIf="venta.cantidad > 0" >
                             <mat-icon>remove</mat-icon>
                         </button>
                         <p>1</p>
 
                         <!-- (click)="modify(this.array,venta,this.id,'A')" -->
-                        <button >
+                        <button (click)="modify(this.array,venta,this.id,'A')">
                             <mat-icon>add</mat-icon>
                         </button>
 
 
                         <!-- (click)="modify(this.array,venta,this.id,'D')" -->
-                        <button >
+                        <button (click)="modify(this.array,venta,this.id,'D')">
                             <mat-icon>delete</mat-icon>
                         </button>
                         <b>Eliminar</b>
@@ -103,18 +103,18 @@
                            
                         <!-- (click)="modify(this.array,venta,this.id,'R')" -->
                         <button >
-                            <mat-icon>remove</mat-icon>
+                            <mat-icon (click)="modify(this.array,venta,this.id,'R')"  *ngIf="venta.cantidad > 0">remove</mat-icon>
                         </button>
                         <p>1</p>
 
                         <!-- (click)="modify(this.array,venta,this.id,'A')" -->
-                        <button >
+                        <button (click)="modify(this.array,venta,this.id,'A')">
                             <mat-icon>add</mat-icon>
                         </button>
 
 
                         <!-- (click)="modify(this.array,venta,this.id,'D')" -->
-                        <button >
+                        <button (click)="modify(this.array,venta,this.id,'D')">
                             <mat-icon>delete</mat-icon>
                         </button>
                         <b>Eliminar</b>

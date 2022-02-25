@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { delay } from 'rxjs/operators';
+import { productoComprado } from 'src/app/ventas/services/ventas.service';
 
 
 @Injectable({
@@ -32,6 +33,12 @@ export class ClienteService {
     return this.http.get(environment.baseUrl+'/get/ventas/for/client/'+data).pipe(
       delay(2000)
     )
+  }
+
+  actualizarVenta(idVenta:string,rut:string,array:any[],producto:any,indicador:string){
+    
+    
+    return this.http.post(environment.baseUrl+'/actualizar/carrito/Cliente',{idVenta,rut})
   }
 
 
