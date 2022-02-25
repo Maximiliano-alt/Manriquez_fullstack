@@ -12,8 +12,8 @@
 <div class="container-general" >
     <div class="data">
         <div class="data-nav">
-            Cliente: Aracelly Balboa
-            <!-- Cliente: {{cliente.nombre}} -->
+            <!-- Cliente: Aracelly Balboa -->
+            Cliente: {{cliente.nombre}}
         </div>
         <div class="data-contenido">
             <div class="data-linea">
@@ -53,7 +53,7 @@
         <div *ngIf="this.estado == 'pagado'"  class="button">
             Crear guia de venta
         </div>
-        <div  class="button">
+        <div (click)="delete(this.id,this.rut)"   class="button">
             Eliminar
         </div>
         <div style="margin: 0;" class="button">
@@ -66,8 +66,8 @@
     <!-- buttons grandes -->
     <div class="buttons-1024">
         <div class="button-pares">
-            <div (click)="modificarEstado()" style="margin-right: 31px;" class="button-par">
-                Modificar estadoasdas
+            <div (click)="modificarEstado(this.estado,this.rut,this.id)" style="margin-right: 31px;" class="button-par">
+                Modificar estado
             </div>
             <div *ngIf="this.estado == 'pendiente'" class="button-par">
                 <!-- falta definicion de requerimiento -->
@@ -88,13 +88,13 @@
                     Ver productos
                 </a>
             </div>
-            <div style="margin: 0;" (click)="delete()"  class="button-par">
+            <div style="margin: 0;" (click)="delete(this.id,this.rut)"  class="button-par">
                Eliminar
             </div>
         </div>
         <div *ngIf="this.estado == 'pagado'" style="margin: 0; width: 100%;"  class="button">
            <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a>
-           <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a> -->
+           
         </div>
 
 

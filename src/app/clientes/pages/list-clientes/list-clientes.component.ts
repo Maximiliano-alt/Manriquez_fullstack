@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { ClienteService,cliente } from '../../service/cliente.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class ListClientesComponent implements OnInit {
 
   array:cliente[]=[];
 
-  constructor(private service:ClienteService) { }
+  constructor(private service:ClienteService, private router:Router) { }
 
   ngOnInit(): void {
     localStorage.removeItem('dataToken')
@@ -31,6 +33,16 @@ export class ListClientesComponent implements OnInit {
           res.clientes.forEach((e:cliente) => {
             this.array.push(e)
           });
+        }
+        else{
+          if(res.historial.length == 0){
+            Swal.fire({
+              title: '',
+              text: 'Aun no se ingresan ventas a este cliente',
+              icon: 'error',
+            })
+             this.router.navigate(['/clientes/clientes'])
+          }
         }
       }
     )

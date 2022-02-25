@@ -42,6 +42,25 @@ export class ClienteService {
   }
 
 
+  deleteCliente(rut:string){
+    return this.http.post(environment.baseUrl+'/delete/cliente',{rut});
+  }
+
+  modificarEstadoVenta(estado:string,rut:string,idVenta:string){
+    var aux = ''
+    if(estado == 'pagado'){
+      aux = 'pendiente'
+    }
+    if(estado =='pendiente'){
+      aux = 'pagado'
+    }
+    return this.http.post(environment.baseUrl+'/modificar/estado',{aux,rut,idVenta});
+  }
+
+  deleteVenta(rut:string,id:string){
+    return this.http.post(environment.baseUrl+'/delete/venta',{rut,id});
+  }
+
 }
 
 export interface cliente{

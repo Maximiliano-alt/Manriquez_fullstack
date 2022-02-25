@@ -174,8 +174,14 @@ export class ListProductVentaComponent implements OnInit {
   actualizarCliente(idVenta:string,rut:string,array:any,producto:any,indicador:string){
     this.serviceCliente.actualizarVenta(idVenta,rut,this.array,producto,indicador)
     .subscribe(
-      res=>{
-        console.log(res)
+      (res:any)=>{
+        if(res.status == 500){
+          Swal.fire({
+            title: '',
+            text: 'No se pudo modificar el producto :(',
+            icon: 'error',
+          })
+        }
       }
     )
 

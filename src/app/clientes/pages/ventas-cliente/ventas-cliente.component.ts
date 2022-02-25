@@ -68,6 +68,16 @@ export class VentasClienteComponent implements OnInit {
           res.historial.forEach((element:venta) => {
             this.array.push(element);
           });
+         
+          if(res.historial.length == 0){
+            Swal.fire({
+              title: '',
+              text: 'Aun no se ingresan ventas a este cliente',
+              icon: 'error',
+            })
+             this.router.navigate(['/clientes/clientes'])
+          }
+          
           if(res.historial.length == this.array.length){
             this.nf_for_next()
           }
@@ -157,6 +167,16 @@ export class VentasClienteComponent implements OnInit {
     }
     
    
+  }
+
+
+
+  delete(rut:string){
+    this.service.deleteCliente(rut).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
   }
 
 }
