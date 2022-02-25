@@ -19,9 +19,9 @@ export class ListProductVentaComponent implements OnInit {
   resto=0;
   final = 0;
 
-  array = [1,2,3,4,5,6,7,8,9,10,12,13]
+  // array = [1,2,3,4,5,6,7,8,9,10,12,13]
   
-  // array:productoComprado[]=[]
+  array:productoComprado[]=[]
 
   inicio:any=0;
 
@@ -37,36 +37,36 @@ export class ListProductVentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.resto = this.array.length%4
-    this.nf_for_next();
+    // this.nf_for_next();
     
 
-    // this.getData()
+    this.getData()
 
   }
 
-  // getData(){
-  //   this.service.getVentaAndCliente(this.id,this.rut).subscribe(
-  //     (res:any)=>{
-  //       if(res.status!=404){
-  //         res.dataVenta.productos.forEach((element:productoComprado) => {
-  //           this.array.push(element)
-  //           if(this.array.length == res.dataVenta.productos.length){
-  //             this.nf_for_next();
-  //             
-  //           }
-  //         });
-  //       }
-  //       else{
-  //         Swal.fire({
-  //           title: 'Error!',
-  //           text: 'Datos de entrada incorrectos!',
-  //           icon: 'error',
+  getData(){
+    this.service.getVentaAndCliente(this.id,this.rut).subscribe(
+      (res:any)=>{
+        if(res.status!=404){
+          res.dataVenta.productos.forEach((element:productoComprado) => {
+            this.array.push(element)
+            if(this.array.length == res.dataVenta.productos.length){
+              this.nf_for_next();
+              
+            }
+          });
+        }
+        else{
+          Swal.fire({
+            title: 'Error!',
+            text: 'Datos de entrada incorrectos!',
+            icon: 'error',
        
-  //         })
-  //       }
-  //     }
-  //   )
-  // }
+          })
+        }
+      }
+    )
+  }
   
 
 

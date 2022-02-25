@@ -1,0 +1,104 @@
+<app-navbar [var]="{route:'/clientes/clientes',title:'Venta unica'}" ></app-navbar>
+
+<div class="spiner" *ngIf="dataIndicador == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando ...</span>
+</div>
+
+
+
+<!-- *ngIf="dataIndicador == 1" -->
+<div class="container-general" >
+    <div class="data">
+        <div class="data-nav">
+            Cliente: Aracelly Balboa
+            <!-- Cliente: {{cliente.nombre}} -->
+        </div>
+        <div class="data-contenido">
+            <div class="data-linea">
+                <!-- <b>Cantidad: </b><p>&nbsp;5 productos(s)</p> -->
+                <b>Cantidad: </b><p>&nbsp;{{ventaProductos.productos.length}} productos(s)</p>
+            </div>
+            <div *ngIf="this.estado == 'pagado'" class="data-linea">
+                <!-- <b>Estado: </b><p style="color: #007508;">&nbsp;pagado</p> -->
+                <b>Estado: </b><p style="color: #007508;">&nbsp;{{this.estado}}</p>
+            </div>
+            <div *ngIf="this.estado == 'pendiente'" class="data-linea">
+                <!-- <b>Estado: </b><p style="color: #FF0000;">&nbsp;pendiente</p> -->
+                <b>Estado: </b><p style="color: #FF0000;">&nbsp;{{this.estado}}</p>
+            </div>
+            <div class="data-linea">
+                <!-- <b>Envio: </b><p>&nbsp;pendiente</p> -->
+                <b>Envio: </b><p>&nbsp;{{ventaProductos.envio}}</p>
+            </div>
+        </div>
+        <div class="data-valor">
+            <!-- $12000 -->
+            ${{ventaProductos.totalDeVenta}}
+        </div>
+    </div>
+
+    <!-- botones -->
+    <div class="buttons">   
+        <div  class="button">
+            Modificar estado
+        </div>
+        <div *ngIf="this.estado == 'pagado'" class="button">
+            Crear orden de compra
+        </div>
+        <div *ngIf="this.estado == 'pendiente'" class="button">
+            Crear cotizacion
+        </div>
+        <div *ngIf="this.estado == 'pagado'"  class="button">
+            Crear guia de venta
+        </div>
+        <div  class="button">
+            Eliminar
+        </div>
+        <div style="margin: 0;" class="button">
+           <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a>
+          
+        </div>
+
+    </div>
+
+    <!-- buttons grandes -->
+    <div class="buttons-1024">
+        <div class="button-pares">
+            <div (click)="modificarEstado()" style="margin-right: 31px;" class="button-par">
+                Modificar estado
+            </div>
+            <div *ngIf="this.estado == 'pendiente'" class="button-par">
+                <!-- falta definicion de requerimiento -->
+                Crear Cotizacion
+            </div>
+            <div *ngIf="this.estado == 'pagado'" class="button-par">
+                <!-- falta definicion de requerimiento -->
+                Crear orden de compra
+            </div>
+        </div>
+        <div class="button-pares">
+            <div  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
+                <!-- falta definicion del requerimiento -->
+                Crear guia de venta
+            </div>
+            <div *ngIf="this.estado == 'pendiente'"   style="margin-right: 31px;"  class="button-par">
+                <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]">
+                    Ver productos
+                </a>
+            </div>
+            <div style="margin: 0;" (click)="delete()"  class="button-par">
+               Eliminar
+            </div>
+        </div>
+        <div *ngIf="this.estado == 'pagado'" style="margin: 0; width: 100%;"  class="button">
+           <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a>
+           <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a> -->
+        </div>
+
+
+
+    </div>
+
+</div>

@@ -9,32 +9,32 @@ import { ClienteService,cliente } from '../../service/cliente.service';
 export class ListClientesComponent implements OnInit {
   id:any
   estado="pagado";
-  array:any=[
-    1,2,3,4,5,6,7,8,9,10,11,12,13,
-  ]
+  // array:any=[
+  //   1,2,3,4,5,6,7,8,9,10,11,12,13,
+  // ]
 
-  // array:cliente[]=[];
+  array:cliente[]=[];
 
   constructor(private service:ClienteService) { }
 
   ngOnInit(): void {
     localStorage.removeItem('dataToken')
-    // this.getData()
+    this.getData()
   }
 
 
   // este metodo trae los clientes del sistema
-  // getData(){
-  //   this.service.getClientes().subscribe(
-  //     (res:any)=>{
-  //       if(res.status==200){
-  //         res.clientes.forEach((e:cliente) => {
-  //           this.array.push(e)
-  //         });
-  //       }
-  //     }
-  //   )
-  // }
+  getData(){
+    this.service.getClientes().subscribe(
+      (res:any)=>{
+        if(res.status==200){
+          res.clientes.forEach((e:cliente) => {
+            this.array.push(e)
+          });
+        }
+      }
+    )
+  }
   
   
   

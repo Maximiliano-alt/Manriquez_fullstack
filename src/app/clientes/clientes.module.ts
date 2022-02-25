@@ -9,12 +9,14 @@ import { AddClienteComponent } from './pages/add-cliente/add-cliente.component';
 
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ListProductVentaComponent } from './pages/list-product-venta/list-product-venta.component';
+import { VentaUnicaComponent } from './pages/venta-unica/venta-unica.component';
 @NgModule({
   declarations: [
     ListClientesComponent,
     VentasClienteComponent,
     AddClienteComponent,
-    ListProductVentaComponent
+    ListProductVentaComponent,
+    VentaUnicaComponent
   ],
   imports: [
     CommonModule,
