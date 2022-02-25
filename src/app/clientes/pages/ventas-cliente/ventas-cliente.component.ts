@@ -35,6 +35,7 @@ export class VentasClienteComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    localStorage.setItem('dataToken',this.rut)
     this.resto = this.array.length%4
     // this.nf_for_next();
     this.getCliente()
@@ -65,7 +66,6 @@ export class VentasClienteComponent implements OnInit {
         if(res.historial){
           res.historial.forEach((element:venta) => {
             this.array.push(element);
-            console.log(res)
           });
           if(res.historial.length == this.array.length){
             this.nf_for_next()
