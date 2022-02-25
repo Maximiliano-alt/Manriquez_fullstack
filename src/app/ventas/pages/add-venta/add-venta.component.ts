@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { VentasService,producto } from '../../services/ventas.service';
-import { cliente } from 'src/app/clientes/service/cliente.service';
+import { VentasService,producto,cliente } from '../../services/ventas.service';
+
 
 @Component({
   selector: 'app-add-venta',
@@ -17,9 +17,7 @@ export class AddVentaComponent implements OnInit {
     correo: '',
     rut: '',
     totalDeCompra:0,
-  historial:
-  //historial de compras
-  []
+    historial:[]
   };
 
   listaProductos:producto[]=[]

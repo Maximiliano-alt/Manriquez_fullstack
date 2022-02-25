@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';
-import { ClienteService , cliente, ventaCliente } from '../../service/cliente.service';
-import { venta } from 'src/app/ventas/services/ventas.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { productoComprado, VentasService } from 'src/app/ventas/services/ventas.service';
+import { ClienteService } from '../../service/cliente.service';
 
+import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-ventas-cliente',
-  templateUrl: './ventas-cliente.component.html',
-  styleUrls: ['./ventas-cliente.component.css']
+  selector: 'app-list-product-venta',
+  templateUrl: './list-product-venta.component.html',
+  styleUrls: ['./list-product-venta.component.css']
 })
-export class VentasClienteComponent implements OnInit {
+export class ListProductVentaComponent implements OnInit {
+
+  id:any
   estado="pagado";
   indice_espera = 4;
   inicio_slice = 0;
@@ -17,72 +19,57 @@ export class VentasClienteComponent implements OnInit {
   resto=0;
   final = 0;
 
-
-  array=[
-    1,2,3,4,5,6,7,8,9,10,11,12,13,
-  ]
-
-  // array:venta[]=[]
+  array = [1,2,3,4,5,6,7,8,9,10,12,13]
+  
+  // array:productoComprado[]=[]
 
   inicio:any=0;
 
-  cliente!:ventaCliente;
 
   segmento:any=[]
-  rut:any
-  constructor( private router:Router, private route: ActivatedRoute,private service:ClienteService) {
-    this.rut = this.route.snapshot.paramMap.get('id')
+  rut!:any
+
+  constructor(private router:Router, private route: ActivatedRoute,private service: VentasService,private serviceCliente:ClienteService) {
+    this.id = this.route.snapshot.paramMap.get('id')
+    this.rut = this.route.snapshot.paramMap.get('rut')
+    
    }
 
   ngOnInit(): void {
-    localStorage.setItem('dataToken',this.rut)
     this.resto = this.array.length%4
     this.nf_for_next();
-    // this.getCliente()
+    
+
+    // this.getData()
+
   }
 
-  // getCliente(){
-  //   this.service.getOneClient(this.rut).subscribe(
+  // getData(){
+  //   this.service.getVentaAndCliente(this.id,this.rut).subscribe(
   //     (res:any)=>{
-  //       if(res.status == 200){
-  //         this.cliente = res.data
-  //         this.getVentasCliente();
-  //       }
-  //       else{
-  //         Swal.fire({
-  //           title: '',
-  //           text: 'Este usuario no se encuentra',
-  //           icon: 'error',
-  //         })
-  //         this.router.navigate(['/clientes/clientes'])    
-  //       }
-  //     }
-  //   )
-  // }
-
-
-  // getVentasCliente(){
-  //   this.service.getVentasClient(this.rut).subscribe(
-  //     (res:any)=>{
-  //       if(res.historial){
-  //         res.historial.forEach((element:venta) => {
-  //           this.array.push(element);
+  //       if(res.status!=404){
+  //         res.dataVenta.productos.forEach((element:productoComprado) => {
+  //           this.array.push(element)
+  //           if(this.array.length == res.dataVenta.productos.length){
+  //             this.nf_for_next();
+  //             
+  //           }
   //         });
-  //         if(res.historial.length == this.array.length){
-  //           this.nf_for_next()
-  //         }
   //       }
   //       else{
   //         Swal.fire({
-  //           title: '',
-  //           text: 'Usuario incorrecto!',
+  //           title: 'Error!',
+  //           text: 'Datos de entrada incorrectos!',
   //           icon: 'error',
+       
   //         })
-  //          this.router.navigate(['/clientes/clientes'])
   //       }
   //     }
   //   )
   // }
+  
+
+
 
   nf_for_next():number{
     var aux = this.segmento;
@@ -129,10 +116,7 @@ export class VentasClienteComponent implements OnInit {
     }
 
 
-
-
   }
-  
   nf_for_preview():any{
     var aux = this.segmento;
     this.segmento = [];
@@ -158,5 +142,8 @@ export class VentasClienteComponent implements OnInit {
     
    
   }
+
+
+
 
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { VentasService } from '../../services/ventas.service';
 import { Router,ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
+import { delay } from 'rxjs/operators';
 @Component({
   selector: 'app-venta-unica',
   templateUrl: './venta-unica.component.html',
@@ -7,17 +10,50 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class VentaUnicaComponent implements OnInit {
   estado="pagado"; //pendiente o pagado
-  categoria:any="";
-  constructor( private router:Router, private route: ActivatedRoute) {
-    this.categoria = this.route.snapshot.paramMap.get('id')
-    console.log(this.categoria)
-   }
-
-  ngOnInit(): void {
+  id:any="";
+  constructor( private router:Router, private route: ActivatedRoute,private service: VentasService) {
+    this.id = this.route.snapshot.paramMap.get('id')
   }
 
+  cliente!:any;
+  rut!:string
+  ventaProductos:any
+  dataIndicador  = 0
+
+  ngOnInit(): void {
+    this.rut = localStorage.getItem('dataToken') || ""
+    // this.getClienteAndVenta()
+  }
+
+
+  // getClienteAndVenta(){
+
+
+  //   this.service.getVentaAndCliente(this.id,this.rut).subscribe(
+  //     (res:any)=>{
+  //       if(res.status==404){
+  //         Swal.fire({
+  //           title: 'Error :(',
+  //           text: 'Usuario no encontrado',
+  //           icon: 'error',
+  //         })
+  //         this.router.navigate(['/clientes/clientes'])
+  //       }
+  //       else{
+  //         this.cliente = res.data
+  //         this.ventaProductos = res.dataVenta
+  //         console.log(this.ventaProductos)
+  //         this.dataIndicador = 1
+  //         this.estado = this.ventaProductos.estado
+  //       }
+  //     }
+  //   )
+
+  // }
+
+
   ver_producto():number{
-    console.log("ver producto again");
+    
     return 0;
   }
   

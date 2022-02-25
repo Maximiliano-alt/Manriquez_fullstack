@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ClienteService,cliente } from '../../service/cliente.service';
+import Swal from 'sweetalert2';
+import { ClienteService } from '../../service/cliente.service';
+import { cliente } from 'src/app/ventas/services/ventas.service';
+
 @Component({
   selector: 'app-add-cliente',
   templateUrl: './add-cliente.component.html',
@@ -41,7 +44,7 @@ export class AddClienteComponent implements OnInit {
       Validators.required,
       Validators.minLength(9),
       Validators.maxLength(10),
-      Validators.pattern(/^[0-9].-*$/)
+      Validators.pattern(/[0-9].-[0-9].*$/)
     ]);
     this.rut.valueChanges.subscribe(
       value =>{
@@ -51,7 +54,7 @@ export class AddClienteComponent implements OnInit {
 
     this.phone = new FormControl('',[
       Validators.required,
-      Validators.pattern('[0-9].')
+      Validators.pattern(/[0-9].*$/)
     ]);
     this.phone.valueChanges.subscribe(
       value =>{
@@ -84,13 +87,31 @@ export class AddClienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add_cliente(data:cliente){
-
-    this.service.add_cliente(data).subscribe(
-      res=>{
-        console.log(res);
+  add_cliente(){
+    if(this.name.valid && this.rut.valid && this.phone.valid
+      && this.email.valid && this.direction.valid){
+        this.service.add_cliente(this.clienteDefault).subscribe(
+          (res:any)=>{
+            if(res.status == 200){
+              Swal.fire({
+                title: '',
+                text: 'Ingreso correcto',
+                icon: 'success',
+              })
+              this.router.navigate(['/clientes'])
+            }
+            else if(res.status == 500){
+              Swal.fire({
+                title: '',
+                text: 'Hubo problemas al ingresar el cliente',
+                icon: 'error',
+              })
+              this.router.navigate(['/clientes'])
+            }
+          }
+        )
       }
-    )
+
   }
 
   renew(){

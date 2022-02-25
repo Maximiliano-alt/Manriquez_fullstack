@@ -17,9 +17,11 @@
                         <!-- cliente -->
                         <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
                             <b>Cliente:</b> <p>&nbsp;nombre del cliente</p>
+                            <!-- <b>Cliente:</b> <p>&nbsp;{{item.nombre}}</p> -->
                         </div>
                         <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
                             <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                            <!-- <b>Rut: </b> <p>&nbsp;{{item.rut}}</p> -->
                         </div>
                         <!-- proveedor -->
                         <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
@@ -37,7 +39,12 @@
                         </div>
                     </div>
                     <!-- cliente o pendiente-->
-                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'pendientes'">
+                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes' ">
+                        <button class="view">
+                          <a [routerLink]="['/clientes/ventasCliente/'+item.rut]" style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
+                        </button>
+                    </div>
+                    <div class="item-eye" *ngIf="this.input.indicador == 'pendientes'">
                         <button class="view">
                             <a style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
                         </button>
@@ -94,6 +101,7 @@
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <b>Cliente:</b>&nbsp;Aracelly Balboa
+                            <!-- <b>Cliente:</b>&nbsp;{{item.cliente.nombre}} -->
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
                             <b>Talla:</b>&nbsp;Estandar
@@ -101,6 +109,7 @@
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <b>Cantidad:</b>&nbsp;5 producto(s)
+                            <!-- <b>Cantidad:</b>&nbsp;{{item.productos.length}} producto(s) -->
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
                             <b>Stock:</b>&nbsp;18
@@ -108,6 +117,7 @@
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <b>Estado:</b>&nbsp;Por pagar
+                            <!-- <b>Estado:</b>&nbsp;{{item.estado}} -->
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
                             <b>Precio:</b>&nbsp;$15.000
@@ -115,13 +125,15 @@
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <b>Envío:</b>&nbsp;pendiente
+                            <!-- <b>Envío:</b>&nbsp;{{item.envio}} -->
                         </div>
                          <div class="data-line2" *ngIf="this.input.indicador == 'products'">
                             <b>Vendidos:</b>&nbsp;9
                             <!-- <b>Vendidos:</b>&nbsp;{{item.vecesComprado}} -->
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
-                            <b>Total:</b>&nbsp;12.350$
+                            <b>Total:</b>&nbsp;$12.350
+                            <!-- <b>Total:</b>&nbsp;${{item.totalDeVenta}} -->
                         </div>
                     </div>
                     <!--products, ventas-->
@@ -130,7 +142,7 @@
                             <a style="text-decoration: none; color: black;"[routerLink]="['/productos/detail/',123]"><img src="assets\page\view.svg" alt=""></a>
                         </button>
                         <button class="view-more" *ngIf="this.input.indicador == 'ventas'">
-                            <a style="text-decoration: none; color: #fff;">Ver mas+</a>
+                            <a [routerLink]="['/ventas/venta/'+item._id]" style="text-decoration: none; color: #fff;">Ver mas+</a>
                         </button>
                     </div>
                     <!--products, ventas-->
