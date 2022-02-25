@@ -18,6 +18,7 @@ export class ListClientesComponent implements OnInit {
   constructor(private service:ClienteService) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('dataToken')
     this.getData()
   }
 
