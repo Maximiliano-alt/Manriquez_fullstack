@@ -41,7 +41,6 @@ export class VentaUnicaComponent implements OnInit {
         else{
           this.cliente = res.data
           this.ventaProductos = res.dataVenta
-          console.log(this.ventaProductos)
           this.dataIndicador = 1
           this.estado = this.ventaProductos.estado
         }
@@ -72,8 +71,23 @@ export class VentaUnicaComponent implements OnInit {
   }
   delete(idventa:string,rut:string):number{
     this.serviceCliente.deleteVenta(rut,idventa).subscribe(
-      res=>{
-        console.log(res)
+      (res:any)=>{
+        if(res.status==200){
+          Swal.fire({
+            title: '',
+            text: 'Venta Eliminada!',
+            icon: 'success',
+          })
+          this.router.navigate(['/clientes'])
+        }
+        else{
+          Swal.fire({
+            title: '',
+            text: 'Ocurrio un error al eliminar la venta :(',
+            icon: 'error',
+          })
+          this.router.navigate(['/clientes'])
+        }
       }
     )
     return 0;
