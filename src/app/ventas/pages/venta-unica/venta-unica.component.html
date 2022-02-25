@@ -57,7 +57,8 @@
             Eliminar
         </div>
         <div style="margin: 0;" class="button">
-           <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a>
+           <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
+           <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
         </div>
 
     </div>
@@ -83,7 +84,7 @@
                 Crear guia de venta
             </div>
             <div *ngIf="this.estado == 'pendiente'"   style="margin-right: 31px;"  class="button-par">
-                <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]">
+                <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]">
                     Ver productos
                 </a>
             </div>
@@ -92,9 +93,8 @@
             </div>
         </div>
         <div *ngIf="this.estado == 'pagado'" style="margin: 0; width: 100%;"  class="button">
-            <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]">
-                Ver productos
-            </a>
+           <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
+           <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
         </div>
 
 
