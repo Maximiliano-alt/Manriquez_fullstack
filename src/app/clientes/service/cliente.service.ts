@@ -61,6 +61,15 @@ export class ClienteService {
     return this.http.post(environment.baseUrl+'/delete/venta',{rut,id});
   }
 
+  calcularTotalVenta(rut:string){
+    return this.http.post(environment.baseUrl+'/calcular/total/Venta',{rut});
+  }
+
+
+  updateVenta(id:string){
+    return this.http.post(environment.baseUrl+'/update/venta',{id});
+  }
+
 }
 
 export interface cliente{

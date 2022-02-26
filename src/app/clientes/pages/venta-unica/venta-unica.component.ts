@@ -23,6 +23,7 @@ export class VentaUnicaComponent implements OnInit {
   ngOnInit(): void {
     this.rut = localStorage.getItem('dataToken') || ""
     this.getClienteAndVenta()
+    this.updateVenta(this.id)
   }
 
    getClienteAndVenta(){
@@ -39,6 +40,7 @@ export class VentaUnicaComponent implements OnInit {
           this.router.navigate(['/clientes/clientes'])
         }
         else{
+
           this.cliente = res.data
           this.ventaProductos = res.dataVenta
           this.dataIndicador = 1
@@ -78,6 +80,7 @@ export class VentaUnicaComponent implements OnInit {
             text: 'Venta Eliminada!',
             icon: 'success',
           })
+          this.newSuma(this.rut)
           this.router.navigate(['/clientes'])
         }
         else{
@@ -93,5 +96,21 @@ export class VentaUnicaComponent implements OnInit {
     return 0;
   }
 
+  newSuma(rut:string){
+    this.serviceCliente.calcularTotalVenta(rut).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
+
+
+  updateVenta(id:string){
+    this.serviceCliente.updateVenta(id).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
 
 }

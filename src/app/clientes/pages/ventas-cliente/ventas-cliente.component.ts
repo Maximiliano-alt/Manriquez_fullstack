@@ -38,7 +38,8 @@ export class VentasClienteComponent implements OnInit {
     localStorage.setItem('dataToken',this.rut)
     this.resto = this.array.length%4
     // this.nf_for_next();
-    this.getCliente()
+    this.getCliente();
+    this.newSuma(this.rut); //ordenamos la data del cliente en el back
   }
 
   getCliente(){
@@ -64,6 +65,7 @@ export class VentasClienteComponent implements OnInit {
   getVentasCliente(){
     this.service.getVentasClient(this.rut).subscribe(
       (res:any)=>{
+      
         if(res.historial){
           res.historial.forEach((element:venta) => {
             this.array.push(element);
@@ -75,7 +77,7 @@ export class VentasClienteComponent implements OnInit {
               text: 'Aun no se ingresan ventas a este cliente',
               icon: 'error',
             })
-             this.router.navigate(['/clientes/clientes'])
+            
           }
           
           if(res.historial.length == this.array.length){
@@ -173,6 +175,21 @@ export class VentasClienteComponent implements OnInit {
 
   delete(rut:string){
     this.service.deleteCliente(rut).subscribe(
+      (res:any)=>{
+        if(res.status==200){
+          Swal.fire({
+            title: '',
+            text: 'Cliente eliminado correctamente!',
+            icon: 'success',
+          })
+        }
+      }
+    )
+  }
+
+
+  newSuma(rut:string){
+    this.service.calcularTotalVenta(rut).subscribe(
       res=>{
         console.log(res)
       }

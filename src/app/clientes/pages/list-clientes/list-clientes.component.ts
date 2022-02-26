@@ -29,21 +29,20 @@ export class ListClientesComponent implements OnInit {
   getData(){
     this.service.getClientes().subscribe(
       (res:any)=>{
+        console.log(res)
         if(res.status==200){
           res.clientes.forEach((e:cliente) => {
             this.array.push(e)
           });
         }
-        else{
-          if(res.historial.length == 0){
-            Swal.fire({
-              title: '',
-              text: 'Aun no se ingresan ventas a este cliente',
-              icon: 'error',
-            })
-             this.router.navigate(['/clientes/clientes'])
-          }
+        if(res.clientes.length == 0){
+          Swal.fire({
+            title: '',
+            text: 'Aun no se ingresan clientes',
+            icon: 'error',
+          })
         }
+        
       }
     )
   }

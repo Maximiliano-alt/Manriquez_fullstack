@@ -38,7 +38,7 @@ export class ListProductVentaComponent implements OnInit {
     this.resto = this.array.length%4
     // this.nf_for_next();
     
-
+    this.updateVenta(this.id)
     this.getData()
 
   }
@@ -55,6 +55,8 @@ export class ListProductVentaComponent implements OnInit {
           this.inicio_slice = 0;
           this.actualizarCliente(this.id,this.rut,this.array,producto,operacion)
           this.getData()
+          this.newSuma(this.rut)
+          this.updateVenta(this.id)
         
         }
         else{
@@ -182,11 +184,30 @@ export class ListProductVentaComponent implements OnInit {
             icon: 'error',
           })
         }
+        this.newSuma(this.rut)
       }
+      
     )
 
 
   }
 
+
+  newSuma(rut:string){
+    this.serviceCliente.calcularTotalVenta(rut).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
+
+
+  updateVenta(id:string){
+    this.serviceCliente.updateVenta(id).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
 
 }
