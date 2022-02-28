@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { delay } from 'rxjs/operators';
+import { productoComprado } from 'src/app/ventas/services/ventas.service';
 
 
 @Injectable({
@@ -34,6 +35,40 @@ export class ClienteService {
     )
   }
 
+  actualizarVenta(idVenta:string,rut:string,array:any[],producto:any,indicador:string){
+    
+    
+    return this.http.post(environment.baseUrl+'/actualizar/carrito/Cliente',{idVenta,rut})
+  }
+
+
+  deleteCliente(rut:string){
+    return this.http.post(environment.baseUrl+'/delete/cliente',{rut});
+  }
+
+  modificarEstadoVenta(estado:string,rut:string,idVenta:string){
+    var aux = ''
+    if(estado == 'pagado'){
+      aux = 'pendiente'
+    }
+    if(estado =='pendiente'){
+      aux = 'pagado'
+    }
+    return this.http.post(environment.baseUrl+'/modificar/estado',{aux,rut,idVenta});
+  }
+
+  deleteVenta(rut:string,id:string){
+    return this.http.post(environment.baseUrl+'/delete/venta',{rut,id});
+  }
+
+  calcularTotalVenta(rut:string){
+    return this.http.post(environment.baseUrl+'/calcular/total/Venta',{rut});
+  }
+
+
+  updateVenta(id:string){
+    return this.http.post(environment.baseUrl+'/update/venta',{id});
+  }
 
 }
 

@@ -18,10 +18,9 @@ export class ListProductVentaComponent implements OnInit {
   index_aux = 0;
   resto=0;
   final = 0;
-
-  array = [1,2,3,4,5,6,7,8,9,10,12,13]
+  // array = [1,2,3,4,5,6,7,8,9,10,12,13]
   
-  // array:productoComprado[]=[]
+  array:productoComprado[]=[]
 
   inicio:any=0;
 
@@ -37,36 +36,64 @@ export class ListProductVentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.resto = this.array.length%4
-    this.nf_for_next();
+    // this.nf_for_next();
     
-
-    // this.getData()
+    this.updateVenta(this.id)
+    this.getData()
 
   }
 
-  // getData(){
-  //   this.service.getVentaAndCliente(this.id,this.rut).subscribe(
-  //     (res:any)=>{
-  //       if(res.status!=404){
-  //         res.dataVenta.productos.forEach((element:productoComprado) => {
-  //           this.array.push(element)
-  //           if(this.array.length == res.dataVenta.productos.length){
-  //             this.nf_for_next();
-  //             
-  //           }
-  //         });
-  //       }
-  //       else{
-  //         Swal.fire({
-  //           title: 'Error!',
-  //           text: 'Datos de entrada incorrectos!',
-  //           icon: 'error',
+ modify(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
+    
+    // operacion s r d
+    
+    this.service.deleteProduct(array,producto,idVenta,operacion).subscribe(
+      (res:any)=>{
+        if(res.status==200){
+          this.array = []
+          this.indice_espera = 4;
+          this.inicio_slice = 0;
+          this.actualizarCliente(this.id,this.rut,this.array,producto,operacion)
+          this.getData()
+          this.newSuma(this.rut)
+          this.updateVenta(this.id)
+        
+        }
+        else{
+          Swal.fire({
+            title: 'Error!',
+          text: 'No se pudo editar el producto',
+          icon: 'error',})
+        }
+        
+      }
+    )
+  }
+
+
+  getData(){
+    this.service.getVentaAndCliente(this.id,this.rut).subscribe(
+      (res:any)=>{
+        if(res.status!=404){
+          res.dataVenta.productos.forEach((element:productoComprado) => {
+            this.array.push(element)
+            if(this.array.length == res.dataVenta.productos.length){
+              this.nf_for_next();
+              
+            }
+          });
+        }
+        else{
+          Swal.fire({
+            title: 'Error!',
+            text: 'Datos de entrada incorrectos!',
+            icon: 'error',
        
-  //         })
-  //       }
-  //     }
-  //   )
-  // }
+          })
+        }
+      }
+    )
+  }
   
 
 
@@ -145,5 +172,42 @@ export class ListProductVentaComponent implements OnInit {
 
 
 
+
+  actualizarCliente(idVenta:string,rut:string,array:any,producto:any,indicador:string){
+    this.serviceCliente.actualizarVenta(idVenta,rut,this.array,producto,indicador)
+    .subscribe(
+      (res:any)=>{
+        if(res.status == 500){
+          Swal.fire({
+            title: '',
+            text: 'No se pudo modificar el producto :(',
+            icon: 'error',
+          })
+        }
+        this.newSuma(this.rut)
+      }
+      
+    )
+
+
+  }
+
+
+  newSuma(rut:string){
+    this.serviceCliente.calcularTotalVenta(rut).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
+
+
+  updateVenta(id:string){
+    this.serviceCliente.updateVenta(id).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
 
 }

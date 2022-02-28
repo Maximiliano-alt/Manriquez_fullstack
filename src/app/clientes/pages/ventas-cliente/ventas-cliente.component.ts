@@ -18,11 +18,11 @@ export class VentasClienteComponent implements OnInit {
   final = 0;
 
 
-  array=[
-    1,2,3,4,5,6,7,8,9,10,11,12,13,
-  ]
+  // array=[
+  //   1,2,3,4,5,6,7,8,9,10,11,12,13,
+  // ]
 
-  // array:venta[]=[]
+  array:venta[]=[]
 
   inicio:any=0;
 
@@ -37,52 +37,64 @@ export class VentasClienteComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem('dataToken',this.rut)
     this.resto = this.array.length%4
-    this.nf_for_next();
-    // this.getCliente()
+    // this.nf_for_next();
+    this.getCliente();
+    this.newSuma(this.rut); //ordenamos la data del cliente en el back
   }
 
-  // getCliente(){
-  //   this.service.getOneClient(this.rut).subscribe(
-  //     (res:any)=>{
-  //       if(res.status == 200){
-  //         this.cliente = res.data
-  //         this.getVentasCliente();
-  //       }
-  //       else{
-  //         Swal.fire({
-  //           title: '',
-  //           text: 'Este usuario no se encuentra',
-  //           icon: 'error',
-  //         })
-  //         this.router.navigate(['/clientes/clientes'])    
-  //       }
-  //     }
-  //   )
-  // }
+  getCliente(){
+    this.service.getOneClient(this.rut).subscribe(
+      (res:any)=>{
+        if(res.status == 200){
+          this.cliente = res.data
+          this.getVentasCliente();
+        }
+        else{
+          Swal.fire({
+            title: '',
+            text: 'Este usuario no se encuentra',
+            icon: 'error',
+          })
+          this.router.navigate(['/clientes/clientes'])    
+        }
+      }
+    )
+  }
 
 
-  // getVentasCliente(){
-  //   this.service.getVentasClient(this.rut).subscribe(
-  //     (res:any)=>{
-  //       if(res.historial){
-  //         res.historial.forEach((element:venta) => {
-  //           this.array.push(element);
-  //         });
-  //         if(res.historial.length == this.array.length){
-  //           this.nf_for_next()
-  //         }
-  //       }
-  //       else{
-  //         Swal.fire({
-  //           title: '',
-  //           text: 'Usuario incorrecto!',
-  //           icon: 'error',
-  //         })
-  //          this.router.navigate(['/clientes/clientes'])
-  //       }
-  //     }
-  //   )
-  // }
+  getVentasCliente(){
+    this.service.getVentasClient(this.rut).subscribe(
+      (res:any)=>{
+      
+        if(res.historial){
+          res.historial.forEach((element:venta) => {
+            this.array.push(element);
+          });
+         
+          if(res.historial.length == 0){
+            Swal.fire({
+              title: '',
+              text: 'Aun no se ingresan ventas a este cliente',
+              icon: 'error',
+            })
+            
+          }
+          
+          if(res.historial.length == this.array.length){
+            this.nf_for_next()
+          }
+        }
+        else{
+          Swal.fire({
+            title: '',
+            text: 'Usuario incorrecto!',
+            icon: 'error',
+          })
+           this.router.navigate(['/clientes/clientes'])
+        }
+      }
+    )
+  }
 
   nf_for_next():number{
     var aux = this.segmento;
@@ -157,6 +169,31 @@ export class VentasClienteComponent implements OnInit {
     }
     
    
+  }
+
+
+
+  delete(rut:string){
+    this.service.deleteCliente(rut).subscribe(
+      (res:any)=>{
+        if(res.status==200){
+          Swal.fire({
+            title: '',
+            text: 'Cliente eliminado correctamente!',
+            icon: 'success',
+          })
+        }
+      }
+    )
+  }
+
+
+  newSuma(rut:string){
+    this.service.calcularTotalVenta(rut).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
   }
 
 }
