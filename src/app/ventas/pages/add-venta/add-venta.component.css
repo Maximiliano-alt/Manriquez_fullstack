@@ -4,12 +4,23 @@
     color: white;
     transform: translate(0,53px);
     display: flex;
+    justify-content: center;
+}
+form{
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+}
+.container-info{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
 }
 .input-info{
     width: 100%;
-    height: 38%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +28,7 @@
 }
 .search-cliente, .search-productos{
     width: 100%;
-    height: 30%;
+    height: 28%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,7 +72,7 @@ input{
 }
 .data-cliente-container, .productos{
     width: 80%;
-    height: 70%;
+    height: 72%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -161,67 +172,73 @@ input{
     height: 20%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 .button-footer{
-    width: 312px;
-    height: 30%;
+    width: 100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.button-footer button{
+    width: 80%;
+    height: 65%;
     background: #F25C05 0% 0% no-repeat padding-box;
     border-radius: 16px;
     opacity: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15px;   
+}
+
+@media screen and (min-width:430px){
+    .button-footer button{
+        width: 340px;
+    }
 }
 
 @media screen and (min-width:550px){
-    .search-cliente, .search-productos{
-
-    }
-    .input-info{
+    form{
         width: 550px;
-        height: 39%;
     }
-    .buttons{
-        height: 18%;
+    .button-footer{
+        height: 40%;
+        align-items: flex-end;
     }
 }
 
 @media screen and (min-width:1024px) {
-    .container-general{
+    form{
+        width: 975px;
+        align-items: center;
+    }
+    .container-info{
+        width: 100%;
+        height: 75%;
         flex-direction: row;
-        justify-content: center;
     }
     .input-info{
-        width: 360px;
+        width: 50%;
         height: 100%;
-    }
-    #container-productos{
-        transform: translateX(300px);
     }
     .search-cliente, .search-productos{
         height: 20%;
-    }
+    } 
     .data-cliente-container, .productos{
-        width: 90%;
-        height: 50%;
+        height: 60%;
+    }
+    .navbar-productos{
+        height: 20%
     }
     .buttons{
-        width: 307px;
-        height: 100%;
+        width: 70%;
+        height: 25%;
         flex-direction: row;
-        transform: translateX(-370px);
     }
     .button-footer{
         width: 50%;
-        height: 10%;
         align-items: center;
-        margin-left: 15px;   
     }
-    .navbar-productos{
-        height: 15%;
+    .button-footer button{
+        width: 80%;
     }
-
 }
