@@ -40,11 +40,11 @@
             </div>
         </div>
         <div class="productos">
-           <div class="productos-data">
-                <div class="producto">
+           <div class="productos-data" >
+                <div class="producto" *ngFor="let product of listaProductos">
                     <div class="data">
-                        <p> <b>Nombre: </b> &nbsp;Producto 1 </p>
-                        <p> <b>Valor: </b>&nbsp; $1200 </p>
+                        <p> <b>Nombre: </b> &nbsp;{{product.nombre}}</p>
+                        <p> <b>Valor: </b>&nbsp; ${{product.valor}} </p>
                     </div>
                     <div class="button">
                         <div class="delete">
@@ -59,60 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="producto">
-                    <div class="data">
-                        <p> <b>Nombre: </b> &nbsp;Producto 1 </p>
-                        <p> <b>Valor: </b>&nbsp; $1200 </p>
-                    </div>
-                    <div class="button">
-                        <div class="delete">
-                            <button>
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                        <div class="add">
-                            <button>
-                                <mat-icon>add</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="producto">
-                    <div class="data">
-                        <p> <b>Nombre: </b> &nbsp;Producto 1 </p>
-                        <p> <b>Valor: </b>&nbsp; $1200 </p>
-                    </div>
-                    <div class="button">
-                        <div class="delete">
-                            <button>
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                        <div class="add">
-                            <button>
-                                <mat-icon>add</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="producto">
-                    <div class="data">
-                        <p> <b>Nombre: </b> &nbsp;Producto 1 </p>
-                        <p> <b>Valor: </b>&nbsp; $1200 </p>
-                    </div>
-                    <div class="button">
-                        <div class="delete">
-                            <button>
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                        <div class="add">
-                            <button>
-                                <mat-icon>add</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                
                   
             </div>
            <div class="navbar-productos">
