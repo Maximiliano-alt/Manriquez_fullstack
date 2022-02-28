@@ -1,83 +1,85 @@
 <app-navbar [var]="{route:'/ventas',title:'Agregar nueva venta'}" ></app-navbar>
  <div class="container-general">
-
-    <div class="input-info">
-        <div class="search-cliente">
-            <div class="button-search">
-                <button (click)=" searchCliente(this.rut)">
-                    <mat-icon>search</mat-icon>
-                </button>
-            </div>
-            <div class="input-search">
-                <input [(ngModel)]="this.rut" type="text" placeholder="Ingrese el rut del cliente">
-            </div>
-        </div>
-
-        <div class="data-cliente-container">
-            <div class="nav-data" *ngIf="this.cliente.nombre!=''">
-                Cliente: {{this.cliente.nombre}}
-            </div>
-            <div class="data-cliente" *ngIf="this.cliente.nombre!=''">
-                <p> <b>Direccion:</b> &nbsp; {{this.cliente.direccion}} </p>
-                <p> <b>Telefono:</b>&nbsp; {{this.cliente.telefono}} </p>
-                <p><b>Correo:</b>&nbsp; {{this.cliente.correo}} </p>
-                <p><b>Rut:</b> &nbsp;{{this.cliente.rut}}</p>
-            </div>
-            <h1 style="color:black; font-size: 20px; margin: auto;" *ngIf="this.cliente.nombre=='' && this.buscado == 0">Ingrese el rut del cliente para mostrar informacion</h1>
-            <h1 style="color:black; font-size: 20px; margin: auto;" *ngIf="this.cliente.nombre=='' && this.buscado == 1">El usuario no fue encontrado</h1>
-            <a *ngIf="this.cliente.nombre=='' && this.buscado == 1" style="color:black; font-size: 15px; margin: auto;" [routerLink]="['/clientes/add/cliente']">Haz click aqui para agregar uno nuevo!</a>
-        </div>
-    </div>
-    <div class="input-info" id="container-productos">
-        <div class="search-productos">
-            <div class="button-search">
-                <button>
-                    <mat-icon>search</mat-icon>
-                </button>
-            </div>
-            <div class="input-search">
-                <input type="text" placeholder="Buscar Producto">
-            </div>
-        </div>
-        <div class="productos">
-           <div class="productos-data" >
-                <div class="producto" *ngFor="let product of listaProductos">
-                    <div class="data">
-                        <p> <b>Nombre: </b> &nbsp;{{product.nombre}}</p>
-                        <p> <b>Valor: </b>&nbsp; ${{product.valor}} </p>
+    <form>
+        <div class="container-info">
+            <div class="input-info">
+                <div class="search-cliente">
+                    <div class="button-search">
+                        <button (click)=" searchCliente(this.rut)">
+                            <mat-icon>search</mat-icon>
+                        </button>
                     </div>
-                    <div class="button">
-                        <div class="delete">
-                            <button>
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                        <div class="add">
-                            <button>
-                                <mat-icon>add</mat-icon>
-                            </button>
-                        </div>
+                    <div class="input-search">
+                        <input [(ngModel)]="this.rut" type="text" placeholder="Ingrese el rut del cliente">
                     </div>
+                </div>
+                <div class="data-cliente-container">
+                    <div class="nav-data" *ngIf="this.cliente.nombre!=''">
+                        Cliente: {{this.cliente.nombre}}
+                    </div>
+                    <div class="data-cliente" *ngIf="this.cliente.nombre!=''">
+                        <p> <b>Direccion:</b> &nbsp; {{this.cliente.direccion}} </p>
+                        <p> <b>Telefono:</b>&nbsp; {{this.cliente.telefono}} </p>
+                        <p><b>Correo:</b>&nbsp; {{this.cliente.correo}} </p>
+                        <p><b>Rut:</b> &nbsp;{{this.cliente.rut}}</p>
+                    </div>
+                    <h1 style="color:black; font-size: 20px; margin: auto;" *ngIf="this.cliente.nombre=='' && this.buscado == 0">Ingrese el rut del cliente para mostrar informacion</h1>
+                    <h1 style="color:black; font-size: 20px; margin: auto;" *ngIf="this.cliente.nombre=='' && this.buscado == 1">El usuario no fue encontrado</h1>
+                    <a *ngIf="this.cliente.nombre=='' && this.buscado == 1" style="color:black; font-size: 15px; margin: auto;" [routerLink]="['/clientes/add/cliente']">Haz click aqui para agregar uno nuevo!</a>
+                </div>
+            </div>
+            <div class="input-info">
+                <div class="search-productos">
+                    <div class="button-search">
+                        <button>
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                    <div class="input-search">
+                        <input type="text" placeholder="Buscar Producto">
+                    </div>
+                </div>
+                <div class="productos">
+                   <div class="productos-data">
+                        <div class="producto" *ngFor="let product of listaProductos">
+                            <div class="data">
+                                <p> <b>Nombre: </b> &nbsp;{{product.nombre}} </p>
+                                <p> <b>Valor: </b>&nbsp; ${{product.valor}} </p>
+                            </div>
+                            <div class="button">
+                                <div class="delete">
+                                    <button>
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </div>
+                                <div class="add">
+                                    <button>
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                                         
+                    </div>
+                   <div class="navbar-productos">
+                        Ver productos
+                   </div>
                 </div>
                 
                   
             </div>
-           <div class="navbar-productos">
-                Ver productos
-           </div>
         </div>
-    </div>
-
-    <div class="buttons">
-        <div class="button-footer">
-            <button style="color: white;">
-                Crear venta
-            </button>
+        <div class="buttons">
+            <div class="button-footer">
+                <button style="color: white;">
+                    Crear venta
+                </button>
+            </div>
+            <div class="button-footer">
+                <button style="color: white;">
+                    Cancelar
+                </button>
+            </div>
         </div>
-        <div class="button-footer">
-            <button style="color: white;">
-                Cancelar
-            </button>
-        </div>
-    </div>
+    </form>  
 </div>
