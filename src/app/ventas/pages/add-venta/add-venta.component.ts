@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { VentasService } from '../../services/ventas.service';
-import { cliente } from 'src/app/clientes/service/cliente.service';
+import { delay } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { VentasService,producto,cliente, productoComprado, venta } from '../../services/ventas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-venta',
   templateUrl: './add-venta.component.html',
   styleUrls: ['./add-venta.component.css']
 })
-export class AddVentaComponent implements OnInit {
 
+
+export class AddVentaComponent implements OnInit {
+  marcadorListaProducto = 0;
+  filtroProduct= '';
   rut!:string;
   cliente:cliente={
     nombre: '',
@@ -17,17 +22,61 @@ export class AddVentaComponent implements OnInit {
     correo: '',
     rut: '',
     totalDeCompra:0,
-  historial:
-  //historial de compras
-  []
+    historial:[]
   };
 
+
+  venta : venta = {
+    id_Venta: 0, //valor automatico en hora minuto segundo y fecha
+    cliente: {
+        nombre: '',
+        apellidos: '',
+        direccion: '',
+        telefono: '',
+        correo: '',
+        rut: '',
+    }, //son objectos de Cliente
+
+    estado: 'pendiente',
+    productos:[
+      
+    ], //son objectos de productos
+    fecha: 0, //valor automatico en hora minuto segundo y fecha
+    servicios: '',
+    porcentaje: 0,
+    totalDeVenta:0,
+    envio:'pendiente'} // aca se almacena la venta
+
+
+  container=0;//aca funciona el container general!
+
+  listaProductos:producto[]=[]
+  listaProductosEnLista:productoComprado[]=[] //los productos que hay que agregar a la venta
   buscado = 0;
 
   
-  constructor(private service:VentasService) { }
+  constructor(private service:VentasService, private router:Router) { }
 
   ngOnInit(): void {
+    this.getProductos()
+  }
+
+
+  getProductos(){
+
+    this.marcadorListaProducto = 0;
+    this.service.getProductos().subscribe(
+      res=>{
+    
+        res.forEach(element => {
+          this.listaProductos.push(element)
+          if(this.listaProductos.length == res.length){
+            this.marcadorListaProducto = 1
+          }
+        });
+
+      }
+    )
   }
 
 
@@ -60,10 +109,141 @@ export class AddVentaComponent implements OnInit {
       correo: '',
       rut: '',
       totalDeCompra:0,
-    historial:
-    //historial de compras
-    []
+      historial:[]
     };
   }
 
+
+  methodsAdd(producto:producto){
+  
+    var productoComprado:productoComprado={
+      nombre: producto.nombre,
+      valor: producto.valor,
+      descripcion: producto.descripcion,
+      cantidad: 1 ,//valor por default
+    };
+
+    var existencia = 0
+    this.listaProductosEnLista.forEach((e)=>{
+
+      if(e.nombre == productoComprado.nombre){
+        existencia = 1
+      }
+      
+    })
+    if(existencia == 0){
+      this.listaProductosEnLista.push(productoComprado)
+    }
+    
+  }
+
+
+  verProducto(valor:number){
+    //mostramos la compra que lleva!
+    this.container = valor;
+
+  }
+
+  
+  addCantidad(producto:productoComprado){
+    var index = this.listaProductosEnLista.indexOf(producto)
+    this.listaProductosEnLista[index].cantidad = this.listaProductosEnLista[index].cantidad  + 1 ;
+  }
+
+
+  deleteCantidad(producto:productoComprado){
+
+    var index = this.listaProductosEnLista.indexOf(producto)
+    if(this.listaProductosEnLista[index].cantidad >  1){
+      this.listaProductosEnLista[index].cantidad = this.listaProductosEnLista[index].cantidad - 1 ;
+    }
+    else{
+      Swal.fire({
+        title: '',
+        text: 'Mejor eliminalo solo tienes una cantidad!',
+        icon: 'warning',
+      })
+    }
+  }
+
+  eliminarOfLista(producto:productoComprado){
+
+    var index = this.listaProductosEnLista.indexOf(producto);
+    var aux = this.listaProductosEnLista[0]
+    
+    this.listaProductosEnLista[0] = this.listaProductosEnLista[index];
+    this.listaProductosEnLista[index] = aux;
+    
+
+    this.listaProductosEnLista.splice(0,1);
+    
+
+  }
+
+  crearVenta(){
+   
+    if(this.cliente.nombre == ""){
+      Swal.fire({
+        title: '',
+        text: 'Debes seleccionar un cliente!',
+        icon: 'warning',
+      })
+    }
+ 
+    if(this.listaProductosEnLista.length == 0){
+      Swal.fire({
+        title: '',
+        text: 'Debes seleccionar al menos un producto!',
+        icon: 'warning',
+      })
+    }
+    if(this.venta.porcentaje == 0){
+      Swal.fire({
+        title: '',
+        text: 'Debes ingresar porcentaje de utilidad!',
+        icon: 'warning',
+      })
+    }
+  
+    else if(this.venta.porcentaje > 0 && this.listaProductosEnLista.length != 0 && this.cliente.nombre != ""){
+     
+      //guardamos al cliente en venta!
+
+      this.venta.cliente.nombre = this.cliente.nombre
+      this.venta.cliente.correo = this.cliente.correo
+      this.venta.cliente.rut = this.cliente.rut
+      this.venta.cliente.telefono = this.cliente.telefono
+      this.venta.cliente.direccion = this.cliente.direccion
+      var suma = 0
+      this.listaProductosEnLista.forEach((e)=>{
+        suma = suma  + e.cantidad*e.valor;
+      })
+      this.venta.totalDeVenta = suma;
+      this.listaProductosEnLista.forEach((e)=>{
+        this.venta.productos.push(e);
+      })
+      
+      this.service.addVenta(this.venta).subscribe(
+        (res:any)=>{
+          if(res.status == 200){
+            Swal.fire({
+              title: '',
+              text: 'Ingreso correcto de la venta modifica esta misma en ventas',
+              icon: 'success',
+            })
+            delay(2000);
+            this.router.navigate(['/ventas/loadVentas']);
+          }
+          else{
+            Swal.fire({
+              title: '',
+              text: 'Ingreso fallido de la venta intenta mas tarde',
+              icon: 'error',
+            })
+          }
+        }
+      )
+
+    }
+  }
 }

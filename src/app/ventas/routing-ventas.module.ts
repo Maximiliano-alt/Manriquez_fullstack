@@ -21,7 +21,7 @@ const rutas : Routes=[
         component:AddVentaComponent,
       },
       {
-        path:'venta/:id',
+        path:'venta/:id/:rut',
         component:VentaUnicaComponent,
       },
       {

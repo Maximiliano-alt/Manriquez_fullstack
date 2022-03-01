@@ -1,163 +1,127 @@
 <app-navbar [var]="{route:'/ventas',title:'Agregar nueva venta'}" ></app-navbar>
- <div class="container-general">
-
-
-    <div class="search-cliente">
-        <div class="button-search">
-            <button (click)=" searchCliente(this.rut)">
-                <mat-icon>search</mat-icon>
-            </button>
-        </div>
-        <div class="input-search">
-            <input [(ngModel)]="this.rut" type="text" placeholder="Ingrese el rut del cliente">
-      
-        </div>
-    </div>
-
-  
-    <div class="search-cliente-grande">
-        <div class="input-search">
-            <input [(ngModel)]="this.rut" type="text" placeholder="Ingrese el rut del cliente">
-            
-        </div>
-        <div class="button-search">
-            <button (click)=" searchCliente(this.rut)">
-                <mat-icon>search</mat-icon>
-            </button>
-        </div>
-       
-    </div>
-  
-
-    <div class="data-cliente-container">
-        <div class="nav-data" *ngIf="this.cliente.nombre!=''">
-            Cliente: {{this.cliente.nombre}}
-        </div>
-        <div class="data-cliente" *ngIf="this.cliente.nombre!=''">
-            <p> <b>Direccion:</b> &nbsp; {{this.cliente.direccion}} </p>
-            <p> <b>Telefono:</b>&nbsp; {{this.cliente.telefono}} </p>
-            <p><b>Correo:</b>&nbsp; {{this.cliente.correo}} </p>
-            <p><b>Rut:</b> &nbsp;{{this.cliente.rut}}</p>
-        </div>
-        <h1 style="color:black; font-size: 20px; margin: auto;" *ngIf="this.cliente.nombre=='' && this.buscado == 0">Ingrese el rut del cliente para mostrar informacion</h1>
-        <h1 style="color:black; font-size: 20px; margin: auto;" *ngIf="this.cliente.nombre=='' && this.buscado == 1">El usuario no fue encontrado</h1>
-        <a *ngIf="this.cliente.nombre=='' && this.buscado == 1" style="color:black; font-size: 15px; margin: auto;" [routerLink]="['/clientes/add/cliente']">Haz click aqui para agregar uno nuevo!</a>
-    </div>
-
-    
-    <div  style="margin-bottom: 10px;" class="search-productos">
-        
-        <div class="input-search">
-            <input type="text">
-        </div>
-        <div class="button-search">
-            <button>
-                <mat-icon>search</mat-icon>
-            </button>
-        </div>
-    </div>
-
-    
-
-    <div class="productos">
-       <div class="productos-data">
-            <div class="producto">
-                <div class="data">
-                    <p> <b>Nombre: </b> &nbsp;Producto 1 </p>
-                    <p> <b>Valor: </b>&nbsp; $1200 </p>
+ <div class="container-general" *ngIf="this.container==0">
+    <form>
+        <div class="container-info">
+            <div class="input-info">
+                <div class="search-cliente">
+                    <div class="button-search">
+                        <button (click)=" searchCliente(this.rut)">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                    <div class="input-search">
+                        <input [(ngModel)]="this.rut" name="rut" type="text" placeholder="Ingrese el rut del cliente" autocomplete="off">
+                    </div>
                 </div>
-                <div class="button">
-                    <div class="delete">
-                        <button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
+                <div class="data-cliente-container">
+                    <div class="nav-data" *ngIf="this.cliente.nombre!=''">
+                        Cliente: {{this.cliente.nombre}}
                     </div>
-                    <div class="add">
-                        <button>
-                            <mat-icon>add</mat-icon>
-                        </button>
+                    <div class="data-cliente" *ngIf="this.cliente.nombre!=''">
+                        <p> <b>Direccion:</b> &nbsp; {{this.cliente.direccion}} </p>
+                        <p> <b>Telefono:</b>&nbsp; {{this.cliente.telefono}} </p>
+                        <p><b>Correo:</b>&nbsp; {{this.cliente.correo}} </p>
+                        <p><b>Rut:</b> &nbsp;{{this.cliente.rut}}</p>
                     </div>
+                    <h1 style="color:black; font-size: 20px; margin: auto; text-align: center;" *ngIf="this.cliente.nombre=='' && this.buscado == 0">Ingrese el rut del cliente para mostrar informacion</h1>
+                    <h1 style="color:black; font-size: 20px; margin: auto; text-align: center" *ngIf="this.cliente.nombre=='' && this.buscado == 1">El usuario no fue encontrado</h1>
+                    <a *ngIf="this.cliente.nombre=='' && this.buscado == 1" style="color:black; font-size: 15px; margin: auto;" [routerLink]="['/clientes/add/cliente']">Haz click aqui para agregar uno nuevo!</a>
                 </div>
             </div>
-            <div class="producto">
-                <div class="data">
-                    <p> <b>Nombre: </b> &nbsp;Producto 1 </p>
-                    <p> <b>Valor: </b>&nbsp; $1200 </p>
-                </div>
-                <div class="button">
-                    <div class="delete">
+            <div class="input-info">
+                <div class="search-productos">
+                    <div class="button-search">
                         <button>
-                            <mat-icon>delete</mat-icon>
+                            <mat-icon>search</mat-icon>
                         </button>
                     </div>
-                    <div class="add">
-                        <button>
-                            <mat-icon>add</mat-icon>
-                        </button>
+                    <div class="input-search">
+                        <input [(ngModel)]="this.filtroProduct" name="filtroProducto" type="text" placeholder="Buscar Producto" autocomplete="off" >
                     </div>
                 </div>
+                <div class="productos">
+                   <div class="productos-data">
+                        <div class="producto" *ngFor="let product of listaProductos | filter:this.filtroProduct">
+                            <div class="data">
+                                <p> <b>Nombre: </b> &nbsp;{{product.nombre}} </p>
+                                <p> <b>Valor: </b>&nbsp; ${{product.valor}} </p>
+                            </div>
+                            <div class="button">
+                               
+                                <div class="add">
+                                    <button (click)="methodsAdd(product)">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                                         
+                    </div>
+                   <div (click)=" verProducto(1)" class="navbar-productos">
+                        Ver productos
+                   </div>
+                </div>
+                
+                  
             </div>
-            <div class="producto">
-                <div class="data">
-                    <p> <b>Nombre: </b> &nbsp;Producto 1 </p>
-                    <p> <b>Valor: </b>&nbsp; $1200 </p>
-                </div>
-                <div class="button">
-                    <div class="delete">
-                        <button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </div>
-                    <div class="add">
-                        <button>
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="producto">
-                <div class="data">
-                    <p> <b>Nombre: </b> &nbsp;Producto 1 </p>
-                    <p> <b>Valor: </b>&nbsp; $1200 </p>
-                </div>
-                <div class="button">
-                    <div class="delete">
-                        <button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </div>
-                    <div class="add">
-                        <button>
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-           
-            
         </div>
-       <div class="navbar-productos">
-            Ver productos
-       </div>
-    </div>
+        <div class="utilidad">
+            <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
+            <input [(ngModel)]="this.venta.porcentaje" name="utilidad" type="number" placeholder="ingrese utilidad!" value="none">
+        </div>
+        <div class="buttons">
+            <div class="button-footer">
+                <button (click)=" crearVenta()" style="color: white;">
+                    Crear venta
+                </button>
+            </div>
+            <div class="button-footer">
+                <button style="color: white;">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </form>  
+</div>
 
-    <div class="buttons">
-        <div class="button-footer">
-            <button style="color: white;">
-                Crear venta
-            </button>
-        </div>
-        <div class="button-footer">
-            <button style="color: white;">
-                Cancelar
-            </button>
-        </div>
-    </div>
 
-    <div class="button-ver-productos">
-        <button style="color: white;">
-            Ver productos
+
+
+<div class="slide" *ngIf="this.container == 1">
+    <div class="button">
+        <button (click)="verProducto(0)">
+            <mat-icon>close</mat-icon>
         </button>
+    </div>
+
+    <div class="listadoAgregado">
+        
+        <div class="itemAgregado" *ngFor="let product of this.listaProductosEnLista">
+
+            <div class="dataProduct">
+               
+                <div class="data-line">
+                    <b>Nombre: </b> <p>{{product.nombre}}</p>
+                </div>
+                <div class="data-line">
+                    <b>Valor: </b> <p>{{product.valor}}</p> 
+                </div>
+                
+            </div>
+            <button (click)="eliminarOfLista(product)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button (click)="deleteCantidad(product)">
+                <mat-icon>remove</mat-icon>
+            </button>
+            <input type="number" disabled value={{product.cantidad}}>
+            <button (click)="addCantidad(product)">
+                <mat-icon>add</mat-icon>
+            </button>
+            
+            
+        </div>
+
     </div>
 
 

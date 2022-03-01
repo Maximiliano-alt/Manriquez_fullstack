@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { VentasService,producto, productoComprado } from '../../services/ventas.service';
-import { ClienteService } from 'src/app/clientes/service/cliente.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { productoComprado, VentasService } from 'src/app/ventas/services/ventas.service';
+import { ClienteService } from '../../service/cliente.service';
+
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-list-producto',
-  templateUrl: './list-producto.component.html',
-  styleUrls: ['./list-producto.component.css']
+  selector: 'app-list-product-venta',
+  templateUrl: './list-product-venta.component.html',
+  styleUrls: ['./list-product-venta.component.css']
 })
-export class ListProductoComponent implements OnInit {
+export class ListProductVentaComponent implements OnInit {
+
   id:any
   estado="pagado";
   indice_espera = 4;
@@ -17,33 +19,31 @@ export class ListProductoComponent implements OnInit {
   resto=0;
   final = 0;
   // array = [1,2,3,4,5,6,7,8,9,10,12,13]
+  
   array:productoComprado[]=[]
-  rut!:string;
+
   inicio:any=0;
 
 
   segmento:any=[]
-  
-  constructor( private router:Router, private route: ActivatedRoute,private service: VentasService, private serviceCliente:ClienteService) {
+  rut!:any
+
+  constructor(private router:Router, private route: ActivatedRoute,private service: VentasService,private serviceCliente:ClienteService) {
     this.id = this.route.snapshot.paramMap.get('id')
-    this.rut = localStorage.getItem('dataToken') || "";
-
-  }
-
-
-
- 
-
+    this.rut = this.route.snapshot.paramMap.get('rut')
+    
+   }
 
   ngOnInit(): void {
     this.resto = this.array.length%4
     // this.nf_for_next();
+    
+    this.updateVenta(this.id)
     this.getData()
+
   }
 
-
-
-  modify(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
+ modify(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
     
     // operacion s r d
     
@@ -62,7 +62,7 @@ export class ListProductoComponent implements OnInit {
         else{
           Swal.fire({
             title: 'Error!',
-          text: 'No se pudo eliminar el producto',
+          text: 'No se pudo editar el producto',
           icon: 'error',})
         }
         
@@ -70,19 +70,34 @@ export class ListProductoComponent implements OnInit {
     )
   }
 
+
   getData(){
-    this.service.getProductoForId(this.id).subscribe(
-      res=>{
-        console.log(res)
-        res.forEach((e:productoComprado)=>{
-          this.array.push(e)
-          if(this.array.length == res.length){
-            this.nf_for_next()
-          }
-        })
+    this.service.getVentaAndCliente(this.id,this.rut).subscribe(
+      (res:any)=>{
+        if(res.status!=404){
+          res.dataVenta.productos.forEach((element:productoComprado) => {
+            this.array.push(element)
+            if(this.array.length == res.dataVenta.productos.length){
+              this.nf_for_next();
+              
+            }
+          });
+        }
+        else{
+          Swal.fire({
+            title: 'Error!',
+            text: 'Datos de entrada incorrectos!',
+            icon: 'error',
+       
+          })
+        }
       }
     )
   }
+  
+
+
+
   nf_for_next():number{
     var aux = this.segmento;
     this.segmento = [];
@@ -128,10 +143,7 @@ export class ListProductoComponent implements OnInit {
     }
 
 
-
-
   }
-  
   nf_for_preview():any{
     var aux = this.segmento;
     this.segmento = [];
@@ -157,6 +169,9 @@ export class ListProductoComponent implements OnInit {
     
    
   }
+
+
+
 
   actualizarCliente(idVenta:string,rut:string,array:any,producto:any,indicador:string){
     this.serviceCliente.actualizarVenta(idVenta,rut,this.array,producto,indicador)
@@ -194,6 +209,5 @@ export class ListProductoComponent implements OnInit {
       }
     )
   }
-
 
 }

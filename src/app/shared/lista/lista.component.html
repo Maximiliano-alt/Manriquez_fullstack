@@ -10,16 +10,18 @@
 
         <!-- esta es la data completa -->
         <div class="lista">
-            <!-- clientes, proveedores, pendientes-->
-            <div class="item" *ngFor="let item of this.segmento">
+            <div class="item" *ngFor="let item of this.segmento ">
+                <!-- clientes, proveedores, pendientes-->
                 <div class="CPP" *ngIf="this.limitador == 6">
                     <div class="item-data">
                         <!-- cliente -->
                         <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
-                            <b>Cliente:</b> <p>&nbsp;nombre del cliente</p>
+                            <!-- <b>Cliente:</b> <p>&nbsp;nombre del cliente</p> -->
+                            <b>Cliente:</b> <p>&nbsp;{{item.nombre}}</p>
                         </div>
                         <div class="data-line" *ngIf="this.input.indicador == 'clientes'">
-                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                            <!-- <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p> -->
+                            <b>Rut: </b> <p>&nbsp;{{item.rut}}</p>
                         </div>
                         <!-- proveedor -->
                         <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
@@ -37,7 +39,12 @@
                         </div>
                     </div>
                     <!-- cliente o pendiente-->
-                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes' || this.input.indicador == 'pendientes'">
+                    <div class="item-eye" *ngIf="this.input.indicador == 'clientes' ">
+                        <button class="view">
+                          <a [routerLink]="['/clientes/ventasCliente/'+item.rut]" style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
+                        </button>
+                    </div>
+                    <div class="item-eye" *ngIf="this.input.indicador == 'pendientes'">
                         <button class="view">
                             <a style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
                         </button>
@@ -51,7 +58,7 @@
                     <!-- cliente, proovedor o pendiente-->
                     <div class="item-number">
                         <div class="number">
-                            <b>N°</b> <b>{{item}}</b>
+                            <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
                         </div>
                         <div class="more">
                             <button class="more-button">
@@ -60,11 +67,13 @@
                         </div>
                     </div>               
                 </div>
+                <!-- category-productos, productos, list-compra, ventas-->
                 <div class="CPLV" *ngIf="this.limitador == 4">
-                    <div class="item-view">
+                    <!-- category-productos-->
+                    <div class="item-view"  *ngIf="this.input.indicador == 'cat-products'">
                         <div class="preview">
                             <button class="preview-button">
-                                <a style="text-decoration: none; color: black;" [routerLink]="['/productos/products-category']"><img src="assets\page\view.svg" alt=""></a>
+                                <a style="text-decoration: none; color: black;" [routerLink]="['/productos/products-category/'+item.nombre]"><img src="assets\page\view.svg" alt=""></a>
                             </button>
                         </div>
                         <div class="mas">
@@ -73,19 +82,85 @@
                             </button>
                         </div>
                     </div>
-                    <div class="item-info">
+                    <div class="item-info"  *ngIf="this.input.indicador == 'cat-products'">
                         <div class="data-info">
                             Pisos Flotantes
+                            <!-- {{item.nombre}} -->
                         </div>
                     </div>
-                    <div class="item-edit">
+                    <div class="item-edit"  *ngIf="this.input.indicador == 'cat-products'">
                         <button>
                             <img src="assets\page\modificar icon.svg" alt="">
                         </button>
                     </div>
+                    <!--products o ventas-->
+                    <div class="item-data2" *ngIf="this.input.indicador == 'products' || this.input.indicador == 'ventas'">
+                        <div class="data-line2" *ngIf="this.input.indicador == 'products'">
+                            <b>Nombre:</b>&nbsp;Polera Nike blanca
+                            <!-- <b>Nombre:</b>&nbsp;{{item.nombre}} -->
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
+                            <!-- <b>Cliente:</b>&nbsp;Aracelly Balboa -->
+                            <b>Cliente:</b>&nbsp;{{item.cliente.nombre}}
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'products'">
+                            <b>Talla:</b>&nbsp;Estandar
+                            
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
+                            <!-- <b>Cantidad:</b>&nbsp;5 producto(s) -->
+                            <b>Cantidad:</b>&nbsp;{{item.productos.length}} producto(s)
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'products'">
+                            <b>Stock:</b>&nbsp;18
+                            <!-- <b>Stock:</b>&nbsp;{{item.stock}} -->
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
+                            <!-- <b>Estado:</b>&nbsp;Por pagar -->
+                            <b>Estado:</b>&nbsp;{{item.estado}}
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'products'">
+                            <b>Precio:</b>&nbsp;$15.000
+                            <!-- <b>Precio:</b>&nbsp;{{item.valor}} -->
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
+                            <!-- <b>Envío:</b>&nbsp;pendiente -->
+                            <b>Envío:</b>&nbsp;{{item.envio}}
+                        </div>
+                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
+                            <b>Vendidos:</b>&nbsp;9
+                            <!-- <b>Vendidos:</b>&nbsp;{{item.vecesComprado}} -->
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
+                            <!-- <b>Total:</b>&nbsp;$12.350 -->
+                            <b>Total:</b>&nbsp;${{item.totalDeVenta}}
+                        </div>
+                    </div>
+                    <!--products, ventas-->
+                    <div class="item-eye2" *ngIf="this.input.indicador == 'products' || this.input.indicador == 'ventas'">
+                        <button class="view2" *ngIf="this.input.indicador == 'products'">
+                            <a style="text-decoration: none; color: black;"[routerLink]="['/productos/detail/',123]"><img src="assets\page\view.svg" alt=""></a>
+                        </button>
+                        <button class="view-more" *ngIf="this.input.indicador == 'ventas'">
+
+                            <!-- este direcciona a la venta le tengo que pasar un rut por parametro! -->
+                            <a [routerLink]="['/ventas/venta/'+item._id+'/'+item.cliente.rut]" style="text-decoration: none; color: #fff;">Ver mas+</a>
+                        </button>
+                    </div>
+                    <!--products, ventas-->
+                    <div class="item-number2" *ngIf="this.input.indicador == 'products' || this.input.indicador == 'ventas'">
+                        <div class="number2">
+                            <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
+                        </div>
+                        <div class="more2" *ngIf="this.input.indicador == 'products'">
+                            <button class="more-button2">
+                                <img src="assets\page\options_more_icon_208209.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+
                 </div>           
             </div>
-            <!-- category-productos, productos, list-compra, ventas-->
 
         </div>
 

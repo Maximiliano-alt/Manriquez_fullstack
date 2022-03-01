@@ -1,4 +1,4 @@
-<app-navbar [var]="{route:'/ventas/loadVentas',title:'Venta unica'}" ></app-navbar>
+<app-navbar [var]="{route:'/clientes/clientes',title:'Venta unica'}" ></app-navbar>
 
 <div class="spiner" *ngIf="dataIndicador == 0">
     <div  class="spinner-border" role="status" >
@@ -9,7 +9,7 @@
 
 
 <!-- *ngIf="dataIndicador == 1" -->
-<div class="container-general" *ngIf="dataIndicador == 1" >
+<div class="container-general" >
     <div class="data">
         <div class="data-nav">
             <!-- Cliente: Aracelly Balboa -->
@@ -53,12 +53,12 @@
         <div *ngIf="this.estado == 'pagado'"  class="button">
             Crear guia de venta
         </div>
-        <div (click)="delete(this.id,this.rut)" class="button">
+        <div (click)="delete(this.id,this.rut)"   class="button">
             Eliminar
         </div>
         <div style="margin: 0;" class="button">
-           <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
-           <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
+           <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a>
+          
         </div>
 
     </div>
@@ -84,17 +84,17 @@
                 Crear guia de venta
             </div>
             <div *ngIf="this.estado == 'pendiente'"   style="margin-right: 31px;"  class="button-par">
-                <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]">
+                <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]">
                     Ver productos
                 </a>
             </div>
-            <div style="margin: 0;" (click)="delete(this.id,this.rut)"   class="button-par">
+            <div style="margin: 0;" (click)="delete(this.id,this.rut)"  class="button-par">
                Eliminar
             </div>
         </div>
         <div *ngIf="this.estado == 'pagado'" style="margin: 0; width: 100%;"  class="button">
-           <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
-           <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
+           <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a>
+           
         </div>
 
 

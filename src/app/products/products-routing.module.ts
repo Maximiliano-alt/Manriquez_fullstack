@@ -14,7 +14,7 @@ const routes:Routes=[
     path:'',
     children:[
       {
-        path:'products-category',
+        path:'products-category/:categoria',
         component:HomeProductsComponent,
       },
       {

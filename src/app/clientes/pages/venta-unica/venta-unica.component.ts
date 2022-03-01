@@ -1,36 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { VentasService } from '../../services/ventas.service';
-import { Router,ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { VentasService } from 'src/app/ventas/services/ventas.service';
+import { ClienteService } from '../../service/cliente.service';
 import Swal from 'sweetalert2';
-import { delay } from 'rxjs/operators';
-
-import { ClienteService } from 'src/app/clientes/service/cliente.service';
 @Component({
   selector: 'app-venta-unica',
   templateUrl: './venta-unica.component.html',
   styleUrls: ['./venta-unica.component.css']
 })
 export class VentaUnicaComponent implements OnInit {
-  estado=""; //pendiente o pagado
+  estado="pagado"; //pendiente o pagado
   id:any="";
-  constructor( private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService) {
+  constructor(private serviceCliente: ClienteService, private router:Router, private route: ActivatedRoute,private service: VentasService) {
     this.id = this.route.snapshot.paramMap.get('id')
-    this.rut = this.route.snapshot.paramMap.get('rut')
-    localStorage.setItem('dataToken',this.rut);
   }
 
   cliente!:any;
-  rut!:any
+  rut!:string
   ventaProductos:any
   dataIndicador  = 0
 
   ngOnInit(): void {
-   
+    this.rut = localStorage.getItem('dataToken') || ""
     this.getClienteAndVenta()
+    this.updateVenta(this.id)
   }
 
-
-  getClienteAndVenta(){
+   getClienteAndVenta(){
 
 
     this.service.getVentaAndCliente(this.id,this.rut).subscribe(
@@ -44,7 +40,7 @@ export class VentaUnicaComponent implements OnInit {
           this.router.navigate(['/clientes/clientes'])
         }
         else{
-          
+
           this.cliente = res.data
           this.ventaProductos = res.dataVenta
           this.dataIndicador = 1
@@ -55,11 +51,6 @@ export class VentaUnicaComponent implements OnInit {
 
   }
 
-
-  ver_producto():number{
-    
-    return 0;
-  }
   
   cotizacion():number{
     console.log("crear cotizacion again");
@@ -74,7 +65,6 @@ export class VentaUnicaComponent implements OnInit {
             text: 'Modificacion correcta!',
             icon: 'success',
           })
-          delay(2000)
           window.location.reload()
         }
       }
@@ -109,17 +99,18 @@ export class VentaUnicaComponent implements OnInit {
   newSuma(rut:string){
     this.serviceCliente.calcularTotalVenta(rut).subscribe(
       res=>{
-        
+    
       }
     )
   }
 
+
   updateVenta(id:string){
     this.serviceCliente.updateVenta(id).subscribe(
       res=>{
-        
+    
       }
     )
   }
-  
+
 }
