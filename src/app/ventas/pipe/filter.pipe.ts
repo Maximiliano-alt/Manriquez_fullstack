@@ -13,7 +13,7 @@ export class FilterPipe implements PipeTransform {
     }
     else{//hay filtro
       value.forEach((element: producto) => {
-        if(element.categoria.toLowerCase() == args.toLowerCase()){
+        if(element.nombre == args.toLowerCase()){
           resultPost.push(element)
         }
       });

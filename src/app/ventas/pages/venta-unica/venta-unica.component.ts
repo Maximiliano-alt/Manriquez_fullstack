@@ -15,15 +15,17 @@ export class VentaUnicaComponent implements OnInit {
   id:any="";
   constructor( private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService) {
     this.id = this.route.snapshot.paramMap.get('id')
+    this.rut = this.route.snapshot.paramMap.get('rut')
+    localStorage.setItem('dataToken',this.rut);
   }
 
   cliente!:any;
-  rut!:string
+  rut!:any
   ventaProductos:any
   dataIndicador  = 0
 
   ngOnInit(): void {
-    this.rut = localStorage.getItem('dataToken') || ""
+   
     this.getClienteAndVenta()
   }
 

@@ -142,7 +142,9 @@
                             <a style="text-decoration: none; color: black;"[routerLink]="['/productos/detail/',123]"><img src="assets\page\view.svg" alt=""></a>
                         </button>
                         <button class="view-more" *ngIf="this.input.indicador == 'ventas'">
-                            <a [routerLink]="['/ventas/venta/'+item._id]" style="text-decoration: none; color: #fff;">Ver mas+</a>
+
+                            <!-- este direcciona a la venta le tengo que pasar un rut por parametro! -->
+                            <a [routerLink]="['/ventas/venta/'+item._id+'/'+item.cliente.rut]" style="text-decoration: none; color: #fff;">Ver mas+</a>
                         </button>
                     </div>
                     <!--products, ventas-->
