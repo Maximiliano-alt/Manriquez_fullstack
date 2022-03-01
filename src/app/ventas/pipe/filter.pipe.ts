@@ -7,15 +7,29 @@ import { producto } from '../services/ventas.service';
 export class FilterPipe implements PipeTransform {
 
   transform(value:producto[],args:string): any {
-    const resultPost: producto[]=[];
+    const resultPost: any[]=[];
+    var indicador = 0;  
     if(args == ""){
       return value;
     }
     else{//hay filtro
       value.forEach((element: producto) => {
-        if(element.nombre == args.toLowerCase()){
+        indicador = 0;
+        var aux = element.nombre.toLowerCase().split('');
+        var aux2 = args.toLowerCase().split('');
+        
+        for (let index = 0; index < aux2.length; index++) {
+         
+          if(aux[index] != aux2[index]){
+            indicador = 1
+          }
+          
+          
+        }
+        if(indicador==0){
           resultPost.push(element)
         }
+
       });
       return resultPost;
     } 
