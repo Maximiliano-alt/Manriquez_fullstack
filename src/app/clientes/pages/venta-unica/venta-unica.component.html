@@ -41,7 +41,7 @@
 
     <!-- botones -->
     <div class="buttons">   
-        <div  class="button">
+        <div (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </div>
         <div *ngIf="this.estado == 'pagado'" class="button">

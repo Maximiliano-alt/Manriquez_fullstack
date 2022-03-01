@@ -8,12 +8,14 @@ import { MaterialModule } from '../material/material.module';
 import { VentaUnicaComponent } from './pages/venta-unica/venta-unica.component';
 import { ListProductoComponent } from './pages/list-producto/list-producto.component';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './pipe/filter.pipe';
 @NgModule({
   declarations: [
     ListVentaComponent,
     AddVentaComponent,
     VentaUnicaComponent,
     ListProductoComponent,
+    FilterPipe,
   
   ],
   imports: [
@@ -21,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     RoutingVentasModule,
     SharedModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    
   ]
 })
 export class VentasModule { }

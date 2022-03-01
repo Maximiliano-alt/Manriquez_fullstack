@@ -16,7 +16,7 @@ export class VentasService {
   constructor(private http:HttpClient) { }
 
   addVenta(data:venta){
-    return this.http.post(environment.baseUrl+'/newOrdenDeCompra',data)
+    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data)
   }
 
   getCliente(rut:string){
@@ -89,13 +89,8 @@ export interface venta{
         rut: string,
     }, //son objectos de Cliente
     estado: string,
-    productos:[
-      {
-        nombre: String,
-        valor: number,
-        descripcion: String,
-        cantidad:number,
-      }
+    productos:productoComprado[
+      
     ], //son objectos de productos
     fecha: number, //valor automatico en hora minuto segundo y fecha
     servicios: string,

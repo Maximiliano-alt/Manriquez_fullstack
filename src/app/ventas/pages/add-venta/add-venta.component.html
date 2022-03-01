@@ -36,12 +36,12 @@
                         </button>
                     </div>
                     <div class="input-search">
-                        <input type="text" placeholder="Buscar Producto">
+                        <input [(ngModel)]="this.filtroProduct" name="filtroProducto" type="text" placeholder="Buscar Producto">
                     </div>
                 </div>
                 <div class="productos">
                    <div class="productos-data">
-                        <div class="producto" *ngFor="let product of listaProductos">
+                        <div class="producto" *ngFor="let product of listaProductos | filter:this.filtroProduct">
                             <div class="data">
                                 <p> <b>Nombre: </b> &nbsp;{{product.nombre}} </p>
                                 <p> <b>Valor: </b>&nbsp; ${{product.valor}} </p>
@@ -65,9 +65,13 @@
                   
             </div>
         </div>
+        <div class="utilidad">
+            <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
+            <input [(ngModel)]="this.venta.porcentaje" name="utilidad" type="number" placeholder="ingrese utilidad!" value="none">
+        </div>
         <div class="buttons">
             <div class="button-footer">
-                <button style="color: white;">
+                <button (click)=" crearVenta()" style="color: white;">
                     Crear venta
                 </button>
             </div>

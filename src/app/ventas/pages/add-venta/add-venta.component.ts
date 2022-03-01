@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { delay } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { VentasService,producto,cliente, productoComprado, venta } from '../../services/ventas.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-venta',
@@ -12,6 +13,7 @@ import { VentasService,producto,cliente, productoComprado, venta } from '../../s
 
 export class AddVentaComponent implements OnInit {
   marcadorListaProducto = 0;
+  filtroProduct= '';
   rut!:string;
   cliente:cliente={
     nombre: '',
@@ -37,12 +39,7 @@ export class AddVentaComponent implements OnInit {
 
     estado: 'pendiente',
     productos:[
-      {
-        nombre: '',
-        valor: 0,
-        descripcion: '',
-        cantidad:0,
-      }
+      
     ], //son objectos de productos
     fecha: 0, //valor automatico en hora minuto segundo y fecha
     servicios: '',
@@ -58,7 +55,7 @@ export class AddVentaComponent implements OnInit {
   buscado = 0;
 
   
-  constructor(private service:VentasService) { }
+  constructor(private service:VentasService, private router:Router) { }
 
   ngOnInit(): void {
     this.getProductos()
@@ -136,7 +133,6 @@ export class AddVentaComponent implements OnInit {
     })
     if(existencia == 0){
       this.listaProductosEnLista.push(productoComprado)
-      console.log(this.listaProductosEnLista)
     }
     
   }
@@ -184,4 +180,70 @@ export class AddVentaComponent implements OnInit {
 
   }
 
+  crearVenta(){
+   
+    if(this.cliente.nombre == ""){
+      Swal.fire({
+        title: '',
+        text: 'Debes seleccionar un cliente!',
+        icon: 'warning',
+      })
+    }
+ 
+    if(this.listaProductosEnLista.length == 0){
+      Swal.fire({
+        title: '',
+        text: 'Debes seleccionar al menos un producto!',
+        icon: 'warning',
+      })
+    }
+    if(this.venta.porcentaje == 0){
+      Swal.fire({
+        title: '',
+        text: 'Debes ingresar porcentaje de utilidad!',
+        icon: 'warning',
+      })
+    }
+  
+    else if(this.venta.porcentaje > 0 && this.listaProductosEnLista.length != 0 && this.cliente.nombre != ""){
+     
+      //guardamos al cliente en venta!
+
+      this.venta.cliente.nombre = this.cliente.nombre
+      this.venta.cliente.correo = this.cliente.correo
+      this.venta.cliente.rut = this.cliente.rut
+      this.venta.cliente.telefono = this.cliente.telefono
+      this.venta.cliente.direccion = this.cliente.direccion
+      var suma = 0
+      this.listaProductosEnLista.forEach((e)=>{
+        suma = suma  + e.cantidad*e.valor;
+      })
+      this.venta.totalDeVenta = suma;
+      this.listaProductosEnLista.forEach((e)=>{
+        this.venta.productos.push(e);
+      })
+      
+      this.service.addVenta(this.venta).subscribe(
+        (res:any)=>{
+          if(res.status == 200){
+            Swal.fire({
+              title: '',
+              text: 'Ingreso correcto de la venta modifica esta misma en ventas',
+              icon: 'success',
+            })
+            delay(2000);
+            this.router.navigate(['/ventas/loadVentas']);
+          }
+          else{
+            Swal.fire({
+              title: '',
+              text: 'Ingreso fallido de la venta intenta mas tarde',
+              icon: 'error',
+            })
+          }
+        }
+      )
+
+    }
+  }
 }
