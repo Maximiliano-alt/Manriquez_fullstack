@@ -15,8 +15,8 @@ export class ListProductoComponent implements OnInit {
   index_aux = 0;
   resto=0;
   final = 0;
-  array = [1,2,3,4,5,6,7,8,9,10,12,13]
-  // array:productoComprado[]=[]
+  // array = [1,2,3,4,5,6,7,8,9,10,12,13]
+  array:productoComprado[]=[]
 
   inicio:any=0;
 
@@ -35,49 +35,49 @@ export class ListProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.resto = this.array.length%4
-    this.nf_for_next();
-    // this.getData()
+    // this.nf_for_next();
+    this.getData()
   }
 
 
 
-  // modify(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
+  modify(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
     
-  //   // operacion s r d
+    // operacion s r d
     
-  //   this.service.deleteProduct(array,producto,idVenta,operacion).subscribe(
-  //     (res:any)=>{
-  //       if(res.status==200){
-  //         this.array = []
-  //         this.indice_espera = 4;
-  //         this.inicio_slice = 0;
-  //         this.getData()
+    this.service.deleteProduct(array,producto,idVenta,operacion).subscribe(
+      (res:any)=>{
+        if(res.status==200){
+          this.array = []
+          this.indice_espera = 4;
+          this.inicio_slice = 0;
+          this.getData()
         
-  //       }
-  //       else{
-  //         Swal.fire({
-  //           title: 'Error!',
-  //         text: 'No se pudo eliminar el producto',
-  //         icon: 'error',})
-  //       }
+        }
+        else{
+          Swal.fire({
+            title: 'Error!',
+          text: 'No se pudo eliminar el producto',
+          icon: 'error',})
+        }
         
-  //     }
-  //   )
-  // }
+      }
+    )
+  }
 
-  // getData(){
-  //   this.service.getProductoForId(this.id).subscribe(
-  //     res=>{
-  //       console.log(res)
-  //       res.forEach((e:productoComprado)=>{
-  //         this.array.push(e)
-  //         if(this.array.length == res.length){
-  //           this.nf_for_next()
-  //         }
-  //       })
-  //     }
-  //   )
-  // }
+  getData(){
+    this.service.getProductoForId(this.id).subscribe(
+      res=>{
+        console.log(res)
+        res.forEach((e:productoComprado)=>{
+          this.array.push(e)
+          if(this.array.length == res.length){
+            this.nf_for_next()
+          }
+        })
+      }
+    )
+  }
   nf_for_next():number{
     var aux = this.segmento;
     this.segmento = [];

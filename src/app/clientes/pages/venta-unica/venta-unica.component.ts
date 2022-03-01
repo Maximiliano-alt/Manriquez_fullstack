@@ -99,7 +99,7 @@ export class VentaUnicaComponent implements OnInit {
   newSuma(rut:string){
     this.serviceCliente.calcularTotalVenta(rut).subscribe(
       res=>{
-        console.log(res)
+    
       }
     )
   }
@@ -108,7 +108,7 @@ export class VentaUnicaComponent implements OnInit {
   updateVenta(id:string){
     this.serviceCliente.updateVenta(id).subscribe(
       res=>{
-        console.log(res)
+    
       }
     )
   }

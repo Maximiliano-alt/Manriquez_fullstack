@@ -92,7 +92,7 @@ input{
 }
 .data-cliente{
     width: 100%;
-    height: 70%;
+    height: 90%;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     color: black;
     display: flex;
@@ -146,7 +146,7 @@ input{
 .data{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 500%;
     margin-left: 5%;
 }
 .data p{
@@ -190,15 +190,85 @@ input{
     opacity: 1;
 }
 
-@media screen and (min-width:430px){
+
+.slide{
+    width: 100vw;
+    height: 91.7vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate(0,53px);
+}
+.button{
+    width: 90vw;
+    display: flex;
+    justify-content: right;
+}
+
+
+.listadoAgregado{
+    background-color: black;
+    opacity: 0.9;
+    width: 310px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.itemAgregado{
+    background-color: white;
+    width: 90%;
+    min-height: 100px;
+    margin: 10px 0 10px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 10px;
+}
+.itemAgregado input{
+
+    width: 30px;    
+    text-align: center;
+}
+
+
+.dataProduct{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+.data-line{
+    display: flex;
+    flex-direction: row;
+}
+.data-line p{
+    font-size: 12px;
+}
+.itemAgregado button mat-icon{
+    color: black;
+    font-size: 20px;
+}
+
+@media screen and (min-width:425px){
     .button-footer button{
         width: 340px;
     }
+    .listadoAgregado{
+        width: 410px;   
+    }
+    
 }
 
 @media screen and (min-width:550px){
     form{
         width: 550px;
+    }
+    .listadoAgregado{
+        width: 500px;   
     }
     .button-footer{
         height: 40%;
@@ -210,6 +280,9 @@ input{
     form{
         width: 975px;
         align-items: center;
+    }
+    .data-cliente{
+        height: 95%;
     }
     .container-info{
         width: 100%;
