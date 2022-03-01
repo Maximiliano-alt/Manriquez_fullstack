@@ -54,7 +54,7 @@ export class AddVentaComponent implements OnInit {
   container=0;//aca funciona el container general!
 
   listaProductos:producto[]=[]
-  listaProductosEnLista:productoComprado[]=[]
+  listaProductosEnLista:productoComprado[]=[] //los productos que hay que agregar a la venta
   buscado = 0;
 
   
