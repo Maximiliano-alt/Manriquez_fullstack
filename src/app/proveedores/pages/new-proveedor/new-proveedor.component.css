@@ -1,36 +1,22 @@
 .back-fondo {
-  padding-top: 42px;
+  padding-top: 45px;
   min-width: 100vw;
   min-height: 76vh;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
 }
 button {
   background-color: transparent;
   border: none;
 }
 
-form {
+.formNewProveedores {
   width: 100%;
   height: 100%;
-}
-.arrowIcon {
-  width: 29px;
-  height: 15px;
-  font-size: 35px;
-  filter: invert(102%) sepia(93%) saturate(100%) hue-rotate(254deg)
-    brightness(50%) contrast(110%);
-
-}
-.arrow {
-  height: 38px;
   display: flex;
-  width: 100%;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .box {
@@ -39,9 +25,6 @@ form {
   padding: 0px;
 }
 
-.box:last-child {
-  margin-bottom: 59px;
-}
 .inputs {
   height: 100%;
   width: 100%;
@@ -50,7 +33,9 @@ form {
   justify-content: center;
   align-items: center;
 }
-
+.inputs:first-child {
+  padding-top: 45px;
+}
 .header {
   width: 100%;
   height: 28px;
@@ -74,14 +59,12 @@ p {
   letter-spacing: 0px;
   color: #ffffff;
 }
-.data-siguiente {
-  width: 302px;
+
+.row {
   display: flex;
   flex-direction: column;
-}
-.row {
-  height: 166px;
-  margin: 0;
+  justify-content: center;
+  align-items: center;
 }
 textarea {
   width: 100%;
@@ -108,35 +91,29 @@ textarea {
   color: #ffffff;
 }
 
+.message-error{
+  color: red;
+  margin-top: 17px;
+  /* margin-bottom: 17px; */
+  text-align: center;
+
+}
+
 @media (min-width: 1024px) {
-
-  .arrowIcon {
-    height: 25px;
-    font-size: 30px;
-
+  .back-fondo{
+    padding-top: 85px;
   }
-  .back-fondo {
-    margin-top: 47px;
-  }
-
-  .data-inicial {
-    min-width: 74%;
+  .inputs {
+    width: 70%;
     display: grid;
     place-items: center;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-  .data-siguiente {
-    width: 1060px;
-    height: 90px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    gap: .4rem;
   }
 
   .box {
     width: 485px;
+    min-height: 100%;
     margin-bottom: 53px;
   }
   .header {
@@ -147,9 +124,6 @@ textarea {
     width: 100%;
     height: 50px;
   }
-  .arrow {
-    height: 62px;
-  }
   .comentario {
     width: 100%;
     margin-bottom: 63px;
@@ -157,7 +131,9 @@ textarea {
   .comentario .box {
     width: 100%;
   }
-
+  .row{
+    width: 69%;
+  }
   .button-group {
     display: flex;
     flex-direction: row;
@@ -167,26 +143,13 @@ textarea {
     width: 287px;
     margin: 0 auto;
   }
-  .row {
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 47px;
-  }
+
   p {
     font-size: 18px;
   }
-  .translate {
-    transform: translateY(45px);
-  }
-
 }
 
-
-
-.arrow:hover {
+/* .arrow:hover {
   background-color: #f25c05;
   opacity: 0.8;
 }
@@ -194,4 +157,4 @@ textarea {
   filter: invert(100%) sepia(100%) saturate(38%) hue-rotate(254deg)
     brightness(110%) contrast(110%);
   opacity: 1;
-}
+} */

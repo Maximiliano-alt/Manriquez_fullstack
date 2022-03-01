@@ -2,37 +2,144 @@
   [var]="{ route: '/proveedores/lista', title: 'Añadir Proveedor' }"
 ></app-navbar>
 
-<div class="arrow translate">
+<!-- <div class="arrow translate">
   <button (click)="cambiarView()">
     <mat-icon>
       <img
         class="arrowIcon"
-        [ngStyle]="{ opacity: width < 1024 ? '0' : '1' }"
+        [ngStyle]="{ opacity: width > 1024 ? '1' : '0' }"
         src="../../../../assets/page/arriba abajo.svg"
       />
     </mat-icon>
   </button>
+</div> -->
+
+<div class="back-fondo" (submit)="onSubmit()">
+  <form class="formNewProveedores" [formGroup]="newProveedorForm">
+    <div class="inputs">
+
+        <div class="box">
+          <div class="header">
+            <p>Nombre</p>
+          </div>
+          <div class="input">
+            <input type="text" name="name" required formControlName="name" />
+          </div>
+          <p *ngIf="newProveedorForm.get('name')?.touched && newProveedorForm.get('name')?.errors?.['required']" class="message-error">*Campo requerido: ingrese su nombre</p>
+        </div>
+
+        <div class="box">
+          <div class="header">
+            <p>Nombre contacto</p>
+          </div>
+          <div class="input">
+            <input type="text" name="ncontacto" required formControlName="ncontacto"/>
+          </div>
+          <p *ngIf="newProveedorForm.get('ncontacto')?.touched && newProveedorForm.get('ncontacto')?.errors?.['required']" class="message-error">*Campo requerido: ingrese nombre de contacto</p>
+
+        </div>
+
+        <div class="box">
+          <div class="header">
+            <p>Dirección</p>
+          </div>
+          <div class="input">
+            <input type="text" name="direccion" required formControlName="direccion"/>
+          </div>
+          <p *ngIf="newProveedorForm.get('direccion')?.touched && newProveedorForm.get('direccion')?.errors?.['required']" class="message-error">*Campo requerido: ingrese dirección</p>
+
+        </div>
+
+        <div class="box">
+          <div class="header">
+            <p>Teléfono</p>
+          </div>
+          <div class="input">
+            <input type="text" name="telefono" required formControlName="telefono"/>
+          </div>
+          <p *ngIf="newProveedorForm.get('telefono')?.touched && newProveedorForm.get('telefono')?.errors?.['required']" class="message-error">*Campo requerido: ingrese teléfono</p>
+          <p *ngIf="newProveedorForm.get('telefono')?.touched && newProveedorForm.get('telefono')?.errors?.['minlength']" class="message-error">*Campo requerido: ingrese mínimo 9 digitos</p>
+          <p *ngIf="newProveedorForm.get('telefono')?.touched && newProveedorForm.get('telefono')?.errors?.['maxlength']" class="message-error">*Campo requerido: ingreso más de 9 digitos</p>
+          <p *ngIf="newProveedorForm.get('telefono')?.touched && newProveedorForm.get('telefono')?.errors?.['pattern']" class="message-error">*Campo requerido: ingreso solo números</p>
+
+        </div>
+
+        <div class="box">
+          <div class="header">
+            <p>Atención</p>
+          </div>
+          <div class="input">
+            <input type="text" name="atencion" required formControlName="atencion"/>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="header">
+            <p>Correo atención</p>
+          </div>
+          <div class="input">
+            <input type="email" name="correoa" required formControlName="correoa"/>
+          </div>
+      </div>
+
+         <div class="box">
+            <div class="header">
+              <p>Retira Sr/a</p>
+            </div>
+            <div class="input">
+              <input type="text" name="retira" required formControlName="retira"/>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="header">
+              <p>N° guía</p>
+            </div>
+            <div class="input">
+              <input type="number" name="nguia" required formControlName="nguia" />
+            </div>
+          </div>
+    </div>
+
+    <div class="row">
+      <div class="comentario">
+        <div class="box">
+          <div class="header">
+            <p>Comentario</p>
+          </div>
+          <div class="input">
+            <textarea name="comentario" required formControlName="comentario"></textarea>
+        </div>
+      </div>
+            </div>
+      <div class="button-group">
+        <div class="box">
+          <button type="submit" class="button" [disabled]="newProveedorForm.invalid">Guardar</button>
+        </div>
+        <div class="box">
+          <button type="reset" class="button">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
-<div class="back-fondo">
-  <div *ngIf="view; then inicial; else siguiente"></div>
-</div>
-
-<div class="arrow">
-  <button (click)="cambiarView()" >
+<!-- <div class="arrow">
+  <button (click)="cambiarView()">
     <mat-icon>
       <img
         class="arrowIcon"
         [ngStyle]="{
-          transform: view && widthBoolean ? 'scaleY(1)' : 'scaleY(-1)'
+          transform: view && widthBoolean ? 'scaleY(1)' : 'scaleY(-1)',
+          opacity: width > 1024 ? '0' : '1'
         }"
         src="../../../../assets/page/arriba abajo.svg"
       />
     </mat-icon>
   </button>
-</div>
+</div> -->
 
-<ng-template #inicial>
+<!-- <ng-template #inicial>
   <form>
     <div class="inputs">
       <div class="data-inicial">
@@ -133,4 +240,4 @@
       </div>
     </div>
   </form>
-</ng-template>
+</ng-template> -->
