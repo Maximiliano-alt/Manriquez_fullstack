@@ -182,6 +182,7 @@ export class VentasClienteComponent implements OnInit {
             text: 'Cliente eliminado correctamente!',
             icon: 'success',
           })
+          this.router.navigate(['/clientes'])
         }
       }
     )

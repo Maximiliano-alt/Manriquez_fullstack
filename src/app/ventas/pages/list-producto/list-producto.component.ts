@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { VentasService,producto, productoComprado } from '../../services/ventas.service';
+import { ClienteService } from 'src/app/clientes/service/cliente.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-list-producto',
@@ -17,14 +18,15 @@ export class ListProductoComponent implements OnInit {
   final = 0;
   // array = [1,2,3,4,5,6,7,8,9,10,12,13]
   array:productoComprado[]=[]
-
+  rut!:string;
   inicio:any=0;
 
 
   segmento:any=[]
   
-  constructor( private router:Router, private route: ActivatedRoute,private service: VentasService) {
+  constructor( private router:Router, private route: ActivatedRoute,private service: VentasService, private serviceCliente:ClienteService) {
     this.id = this.route.snapshot.paramMap.get('id')
+    this.rut = localStorage.getItem('dataToken') || "";
 
   }
 
@@ -51,7 +53,10 @@ export class ListProductoComponent implements OnInit {
           this.array = []
           this.indice_espera = 4;
           this.inicio_slice = 0;
+          this.actualizarCliente(this.id,this.rut,this.array,producto,operacion)
           this.getData()
+          this.newSuma(this.rut)
+          this.updateVenta(this.id)
         
         }
         else{
@@ -152,5 +157,43 @@ export class ListProductoComponent implements OnInit {
     
    
   }
+
+  actualizarCliente(idVenta:string,rut:string,array:any,producto:any,indicador:string){
+    this.serviceCliente.actualizarVenta(idVenta,rut,this.array,producto,indicador)
+    .subscribe(
+      (res:any)=>{
+        if(res.status == 500){
+          Swal.fire({
+            title: '',
+            text: 'No se pudo modificar el producto :(',
+            icon: 'error',
+          })
+        }
+        this.newSuma(this.rut)
+      }
+      
+    )
+
+
+  }
+
+
+  newSuma(rut:string){
+    this.serviceCliente.calcularTotalVenta(rut).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
+
+
+  updateVenta(id:string){
+    this.serviceCliente.updateVenta(id).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
+
 
 }
