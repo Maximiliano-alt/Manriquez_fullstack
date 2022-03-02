@@ -69,6 +69,12 @@ export class NewProveedorComponent implements OnInit {
           if (res.status == 200) {
             Swal.fire({ icon: 'success', text: 'Proveedor creado' });
             this.router.navigate(['/proveedores/lista']);
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Oops...',
+              text: 'Sucedio un Error Intententelo nuevamente ',
+            });
           }
         });
       console.log('info enviada');

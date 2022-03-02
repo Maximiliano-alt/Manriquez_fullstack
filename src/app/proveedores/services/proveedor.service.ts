@@ -11,6 +11,10 @@ export class ProveedorService {
   addNewProveedor(data: Proveedor) {
     return this.http.post<res>(environment.baseUrl + '/createProveedor', data);
   }
+
+  getAllProveedores(){
+    return this.http.get<Proveedor[]>(environment.baseUrl+'/listarProveedores');
+  }
 }
 export interface Proveedor {
   nombre: string;
