@@ -1,6 +1,6 @@
 <div class="container-general">
 
-    <div class="data">
+    <div class="data" *ngIf="this.input.data.length > 0">
         <!-- boton de arriba -->
 
         <button class="up" (click)="nf_for_preview()">
@@ -9,8 +9,8 @@
 
 
         <!-- esta es la data completa -->
-        <div class="lista">
-            <div class="item" *ngFor="let item of this.segmento ">
+        <div class="lista" >
+            <div class="item" *ngFor="let item of this.segmento"  >
                 <!-- clientes, proveedores, pendientes-->
                 <div class="CPP" *ngIf="this.limitador == 6">
                     <div class="item-data">
