@@ -24,6 +24,15 @@ export class NewProveedorComponent implements OnInit {
   initForm(): FormGroup {
     return this.fb.group({
       name: ['', [Validators.required]],
+      rut: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(9),
+          Validators.maxLength(10),
+          Validators.pattern(/[0-9].-[0-9].*$/),
+        ],
+      ],
       ncontacto: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
       telefono: [
@@ -54,6 +63,7 @@ export class NewProveedorComponent implements OnInit {
     try {
       this.proveedorSave = {
         nombre: this.newProveedorForm.get('name')!.value,
+        rut: this.newProveedorForm.get('rut')!.value,
         nombreContacto: this.newProveedorForm.get('ncontacto')!.value,
         direccion: this.newProveedorForm.get('direccion')!.value,
         telefono: this.newProveedorForm.get('telefono')!.value,

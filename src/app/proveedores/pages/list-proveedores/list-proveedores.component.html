@@ -12,4 +12,9 @@
     <mat-icon>search</mat-icon>
   </div>
 </div>
+<div class="spiner" *ngIf="this.array.length == 0">
+  <div  class="spinner-border" role="status" >
+  </div>
+  <span>Cargando productos ...</span>
+</div>
 <app-lista [input]="{ indicador: 'proveedores', data: array }"></app-lista>

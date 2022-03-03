@@ -31,6 +31,38 @@
           *Campo requerido: ingrese su nombre
         </p>
       </div>
+      <div class="box">
+        <div class="header">
+          <p>RUT</p>
+        </div>
+        <div class="input">
+          <input type="text" name="rut" required formControlName="rut" />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('rut')?.touched && newProveedorForm.get('rut')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese el rut
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('rut')?.touched && newProveedorForm.get('rut')?.errors?.['minlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese mínimo 9 digitos
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('rut')?.touched && newProveedorForm.get('rut')?.errors?.['maxlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso más de 10 digitos
+        </p>
+        <p
+        *ngIf="newProveedorForm.get('rut')?.touched && newProveedorForm.get('rut')?.errors?.['pattern']"
+        class="message-error"
+      >
+        *Campo requerido: ingrese correctamente el rut
+      </p>
+      </div>
 
       <div class="box">
         <div class="header">
@@ -171,6 +203,10 @@
         </p>
       </div>
 
+     
+    </div>
+
+    <div class="row">
       <div class="box">
         <div class="header">
           <p>N° guía</p>
@@ -197,10 +233,6 @@
           *Campo requerido: ingreso solo números
         </p>
       </div>
-    </div>
-
-    <div class="row">
-
       <div class="comentario">
         <div class="box">
           <div class="header">
