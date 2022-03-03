@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListPendientesComponent } from './pages/list-pendientes/list-pendientes.component';
 import { PreviewComponent } from './pages/preview/preview.component';
 import { RouterModule, Routes } from '@angular/router';
+import { AddPendientesComponent } from './pages/add-pendientes/add-pendientes.component';
 
 const routes: Routes = [
 
@@ -13,6 +14,10 @@ const routes: Routes = [
 				path:'pendientes',component: ListPendientesComponent,
 		
 			},
+			{
+				path:'add',component:AddPendientesComponent,
+			},
+
 			{
 				path:'preview/:id',component:	PreviewComponent,
 			},

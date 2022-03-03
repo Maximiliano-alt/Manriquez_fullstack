@@ -5,33 +5,29 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-@Pipe({
-  name: 'filterListVenta'
-})
-export class FilterListVentaPipe implements PipeTransform {
 
-  transform(value: any[], args: string): any {
+@Pipe({
+  name: 'filterPendientes'
+})
+export class FilterPendientesPipe implements PipeTransform {
+
+  transform(value: any[], args: number): any {
     var lista : any[] = [] ;
     var indicador = 0;  
-    if(args==""){
+    if(args==0){
       return value;
     }
     else{
       
       value.forEach((element: any) => {
+       
         indicador = 0;
-        var aux = element.cliente.nombre.toLowerCase().split('');
-        var aux2 = args.toLowerCase().split('');
+        var aux = new Date(element.fecha).getTime()
+        var aux2 = args
         
-        for (let index = 0; index < aux2.length; index++) {
-         
-          if(aux[index] != aux2[index]){
-            indicador = 1
-          }
-          
-          
-        }
-        if(indicador==0){
+        
+        if(aux==aux2){
+          console.log("aux:",aux,aux2)
           lista.push(element)
         }
         
@@ -41,7 +37,7 @@ export class FilterListVentaPipe implements PipeTransform {
         Swal.fire({
           position: 'top-end',
           icon: 'warning',
-          title: 'Este dato no se encuentra',
+          title: 'No hay pendientes para este dia!',
           showConfirmButton: false,
           timer: 2000
         })
@@ -50,6 +46,8 @@ export class FilterListVentaPipe implements PipeTransform {
       return lista;
     } 
     
+    
   }
+
 
 }

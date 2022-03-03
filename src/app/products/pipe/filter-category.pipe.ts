@@ -1,41 +1,39 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Injectable } from '@angular/core';
-
 @Injectable({
   providedIn: 'root',
 })
 @Pipe({
-  name: 'filterListVenta'
+  name: 'filterCategory'
 })
-export class FilterListVentaPipe implements PipeTransform {
+export class FilterCategoryPipe implements PipeTransform {
 
   transform(value: any[], args: string): any {
+
     var lista : any[] = [] ;
     var indicador = 0;  
     if(args==""){
       return value;
     }
     else{
-      
+      indicador = 0;
       value.forEach((element: any) => {
         indicador = 0;
-        var aux = element.cliente.nombre.toLowerCase().split('');
+        var aux = element.nombre.toLowerCase().split('');
         var aux2 = args.toLowerCase().split('');
-        
+       
         for (let index = 0; index < aux2.length; index++) {
          
           if(aux[index] != aux2[index]){
             indicador = 1
-          }
-          
-          
+          } 
         }
         if(indicador==0){
           lista.push(element)
         }
         
-
+        
       });
       if(lista.length == 0){
         Swal.fire({
