@@ -14,5 +14,16 @@ export class PendientesService {
   getPendientes(){
     
   }
+  addPendiente(value:pendiente){
+    return this.http.post(environment.baseUrl+'/add/pendiente',value);
+  }
 
+}
+
+
+
+export interface pendiente{
+  tipo: string,
+  fecha:number,
+  observacion:string,
 }

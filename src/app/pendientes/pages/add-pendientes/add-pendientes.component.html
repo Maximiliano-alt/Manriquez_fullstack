@@ -1,0 +1,35 @@
+<app-navbar [var]="{route:'/pendientes',title:'Agregar pendiente'}" ></app-navbar>
+
+
+<div class="container-form">
+
+    <form>
+
+        <div class="input">
+            <p> 
+                Tipo de pendiente
+            </p>
+            <input [(ngModel)]="this.newPendiente.tipo" name="tipo" type="text" autocomplete="off" placeholder="ingrese el tipo de pendiente">
+    
+        </div>
+        <div class="input">
+            <p> 
+                Seleccione la fecha
+            </p>
+            <input  [(ngModel)]="this.newPendiente.fecha" name="date" type="date" autocomplete="off" placeholder="ingrese el tipo de pendiente">
+    
+        </div>
+        <div class="input">
+            <p> 
+                Ingrese descripcion del pendiente
+            </p>
+            <textarea  [(ngModel)]="this.newPendiente.observacion" name="obs" name="descripcion" id="" cols="30" rows="10" placeholder="Ingrese descripcion"></textarea>
+        </div>
+        <div class="button">
+            <button (click)=" addPendiente()">Guardar</button>
+            <button>Cancelar</button>
+        </div>
+
+    </form>
+
+</div>
