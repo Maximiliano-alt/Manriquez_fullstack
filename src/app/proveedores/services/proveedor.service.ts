@@ -13,7 +13,7 @@ export class ProveedorService {
   }
 
   getAllProveedores(){
-    return this.http.get<Proveedor[]>(environment.baseUrl+'/listarProveedores');
+    return this.http.get<any>(environment.baseUrl+'/listarProveedores');
   }
 }
 export interface Proveedor {
