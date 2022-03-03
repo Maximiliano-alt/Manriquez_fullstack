@@ -84,8 +84,8 @@
                     </div>
                     <div class="item-info"  *ngIf="this.input.indicador == 'cat-products'">
                         <div class="data-info">
-                            Pisos Flotantes
-                            <!-- {{item.nombre}} -->
+                            <!-- Pisos Flotantes -->
+                            {{item.nombre}}
                         </div>
                     </div>
                     <div class="item-edit"  *ngIf="this.input.indicador == 'cat-products'">
@@ -96,15 +96,15 @@
                     <!--products o ventas-->
                     <div class="item-data2" *ngIf="this.input.indicador == 'products' || this.input.indicador == 'ventas'">
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
-                            <b>Nombre:</b>&nbsp;Polera Nike blanca
-                            <!-- <b>Nombre:</b>&nbsp;{{item.nombre}} -->
+                            <!-- <b>Nombre:</b>&nbsp;Polera Nike blanca -->
+                            <b>Nombre:</b>&nbsp;{{item.nombre}}
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <!-- <b>Cliente:</b>&nbsp;Aracelly Balboa -->
                             <b>Cliente:</b>&nbsp;{{item.cliente.nombre}}
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
-                            <b>Talla:</b>&nbsp;Estandar
+                            <b>Medida:</b>&nbsp;Metros cuadrados
                             
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
@@ -112,24 +112,24 @@
                             <b>Cantidad:</b>&nbsp;{{item.productos.length}} producto(s)
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
-                            <b>Stock:</b>&nbsp;18
-                            <!-- <b>Stock:</b>&nbsp;{{item.stock}} -->
+                            <!-- <b>Stock:</b>&nbsp;18 -->
+                            <b>Stock:</b>&nbsp;{{item.stock}}
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <!-- <b>Estado:</b>&nbsp;Por pagar -->
                             <b>Estado:</b>&nbsp;{{item.estado}}
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
-                            <b>Precio:</b>&nbsp;$15.000
-                            <!-- <b>Precio:</b>&nbsp;{{item.valor}} -->
+                            <!-- <b>Precio:</b>&nbsp;$15.000 -->
+                            <b>Precio:</b>&nbsp;{{item.valor}}
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <!-- <b>Envío:</b>&nbsp;pendiente -->
                             <b>Envío:</b>&nbsp;{{item.envio}}
                         </div>
                          <div class="data-line2" *ngIf="this.input.indicador == 'products'">
-                            <b>Vendidos:</b>&nbsp;9
-                            <!-- <b>Vendidos:</b>&nbsp;{{item.vecesComprado}} -->
+                            <!-- <b>Vendidos:</b>&nbsp;9 -->
+                            <b>Vendidos:</b>&nbsp;{{item.vecesComprado}}
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <!-- <b>Total:</b>&nbsp;$12.350 -->
