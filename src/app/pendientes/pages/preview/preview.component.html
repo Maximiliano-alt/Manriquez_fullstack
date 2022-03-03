@@ -1,3 +1,6 @@
+<app-navbar [var]="{route:'/pendientes',title:'Preview Pendiente'}" ></app-navbar>
+
+
 <div class="principal">
 	<div class="preview-container">
 		<div class="title">
@@ -5,20 +8,20 @@
 		</div>
 		<div class="description">	
 			<div class="data">
-				Tipo de pendiente: Despacho
+				Tipo de pendiente: {{newPendiente.tipo}}
 			</div>
 			<div class="data">
-				Fecha: xx/xx/xxxx
+				Fecha: {{newPendiente.fecha|date:'longDate'}}
 			</div>
 		</div>
 		<div class="obs">
 			<div class="data">
-				Observación: se tiene que entregar piso flotante a X calle
+				Observación: {{newPendiente.observacion}}
 			</div>
 		</div>
-		<div class="goBack-button">
+		<div [routerLink]="['/pendientes']" class="goBack-button">
 			<button>
-				Volver
+				<a style="text-decoration: none; color: white;">Volver</a>
 			</button>
 		</div>
 	</div>

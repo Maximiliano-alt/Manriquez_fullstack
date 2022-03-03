@@ -7,10 +7,17 @@
         </a>
     </div>
     <div class="input">
-        <input type="text">
+        <input [(ngModel)]="this.filterListPendiente" name="filter" type="date" autocomplete="off"   style="text-align: center;">
     </div>
     <div class="search-button">
-        <mat-icon>search</mat-icon>
+        <mat-icon (click)="search(0)">search</mat-icon>
     </div>
 </div>
-<app-lista [input]="{ indicador: 'pendientes', data: array }"></app-lista>
+
+<div class="spiner" *ngIf="this.indicadorMuestreo == 0">
+    <div style="margin:auto" class="spinner-border" role="status" >
+    </div>
+    <span>Cargando pendientes...</span>
+</div>
+
+<app-lista *ngIf="this.indicadorMuestreo == 1 && this.estadoDeSearch==1" [input]="{ indicador: 'pendientes', data: arrayAux }"></app-lista>

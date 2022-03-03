@@ -35,24 +35,33 @@ export class AddPendientesComponent implements OnInit {
       this.newPendiente.observacion != ''&&
       this.newPendiente.tipo != ''){
         this.newPendiente.fecha = new Date(this.newPendiente.fecha).getTime();
-        
-        
-        this.service.addPendiente(this.newPendiente).subscribe(
-          (res:any)=>{
-            if(res.status == 200){
-              Swal.fire({
-                title: '',
-                text: 'Ingreso correcto',
-                icon: 'success',
-              })
-              this.newPendiente = {
-                tipo:'',
-                observacion:'',
-                fecha: 0, 
-              } 
+        if(this.newPendiente.fecha >= Date.now()){
+          this.service.addPendiente(this.newPendiente).subscribe(
+            (res:any)=>{
+              if(res.status == 200){
+                Swal.fire({
+                  title: '',
+                  text: 'Ingreso correcto',
+                  icon: 'success',
+                })
+                this.newPendiente = {
+                  tipo:'',
+                  observacion:'',
+                  fecha: 0, 
+                } 
+              }
             }
-          }
-        )
+          )
+        }
+        else{
+          Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Los pendientes son de futuro o actualidad!',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
       }
   }
 

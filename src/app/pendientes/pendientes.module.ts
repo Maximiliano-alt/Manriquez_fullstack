@@ -7,12 +7,14 @@ import { MaterialModule } from '../material/material.module';
 import { PreviewComponent } from './pages/preview/preview.component';
 import { AddPendientesComponent } from './pages/add-pendientes/add-pendientes.component';
 import { FormsModule } from '@angular/forms';
+import { FilterPendientesPipe } from './pipe/filter-pendientes.pipe';
 
 @NgModule({
   declarations: [
     ListPendientesComponent,
     PreviewComponent,
     AddPendientesComponent,
+    FilterPendientesPipe,
     
   ],
   imports: [

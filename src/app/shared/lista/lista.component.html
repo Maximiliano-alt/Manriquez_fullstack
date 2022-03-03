@@ -32,10 +32,12 @@
                         </div>
                         <!-- pendiente-->
                         <div class="data-line" *ngIf="this.input.indicador == 'pendientes'">
-                            <b>Tipo de pendiente:</b> <p>&nbsp;Despacho</p>
+                            <!-- <b>Tipo de pendiente:</b> <p>&nbsp;Despacho</p> -->
+                            <b>Tipo de pendiente:</b> <p>&nbsp;{{item.tipo}}</p>
                         </div>
                         <div class="data-line" *ngIf="this.input.indicador == 'pendientes'">
-                            <b>Fecha: </b> <p>&nbsp;XX/XX/XXXXX</p>
+                            <!-- <b>Fecha: </b> <p>&nbsp;XX/XX/XXXXX</p> -->
+                            <b>Fecha: </b> <p>&nbsp;{{item.fecha |date: 'mediumDate'}}</p>
                         </div>
                     </div>
                     <!-- cliente o pendiente-->
@@ -46,7 +48,7 @@
                     </div>
                     <div class="item-eye" *ngIf="this.input.indicador == 'pendientes'">
                         <button class="view">
-                            <a style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
+                            <a [routerLink]="['/pendientes/preview/'+item._id]" style="text-decoration: none; color: black;"><img src="assets\page\view.svg" alt=""></a>
                         </button>
                     </div>
                     <!-- proveedor-->

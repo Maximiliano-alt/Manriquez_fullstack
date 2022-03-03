@@ -12,10 +12,13 @@ export class PendientesService {
   constructor(private http: HttpClient) { }
 
   getPendientes(){
-    
+    return this.http.get(environment.baseUrl+'/get/pendiente');
   }
   addPendiente(value:pendiente){
     return this.http.post(environment.baseUrl+'/add/pendiente',value);
+  }
+  getPendienteForId(value:any){
+    return this.http.get(environment.baseUrl+'/get/pendiente/'+value);
   }
 
 }
