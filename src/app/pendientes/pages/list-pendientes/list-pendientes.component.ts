@@ -17,8 +17,9 @@ export class ListPendientesComponent implements OnInit {
   constructor(private service: PendientesService, private filterPipe: FilterPendientesPipe) { }
 
   ngOnInit(): void {
-    this.getPendientes()
-    this.arrayAux = this.array
+    this.deleteAnteriores();
+    this.getPendientes();
+    this.arrayAux = this.array;
   }
 
   
@@ -52,6 +53,17 @@ export class ListPendientesComponent implements OnInit {
         this.estadoDeSearch = 1
       },1)
     }
+  }
+
+  deleteAnteriores(){
+    const today = new Date()
+    const yesterday = new Date(today)
+    yesterday.setDate(yesterday.getDate() - 2)
+    this.service.deleteAnteriores(yesterday).subscribe(
+      (res:any)=>{
+        console.log(res)
+      }
+    )
   }
 
 }

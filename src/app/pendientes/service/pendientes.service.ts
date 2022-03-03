@@ -20,6 +20,9 @@ export class PendientesService {
   getPendienteForId(value:any){
     return this.http.get(environment.baseUrl+'/get/pendiente/'+value);
   }
+  deleteAnteriores(value:any){
+    return this.http.post(environment.baseUrl+'/delete/anteriores',{value});
+  }
 
 }
 
