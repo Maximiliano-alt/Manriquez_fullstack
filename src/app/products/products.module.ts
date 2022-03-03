@@ -9,13 +9,19 @@ import { DetailProductsComponent } from './pages/detail-products/detail-products
 import { CatProductsComponent } from './pages/cat-products/cat-products.component';
 import { CreateCategoryComponent } from './pages/create-category/create-category.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FilterCategoryPipe } from './pipe/filter-category.pipe';
+import { FilterProductPipe } from './pipe/filter-product.pipe';
+
 @NgModule({
   declarations: [
     HomeProductsComponent,
     AddProductsComponent,
     DetailProductsComponent,
     CatProductsComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    FilterCategoryPipe,
+    FilterProductPipe,
+
   ],
   imports: [
     CommonModule,

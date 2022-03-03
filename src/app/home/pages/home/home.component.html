@@ -1,7 +1,12 @@
 <app-navbar [var]="{route:'null',title:'Bienvenido Usuario'}" ></app-navbar>
 
 <div class="body2">
+
+    
     <div class="container">
+
+        <p *ngIf="this.indicadorPendientes==1"><a style="text-decoration: none;color: white;" [routerLink]="['/pendientes']">Tienes trabajos pendientes! Haz click aca para verlos</a></p>
+
         <div class="logo">
             <div class="icon">
                 <img src="../../../../assets/page/Pisosmanriquez.logo-02.png" alt="">

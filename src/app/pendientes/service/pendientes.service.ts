@@ -12,7 +12,24 @@ export class PendientesService {
   constructor(private http: HttpClient) { }
 
   getPendientes(){
-    
+    return this.http.get(environment.baseUrl+'/get/pendiente');
+  }
+  addPendiente(value:pendiente){
+    return this.http.post(environment.baseUrl+'/add/pendiente',value);
+  }
+  getPendienteForId(value:any){
+    return this.http.get(environment.baseUrl+'/get/pendiente/'+value);
+  }
+  deleteAnteriores(value:any){
+    return this.http.post(environment.baseUrl+'/delete/anteriores',{value});
   }
 
+}
+
+
+
+export interface pendiente{
+  tipo: string,
+  fecha:number,
+  observacion:string,
 }
