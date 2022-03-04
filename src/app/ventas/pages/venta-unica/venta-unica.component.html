@@ -40,11 +40,11 @@
     </div>
 
     <!-- botones -->
-    <div class="buttons">   
+    <div class="buttons">
         <div (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </div>
-        <div *ngIf="this.estado == 'pagado'" class="button">
+        <div  *ngIf="this.estado == 'pagado'" class="button" (click)="createBuyOrder('ordenDeCompra')">
             Crear orden de compra
         </div>
         <div *ngIf="this.estado == 'pendiente'" class="button">
@@ -73,10 +73,9 @@
                 <!-- falta definicion de requerimiento -->
                 Crear Cotizacion
             </div>
-            <div *ngIf="this.estado == 'pagado'" class="button-par">
-                <!-- falta definicion de requerimiento -->
-                Crear orden de compra
-            </div>
+            <div  *ngIf="this.estado == 'pagado'" class="button-par" (click)="createBuyOrder('ordenDeCompra')">
+              Crear orden de compra
+          </div>
         </div>
         <div class="button-pares">
             <div  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
