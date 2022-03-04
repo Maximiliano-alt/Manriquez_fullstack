@@ -267,7 +267,7 @@ export class AddVentaComponent implements OnInit {
         icon: 'warning',
       })
     }
-    else if(this.venta.porcentaje > 0 && this.listaProductosEnLista.length != 0 && this.cliente.nombre != "" && this.venta.proveedor.nombre != ''){
+    else if(this.venta.porcentaje > 0 && this.listaProductosEnLista.length != 0 && this.cliente.nombre != "" && this.venta.proveedor.nombre != ""){
 
       //guardamos al cliente en venta!
 
@@ -276,7 +276,6 @@ export class AddVentaComponent implements OnInit {
       this.venta.cliente.rut = this.cliente.rut
       this.venta.cliente.telefono = this.cliente.telefono
       this.venta.cliente.direccion = this.cliente.direccion
-      this.venta.proveedor = this.proveedor;
       var suma = 0
       this.listaProductosEnLista.forEach((e)=>{
         suma = suma  + e.cantidad*e.valor;
