@@ -96,12 +96,12 @@
                     <!-- category-productos-->
                     <div class="item-view"  *ngIf="this.input.indicador == 'cat-products'">
                         <div class="preview">
-                            <button class="preview-button">
+                            <button  class="preview-button">
                                 <a style="text-decoration: none; color: black;" [routerLink]="['/productos/products-category/'+item.nombre]"><img src="assets\page\view.svg" alt=""></a>
                             </button>
                         </div>
                         <div class="mas">
-                            <button class="mas-button">
+                            <button  [routerLink]="['/productos/modify/category/'+item._id]" class="mas-button">
                                 <img src="assets\page\options_more_icon_208209.svg" alt="">
                             </button>
                         </div>
@@ -163,7 +163,7 @@
                     <!--products, ventas-->
                     <div class="item-eye2" *ngIf="this.input.indicador == 'products' || this.input.indicador == 'ventas'">
                         <button class="view2" *ngIf="this.input.indicador == 'products'">
-                            <a style="text-decoration: none; color: black;"[routerLink]="['/productos/detail/',123]"><img src="assets\page\view.svg" alt=""></a>
+                            <a style="text-decoration: none; color: black;"[routerLink]="['/productos/detail/',item._id]"><img src="assets\page\view.svg" alt=""></a>
                         </button>
                         <button class="view-more" *ngIf="this.input.indicador == 'ventas'">
 
@@ -177,7 +177,7 @@
                             <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
                         </div>
                         <div class="more2" *ngIf="this.input.indicador == 'products'">
-                            <button class="more-button2">
+                            <button [routerLink]="['/productos/modify/product/'+item._id]" class="more-button2">
                                 <img src="assets\page\options_more_icon_208209.svg" alt="">
                             </button>
                         </div>

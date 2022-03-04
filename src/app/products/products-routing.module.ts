@@ -7,6 +7,7 @@ import { DetailProductsComponent } from './pages/detail-products/detail-products
 import { CatProductsComponent } from './pages/cat-products/cat-products.component';
 import { CreateCategoryComponent } from './pages/create-category/create-category.component';
 import { ModifyCategoryComponent } from './pages/modify-category/modify-category.component';
+import { ModifyProductComponent } from './pages/modify-product/modify-product.component';
 
 const routes:Routes=[
 
@@ -33,6 +34,10 @@ const routes:Routes=[
       {
         path:'detail/:id',
         component:DetailProductsComponent
+      },
+      {
+        path:'modify/product/:id',
+        component:ModifyProductComponent
       },
       {
         path:'modify/category/:id',

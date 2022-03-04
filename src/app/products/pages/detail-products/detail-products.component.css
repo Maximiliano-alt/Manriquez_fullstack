@@ -119,7 +119,11 @@ button{
 button a{
 	color: #FFFFFF;
 }
-
+img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
 @media screen and (min-width: 550px){
 	.detail-container{
 		width: 445px;
