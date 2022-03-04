@@ -24,7 +24,7 @@ const routes: Routes = [
         component: ModifyProveedorComponent,
       },
       {
-        path: 'delete/:id',
+        path: 'delete',
         component: DeleteProveedorComponent,
       },
       {
