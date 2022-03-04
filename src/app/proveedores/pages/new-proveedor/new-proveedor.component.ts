@@ -55,7 +55,7 @@ export class NewProveedorComponent implements OnInit {
           Validators.pattern('^[0-9]+'),
         ],
       ],
-      comentario: ['', [Validators.required]],
+
     });
   }
 
@@ -71,7 +71,7 @@ export class NewProveedorComponent implements OnInit {
         correoAtencion: this.newProveedorForm.get('correoa')!.value,
         retira: this.newProveedorForm.get('retira')!.value,
         numeroGuia: this.newProveedorForm.get('nguia')!.value,
-        comentario: this.newProveedorForm.get('comentario')!.value,
+
       };
       this.proveedorService
         .addNewProveedor(this.proveedorSave)
