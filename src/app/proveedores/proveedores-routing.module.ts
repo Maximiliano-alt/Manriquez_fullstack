@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListProveedoresComponent } from './pages/list-proveedores/list-proveedores.component';
 import { NewProveedorComponent } from './pages/new-proveedor/new-proveedor.component';
 import { MainComponent } from './pages/main/main.component';
+import { ModifyProveedorComponent } from './pages/modify-proveedor/modify-proveedor.component';
+import { DeleteProveedorComponent } from './pages/delete-proveedor/delete-proveedor.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
       {
         path: 'new',
         component: NewProveedorComponent,
+      },
+      {
+        path: 'modify/:id',
+        component: ModifyProveedorComponent,
+      },
+      {
+        path: 'delete/:id',
+        component: DeleteProveedorComponent,
       },
       {
         path: '**',

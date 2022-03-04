@@ -28,6 +28,6 @@ export interface Proveedor {
   correoAtencion: string;
   retira: string;
   numeroGuia: string;
-  comentario: string;
+
 }
 

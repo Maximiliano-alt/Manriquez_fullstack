@@ -233,28 +233,6 @@
           *Campo requerido: ingreso solo números
         </p>
       </div>
-      <div class="comentario">
-        <div class="box">
-          <div class="header">
-            <p>Comentario</p>
-          </div>
-          <div class="input">
-            <textarea
-              name="comentario"
-              required
-              formControlName="comentario"
-            ></textarea>
-          </div>
-
-          <p
-            *ngIf="newProveedorForm.get('comentario')?.touched && newProveedorForm.get('comentario')?.errors?.['required']"
-            class="message-error"
-          >
-            *Campo requerido: ingrese comentario
-          </p>
-        </div>
- 
-      </div>
       <div class="button-group">
         <div class="box">
           <button
