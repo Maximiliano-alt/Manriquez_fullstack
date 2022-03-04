@@ -39,6 +39,13 @@ export class ProductsService {
   addCategoria(value:any){
     return this.http.post(environment.baseUrl+'/add/categoria',value)
   }
+  getOneProduct(value:any){
+    return this.http.get(environment.baseUrl+'/get/product/'+value);
+  }
+
+  modifyProduct(id:any,data:product){
+    return this.http.post(environment.baseUrl+'/modifyProduct',data)
+  }
 
 }
 
