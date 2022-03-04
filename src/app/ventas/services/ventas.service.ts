@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Proveedor } from 'src/app/proveedores/services/proveedor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -73,7 +74,7 @@ export class VentasService {
     )
   }
 
-  
+
 
 }
 
@@ -90,13 +91,25 @@ export interface venta{
     }, //son objectos de Cliente
     estado: string,
     productos:productoComprado[
-      
+
     ], //son objectos de productos
     fecha: number, //valor automatico en hora minuto segundo y fecha
     servicios: string,
     porcentaje: number,
     totalDeVenta:number,
     envio:string,
+    proveedor:{
+      nombre: string;
+      rut: string;
+      nombreContacto: string;
+      direccion: string;
+      telefono: string;
+      atencion: string;
+      correoAtencion: string;
+      retira: string;
+      numeroGuia: string;
+      comentario: string;
+    }
 }
 
 export interface productoComprado{

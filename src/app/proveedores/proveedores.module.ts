@@ -8,7 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './pages/main/main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterProveedoresPipe } from './pipe/filter-proveedores.pipe';
+
 
 
 @NgModule({
@@ -16,7 +16,6 @@ import { FilterProveedoresPipe } from './pipe/filter-proveedores.pipe';
     ListProveedoresComponent,
     NewProveedorComponent,
     MainComponent,
-    FilterProveedoresPipe,
   ],
   imports: [
     CommonModule,

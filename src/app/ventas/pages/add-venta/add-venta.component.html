@@ -2,10 +2,10 @@
  <div class="container-general" *ngIf="this.container==0">
     <form>
         <div class="container-info">
-            <div class="input-info">
+            <div class="input-info" id="input-info-cliente">
                 <div class="search-cliente">
                     <div class="button-search">
-                        <button (click)=" searchCliente(this.rut)">
+                        <button (click)="searchCliente(this.rut)">
                             <mat-icon>search</mat-icon>
                         </button>
                     </div>
@@ -28,7 +28,8 @@
                     <a *ngIf="this.cliente.nombre=='' && this.buscado == 1" style="color:black; font-size: 15px; margin: auto;" [routerLink]="['/clientes/add/cliente']">Haz click aqui para agregar uno nuevo!</a>
                 </div>
             </div>
-            <div class="input-info">
+
+            <div class="input-info"  id="input-info-producto">
                 <div class="search-productos">
                     <div class="button-search">
                         <button>
@@ -47,7 +48,7 @@
                                 <p> <b>Valor: </b>&nbsp; ${{product.valor}} </p>
                             </div>
                             <div class="button">
-                               
+
                                 <div class="add">
                                     <button (click)="methodsAdd(product)">
                                         <mat-icon>add</mat-icon>
@@ -55,15 +56,50 @@
                                 </div>
                             </div>
                         </div>
-                                         
+
                     </div>
                    <div (click)=" verProducto(1)" class="navbar-productos">
                         Ver productos
                    </div>
                 </div>
-                
-                  
+
+
             </div>
+
+            <div class="input-info"  id="input-info-proveedor">
+              <div class="search-proveedor">
+                <div class="button-search">
+                  <button >
+                      <mat-icon>search</mat-icon>
+                  </button>
+                </div>
+                <div class="input-search">
+                  <input [(ngModel)]="this.filtroProveedor" name="filtroProveedor" type="text" placeholder="Ingrese el nombre del proveedor" autocomplete="off">
+                </div>
+              </div>
+              <div class="proveedores">
+                <div class="proveedores-data">
+                     <div class="proveedor" *ngFor="let proveedor of listaProveedores | filterProveedores:this.filtroProveedor">
+                         <div class="data">
+                             <p *ngIf="this.listaProveedores.length == 0">Cargando proveedores... </p>
+                             <p> <b>Nombre: </b> &nbsp;{{proveedor.nombre}} </p>
+                             <p> <b>Rut: </b>&nbsp; ${{proveedor.rut}} </p>
+                         </div>
+                         <div class="button">
+
+                             <div class="add">
+                                 <button (click)="proveedorSelected(proveedor)" (click)="changeColor(this.icoColor)">
+                                     <mat-icon [ngStyle]="{'color':this.icoColor}" id="mat-icon">add</mat-icon>
+                                 </button>
+                             </div>
+                         </div>
+                     </div>
+
+                 </div>
+
+             </div>
+            </div>
+
         </div>
         <div class="utilidad">
             <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
@@ -81,7 +117,7 @@
                 </button>
             </div>
         </div>
-    </form>  
+    </form>
 </div>
 
 
@@ -95,18 +131,18 @@
     </div>
 
     <div class="listadoAgregado">
-        
+
         <div class="itemAgregado" *ngFor="let product of this.listaProductosEnLista">
 
             <div class="dataProduct">
-               
+
                 <div class="data-line">
                     <b>Nombre: </b> <p>{{product.nombre}}</p>
                 </div>
                 <div class="data-line">
-                    <b>Valor: </b> <p>{{product.valor}}</p> 
+                    <b>Valor: </b> <p>{{product.valor}}</p>
                 </div>
-                
+
             </div>
             <button (click)="eliminarOfLista(product)">
                 <mat-icon>delete</mat-icon>
@@ -118,8 +154,8 @@
             <button (click)="addCantidad(product)">
                 <mat-icon>add</mat-icon>
             </button>
-            
-            
+
+
         </div>
 
     </div>
