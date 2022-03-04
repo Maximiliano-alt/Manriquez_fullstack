@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Proveedor, ProveedorService } from '../../services/proveedor.service';
 import Swal from 'sweetalert2';
+import { FilterProveedoresPipe } from '../../pipe/filter-proveedores.pipe';
 @Component({
   selector: 'app-proveedores',
   templateUrl: './list-proveedores.component.html',
@@ -8,12 +9,19 @@ import Swal from 'sweetalert2';
 })
 export class ListProveedoresComponent implements OnInit {
   array: Proveedor[] = [];
-  arrayAux : Proveedor[] = []
+  arrayAux: Proveedor[] = [];
+  estadoDeSearch: number = 1;
+  filterProveedores: any;
 
-  constructor(private proveedorService: ProveedorService) {}
+  constructor(
+    private proveedorService: ProveedorService,
+    private filterProveedor: FilterProveedoresPipe
+  ) {}
 
   ngOnInit(): void {
     this.getListProveedores();
+    console.log(this.array);
+    this.arrayAux = this.array;
   }
 
   getListProveedores(): void {
@@ -25,8 +33,21 @@ export class ListProveedoresComponent implements OnInit {
           icon: 'warning',
         });
       } else {
-        this.array = res['proveedores'];
+        res['proveedores'].forEach((element: Proveedor) => {
+          this.array.push(element);
+        });
       }
     });
+  }
+
+  search(value: number) {
+    this.arrayAux = this.filterProveedor.transform(this.array, this.filterProveedores);
+
+    if (this.estadoDeSearch == 1) {
+      this.estadoDeSearch = value;
+      setTimeout(() => {
+        this.estadoDeSearch = 1;
+      }, 1);
+    }
   }
 }
