@@ -25,10 +25,10 @@
                         </div>
                         <!-- proveedor -->
                         <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
-                            <b>Nombre:</b> <p>&nbsp;Juan Larenas</p>
+                            <b>Nombre:</b> <p>&nbsp;{{item.nombre}}</p>
                         </div>
                         <div class="data-line" *ngIf="this.input.indicador == 'proveedores'">
-                            <b>Rut: </b> <p>&nbsp;XX.XXX.XXX-X</p>
+                            <b>Rut: </b> <p>&nbsp;{{item.rut}}</p>
                         </div>
                         <!-- pendiente-->
                         <div class="data-line" *ngIf="this.input.indicador == 'pendientes'">

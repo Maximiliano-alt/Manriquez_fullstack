@@ -1,3 +1,15 @@
+.spiner{
+    color: white;
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.spiner span{
+    margin-top: 10px;
+}
 .search{
     /* elemento barra de busqueda en fila */
     width: 100vw;
