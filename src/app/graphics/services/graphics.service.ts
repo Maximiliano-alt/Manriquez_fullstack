@@ -120,7 +120,8 @@ export interface ventasGraphics{
 }
 export interface ventas{
   fecha:number,
-  totalDeVenta:number
+  totalDeVenta:number,
+  estado:string
 }
 export interface producto{
   nombre: string,

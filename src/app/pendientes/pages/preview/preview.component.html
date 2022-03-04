@@ -1,8 +1,15 @@
 <app-navbar [var]="{route:'/pendientes',title:'Preview Pendiente'}" ></app-navbar>
 
 
+<div class="spiner" *ngIf="this.newPendiente.fecha == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando datos del pendiente...</span>
+</div>
+
+
 <div class="principal">
-	<div class="preview-container">
+	<div class="preview-container" *ngIf="this.newPendiente.fecha != 0">
 		<div class="title">
 			Previsualización
 		</div>

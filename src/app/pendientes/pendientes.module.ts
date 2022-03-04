@@ -8,6 +8,7 @@ import { PreviewComponent } from './pages/preview/preview.component';
 import { AddPendientesComponent } from './pages/add-pendientes/add-pendientes.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPendientesPipe } from './pipe/filter-pendientes.pipe';
+import { ModifyPendienteComponent } from './pages/modify-pendiente/modify-pendiente.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FilterPendientesPipe } from './pipe/filter-pendientes.pipe';
     PreviewComponent,
     AddPendientesComponent,
     FilterPendientesPipe,
+    ModifyPendienteComponent,
     
   ],
   imports: [
