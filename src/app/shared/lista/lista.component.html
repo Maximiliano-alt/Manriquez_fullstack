@@ -58,13 +58,35 @@
                         </button>
                     </div>
                     <!-- cliente, proovedor o pendiente-->
-                    <div class="item-number">
+                   
+                    <div class="item-number" *ngIf="this.input.indicador == 'clientes'" >
+                        <div class="number">
+                            <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
+                        </div>
+                        <div class="more">
+                            <button [routerLink]="['/clientes/modify/client/'+item.rut]" class="more-button">
+                                <img src="assets\page\options_more_icon_208209.svg" alt="">
+                            </button>
+                        </div>
+                    </div>   
+                    <div class="item-number" *ngIf="this.input.indicador == 'proveedores'" >
                         <div class="number">
                             <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
                         </div>
                         <div class="more">
                             <button class="more-button">
                                 <img src="assets\page\options_more_icon_208209.svg" alt="">
+                            </button>
+                        </div>
+                    </div>     
+                    <div class="item-number" *ngIf="this.input.indicador == 'pendientes'" >
+                        <div class="number">
+                            <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
+                        </div>
+                        <div class="more">
+                            <button class="more-button">
+                                <a  [routerLink]="['/pendientes/modify/'+item._id]"> <img src="assets\page\options_more_icon_208209.svg" alt=""></a>
+                               
                             </button>
                         </div>
                     </div>               
@@ -91,7 +113,7 @@
                         </div>
                     </div>
                     <div class="item-edit"  *ngIf="this.input.indicador == 'cat-products'">
-                        <button>
+                        <button [routerLink]="['/productos/modify/category/'+item._id]">
                             <img src="assets\page\modificar icon.svg" alt="">
                         </button>
                     </div>

@@ -11,6 +11,7 @@ import { CreateCategoryComponent } from './pages/create-category/create-category
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FilterCategoryPipe } from './pipe/filter-category.pipe';
 import { FilterProductPipe } from './pipe/filter-product.pipe';
+import { ModifyCategoryComponent } from './pages/modify-category/modify-category.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FilterProductPipe } from './pipe/filter-product.pipe';
     CreateCategoryComponent,
     FilterCategoryPipe,
     FilterProductPipe,
+    ModifyCategoryComponent,
 
   ],
   imports: [

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { FilterPendientesPipe } from '../../pipe/filter-pendientes.pipe';
 import { PendientesService , pendiente} from '../../service/pendientes.service';
 @Component({
@@ -17,8 +18,12 @@ export class ListPendientesComponent implements OnInit {
   constructor(private service: PendientesService, private filterPipe: FilterPendientesPipe) { }
 
   ngOnInit(): void {
-    this.deleteAnteriores();
-    this.getPendientes();
+    this.deleteAnteriores()
+    setTimeout(()=>
+    {
+      this.getPendientes();
+    },2000)
+   
     this.arrayAux = this.array;
   }
 
@@ -27,7 +32,7 @@ export class ListPendientesComponent implements OnInit {
   getPendientes(){
     this.service.getPendientes().subscribe(
       (res:any)=>{
-        console.log(res.data)
+        
         if(res.status == 200){
           res.data.forEach((element :pendiente) => {
             this.array.push(element)
@@ -35,6 +40,16 @@ export class ListPendientesComponent implements OnInit {
           if(this.array.length == res.data.length){
             this.indicadorMuestreo = 1
           }
+          
+        }
+        if(res.data.length==0){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'No existen pendientes en la lista!!',
+            showConfirmButton: false,
+            timer: 2000
+          })
         }
       }
     )
@@ -61,9 +76,10 @@ export class ListPendientesComponent implements OnInit {
     yesterday.setDate(yesterday.getDate() - 2)
     this.service.deleteAnteriores(yesterday).subscribe(
       (res:any)=>{
-        console.log(res)
       }
     )
   }
+
+ 
 
 }

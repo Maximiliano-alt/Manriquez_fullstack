@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import Swal from 'sweetalert2';
 import { GraphicsService,ventas} from '../../services/graphics.service';
 
 
@@ -40,8 +41,19 @@ export class VentasGraphicsComponent implements OnInit {
     this.service.getVentas().subscribe(
       res=>{
         res.data.forEach( element => {
-          this.listVentas.push(element)
+          if(element.estado == "pagado"){
+            this.listVentas.push(element)
+          }
         });
+        if(res.data.length!= this.listVentas.length){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'No existen ventas finalizadas',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
       }
     )
   }

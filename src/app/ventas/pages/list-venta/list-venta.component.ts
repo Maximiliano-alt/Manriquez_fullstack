@@ -54,7 +54,6 @@ export class ListVentaComponent implements OnInit {
 
   search(value:number){
 
-    
     this.arrayAux = this.filterVenta.transform(this.array,this.filterListVenta)
     
     if(this.estadoDeSearch==1){
@@ -63,10 +62,6 @@ export class ListVentaComponent implements OnInit {
         this.estadoDeSearch = 1
       },1)
     }
-
-    
-    
-    
   }
 
 }
