@@ -1,0 +1,39 @@
+<app-navbar [var]="{route:'/productos/category',title:'Modificar Categoria'}" ></app-navbar>
+
+
+<!-- <div class="spiner" *ngIf="indicadorRespuesta == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando pendiente...</span>
+</div> -->
+
+<div class="container" >
+    <div class="title">
+        <h1>
+            Ingresa los nuevos datos
+        </h1>
+    </div>
+
+    <div class="inputs">
+        <div class="input">
+            <label for="">
+              Nuevo nombre de categoria
+            </label>
+            <input [(ngModel)]="this.newName" name="tipo" type="text">
+        </div>
+        
+        
+        
+        <button (click)="deleteCategoria()">Eliminar</button>
+        <button (click)="modifyCategoria()">Editar</button>
+        <button [routerLink]="['/productos']">Cancelar</button>
+
+    </div>
+    
+
+    
+
+
+
+
+</div>

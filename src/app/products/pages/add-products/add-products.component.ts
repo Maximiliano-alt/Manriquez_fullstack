@@ -103,7 +103,6 @@ export class AddProductsComponent implements OnInit {
   createProduct(data:product){
 
     if(this.name.valid && this.price.valid && this.color.valid && this.stock.valid && this.category.valid && this.description.valid ){
-      console.log(data);
       this.service.addProduct(data).subscribe(
         res =>{
           if(res.status==200){
@@ -121,5 +120,10 @@ export class AddProductsComponent implements OnInit {
 
 
     }
+  }
+  
+  onFileChanges(event: any): void {
+    this.product.imagen = event[0].base64;
+    console.log(this.product.imagen)
   }
 }

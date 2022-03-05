@@ -1,0 +1,81 @@
+<app-navbar [var]="{route:'/productos',title:'Modificar Producto'}" ></app-navbar>
+
+<div class="container-general"> 
+    <div class="container-inputs">
+        <div class="title">
+            <h3>Reemplaza los valores necesarios</h3>
+        </div>
+        <div class="form">
+    
+            <div class="inputLine">
+                <label>
+                   Nombre
+                </label>
+                <input [(ngModel)]="newProducto.nombre" name="nombre" type="text" placeholder="ingrese nombre">
+            </div>
+            <div class="inputLine">
+                <label>
+                    Medida
+                </label>
+                <input disabled value="metros cuadrados" name="medida" type="text" placeholder="Ingrese tipo de medida">
+            </div>
+            <div class="inputLine">
+                <label>
+                    Stock
+                </label>
+                <input  [(ngModel)]="newProducto.stock" name="medida" type="number" placeholder="Ingrese Stock">
+            </div>
+            <div class="inputLine">
+                <label>
+                    Valor
+                </label>
+                <input  [(ngModel)]="newProducto.valor" name="medida" type="number" placeholder="Ingrese Valor">
+            </div>
+            <div class="inputLine">
+                <label>
+                    Descripcion
+                </label>
+                <textarea [(ngModel)]="newProducto.descripcion" name="descripcion" id="" cols="30" rows="10" placeholder="Ingrese descripcion"></textarea>
+            </div>
+            <div class="inputLine">
+                <label>
+                    Categoria
+                </label>
+                <select style="text-align: center;" [(ngModel)]="newProducto.categoria" name="categoria" class="categoria" >
+                    <!--utilizar ngfor  -->
+                    <option hidden selected>{{newProducto.categoria}}</option>
+                    <option value="PISOS FLOTANTESs">PISOS FLOTANTES</option>
+                    <option value="PISOS MADERA">PISOS MADERA</option>
+                    <option value="PISOS  VINÍLICOS">PISOS  VINÍLICOS</option>
+                    <option value="PASTO SINTETICO">PASTO SINTETICO</option>
+                    <option value="CERAMICOS-PORCELANATOS">CERAMICOS-PORCELANATOS</option>
+                    <option value="ALFOMBRAS">ALFOMBRAS</option>
+                    <option value="CORTINAS ROLLER">CORTINAS ROLLER</option>
+                    <option value="PAPELES MURALES">PAPELES MURALES</option>
+                  </select>
+            </div>
+            <label>
+                Preview imagen actual
+            </label>
+            <div class="preview-imagen-antigua">
+                <img src={{newProducto.imagen}} alt="">
+            </div>
+            <div class="inputLine">
+                <label>
+                    Si quieres cambiar la imagen selecciona una 
+                </label>
+                <input  type="file" alife-file-to-base64  (onFileChanged)="onFileChanges($event)" placeholder="ingrese imagen">
+            </div>
+
+
+            <button (click)="this.eliminar(this.id)">Eliminar</button>
+            <button (click)="this.editar()">Editar</button>
+            <button [routerLink]="['/productos']">Cancelar</button>
+
+        </div>
+
+        
+
+    </div>
+
+</div>

@@ -6,11 +6,11 @@
 		<div class="Form">
 			<form>
 				<div class="Input">
-					<input type="" name="">
+					<input [(ngModel)]="this.newCategoria.nombre" type="" name="categoria">
 				</div>
 				<div class="buttons">
 					<div class="butt-save">
-						<button>Guardar</button>
+						<button (click)="addCategoria()">Guardar</button>
 					</div>
 					<div class="butt-cancel">
 						<button><a style="text-decoration: none; color: #fff" [routerLink]="['/productos/category']">Cancelar</a></button>

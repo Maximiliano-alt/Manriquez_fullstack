@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes,RouterModule } from '@angular/router';
 import { ListClientesComponent } from './pages/list-clientes/list-clientes.component';
@@ -6,6 +6,7 @@ import { VentasClienteComponent } from './pages/ventas-cliente/ventas-cliente.co
 import { AddClienteComponent } from './pages/add-cliente/add-cliente.component';
 import { ListProductVentaComponent } from './pages/list-product-venta/list-product-venta.component';
 import { VentaUnicaComponent } from './pages/venta-unica/venta-unica.component';
+import { ModifyClienteComponent } from './pages/modify-cliente/modify-cliente.component';
 
 const routes: Routes=[
   {
@@ -24,6 +25,9 @@ const routes: Routes=[
       },
       {
         path:'product/Venta/:rut/:id',component:ListProductVentaComponent
+      },
+      {
+        path:'modify/client/:id',component:ModifyClienteComponent
       },
       {
         path:'cliente/venta/:id',component:VentaUnicaComponent

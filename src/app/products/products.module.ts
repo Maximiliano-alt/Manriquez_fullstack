@@ -11,7 +11,9 @@ import { CreateCategoryComponent } from './pages/create-category/create-category
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FilterCategoryPipe } from './pipe/filter-category.pipe';
 import { FilterProductPipe } from './pipe/filter-product.pipe';
-
+import { ModifyCategoryComponent } from './pages/modify-category/modify-category.component';
+import { ModifyProductComponent } from './pages/modify-product/modify-product.component';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 @NgModule({
   declarations: [
     HomeProductsComponent,
@@ -21,6 +23,8 @@ import { FilterProductPipe } from './pipe/filter-product.pipe';
     CreateCategoryComponent,
     FilterCategoryPipe,
     FilterProductPipe,
+    ModifyCategoryComponent,
+    ModifyProductComponent,
 
   ],
   imports: [
@@ -29,7 +33,8 @@ import { FilterProductPipe } from './pipe/filter-product.pipe';
     MaterialModule,
     ProductsRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlifeFileToBase64Module
   ]
 })
 export class ProductsModule { }
