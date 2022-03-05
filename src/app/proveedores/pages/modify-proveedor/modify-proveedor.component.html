@@ -1,1 +1,227 @@
-<p>modify-proveedor works!</p>
+<app-navbar
+  [var]="{ route: '/proveedores/list', title: 'Modificar Proveedores' }"
+></app-navbar>
+<div class="container-general">
+  <div class="title-box">Proveedor</div>
+  <form class="formModify" [formGroup]="modifyProveedorForm">
+    <div class="inputs">
+      <div class="box">
+        <div class="header">
+          <p>Nombre</p>
+        </div>
+        <div class="input">
+          <input type="text" name="name" required formControlName="name" />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('name')?.touched && modifyProveedorForm.get('name')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese su nombre
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>RUT</p>
+        </div>
+        <div class="input">
+          <input type="text" name="rut" required formControlName="rut" />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('rut')?.touched && modifyProveedorForm.get('rut')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese el rut
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('rut')?.touched && modifyProveedorForm.get('rut')?.errors?.['minlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese mínimo 9 digitos
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('rut')?.touched && modifyProveedorForm.get('rut')?.errors?.['maxlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso más de 10 digitos
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('rut')?.touched && modifyProveedorForm.get('rut')?.errors?.['pattern']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese correctamente el rut
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>Nombre contacto</p>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            name="ncontacto"
+            required
+            formControlName="ncontacto"
+          />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('ncontacto')?.touched && modifyProveedorForm.get('ncontacto')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese nombre de contacto
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>Dirección</p>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            name="direccion"
+            required
+            formControlName="direccion"
+          />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('direccion')?.touched && modifyProveedorForm.get('direccion')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese dirección
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>Teléfono</p>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            name="telefono"
+            required
+            formControlName="telefono"
+          />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('telefono')?.touched && modifyProveedorForm.get('telefono')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese teléfono
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('telefono')?.touched && modifyProveedorForm.get('telefono')?.errors?.['minlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese mínimo 9 digitos
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('telefono')?.touched && modifyProveedorForm.get('telefono')?.errors?.['maxlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso más de 9 digitos
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('telefono')?.touched && modifyProveedorForm.get('telefono')?.errors?.['pattern']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso solo números
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>Atención</p>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            name="atencion"
+            required
+            formControlName="atencion"
+          />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('atencion')?.touched && modifyProveedorForm.get('atencion')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese Atención
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>Correo atención</p>
+        </div>
+        <div class="input">
+          <input type="email" name="correoa" required formControlName="correoa" />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('correoa')?.touched && modifyProveedorForm.get('correoa')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese correo de atención
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('correoa')?.touched && modifyProveedorForm.get('correoa')?.errors?.['email']"
+          class="message-error"
+        >
+          *ingrese en formato de correo
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>Retira Sr/a</p>
+        </div>
+        <div class="input">
+          <input type="text" name="retira" required formControlName="retira" />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('retira')?.touched && modifyProveedorForm.get('retira')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese quien retira
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>N° guía</p>
+        </div>
+        <div class="input">
+          <input type="text" name="nguia" required formControlName="nguia" />
+        </div>
+        <p
+          *ngIf="modifyProveedorForm.get('nguia')?.touched && modifyProveedorForm.get('nguia')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese n° de guía
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('nguia')?.touched && modifyProveedorForm.get('nguia')?.errors?.['minlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese mínimo 3 digitos
+        </p>
+        <p
+          *ngIf="modifyProveedorForm.get('nguia')?.touched && modifyProveedorForm.get('nguia')?.errors?.['pattern']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso solo números
+        </p>
+      </div>
+      <div class="button-group">
+        <div class="box">
+          <button
+            type="submit"
+            class="button"
+            [disabled]="modifyProveedorForm.invalid"
+          >
+            Guardar
+          </button>
+        </div>
+        <div class="box">
+          <button type="reset" class="button">Cancelar</button>
+        </div>
+        <div class="box">
+          <button type="reset" class="button">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

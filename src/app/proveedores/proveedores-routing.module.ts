@@ -4,7 +4,6 @@ import { ListProveedoresComponent } from './pages/list-proveedores/list-proveedo
 import { NewProveedorComponent } from './pages/new-proveedor/new-proveedor.component';
 import { MainComponent } from './pages/main/main.component';
 import { ModifyProveedorComponent } from './pages/modify-proveedor/modify-proveedor.component';
-import { DeleteProveedorComponent } from './pages/delete-proveedor/delete-proveedor.component';
 
 const routes: Routes = [
   {
@@ -20,12 +19,8 @@ const routes: Routes = [
         component: NewProveedorComponent,
       },
       {
-        path: 'modify/:id',
+        path: 'modify/:_id',
         component: ModifyProveedorComponent,
-      },
-      {
-        path: 'delete',
-        component: DeleteProveedorComponent,
       },
       {
         path: '**',
