@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { VentasService,producto, productoComprado } from '../../services/ventas.service';
+import { ClienteService } from 'src/app/clientes/service/cliente.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-list-producto',
   templateUrl: './list-producto.component.html',
@@ -13,26 +16,74 @@ export class ListProductoComponent implements OnInit {
   index_aux = 0;
   resto=0;
   final = 0;
-  array=[
-    1,2,3,4,5,6,7,8,9,10,11,12,13,
-  ]
-
+  // array = [1,2,3,4,5,6,7,8,9,10,12,13]
+  array:productoComprado[]=[]
+  rut!:string;
   inicio:any=0;
 
 
   segmento:any=[]
   
-  constructor( private router:Router, private route: ActivatedRoute) {
+  constructor( private router:Router, private route: ActivatedRoute,private service: VentasService, private serviceCliente:ClienteService) {
     this.id = this.route.snapshot.paramMap.get('id')
-    console.log(this.id)
-   }
+    this.rut = localStorage.getItem('dataToken') || "";
+
+  }
+
+
+
+ 
+
 
   ngOnInit(): void {
     this.resto = this.array.length%4
-    this.nf_for_next();
+    // this.nf_for_next();
+    this.getData()
   }
 
-  nf_for_next():any{
+
+
+  modify(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
+    
+    // operacion s r d
+    
+    this.service.deleteProduct(array,producto,idVenta,operacion).subscribe(
+      (res:any)=>{
+        if(res.status==200){
+          this.array = []
+          this.indice_espera = 4;
+          this.inicio_slice = 0;
+          this.actualizarCliente(this.id,this.rut,this.array,producto,operacion)
+          this.getData()
+          this.newSuma(this.rut)
+          this.updateVenta(this.id)
+        
+        }
+        else{
+          Swal.fire({
+            title: 'Error!',
+          text: 'No se pudo eliminar el producto',
+          icon: 'error',})
+        }
+        
+      }
+    )
+  }
+
+  getData(){
+    this.service.getProductoForId(this.id).subscribe(
+      res=>{
+        console.log(res)
+        res.forEach((e:productoComprado)=>{
+          this.array.push(e)
+          if(this.array.length == res.length){
+            this.nf_for_next()
+          }
+        })
+      }
+    )
+  }
+  nf_for_next():number{
     var aux = this.segmento;
     this.segmento = [];
 
@@ -40,9 +91,12 @@ export class ListProductoComponent implements OnInit {
     if(this.inicio_slice == (this.array.length - this.resto) && this.resto != 0){
 
       for (let index = (this.array.length-this.resto); index < this.array.length; index++) {
-        this.segmento.push(this.array.find(element=>element==this.array[index])) 
+        if(this.array[index]!=undefined){
+          this.segmento.push(this.array.find((element:any)=>element==this.array[index])!) 
+        }
+
       }
-   
+
       return 0;
     }
     else{
@@ -50,25 +104,32 @@ export class ListProductoComponent implements OnInit {
       // recorremos del principio hasta llegar al resto
 
       if(this.resto == 0 && this.indice_espera == this.array.length+4){
-        
+
         this.segmento = aux;
         return 0;
       }
       else{
+       
         for (let index = this.inicio_slice; index < this.indice_espera; index++) {
-          this.segmento.push(this.array.find(element=>element==this.array[index])) 
-          
+          if(this.array[index]!=undefined){
+            this.segmento.push(this.array.find((element:any)=>element==this.array[index])!) 
+          }
+  
         }
-        //aniadimos 4 unidades par poder recorrer el ng-for con 4 ventas
+        //aniadimos 6 unidades par poder recorrer el ng-for con 6 ventas
+       if(this.indice_espera<this.array.length){
         this.indice_espera = this.indice_espera + 4;
-        this.inicio_slice = this.inicio_slice + 4;  
+        this.inicio_slice = this.inicio_slice + 4;
+       }
+
         return 1;
       }
+
     }
-    
-    
-  
-      
+
+
+
+
   }
   
   nf_for_preview():any{
@@ -84,7 +145,11 @@ export class ListProductoComponent implements OnInit {
       this.inicio_slice = this.inicio_slice - 4;
       this.indice_espera = this.indice_espera -4;
       for (let index = this.inicio_slice; index < this.indice_espera; index++) {
-        this.segmento.push(this.array.find(element=>element==this.array[index])) 
+        this.array.find((element:any)=>{
+          if(element==this.array[index]){
+            this.segmento.push(element)
+          }
+        })
         
       }
       return 1;
@@ -92,5 +157,43 @@ export class ListProductoComponent implements OnInit {
     
    
   }
+
+  actualizarCliente(idVenta:string,rut:string,array:any,producto:any,indicador:string){
+    this.serviceCliente.actualizarVenta(idVenta,rut,this.array,producto,indicador)
+    .subscribe(
+      (res:any)=>{
+        if(res.status == 500){
+          Swal.fire({
+            title: '',
+            text: 'No se pudo modificar el producto :(',
+            icon: 'error',
+          })
+        }
+        this.newSuma(this.rut)
+      }
+      
+    )
+
+
+  }
+
+
+  newSuma(rut:string){
+    this.serviceCliente.calcularTotalVenta(rut).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
+
+
+  updateVenta(id:string){
+    this.serviceCliente.updateVenta(id).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
+
 
 }

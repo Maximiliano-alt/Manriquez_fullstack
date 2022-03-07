@@ -1,0 +1,57 @@
+<app-navbar [var]="{route:'/pendientes',title:'Modify Pendiente'}" ></app-navbar>
+
+
+<div class="spiner" *ngIf="indicadorRespuesta == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando pendiente...</span>
+</div>
+
+<div class="container" *ngIf="indicadorRespuesta == 1">
+    <div class="title">
+        <h1>
+            Nombre del pendiente
+        </h1>
+    </div>
+
+    <div class="inputs">
+        <div class="input">
+            <label for="">
+                Tipo de pendiente
+            </label>
+            <input [(ngModel)]="this.newPendiente.tipo" name="tipo" type="text">
+        </div>
+        <div class="input">
+            
+            <label for="">
+                Fecha antigua
+            </label>
+            <p>{{this.newPendiente.fecha | date:"short"}}</p>
+        </div>
+        <div class="input">
+            <label for="">
+                Fecha nueva
+            </label>
+            <input [(ngModel)]="this.newPendiente.fecha" name="fecha" type="date" >
+        </div>
+    
+        <div class="input">
+            <label for="">
+                Observacion
+            </label>
+            <textarea [(ngModel)]="this.newPendiente.observacion" name="observacion" type="text" id="" cols="30" rows="10" ></textarea>
+        </div>
+        
+        <button (click)="deleteOne(this.id)">Eliminar</button>
+        <button (click)="modifyOne(this.newPendiente)">Editar</button>
+        <button [routerLink]="['/pendientes']">Cancelar</button>
+
+    </div>
+    
+
+    
+
+
+
+
+</div>

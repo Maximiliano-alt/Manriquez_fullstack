@@ -1,6 +1,9 @@
 <app-navbar [var]="{route:'/app/home',title:'Clientes'}" ></app-navbar>
 
 
+
+
+
 <div class="search">
     <div class="icon">
         <a style="text-decoration: none;" routerLink="/clientes/add/cliente">
@@ -16,4 +19,11 @@
 </div>
 
 
-<app-lista [input]="{indicador:'clientes',data:array}"></app-lista>
+<div class="spiner" *ngIf="this.array.length == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando clientes...</span>
+</div>
+
+
+<app-lista *ngIf="this.array.length != 0" [input]="{indicador:'clientes',data:array}"></app-lista>

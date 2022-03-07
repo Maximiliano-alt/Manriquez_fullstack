@@ -2,103 +2,252 @@
   [var]="{ route: '/proveedores/lista', title: 'Añadir Proveedor' }"
 ></app-navbar>
 
-<div class="back-fondo">
-  <div *ngIf="view; then inicial; else siguiente"></div>
-</div>
-
-<div class="arrow">
+<!-- <div class="arrow translate">
   <button (click)="cambiarView()">
     <mat-icon>
-      <img [ngStyle]="{'transform': view? 'scaleY(-1)':'scaleY(1)'}" src="../../../../assets/page/arriba abajo.svg" />
+      <img
+        class="arrowIcon"
+        [ngStyle]="{ opacity: width > 1024 ? '1' : '0' }"
+        src="../../../../assets/page/arriba abajo.svg"
+      />
     </mat-icon>
   </button>
+</div> -->
+
+<div class="back-fondo" (submit)="onSubmit()">
+  <form class="formNewProveedores" [formGroup]="newProveedorForm">
+    <div class="inputs">
+      <div class="box">
+        <div class="header">
+          <p>Nombre</p>
+        </div>
+        <div class="input">
+          <input type="text" name="name" required formControlName="name" />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('name')?.touched && newProveedorForm.get('name')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese su nombre
+        </p>
+      </div>
+      <div class="box">
+        <div class="header">
+          <p>RUT</p>
+        </div>
+        <div class="input">
+          <input type="text" name="rut" required formControlName="rut" />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('rut')?.touched && newProveedorForm.get('rut')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese el rut
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('rut')?.touched && newProveedorForm.get('rut')?.errors?.['minlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese mínimo 9 digitos
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('rut')?.touched && newProveedorForm.get('rut')?.errors?.['maxlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso más de 10 digitos
+        </p>
+        <p
+        *ngIf="newProveedorForm.get('rut')?.touched && newProveedorForm.get('rut')?.errors?.['pattern']"
+        class="message-error"
+      >
+        *Campo requerido: ingrese correctamente el rut
+      </p>
+      </div>
+
+      <div class="box">
+        <div class="header">
+          <p>Nombre contacto</p>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            name="ncontacto"
+            required
+            formControlName="ncontacto"
+          />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('ncontacto')?.touched && newProveedorForm.get('ncontacto')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese nombre de contacto
+        </p>
+      </div>
+
+      <div class="box">
+        <div class="header">
+          <p>Dirección</p>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            name="direccion"
+            required
+            formControlName="direccion"
+          />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('direccion')?.touched && newProveedorForm.get('direccion')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese dirección
+        </p>
+      </div>
+
+      <div class="box">
+        <div class="header">
+          <p>Teléfono</p>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            name="telefono"
+            required
+            formControlName="telefono"
+          />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('telefono')?.touched && newProveedorForm.get('telefono')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese teléfono
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('telefono')?.touched && newProveedorForm.get('telefono')?.errors?.['minlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese mínimo 9 digitos
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('telefono')?.touched && newProveedorForm.get('telefono')?.errors?.['maxlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso más de 9 digitos
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('telefono')?.touched && newProveedorForm.get('telefono')?.errors?.['pattern']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso solo números
+        </p>
+      </div>
+
+      <div class="box">
+        <div class="header">
+          <p>Atención</p>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            name="atencion"
+            required
+            formControlName="atencion"
+          />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('atencion')?.touched && newProveedorForm.get('atencion')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese Atención
+        </p>
+      </div>
+
+      <div class="box">
+        <div class="header">
+          <p>Correo atención</p>
+        </div>
+        <div class="input">
+          <input
+            type="email"
+            name="correoa"
+            required
+            formControlName="correoa"
+          />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('correoa')?.touched && newProveedorForm.get('correoa')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese correo de atención
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('correoa')?.touched && newProveedorForm.get('correoa')?.errors?.['email']"
+          class="message-error"
+        >
+          *ingrese en formato de correo
+        </p>
+      </div>
+
+      <div class="box">
+        <div class="header">
+          <p>Retira Sr/a</p>
+        </div>
+        <div class="input">
+          <input type="text" name="retira" required formControlName="retira" />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('retira')?.touched && newProveedorForm.get('retira')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese quien retira
+        </p>
+      </div>
+
+     
+    </div>
+
+    <div class="row">
+      <div class="box">
+        <div class="header">
+          <p>N° guía</p>
+        </div>
+        <div class="input">
+          <input type="text" name="nguia" required formControlName="nguia" />
+        </div>
+        <p
+          *ngIf="newProveedorForm.get('nguia')?.touched && newProveedorForm.get('nguia')?.errors?.['required']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese n° de guía
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('nguia')?.touched && newProveedorForm.get('nguia')?.errors?.['minlength']"
+          class="message-error"
+        >
+          *Campo requerido: ingrese mínimo 3 digitos
+        </p>
+        <p
+          *ngIf="newProveedorForm.get('nguia')?.touched && newProveedorForm.get('nguia')?.errors?.['pattern']"
+          class="message-error"
+        >
+          *Campo requerido: ingreso solo números
+        </p>
+      </div>
+      <div class="button-group">
+        <div class="box">
+          <button
+            type="submit"
+            class="button"
+            [disabled]="newProveedorForm.invalid"
+          >
+            Guardar
+          </button>
+        </div>
+        <div class="box">
+          <button type="reset" class="button">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
 </div>
-
-<ng-template #inicial>
-  <div class="inputs">
-    <div class="box">
-      <div class="header">
-        <p>Nombre</p>
-      </div>
-      <div class="input">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="box">
-      <div class="header">
-        <p>Nombre contacto</p>
-      </div>
-      <div class="input">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="box">
-      <div class="header">
-        <p>Dirección</p>
-      </div>
-      <div class="input">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="box">
-      <div class="header">
-        <p>Teléfono</p>
-      </div>
-      <div class="input">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="box">
-      <div class="header">
-        <p>Atención</p>
-      </div>
-      <div class="input">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="box">
-      <div class="header">
-        <p>Correo atención</p>
-      </div>
-      <div class="input">
-        <input type="text" />
-      </div>
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #siguiente>
-  <div class="inputs">
-    <div class="box">
-      <div class="header">
-        <p>Retira Sr/a</p>
-      </div>
-      <div class="input">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="box">
-      <div class="header">
-        <p>N° guía</p>
-      </div>
-      <div class="input">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="box">
-      <div class="header">
-        <p>Comentario</p>
-      </div>
-      <div class="input">
-        <textarea></textarea>
-      </div>
-    </div>
-    <div class="box">
-      <button class="button">Guardar</button>
-
-    </div>
-    <div class="box">
-    <button class="button">Cancelar</button>
-    </div>
-  </div>
-</ng-template>

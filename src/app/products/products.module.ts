@@ -9,13 +9,23 @@ import { DetailProductsComponent } from './pages/detail-products/detail-products
 import { CatProductsComponent } from './pages/cat-products/cat-products.component';
 import { CreateCategoryComponent } from './pages/create-category/create-category.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FilterCategoryPipe } from './pipe/filter-category.pipe';
+import { FilterProductPipe } from './pipe/filter-product.pipe';
+import { ModifyCategoryComponent } from './pages/modify-category/modify-category.component';
+import { ModifyProductComponent } from './pages/modify-product/modify-product.component';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 @NgModule({
   declarations: [
     HomeProductsComponent,
     AddProductsComponent,
     DetailProductsComponent,
     CatProductsComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    FilterCategoryPipe,
+    FilterProductPipe,
+    ModifyCategoryComponent,
+    ModifyProductComponent,
+
   ],
   imports: [
     CommonModule,
@@ -23,7 +33,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     ProductsRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlifeFileToBase64Module
   ]
 })
 export class ProductsModule { }

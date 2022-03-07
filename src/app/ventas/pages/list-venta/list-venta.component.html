@@ -6,10 +6,18 @@
         </a>
     </div>
     <div class="input">
-        <input type="text">
+        <input style="text-align: center;" [(ngModel)]="this.filterListVenta" name="filter" type="text" autocomplete="off" placeholder="Ingrese nombre del cliente"> 
     </div>
     <div class="search-button">
-        <mat-icon>search</mat-icon>
+        <mat-icon (click)="search(0)">search</mat-icon>
     </div>
 </div>
-<app-lista [input]="{indicador:'ventas',data:array}"></app-lista>
+
+<div class="spiner" *ngIf="this.array.length == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando pagina...</span>
+</div>
+
+
+<app-lista *ngIf="this.array.length !=0 && this.estadoDeSearch == 1 " [input]="{indicador:'ventas',data:arrayAux}"></app-lista>

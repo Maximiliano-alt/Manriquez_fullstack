@@ -1,4 +1,4 @@
-<app-navbar [var]="{route:'/app/home',title:'Productos'}" ></app-navbar>
+<app-navbar [var]="{route:'/productos/category',title:'Productos'}" ></app-navbar>
 <div class="search">
     <div class="icon">
         <a style="text-decoration: none;" routerLink="/productos/add">
@@ -6,10 +6,16 @@
         </a>
     </div>
     <div class="input">
-        <input type="text">
+        <input type="text" [(ngModel)]="this.filter" name="filter" autocomplete="off" placeholder="Ingrese nombre del producto" style="text-align: center;">
     </div>
     <div class="search-button">
-        <mat-icon>search</mat-icon>
+        <mat-icon (click)="search(0)">search</mat-icon>
     </div>
 </div>
-<app-lista [input]="{indicador:'products',data:array}"></app-lista>
+<div class="spiner" *ngIf="this.array.length == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando productos ...</span>
+</div>
+
+<app-lista *ngIf="this.array.length != 0 && estadoDeSearch == 1" [input]="{indicador:'products',data:arrayAux}"></app-lista>

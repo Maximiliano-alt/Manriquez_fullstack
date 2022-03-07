@@ -1,1 +1,50 @@
-<p>detail-products works!</p>
+<app-navbar [var]="{route:'/productos/category',title:'Productos'}" ></app-navbar>
+<div class="container-general">
+	<div class="detail-container" *ngIf="indicador==1">
+		<form>
+			<div class="data-container">
+				<div class="BOX-1">
+					<div class="name-box">
+						<div class="name">Nombre</div>
+						<div class="data">&nbsp;{{this.newProducto.nombre}}</div>
+					</div>
+					<div class="properties-box">
+						<div class="data-propertie">
+							<div class="type">Precio</div>
+							<div class="data">&nbsp;{{this.newProducto.valor| currency:'CLP'}}</div>
+						</div>
+						<div class="data-propertie">
+							<div class="type">Color</div>
+							<div class="data">&nbsp;{{this.newProducto.color}}</div>
+						</div>
+						<div class="data-propertie">
+							<div class="type">Stock</div>
+							<div class="data">&nbsp;{{this.newProducto.stock}}</div>
+						</div>
+						<div class="data-propertie">
+							<div class="type">Estado</div>
+							<div *ngIf="this.newProducto.stock > 0" class="data">&nbsp;Hablitado</div>
+							<div *ngIf="this.newProducto.stock <= 0" class="data">&nbsp;Deshablitado</div>
+						</div>
+					</div>
+				</div>
+				<div class="BOX-2">
+					<div class="description-box">
+						<div class="description">Descripción</div>
+						<div class="data-info">&nbsp;{{this.newProducto.descripcion}}</div>
+					</div>
+					<div class="IMG">
+						
+						<img src="{{this.newProducto.imagen}}" alt="">
+					</div>
+				</div>		
+			</div>
+			<div class="buttons">
+				
+				<div class="butt-cancel">
+					<button style="color: white;" [routerLink]="['/productos']">Cancelar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<app-navbar [var]="{ route: '/app/home', title: 'Proveedores' }"></app-navbar>
+<div class="search">
+  <div class="icon">
+    <a style="text-decoration: none" routerLink="/proveedores/new">
+      <mat-icon>add_circle_outline</mat-icon>
+    </a>
+  </div>
+  <div class="input">
+    <input style="text-align: center;" [(ngModel)]="this.filterProveedores" name="filter" type="text" autocomplete="off" placeholder="Ingrese rut del proveedor"> 
+
+  </div>
+  <div class="search-button">
+    <mat-icon [ngStyle]="{'cursor':'pointer'}"  (click)="search(0)">search</mat-icon>
+  </div>
+</div>
+<div class="spiner" *ngIf="this.array.length == 0">
+  <div class="spinner-border" role="status"></div>
+  <span>Cargando productos ...</span>
+</div>
+<app-lista
+  *ngIf="this.array.length != 0 && estadoDeSearch == 1"
+  [input]="{ indicador: 'proveedores', data: arrayAux }"
+></app-lista>
