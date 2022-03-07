@@ -26,6 +26,27 @@ export class ProductsService {
     )
   }
 
+  modifyCategory(value:any,newName:any){
+    return this.http.post(environment.baseUrl+'/modify/category',{value,newName}).pipe(
+      delay(1000)
+    )
+  }
+
+  deleteCategory(value:any){
+    return this.http.get(environment.baseUrl+'/delete/categoria/'+value)
+  }
+
+  addCategoria(value:any){
+    return this.http.post(environment.baseUrl+'/add/categoria',value)
+  }
+  getOneProduct(value:any){
+    return this.http.get(environment.baseUrl+'/get/product/'+value);
+  }
+
+  modifyProduct(id:any,data:product){
+    return this.http.post(environment.baseUrl+'/modifyProduct',data)
+  }
+
 }
 
 export interface product{

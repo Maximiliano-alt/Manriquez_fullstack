@@ -4,6 +4,7 @@ import { ListPendientesComponent } from './pages/list-pendientes/list-pendientes
 import { PreviewComponent } from './pages/preview/preview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AddPendientesComponent } from './pages/add-pendientes/add-pendientes.component';
+import { ModifyPendienteComponent } from './pages/modify-pendiente/modify-pendiente.component';
 
 const routes: Routes = [
 
@@ -20,6 +21,9 @@ const routes: Routes = [
 
 			{
 				path:'preview/:id',component:	PreviewComponent,
+			},
+			{
+				path:'modify/:id',component: ModifyPendienteComponent,
 			},
 			{
 				path: '**',redirectTo:'pendientes',

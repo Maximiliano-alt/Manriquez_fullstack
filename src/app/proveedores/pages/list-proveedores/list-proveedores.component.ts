@@ -20,8 +20,9 @@ export class ListProveedoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListProveedores();
-    console.log(this.array);
     this.arrayAux = this.array;
+
+    
   }
 
   getListProveedores(): void {
@@ -33,7 +34,7 @@ export class ListProveedoresComponent implements OnInit {
           icon: 'warning',
         });
       } else {
-        res['proveedores'].forEach((element: Proveedor) => {
+        res['proveedores'].forEach((element: any) => {
           this.array.push(element);
         });
       }
@@ -42,7 +43,6 @@ export class ListProveedoresComponent implements OnInit {
 
   search(value: number) {
     this.arrayAux = this.filterProveedor.transform(this.array, this.filterProveedores);
-
     if (this.estadoDeSearch == 1) {
       this.estadoDeSearch = value;
       setTimeout(() => {

@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Proveedor } from '../services/proveedor.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +16,9 @@ export class FilterProveedoresPipe implements PipeTransform {
     } else {
       indicador = 0;
 
+
       value.forEach((element: Proveedor) => {
+
         indicador = 0;
         console.log(element)
         var aux = element.nombre.toLowerCase();

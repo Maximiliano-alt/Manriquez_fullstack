@@ -50,9 +50,9 @@
                   <select [formControl]="category" name="categoria" class="categoria">
                     <!--utilizar ngfor  -->
 
-                    <option value="PISOS FLOTANTESs">PISOS FLOTANTES</option>
+                    <option value="PISOS FLOTANTES">PISOS FLOTANTES</option>
                     <option value="PISOS MADERA">PISOS MADERA</option>
-                    <option value="PISOS  VINÍLICOS">PISOS  VINÍLICOS</option>
+                    <option value="PISOS VINILICOS">PISOS  VINÍLICOS</option>
                     <option value="PASTO SINTETICO">PASTO SINTETICO</option>
                     <option value="CERAMICOS-PORCELANATOS">CERAMICOS-PORCELANATOS</option>
                     <option value="ALFOMBRAS">ALFOMBRAS</option>
@@ -77,7 +77,8 @@
         <div class="nav-nombre">
             Imagen
         </div>
-        <input type="file">
+        <input type="file" alife-file-to-base64  (onFileChanged)="onFileChanges($event)">
+       
     </div>
     </div>
 
