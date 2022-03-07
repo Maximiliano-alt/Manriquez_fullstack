@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { delay } from 'rxjs/operators';
 
 import { ClienteService } from 'src/app/clientes/service/cliente.service';
+import { PdfService } from '../../services/pdf.service';
 @Component({
   selector: 'app-venta-unica',
   templateUrl: './venta-unica.component.html',
@@ -13,7 +14,7 @@ import { ClienteService } from 'src/app/clientes/service/cliente.service';
 export class VentaUnicaComponent implements OnInit {
   estado=""; //pendiente o pagado
   id:any="";
-  constructor( private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService) {
+  constructor( private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
     localStorage.setItem('dataToken',this.rut);
@@ -25,7 +26,7 @@ export class VentaUnicaComponent implements OnInit {
   dataIndicador  = 0
 
   ngOnInit(): void {
-   
+
     this.getClienteAndVenta()
   }
 
@@ -44,7 +45,7 @@ export class VentaUnicaComponent implements OnInit {
           this.router.navigate(['/clientes/clientes'])
         }
         else{
-          
+
           this.cliente = res.data
           this.ventaProductos = res.dataVenta
           this.dataIndicador = 1
@@ -57,10 +58,10 @@ export class VentaUnicaComponent implements OnInit {
 
 
   ver_producto():number{
-    
+
     return 0;
   }
-  
+
   cotizacion():number{
     console.log("crear cotizacion again");
     return 0;
@@ -109,7 +110,7 @@ export class VentaUnicaComponent implements OnInit {
   newSuma(rut:string){
     this.serviceCliente.calcularTotalVenta(rut).subscribe(
       res=>{
-        
+
       }
     )
   }
@@ -117,9 +118,15 @@ export class VentaUnicaComponent implements OnInit {
   updateVenta(id:string){
     this.serviceCliente.updateVenta(id).subscribe(
       res=>{
-        
+
       }
     )
   }
-  
+
+
+  createBuyOrder(type:string){
+    console.log('ola');
+    this.servicePdf.downloadPdf(type);
+  }
+
 }
