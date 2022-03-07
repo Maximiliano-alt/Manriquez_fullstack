@@ -8,7 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './pages/main/main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ModifyProveedorComponent } from './pages/modify-proveedor/modify-proveedor.component';
 
 
 @NgModule({
@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListProveedoresComponent,
     NewProveedorComponent,
     MainComponent,
+    ModifyProveedorComponent
+
   ],
   imports: [
     CommonModule,

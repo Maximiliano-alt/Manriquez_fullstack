@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
+import { Proveedor } from '../services/proveedor.service';
 @Injectable({
   providedIn: 'root',
 })

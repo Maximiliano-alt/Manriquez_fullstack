@@ -108,7 +108,7 @@ export interface venta{
       correoAtencion: string;
       retira: string;
       numeroGuia: string;
-      comentario: string;
+
     }
 }
 

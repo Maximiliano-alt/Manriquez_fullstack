@@ -51,7 +51,7 @@ export class AddVentaComponent implements OnInit {
       correoAtencion: '',
       retira: '',
       numeroGuia: '',
-      comentario: '',
+
     },
     estado: 'pendiente',
     productos:[
@@ -73,7 +73,6 @@ export class AddVentaComponent implements OnInit {
       correoAtencion: '',
       retira: '',
       numeroGuia: '',
-      comentario: '',
     }
 
   container=0;//aca funciona el container general!
