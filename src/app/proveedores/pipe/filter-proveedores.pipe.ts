@@ -15,12 +15,14 @@ export class FilterProveedoresPipe implements PipeTransform {
       return value;
     } else {
       indicador = 0;
-  
-      value.forEach((element: any) => {
+
+
+      value.forEach((element: Proveedor) => {
+
         indicador = 0;
         console.log(element)
-        var aux = element.rut;
-        var aux2 = args;
+        var aux = element.nombre.toLowerCase();
+        var aux2 = args.toLowerCase();
         for (let index = 0; index < aux2.length; index++) {
           if (aux[index] != aux2[index]) {
             indicador = 1;
@@ -30,16 +32,7 @@ export class FilterProveedoresPipe implements PipeTransform {
           lista.push(element);
         }
       });
-      if (lista.length == 0) {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'warning',
-          title: 'Este dato no se encuentra',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-        return value;
-      }
+
 
       return lista;
     }
