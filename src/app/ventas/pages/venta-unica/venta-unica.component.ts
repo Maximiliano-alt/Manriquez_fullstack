@@ -6,6 +6,7 @@ import { delay } from 'rxjs/operators';
 
 import { ClienteService } from 'src/app/clientes/service/cliente.service';
 import { PdfService } from '../../services/pdf.service';
+import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-venta-unica',
   templateUrl: './venta-unica.component.html',
@@ -20,6 +21,7 @@ export class VentaUnicaComponent implements OnInit {
     localStorage.setItem('dataToken',this.rut);
   }
 
+  ingresoModificacion = 0;
   cliente!:any;
   rut!:any
   ventaProductos:any
@@ -67,9 +69,15 @@ export class VentaUnicaComponent implements OnInit {
     return 0;
   }
   modificarEstado(estado:string,rut:string,idVenta:string):number{
+    
     this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
       (res:any)=>{
+       
         if(res.status == 200){
+          this.ingresoModificacion = 1;
+          if(this.ingresoModificacion == 1){
+            this.actualizarProducto(this.estado,this.id)
+          }
           Swal.fire({
             title: '',
             text: 'Modificacion correcta!',
@@ -127,6 +135,25 @@ export class VentaUnicaComponent implements OnInit {
   createBuyOrder(type:string){
     console.log('ola');
     this.servicePdf.downloadPdf(type);
+  }
+
+
+  actualizarProducto(estado:any,id:any){
+    if(estado=='pagado'){
+      this.serviceCliente.actualizarProducto_delete(id).subscribe(
+        res=>{
+          console.log(res)  
+        }
+      )
+    }
+    else if(estado=='pendiente'){
+      this.serviceCliente.actualizarProducto_add(id).subscribe(
+        res=>{
+          console.log(res)
+        }
+      )
+    }
+
   }
 
 }
