@@ -18,11 +18,16 @@ export class ProveedorService {
     )
   }
   getProveedor(data:any){
-    return this.http.get<any>(environment.baseUrl+'/proveedor/'+ data).pipe(
-      delay(2000)
-    )
+    return this.http.get<any>(environment.baseUrl+'/proveedor/'+ data);
   }
 
+  updateProveedor(data: Proveedor, id: string){
+    return this.http.put<any>(environment.baseUrl + '/modificarProveedor/'+id, data)
+  }
+
+  deleteProveedor(data: Proveedor){
+    return this.http.post<any>(environment.baseUrl + '/eliminarProveedor', data);
+  }
 }
 export interface Proveedor {
   nombre: string;
