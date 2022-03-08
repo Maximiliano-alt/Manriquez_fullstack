@@ -6,6 +6,7 @@ import { delay } from 'rxjs/operators';
 
 import { ClienteService } from 'src/app/clientes/service/cliente.service';
 import { PdfService } from '../../services/pdf.service';
+import { ReturnStatement } from '@angular/compiler';
 @Component({
   selector: 'app-venta-unica',
   templateUrl: './venta-unica.component.html',
@@ -24,7 +25,7 @@ export class VentaUnicaComponent implements OnInit {
   rut!:any
   ventaProductos:any
   dataIndicador  = 0
-
+  state:boolean = false;
   ngOnInit(): void {
 
     this.getClienteAndVenta()
@@ -127,6 +128,13 @@ export class VentaUnicaComponent implements OnInit {
   createBuyOrder(type:string){
     console.log('ola');
     this.servicePdf.downloadPdf(type);
+  }
+
+  activateCommentary(){
+    if(this.state == false){
+      this.state = true;
+    }
+    this.state = false
   }
 
 }

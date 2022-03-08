@@ -40,7 +40,8 @@
     </div>
 
     <!-- botones -->
-    <div class="buttons">
+    <div class="separate-commentary">
+      <div class="buttons">
         <div (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </div>
@@ -73,10 +74,11 @@
                 <!-- falta definicion de requerimiento -->
                 Crear Cotizacion
             </div>
-            <div  *ngIf="this.estado == 'pagado'" class="button-par" (click)="createBuyOrder('ordenDeCompra')">
+            <div  *ngIf="this.estado == 'pagado'" class="button-par"   (click)="activateCommentary()">
               Crear orden de compra
           </div>
         </div>
+
         <div class="button-pares">
             <div  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
                 <!-- falta definicion del requerimiento -->
@@ -91,13 +93,16 @@
                Eliminar
             </div>
         </div>
+
         <div *ngIf="this.estado == 'pagado'" style="margin: 0; width: 100%;"  class="button">
            <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
            <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
         </div>
-
-
-
     </div>
+    <div class="text">
+      <textarea *ngIf="this.state == true" name="comentario" id="comentario-orden" cols="30" placeholder="Ingrese comentario para la orden de compra" rows="10"></textarea>
+    </div>
+    </div>
+
 
 </div>
