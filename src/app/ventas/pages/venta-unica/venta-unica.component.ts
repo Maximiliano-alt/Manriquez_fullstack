@@ -7,6 +7,7 @@ import { delay } from 'rxjs/operators';
 import { ClienteService } from 'src/app/clientes/service/cliente.service';
 import { PdfService } from '../../services/pdf.service';
 import { ReturnStatement } from '@angular/compiler';
+import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-venta-unica',
   templateUrl: './venta-unica.component.html',
@@ -15,10 +16,17 @@ import { ReturnStatement } from '@angular/compiler';
 export class VentaUnicaComponent implements OnInit {
   estado=""; //pendiente o pagado
   id:any="";
+  comentario:FormControl;
   constructor( private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
     localStorage.setItem('dataToken',this.rut);
+
+    this.comentario = new FormControl('',[Validators.required,]);
+    this.comentario.valueChanges.subscribe(
+      value =>{
+      }
+    );
   }
 
   cliente!:any;
@@ -126,7 +134,6 @@ export class VentaUnicaComponent implements OnInit {
 
 
   createBuyOrder(type:string){
-    console.log('ola');
     this.servicePdf.downloadPdf(type);
   }
 
@@ -134,7 +141,9 @@ export class VentaUnicaComponent implements OnInit {
     if(this.state == false){
       this.state = true;
     }
-    this.state = false
+    else{
+      this.state = false;
+    }
   }
 
 }
