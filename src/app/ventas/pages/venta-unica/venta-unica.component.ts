@@ -38,7 +38,7 @@ export class VentaUnicaComponent implements OnInit {
 
     this.service.getVentaAndCliente(this.id,this.rut).subscribe(
       (res:any)=>{
-        if(res.status==404){
+        if(res.status == 404){
           Swal.fire({
             title: 'Error :(',
             text: 'Usuario no encontrado',
@@ -70,24 +70,41 @@ export class VentaUnicaComponent implements OnInit {
   }
   modificarEstado(estado:string,rut:string,idVenta:string):number{
     
-    this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
-      (res:any)=>{
-       
-        if(res.status == 200){
-          this.ingresoModificacion = 1;
-          if(this.ingresoModificacion == 1){
-            this.actualizarProducto(this.estado,this.id)
+    this.verify_amount(this.id).then((data:any)=>{
+      if(data.status == 200){
+        this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
+          (res:any)=>{
+           
+            if(res.status == 200){
+              this.ingresoModificacion = 1;
+              if(this.ingresoModificacion == 1){
+                this.actualizarProducto(this.estado,this.id)
+              }
+              Swal.fire({
+                title: '',
+                text: 'Modificacion correcta!',
+                icon: 'success',
+              })
+              
+              setTimeout(()=>{
+                window.location.reload()
+              },3000)
+            }
           }
-          Swal.fire({
-            title: '',
-            text: 'Modificacion correcta!',
-            icon: 'success',
-          })
-          delay(2000)
-          window.location.reload()
-        }
+        )
       }
-    )
+      else if(data.status == 500){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'warning',
+          title: 'Stock no suficiente para esta compra!',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+      
+    })
+    
     return 0;
   }
   delete(idventa:string,rut:string):number{
@@ -154,6 +171,17 @@ export class VentaUnicaComponent implements OnInit {
       )
     }
 
+  }
+
+  verify_amount(id:any){
+    
+    return new Promise((resolve,reject)=>{
+      this.service.verify_amount(id).subscribe(
+        (res:any)=>{
+          resolve(res)
+        }
+      )
+    })
   }
 
 }
