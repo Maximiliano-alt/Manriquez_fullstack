@@ -74,6 +74,9 @@ export class VentasService {
     )
   }
 
+  verify_amount(id:any){
+    return this.http.post(environment.baseUrl+'/verify/cantidad',{id})
+  }
 
 
 }
