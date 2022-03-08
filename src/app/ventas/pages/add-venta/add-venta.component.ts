@@ -3,6 +3,7 @@ import { delay } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { VentasService,producto,cliente, productoComprado, venta } from '../../services/ventas.service';
 import { Router } from '@angular/router';
+import { Proveedor, ProveedorService } from 'src/app/proveedores/services/proveedor.service';
 
 @Component({
   selector: 'app-add-venta',
@@ -13,8 +14,12 @@ import { Router } from '@angular/router';
 
 export class AddVentaComponent implements OnInit {
   marcadorListaProducto = 0;
+  marcadorListaProveedor = 0;
   filtroProduct= '';
+  filtroProveedor = '';
   rut!:string;
+  icoColor = 'white';
+  nombreProveedor!:string;
   cliente:cliente={
     nombre: '',
     direccion: '',
@@ -36,10 +41,21 @@ export class AddVentaComponent implements OnInit {
         correo: '',
         rut: '',
     }, //son objectos de Cliente
+    proveedor:{
+      nombre: '',
+      rut: '',
+      nombreContacto: '',
+      direccion: '',
+      telefono: '',
+      atencion: '',
+      correoAtencion: '',
+      retira: '',
+      numeroGuia: '',
 
+    },
     estado: 'pendiente',
     productos:[
-      
+
     ], //son objectos de productos
     fecha: 0, //valor automatico en hora minuto segundo y fecha
     servicios: '',
@@ -47,6 +63,17 @@ export class AddVentaComponent implements OnInit {
     totalDeVenta:0,
     envio:'pendiente'} // aca se almacena la venta
 
+    proveedor: Proveedor = {
+      nombre: '',
+      rut: '',
+      nombreContacto: '',
+      direccion: '',
+      telefono: '',
+      atencion: '',
+      correoAtencion: '',
+      retira: '',
+      numeroGuia: '',
+    }
 
   container=0;//aca funciona el container general!
 
@@ -54,22 +81,31 @@ export class AddVentaComponent implements OnInit {
   listaProductosEnLista:productoComprado[]=[] //los productos que hay que agregar a la venta
   buscado = 0;
 
-  
-  constructor(private service:VentasService, private router:Router) { }
+  listaProveedores:Proveedor[]=[]
+
+  constructor(private service:VentasService,private serviceProveedor:ProveedorService, private router:Router) { }
 
   ngOnInit(): void {
-    this.getProductos()
+    this.getProductos();
+    this.getProveedores();
+    console.log(this.listaProveedores);
   }
 
-
+  changeColor(color: string){
+    if(color == 'white'){
+      this.icoColor = '#F25C05';
+    }else{
+      this.icoColor = 'white';
+    }
+  }
   getProductos(){
-
     this.marcadorListaProducto = 0;
     this.service.getProductos().subscribe(
       res=>{
-    
+
         res.forEach(element => {
           this.listaProductos.push(element)
+
           if(this.listaProductos.length == res.length){
             this.marcadorListaProducto = 1
           }
@@ -79,12 +115,28 @@ export class AddVentaComponent implements OnInit {
     )
   }
 
+  getProveedores(){
+    this.marcadorListaProveedor = 0;
+    this.serviceProveedor.getAllProveedores().subscribe(
+      res=>{
+        console.log(res)
+        res.proveedores.forEach((element: Proveedor) => {
+          this.listaProveedores.push(element)
+          console.log(this.listaProveedores)
+          if(this.listaProveedores.length == res.length){
+            this.marcadorListaProducto = 1
+          }
+        });
+
+      }
+    )
+  }
 
   searchCliente(data:string){
     this.dessetear()
     this.service.getCliente(data).subscribe(
       res=>{
-        this.asignacionCliente(res.data)  
+        this.asignacionCliente(res.data)
       }
     )
     this.buscado = 1;
@@ -98,7 +150,7 @@ export class AddVentaComponent implements OnInit {
     this.cliente.rut = data.rut
     this.cliente.totalDeCompra = data.totalDeCompra
     this.cliente.historial = data.historial
-    
+
   }
 
   dessetear(){
@@ -115,7 +167,7 @@ export class AddVentaComponent implements OnInit {
 
 
   methodsAdd(producto:producto){
-  
+
     var productoComprado:productoComprado={
       nombre: producto.nombre,
       valor: producto.valor,
@@ -129,22 +181,25 @@ export class AddVentaComponent implements OnInit {
       if(e.nombre == productoComprado.nombre){
         existencia = 1
       }
-      
+
     })
     if(existencia == 0){
       this.listaProductosEnLista.push(productoComprado)
     }
-    
+
   }
 
-
+  proveedorSelected(proveedor:Proveedor){
+    this.venta.proveedor = proveedor;
+    console.log(this.venta.proveedor);
+  }
   verProducto(valor:number){
     //mostramos la compra que lleva!
     this.container = valor;
 
   }
 
-  
+
   addCantidad(producto:productoComprado){
     var index = this.listaProductosEnLista.indexOf(producto)
     this.listaProductosEnLista[index].cantidad = this.listaProductosEnLista[index].cantidad  + 1 ;
@@ -170,18 +225,18 @@ export class AddVentaComponent implements OnInit {
 
     var index = this.listaProductosEnLista.indexOf(producto);
     var aux = this.listaProductosEnLista[0]
-    
+
     this.listaProductosEnLista[0] = this.listaProductosEnLista[index];
     this.listaProductosEnLista[index] = aux;
-    
+
 
     this.listaProductosEnLista.splice(0,1);
-    
+
 
   }
 
   crearVenta(){
-   
+
     if(this.cliente.nombre == ""){
       Swal.fire({
         title: '',
@@ -189,7 +244,7 @@ export class AddVentaComponent implements OnInit {
         icon: 'warning',
       })
     }
- 
+
     if(this.listaProductosEnLista.length == 0){
       Swal.fire({
         title: '',
@@ -204,9 +259,15 @@ export class AddVentaComponent implements OnInit {
         icon: 'warning',
       })
     }
-  
-    else if(this.venta.porcentaje > 0 && this.listaProductosEnLista.length != 0 && this.cliente.nombre != ""){
-     
+    if(this.venta.proveedor.nombre == ""){
+      Swal.fire({
+        title: '',
+        text: 'Debes ingresar un proveedor',
+        icon: 'warning',
+      })
+    }
+    else if(this.venta.porcentaje > 0 && this.listaProductosEnLista.length != 0 && this.cliente.nombre != "" && this.venta.proveedor.nombre != ""){
+
       //guardamos al cliente en venta!
 
       this.venta.cliente.nombre = this.cliente.nombre
@@ -222,7 +283,7 @@ export class AddVentaComponent implements OnInit {
       this.listaProductosEnLista.forEach((e)=>{
         this.venta.productos.push(e);
       })
-      
+
       this.service.addVenta(this.venta).subscribe(
         (res:any)=>{
           if(res.status == 200){

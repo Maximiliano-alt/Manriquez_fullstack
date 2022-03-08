@@ -8,7 +8,6 @@ import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './pages/main/main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterProveedoresPipe } from './pipe/filter-proveedores.pipe';
 import { ModifyProveedorComponent } from './pages/modify-proveedor/modify-proveedor.component';
 
 
@@ -17,8 +16,8 @@ import { ModifyProveedorComponent } from './pages/modify-proveedor/modify-provee
     ListProveedoresComponent,
     NewProveedorComponent,
     MainComponent,
-    FilterProveedoresPipe,
-    ModifyProveedorComponent,
+    ModifyProveedorComponent
+
   ],
   imports: [
     CommonModule,
