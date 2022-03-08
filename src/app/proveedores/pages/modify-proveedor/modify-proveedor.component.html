@@ -2,7 +2,7 @@
   [var]="{ route: '/proveedores/list', title: 'Modificar Proveedores' }"
 ></app-navbar>
 <div class="container-general">
-  <div class="title-box">Proveedor</div>
+  <div class="title-box">Proveedor: {{nameProveedor | titlecase}}</div>
   <form class="formModify" [formGroup]="modifyProveedorForm">
     <div class="inputs">
       <div class="box">
@@ -208,18 +208,20 @@
       <div class="button-group">
         <div class="box">
           <button
-            type="submit"
+          (click)="onUpdate()"
+            tipe="submit"
             class="button"
             [disabled]="modifyProveedorForm.invalid"
+            [ngStyle]="{'color': modifyProveedorForm.invalid ? 'grey' :'white'}"
           >
             Guardar
           </button>
         </div>
         <div class="box">
-          <button type="reset" class="button">Cancelar</button>
+          <button class="button" [routerLink]="['/proveedores/list']">Cancelar</button>
         </div>
-        <div class="box">
-          <button type="reset" class="button">Eliminar</button>
+        <div class="box delete">
+          <button class="button" (click)="onDelete()">Eliminar</button>
         </div>
       </div>
     </div>

@@ -31,6 +31,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 .inputs:first-child {
   padding-top: 45px;
@@ -51,6 +52,7 @@ button {
   background: #ffffff 0% 0% no-repeat padding-box;
   opacity: 0.8;
   outline: none;
+  text-align: center;
 }
 p {
   height: 16px;
@@ -99,6 +101,7 @@ textarea {
 
 @media (min-width: 1024px) {
   .back-fondo {
+    min-width: 98.9vw;
     padding-top: 85px;
   }
   .inputs {
