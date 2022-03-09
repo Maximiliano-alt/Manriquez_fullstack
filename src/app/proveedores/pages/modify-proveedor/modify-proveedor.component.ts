@@ -87,7 +87,6 @@ export class ModifyProveedorComponent implements OnInit {
     this.modifyProveedorForm.patchValue({atencion: this.proveedorModify.atencion})
     this.modifyProveedorForm.patchValue({correoa: this.proveedorModify.correoAtencion})
     this.modifyProveedorForm.patchValue({retira: this.proveedorModify.retira})
-    this.modifyProveedorForm.patchValue({nguia: this.proveedorModify.numeroGuia})
 
 
   }
@@ -103,7 +102,6 @@ export class ModifyProveedorComponent implements OnInit {
         atencion: this.modifyProveedorForm.get('atencion')!.value,
         correoAtencion: this.modifyProveedorForm.get('correoa')!.value,
         retira: this.modifyProveedorForm.get('retira')!.value,
-        numeroGuia: this.modifyProveedorForm.get('nguia')!.value,
 
       };
       this.proveedorService

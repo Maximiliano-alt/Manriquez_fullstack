@@ -110,7 +110,7 @@ export interface venta{
       atencion: string;
       correoAtencion: string;
       retira: string;
-      numeroGuia: string;
+      // numeroGuia: string;
 
     }
 }

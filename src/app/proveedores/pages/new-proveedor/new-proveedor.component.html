@@ -207,32 +207,7 @@
     </div>
 
     <div class="row">
-      <div class="box">
-        <div class="header">
-          <p>N° guía</p>
-        </div>
-        <div class="input">
-          <input type="text" name="nguia" required formControlName="nguia" />
-        </div>
-        <p
-          *ngIf="newProveedorForm.get('nguia')?.touched && newProveedorForm.get('nguia')?.errors?.['required']"
-          class="message-error"
-        >
-          *Campo requerido: ingrese n° de guía
-        </p>
-        <p
-          *ngIf="newProveedorForm.get('nguia')?.touched && newProveedorForm.get('nguia')?.errors?.['minlength']"
-          class="message-error"
-        >
-          *Campo requerido: ingrese mínimo 3 digitos
-        </p>
-        <p
-          *ngIf="newProveedorForm.get('nguia')?.touched && newProveedorForm.get('nguia')?.errors?.['pattern']"
-          class="message-error"
-        >
-          *Campo requerido: ingreso solo números
-        </p>
-      </div>
+      
       <div class="button-group">
         <div class="box">
           <button
