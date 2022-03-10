@@ -50,8 +50,6 @@ export class AddVentaComponent implements OnInit {
       atencion: '',
       correoAtencion: '',
       retira: '',
-      numeroGuia: '',
-
     },
     estado: 'pendiente',
     productos:[
@@ -61,7 +59,9 @@ export class AddVentaComponent implements OnInit {
     servicios: '',
     porcentaje: 0,
     totalDeVenta:0,
-    envio:'pendiente'} // aca se almacena la venta
+    envio:'pendiente',
+    comentario:''
+  } // aca se almacena la venta
 
     proveedor: Proveedor = {
       nombre: '',
@@ -72,7 +72,6 @@ export class AddVentaComponent implements OnInit {
       atencion: '',
       correoAtencion: '',
       retira: '',
-      numeroGuia: '',
     }
 
   container=0;//aca funciona el container general!
@@ -88,7 +87,6 @@ export class AddVentaComponent implements OnInit {
   ngOnInit(): void {
     this.getProductos();
     this.getProveedores();
-    console.log(this.listaProveedores);
   }
 
   changeColor(color: string){
@@ -119,10 +117,8 @@ export class AddVentaComponent implements OnInit {
     this.marcadorListaProveedor = 0;
     this.serviceProveedor.getAllProveedores().subscribe(
       res=>{
-        console.log(res)
         res.proveedores.forEach((element: Proveedor) => {
           this.listaProveedores.push(element)
-          console.log(this.listaProveedores)
           if(this.listaProveedores.length == res.length){
             this.marcadorListaProducto = 1
           }
@@ -191,7 +187,6 @@ export class AddVentaComponent implements OnInit {
 
   proveedorSelected(proveedor:Proveedor){
     this.venta.proveedor = proveedor;
-    console.log(this.venta.proveedor);
   }
   verProducto(valor:number){
     //mostramos la compra que lleva!
@@ -275,6 +270,7 @@ export class AddVentaComponent implements OnInit {
       this.venta.cliente.rut = this.cliente.rut
       this.venta.cliente.telefono = this.cliente.telefono
       this.venta.cliente.direccion = this.cliente.direccion
+      console.log(this.venta);
       var suma = 0
       this.listaProductosEnLista.forEach((e)=>{
         suma = suma  + e.cantidad*e.valor;
@@ -289,7 +285,7 @@ export class AddVentaComponent implements OnInit {
           if(res.status == 200){
             Swal.fire({
               title: '',
-              text: 'Ingreso correcto de la venta modifica esta misma en ventas',
+              text: 'Ingreso correcto de la venta',
               icon: 'success',
             })
             delay(2000);

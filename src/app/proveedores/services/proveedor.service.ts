@@ -18,6 +18,7 @@ export class ProveedorService {
     )
   }
   getProveedor(data:any){
+
     return this.http.get<any>(environment.baseUrl+'/proveedor/'+ data).pipe(
       delay(2000)
     )
@@ -33,7 +34,6 @@ export interface Proveedor {
   atencion: string;
   correoAtencion: string;
   retira: string;
-  numeroGuia: string;
 
 }
 
