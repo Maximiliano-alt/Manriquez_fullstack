@@ -62,7 +62,6 @@ export class NewProveedorComponent implements OnInit {
         atencion: this.newProveedorForm.get('atencion')!.value,
         correoAtencion: this.newProveedorForm.get('correoa')!.value,
         retira: this.newProveedorForm.get('retira')!.value,
-
       };
       this.proveedorService
         .addNewProveedor(this.proveedorSave)

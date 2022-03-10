@@ -6,6 +6,8 @@ import { delay } from 'rxjs/operators';
 
 import { ClienteService } from 'src/app/clientes/service/cliente.service';
 import { PdfService } from '../../services/pdf.service';
+import { ReturnStatement } from '@angular/compiler';
+import { FormControl, Validators } from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-venta-unica',
@@ -15,10 +17,19 @@ import { ThrowStmt } from '@angular/compiler';
 export class VentaUnicaComponent implements OnInit {
   estado=""; //pendiente o pagado
   id:any="";
+  comentario:FormControl;
+  comentarioVenta:string =''
   constructor( private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
     localStorage.setItem('dataToken',this.rut);
+
+    this.comentario = new FormControl('',[Validators.required,]);
+    this.comentario.valueChanges.subscribe(
+      value =>{
+        this.comentarioVenta = value
+      }
+    );
   }
 
   ingresoModificacion = 0;
@@ -26,7 +37,7 @@ export class VentaUnicaComponent implements OnInit {
   rut!:any
   ventaProductos:any
   dataIndicador  = 0
-
+  state:boolean = false;
   ngOnInit(): void {
 
     this.getClienteAndVenta()
@@ -150,8 +161,16 @@ export class VentaUnicaComponent implements OnInit {
 
 
   createBuyOrder(type:string){
-    console.log('ola');
-    this.servicePdf.downloadPdf(type);
+    this.servicePdf.downloadPdf(type,this.id,this.rut,this.comentarioVenta);
+  }
+
+  activateCommentary(){
+    if(this.state == false){
+      this.state = true;
+    }
+    else{
+      this.state = false;
+    }
   }
 
 

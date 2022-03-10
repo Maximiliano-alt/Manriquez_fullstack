@@ -40,22 +40,28 @@
     </div>
 
     <!-- botones -->
-    <div class="buttons">
-        <div (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
+    <div class="separate-commentary">
+      <div class="buttons">
+        <button (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
+        </button>
+        <button  *ngIf="this.estado == 'pagado'" class="button" (click)="activateCommentary()">
+            Orden de compra
+        </button>
+        <div class="text-small" *ngIf="this.state">
+          <textarea [formControl]="comentario" name="comentario" id="comentario-orden" cols="30" placeholder="Ingrese comentario para la orden de compra" rows="10"></textarea>
+          <button class="button" [disabled]="comentario.invalid" (click)="createBuyOrder('orden')">Crear orden de compra</button>
+          <p *ngIf="comentario.invalid" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
-        <div  *ngIf="this.estado == 'pagado'" class="button" (click)="createBuyOrder('ordenDeCompra')">
-            Crear orden de compra
-        </div>
-        <div *ngIf="this.estado == 'pendiente'" class="button">
+        <button *ngIf="this.estado == 'pendiente'" class="button">
             Crear cotizacion
-        </div>
-        <div *ngIf="this.estado == 'pagado'"  class="button">
+        </button>
+        <button *ngIf="this.estado == 'pagado'"  class="button">
             Crear guia de venta
-        </div>
-        <div (click)="delete(this.id,this.rut)" class="button">
+        </button>
+        <button (click)="delete(this.id,this.rut)" class="button">
             Eliminar
-        </div>
+        </button>
         <div style="margin: 0;" class="button">
            <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
            <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
@@ -66,38 +72,44 @@
     <!-- buttons grandes -->
     <div class="buttons-1024">
         <div class="button-pares">
-            <div (click)="modificarEstado(this.estado,this.rut,this.id)" style="margin-right: 31px;" class="button-par">
+            <button (click)="modificarEstado(this.estado,this.rut,this.id)" style="margin-right: 31px;" class="button-par">
                 Modificar estado
-            </div>
-            <div *ngIf="this.estado == 'pendiente'" class="button-par">
+            </button>
+            <button *ngIf="this.estado == 'pendiente'" class="button-par">
                 <!-- falta definicion de requerimiento -->
                 Crear Cotizacion
-            </div>
-            <div  *ngIf="this.estado == 'pagado'" class="button-par" (click)="createBuyOrder('ordenDeCompra')">
-              Crear orden de compra
-          </div>
+            </button>
+            <button  *ngIf="this.estado == 'pagado'" class="button-par"   (click)="activateCommentary()">
+              Orden de compra
+          </button>
         </div>
+
         <div class="button-pares">
-            <div  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
+            <button  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
                 <!-- falta definicion del requerimiento -->
                 Crear guia de venta
-            </div>
-            <div *ngIf="this.estado == 'pendiente'"   style="margin-right: 31px;"  class="button-par">
+            </button>
+            <button *ngIf="this.estado == 'pendiente'"   style="margin-right: 31px;"  class="button-par">
                 <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]">
                     Ver productos
                 </a>
-            </div>
-            <div style="margin: 0;" (click)="delete(this.id,this.rut)"   class="button-par">
+            </button>
+            <button style="margin: 0;" (click)="delete(this.id,this.rut)"   class="button-par">
                Eliminar
-            </div>
+            </button>
         </div>
+
         <div *ngIf="this.estado == 'pagado'" style="margin: 0; width: 100%;"  class="button">
            <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
            <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
         </div>
-
-
-
     </div>
+    <div class="text" *ngIf="this.state">
+      <textarea [formControl]="comentario" name="comentario" id="comentario-orden" cols="30" placeholder="Ingrese comentario para la orden de compra" rows="10"></textarea>
+      <button class="button-par" [disabled]="comentario.invalid" id="button-order" (click)="createBuyOrder('orden')">Crear orden de compra</button>
+      <p *ngIf="comentario.invalid" class="input-error"><strong>* Campo requerido</strong> </p>
+    </div>
+    </div>
+
 
 </div>

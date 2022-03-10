@@ -18,7 +18,9 @@ export class ProveedorService {
     )
   }
   getProveedor(data:any){
-    return this.http.get<any>(environment.baseUrl+'/proveedor/'+ data);
+    return this.http.get<any>(environment.baseUrl+'/proveedor/'+ data).pipe(
+      delay(1000)
+    )
   }
 
   updateProveedor(data: Proveedor, id: string){

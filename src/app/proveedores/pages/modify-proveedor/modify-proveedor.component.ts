@@ -28,7 +28,6 @@ export class ModifyProveedorComponent implements OnInit {
   getProveedor() {
     this.proveedorService.getProveedor(this.params).pipe(finalize(()=>this.llenarForm())).subscribe((res) => {
       this.proveedorModify = res['proveedor'];
-      console.log(this.proveedorModify); 
       this.nameProveedor = this.proveedorModify.nombre;      
     });
     
@@ -38,7 +37,7 @@ export class ModifyProveedorComponent implements OnInit {
     this.modifyProveedorForm = this.initForm();
     this.getProveedor();
 
-    
+
   }
 
   initForm(): FormGroup {
@@ -87,8 +86,6 @@ export class ModifyProveedorComponent implements OnInit {
     this.modifyProveedorForm.patchValue({atencion: this.proveedorModify.atencion})
     this.modifyProveedorForm.patchValue({correoa: this.proveedorModify.correoAtencion})
     this.modifyProveedorForm.patchValue({retira: this.proveedorModify.retira})
-
-
   }
 
   onUpdate():void{
