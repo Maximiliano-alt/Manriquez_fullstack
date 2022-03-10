@@ -80,28 +80,19 @@ export class VentaUnicaComponent implements OnInit {
     return 0;
   }
   modificarEstado(estado:string,rut:string,idVenta:string):any{
-    this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
-      (res:any)=>{
-        if(res.status == 200){
-          Swal.fire({
-            title: '',
-            text: 'Modificacion correcta!',
-            icon: 'success',
-          })
-          delay(1000)
-          window.location.reload()
-        }
-      }
-    )
     this.verify_amount(this.id).then((data:any)=>{
+      console.log(data)
       if(data.status == 200){
         this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
           (res:any)=>{
-           
+            console.log("modificacion de estado!",res)
             if(res.status == 200){
               this.ingresoModificacion = 1;
               if(this.ingresoModificacion == 1){
-                this.actualizarProducto(this.estado,this.id)
+                this.actualizarProducto(this.estado,this.id).then(
+                  (val)=>{
+                    console.log(val)
+                })
               }
               Swal.fire({
                 title: '',
@@ -156,19 +147,25 @@ export class VentaUnicaComponent implements OnInit {
   }
 
   newSuma(rut:string){
-    this.serviceCliente.calcularTotalVenta(rut).subscribe(
-      res=>{
+    return new Promise((resolve,reject)=>{
+      this.serviceCliente.calcularTotalVenta(rut).subscribe(
+        res=>{
+          resolve(res)
+        }
+      )
 
-      }
-    )
+    })
+   
   }
 
   updateVenta(id:string){
-    this.serviceCliente.updateVenta(id).subscribe(
-      res=>{
-
-      }
-    )
+    return new Promise((resolve,reject)=>{
+      this.serviceCliente.updateVenta(id).subscribe(
+        res=>{
+          resolve(res)
+        }
+      )
+    })
   }
 
 
@@ -187,20 +184,22 @@ export class VentaUnicaComponent implements OnInit {
 
 
   actualizarProducto(estado:any,id:any){
-    if(estado=='pagado'){
-      this.serviceCliente.actualizarProducto_delete(id).subscribe(
-        res=>{
-          console.log(res)  
-        }
-      )
-    }
-    else if(estado=='pendiente'){
-      this.serviceCliente.actualizarProducto_add(id).subscribe(
-        res=>{
-          console.log(res)
-        }
-      )
-    }
+    return new Promise((resolve,reject)=>{
+      if(estado=='pagado'){
+        this.serviceCliente.actualizarProducto_delete(id).subscribe(
+          res=>{
+            resolve(res)
+          }
+        )
+      }
+      else if(estado=='pendiente'){
+        this.serviceCliente.actualizarProducto_add(id).subscribe(
+          res=>{
+            resolve(res)
+          }
+        )
+      }
+    })
 
   }
 
