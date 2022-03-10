@@ -19,10 +19,17 @@ export class ProveedorService {
   }
   getProveedor(data:any){
     return this.http.get<any>(environment.baseUrl+'/proveedor/'+ data).pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 
+  updateProveedor(data: Proveedor, id: string){
+    return this.http.put<any>(environment.baseUrl + '/modificarProveedor/'+id, data)
+  }
+
+  deleteProveedor(data: Proveedor){
+    return this.http.post<any>(environment.baseUrl + '/eliminarProveedor', data);
+  }
 }
 export interface Proveedor {
   nombre: string;
@@ -33,7 +40,6 @@ export interface Proveedor {
   atencion: string;
   correoAtencion: string;
   retira: string;
-  numeroGuia: string;
 
 }
 

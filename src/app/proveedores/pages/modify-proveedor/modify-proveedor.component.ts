@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Proveedor, ProveedorService } from '../../services/proveedor.service';
 import {finalize} from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-modify-proveedor',
   templateUrl: './modify-proveedor.component.html',
@@ -12,11 +14,13 @@ export class ModifyProveedorComponent implements OnInit {
   modifyProveedorForm!: FormGroup;
   proveedorModify!: Proveedor;
   params: any = '';
+  nameProveedor: string= "";
 
   constructor(
     private rutaActiva: ActivatedRoute,
     private fb: FormBuilder,
-    private proveedorService: ProveedorService
+    private proveedorService: ProveedorService,
+    private router: Router
   ) {
     this.params = this.rutaActiva.snapshot.paramMap.get('_id');
 
@@ -24,15 +28,16 @@ export class ModifyProveedorComponent implements OnInit {
   getProveedor() {
     this.proveedorService.getProveedor(this.params).pipe(finalize(()=>this.llenarForm())).subscribe((res) => {
       this.proveedorModify = res['proveedor'];
-      console.log(this.proveedorModify);       
+      this.nameProveedor = this.proveedorModify.nombre;      
     });
+    
   }
 
   ngOnInit(): void {
     this.modifyProveedorForm = this.initForm();
     this.getProveedor();
 
-    
+
   }
 
   initForm(): FormGroup {
@@ -81,8 +86,55 @@ export class ModifyProveedorComponent implements OnInit {
     this.modifyProveedorForm.patchValue({atencion: this.proveedorModify.atencion})
     this.modifyProveedorForm.patchValue({correoa: this.proveedorModify.correoAtencion})
     this.modifyProveedorForm.patchValue({retira: this.proveedorModify.retira})
-    this.modifyProveedorForm.patchValue({nguia: this.proveedorModify.numeroGuia})
+  }
 
+  onUpdate():void{
+    try {
+      this.proveedorModify = {
+        nombre: this.modifyProveedorForm.get('name')!.value,
+        rut: this.modifyProveedorForm.get('rut')!.value,
+        nombreContacto: this.modifyProveedorForm.get('ncontacto')!.value,
+        direccion: this.modifyProveedorForm.get('direccion')!.value,
+        telefono: this.modifyProveedorForm.get('telefono')!.value,
+        atencion: this.modifyProveedorForm.get('atencion')!.value,
+        correoAtencion: this.modifyProveedorForm.get('correoa')!.value,
+        retira: this.modifyProveedorForm.get('retira')!.value,
+
+      };
+      this.proveedorService
+        .updateProveedor(this.proveedorModify, this.params)
+        .subscribe((res) => {
+          if (res.status == 200) {
+            Swal.fire({ icon: 'success', text: 'Proveedor Actualizado con exito!!!' });
+            this.router.navigate(['/proveedores/lista']);
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Oops...',
+              text: 'Sucedio un Error Intententelo nuevamente ',
+            });
+          }
+        });
+      console.log('info enviada');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  onDelete():void{
+    this.proveedorService.deleteProveedor(this.proveedorModify).subscribe((res)=>{
+      if (res.status == 200) {
+        Swal.fire({ icon: 'success', text: 'Proveedor Eliminado con exito!!!' });
+        this.router.navigate(['/proveedores/lista']);
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Sucedio un Error Intententelo nuevamente ',
+        });
+      }
+    })
 
   }
-}
+  }
+

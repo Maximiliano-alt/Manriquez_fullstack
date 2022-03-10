@@ -70,6 +70,13 @@ export class ClienteService {
     return this.http.post(environment.baseUrl+'/update/venta',{id});
   }
 
+  actualizarProducto_add(id:any){
+    return this.http.post(environment.baseUrl+'/modify/add/cantidad',{id})
+  }
+  actualizarProducto_delete(id:any){
+    return this.http.post(environment.baseUrl+'/modify/delete/cantidad',{id})
+  }
+
 }
 
 export interface cliente{

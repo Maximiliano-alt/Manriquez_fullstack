@@ -17,6 +17,7 @@ export class VentasService {
   constructor(private http:HttpClient) { }
 
   addVenta(data:venta){
+    console.log(data);
     return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data)
   }
 
@@ -74,6 +75,9 @@ export class VentasService {
     )
   }
 
+  verify_amount(id:any){
+    return this.http.post(environment.baseUrl+'/verify/cantidad',{id})
+  }
 
 
 }
@@ -107,9 +111,8 @@ export interface venta{
       atencion: string;
       correoAtencion: string;
       retira: string;
-      numeroGuia: string;
-
-    }
+    },
+    comentario:string
 }
 
 export interface productoComprado{

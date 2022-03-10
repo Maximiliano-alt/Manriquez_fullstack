@@ -47,14 +47,6 @@ export class NewProveedorComponent implements OnInit {
       atencion: ['', [Validators.required]],
       correoa: ['', [Validators.required, Validators.email]],
       retira: ['', [Validators.required]],
-      nguia: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.pattern('^[0-9]+'),
-        ],
-      ],
 
     });
   }
@@ -70,8 +62,6 @@ export class NewProveedorComponent implements OnInit {
         atencion: this.newProveedorForm.get('atencion')!.value,
         correoAtencion: this.newProveedorForm.get('correoa')!.value,
         retira: this.newProveedorForm.get('retira')!.value,
-        numeroGuia: this.newProveedorForm.get('nguia')!.value,
-
       };
       this.proveedorService
         .addNewProveedor(this.proveedorSave)

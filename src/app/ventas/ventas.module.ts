@@ -7,9 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { VentaUnicaComponent } from './pages/venta-unica/venta-unica.component';
 import { ListProductoComponent } from './pages/list-producto/list-producto.component';
-import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './pipe/filter.pipe';
 import { FilterListVentaPipe } from './pipe/filter-list-venta.pipe';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { ProveedorService } from '../proveedores/services/proveedor.service';
 @NgModule({
   declarations: [
     ListVentaComponent,
@@ -18,7 +19,7 @@ import { FilterListVentaPipe } from './pipe/filter-list-venta.pipe';
     ListProductoComponent,
     FilterPipe,
     FilterListVentaPipe,
-  
+
   ],
   imports: [
     CommonModule,
@@ -26,7 +27,8 @@ import { FilterListVentaPipe } from './pipe/filter-list-venta.pipe';
     SharedModule,
     MaterialModule,
     FormsModule,
-    
-  ]
+    ReactiveFormsModule
+  ],
+  providers:[ProveedorService]
 })
 export class VentasModule { }

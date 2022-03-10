@@ -110,10 +110,10 @@ export class AddProductsComponent implements OnInit {
             this.router.navigate(['/productos/products-category'])
           }
           else if(res.status==500){
-            Swal.fire({icon: 'warning',title: 'Oops...',text: 'contraseña incorrecta '});
+            Swal.fire({icon: 'warning',title: 'Oops...',text: 'Problema al crear el producto'});
           }
           else{
-            Swal.fire({icon: 'warning',title: 'Oops...',text: 'Usuario no encontrado'});
+            Swal.fire({icon: 'warning',title: 'Oops...',text: 'Problema al crear el producto'});
           }
         }
       )
