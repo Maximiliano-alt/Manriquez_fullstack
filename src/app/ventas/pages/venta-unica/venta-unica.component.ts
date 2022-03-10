@@ -79,7 +79,7 @@ export class VentaUnicaComponent implements OnInit {
     console.log("crear cotizacion again");
     return 0;
   }
-  modificarEstado(estado:string,rut:string,idVenta:string):number{
+  modificarEstado(estado:string,rut:string,idVenta:string):any{
     this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
       (res:any)=>{
         if(res.status == 200){
@@ -91,6 +91,8 @@ export class VentaUnicaComponent implements OnInit {
           delay(1000)
           window.location.reload()
         }
+      }
+    )
     this.verify_amount(this.id).then((data:any)=>{
       if(data.status == 200){
         this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
@@ -122,13 +124,13 @@ export class VentaUnicaComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
+        
       }
       
     })
-    
-    return 0;
+   
   }
-  delete(idventa:string,rut:string):number{
+  delete(idventa:string,rut:string):any{
     this.serviceCliente.deleteVenta(rut,idventa).subscribe(
       (res:any)=>{
         if(res.status==200){
@@ -150,7 +152,7 @@ export class VentaUnicaComponent implements OnInit {
         }
       }
     )
-    return 0;
+    
   }
 
   newSuma(rut:string){
@@ -212,5 +214,4 @@ export class VentaUnicaComponent implements OnInit {
       )
     })
   }
-
 }
