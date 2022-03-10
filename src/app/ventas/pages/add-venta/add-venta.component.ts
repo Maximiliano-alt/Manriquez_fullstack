@@ -288,7 +288,7 @@ export class AddVentaComponent implements OnInit {
               text: 'Ingreso correcto de la venta',
               icon: 'success',
             })
-            delay(2000);
+            delay(1000);
             this.router.navigate(['/ventas/loadVentas']);
           }
           else{

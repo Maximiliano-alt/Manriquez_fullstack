@@ -36,7 +36,7 @@ export class VentasService {
 
   getProductoForId(data:string){
     return this.http.get<productoComprado[]>(environment.baseUrl+'/venta/get/list/product/'+data).pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 
@@ -71,7 +71,7 @@ export class VentasService {
 
   getVentaAndCliente(data:string,rut:string){
     return this.http.post(environment.baseUrl+'/get/venta/cliente',{data,rut}).pipe(
-      delay(2000)
+
     )
   }
 

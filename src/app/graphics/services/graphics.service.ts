@@ -31,7 +31,7 @@ export class GraphicsService {
 
   getCategoria(){
     return this.http.get<categoria[]>(environment.baseUrl+'/get/categoria').pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 
@@ -39,15 +39,15 @@ export class GraphicsService {
 
 
 
-  
+
   goGraphicsRange(dateIn:Date,dateOut:Date,data:ventas[]){
-    
+
     var dateAux1 = new Date(dateIn).getTime();
     var dateAux2 = new Date(dateOut).getTime();
     var diff = dateAux1 - dateAux2
-    
-    
-    
+
+
+
     if(dateIn == undefined || dateOut ==undefined){
       return null
     }
@@ -58,27 +58,27 @@ export class GraphicsService {
       return null
     }
     if(diff/(1000*60*60*24) != -7 ){
-      
+
       return null
     }
     else{
-     
+
       var aux = this.dateForRange(dateIn,dateOut,data)
       return aux
     }
-    
+
   }
 
   dateForRange(dateIn:Date,dateOut:Date,data:ventas[]){
     var dataLocal:ventas[] = []
-    
+
     data.forEach((e)=>{
-      
+
       if( new Date(dateIn).getTime() <= e.fecha && e.fecha <= new Date(dateOut).getTime()){
 
         dataLocal.push(e)
       }
-      
+
     })
     return dataLocal;
   }
@@ -116,7 +116,7 @@ export interface ventasGraphics{
   data:[
     ventas
   ]
-   
+
 }
 export interface ventas{
   fecha:number,
