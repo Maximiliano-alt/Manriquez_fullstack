@@ -10,6 +10,7 @@ import { ListProductoComponent } from './pages/list-producto/list-producto.compo
 import { FilterPipe } from './pipe/filter.pipe';
 import { FilterListVentaPipe } from './pipe/filter-list-venta.pipe';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { ProveedorService } from '../proveedores/services/proveedor.service';
 @NgModule({
   declarations: [
     ListVentaComponent,
@@ -27,6 +28,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers:[ProveedorService]
 })
 export class VentasModule { }

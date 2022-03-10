@@ -17,6 +17,7 @@ export class VentaUnicaComponent implements OnInit {
   estado=""; //pendiente o pagado
   id:any="";
   comentario:FormControl;
+  comentarioVenta:string =''
   constructor( private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
@@ -25,6 +26,7 @@ export class VentaUnicaComponent implements OnInit {
     this.comentario = new FormControl('',[Validators.required,]);
     this.comentario.valueChanges.subscribe(
       value =>{
+        this.comentarioVenta = value
       }
     );
   }
@@ -134,7 +136,7 @@ export class VentaUnicaComponent implements OnInit {
 
 
   createBuyOrder(type:string){
-    this.servicePdf.downloadPdf(type);
+    this.servicePdf.downloadPdf(type,this.id,this.rut,this.comentarioVenta);
   }
 
   activateCommentary(){
