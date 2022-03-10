@@ -19,25 +19,25 @@ export class ClienteService {
 
   getClientes(){
     return this.http.get<cliente[]>(environment.baseUrl+'/verClientes').pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 
   getOneClient(data:string){
     return this.http.get<cliente>(environment.baseUrl+'/search/cliente/'+data).pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 
   getVentasClient(data:string){
     return this.http.get(environment.baseUrl+'/get/ventas/for/client/'+data).pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 
   actualizarVenta(idVenta:string,rut:string,array:any[],producto:any,indicador:string){
-    
-    
+
+
     return this.http.post(environment.baseUrl+'/actualizar/carrito/Cliente',{idVenta,rut})
   }
 
@@ -86,7 +86,7 @@ export interface cliente{
   correo: string,
   rut: string,
   totalDeCompra:number,
-  
+
 }
 export interface ventaCliente{
   nombre: string,

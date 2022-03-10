@@ -16,13 +16,13 @@ export class ProductsService {
 
   getCategoria(){
     return this.http.get<categoria[]>(environment.baseUrl+'/get/categoria').pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 
   getProduct(data:string){
     return this.http.post<product[]>(environment.baseUrl+'/get/producto/category',{data}).pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 

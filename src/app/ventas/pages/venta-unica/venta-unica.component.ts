@@ -80,7 +80,17 @@ export class VentaUnicaComponent implements OnInit {
     return 0;
   }
   modificarEstado(estado:string,rut:string,idVenta:string):number{
-    
+    this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
+      (res:any)=>{
+        if(res.status == 200){
+          Swal.fire({
+            title: '',
+            text: 'Modificacion correcta!',
+            icon: 'success',
+          })
+          delay(1000)
+          window.location.reload()
+        }
     this.verify_amount(this.id).then((data:any)=>{
       if(data.status == 200){
         this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
