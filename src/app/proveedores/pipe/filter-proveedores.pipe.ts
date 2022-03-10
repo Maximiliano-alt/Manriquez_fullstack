@@ -22,8 +22,8 @@ export class FilterProveedoresPipe implements PipeTransform {
 
         indicador = 0;
         console.log(element)
-        var aux = element.nombre.toLowerCase();
-        var aux2 = args.toLowerCase();
+        var aux = element.rut;
+        var aux2 = args;
         for (let index = 0; index < aux2.length; index++) {
           if (aux[index] != aux2[index]) {
             indicador = 1;
