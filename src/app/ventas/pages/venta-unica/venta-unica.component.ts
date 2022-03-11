@@ -79,27 +79,20 @@ export class VentaUnicaComponent implements OnInit {
     console.log("crear cotizacion again");
     return 0;
   }
-  modificarEstado(estado:string,rut:string,idVenta:string):number{
-    this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
-      (res:any)=>{
-        if(res.status == 200){
-          Swal.fire({
-            title: '',
-            text: 'Modificacion correcta!',
-            icon: 'success',
-          })
-          delay(1000)
-          window.location.reload()
-        }
+  modificarEstado(estado:string,rut:string,idVenta:string):any{
     this.verify_amount(this.id).then((data:any)=>{
+      console.log(data)
       if(data.status == 200){
         this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
           (res:any)=>{
-           
+            console.log("modificacion de estado!",res)
             if(res.status == 200){
               this.ingresoModificacion = 1;
               if(this.ingresoModificacion == 1){
-                this.actualizarProducto(this.estado,this.id)
+                this.actualizarProducto(this.estado,this.id).then(
+                  (val)=>{
+                    console.log(val)
+                })
               }
               Swal.fire({
                 title: '',
@@ -122,13 +115,13 @@ export class VentaUnicaComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
+        
       }
       
     })
-    
-    return 0;
+   
   }
-  delete(idventa:string,rut:string):number{
+  delete(idventa:string,rut:string):any{
     this.serviceCliente.deleteVenta(rut,idventa).subscribe(
       (res:any)=>{
         if(res.status==200){
@@ -150,23 +143,29 @@ export class VentaUnicaComponent implements OnInit {
         }
       }
     )
-    return 0;
+    
   }
 
   newSuma(rut:string){
-    this.serviceCliente.calcularTotalVenta(rut).subscribe(
-      res=>{
+    return new Promise((resolve,reject)=>{
+      this.serviceCliente.calcularTotalVenta(rut).subscribe(
+        res=>{
+          resolve(res)
+        }
+      )
 
-      }
-    )
+    })
+   
   }
 
   updateVenta(id:string){
-    this.serviceCliente.updateVenta(id).subscribe(
-      res=>{
-
-      }
-    )
+    return new Promise((resolve,reject)=>{
+      this.serviceCliente.updateVenta(id).subscribe(
+        res=>{
+          resolve(res)
+        }
+      )
+    })
   }
 
 
@@ -185,20 +184,22 @@ export class VentaUnicaComponent implements OnInit {
 
 
   actualizarProducto(estado:any,id:any){
-    if(estado=='pagado'){
-      this.serviceCliente.actualizarProducto_delete(id).subscribe(
-        res=>{
-          console.log(res)  
-        }
-      )
-    }
-    else if(estado=='pendiente'){
-      this.serviceCliente.actualizarProducto_add(id).subscribe(
-        res=>{
-          console.log(res)
-        }
-      )
-    }
+    return new Promise((resolve,reject)=>{
+      if(estado=='pagado'){
+        this.serviceCliente.actualizarProducto_delete(id).subscribe(
+          res=>{
+            resolve(res)
+          }
+        )
+      }
+      else if(estado=='pendiente'){
+        this.serviceCliente.actualizarProducto_add(id).subscribe(
+          res=>{
+            resolve(res)
+          }
+        )
+      }
+    })
 
   }
 
@@ -212,5 +213,4 @@ export class VentaUnicaComponent implements OnInit {
       )
     })
   }
-
 }
