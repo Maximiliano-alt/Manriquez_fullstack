@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { VentasService,producto,cliente, productoComprado, venta } from '../../services/ventas.service';
 import { Router } from '@angular/router';
 import { Proveedor, ProveedorService } from 'src/app/proveedores/services/proveedor.service';
+import { ClienteService } from 'src/app/clientes/service/cliente.service';
 
 @Component({
   selector: 'app-add-venta',
@@ -82,7 +83,7 @@ export class AddVentaComponent implements OnInit {
 
   listaProveedores:Proveedor[]=[]
 
-  constructor(private service:VentasService,private serviceProveedor:ProveedorService, private router:Router) { }
+  constructor(private service:VentasService,private serviceProveedor:ProveedorService,private serviceCliente:ClienteService , private router:Router) { }
 
   ngOnInit(): void {
     this.getProductos();
@@ -270,7 +271,7 @@ export class AddVentaComponent implements OnInit {
       this.venta.cliente.rut = this.cliente.rut
       this.venta.cliente.telefono = this.cliente.telefono
       this.venta.cliente.direccion = this.cliente.direccion
-      console.log(this.venta);
+      
       var suma = 0
       this.listaProductosEnLista.forEach((e)=>{
         suma = suma  + e.cantidad*e.valor;
@@ -288,6 +289,8 @@ export class AddVentaComponent implements OnInit {
               text: 'Ingreso correcto de la venta',
               icon: 'success',
             })
+            this.newSuma(this.rut);
+
             delay(1000);
             this.router.navigate(['/ventas/loadVentas']);
           }
@@ -302,5 +305,22 @@ export class AddVentaComponent implements OnInit {
       )
 
     }
+  }
+
+  newSuma(rut:string){
+    this.serviceCliente.calcularTotalVenta(rut).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+  }
+
+
+  updateVenta(id:string){
+    this.serviceCliente.updateVenta(id).subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
   }
 }

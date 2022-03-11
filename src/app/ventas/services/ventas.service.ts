@@ -70,9 +70,7 @@ export class VentasService {
   }
 
   getVentaAndCliente(data:string,rut:string){
-    return this.http.post(environment.baseUrl+'/get/venta/cliente',{data,rut}).pipe(
-
-    )
+    return this.http.post(environment.baseUrl+'/get/venta/cliente',{data,rut})
   }
 
   verify_amount(id:any){
