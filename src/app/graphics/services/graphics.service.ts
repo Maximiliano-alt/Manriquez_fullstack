@@ -35,11 +35,6 @@ export class GraphicsService {
     )
   }
 
-
-
-
-
-
   goGraphicsRange(dateIn:Date,dateOut:Date,data:ventas[]){
 
     var dateAux1 = new Date(dateIn).getTime();
@@ -91,6 +86,23 @@ export class GraphicsService {
     })
   }
 
+  addVenta(id:any){
+    console.log("estableciendo comunicacion con add")
+    return this.http.post(environment.baseUrl+'/add/venta/finanzas',{id})
+  }
+  removeVenta(id:any){
+    return this.http.post(environment.baseUrl+'/deleteVenta/finanzas',{id})
+  }
+
+
+  addGasto(data:any){
+    return this.http.post(environment.baseUrl+'/add/finanzas/gastos',data);
+  }
+
+
+  getFinanzas(){
+    return this.http.get(environment.baseUrl+'/get/finanzas');
+  }
 
 
 }
@@ -103,6 +115,18 @@ export interface resCliente{
       totalDeCompra:number,
     }
   ]
+}
+
+export interface finanzas{
+  estadoFinanciero:number,
+  ganancias:number,
+  gastos:any[]
+  totalGastos:number,
+}
+
+export interface Gasto{
+  tipo:string,
+  total:number,
 }
 
 export interface cliente{

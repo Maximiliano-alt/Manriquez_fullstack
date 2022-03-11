@@ -12,12 +12,14 @@ import { MaterialModule } from '../material/material.module';
 import { ClientGraphicsComponent } from './pages/client-graphics/client-graphics.component';
 import { VentasGraphicsComponent } from './pages/ventas-graphics/ventas-graphics.component';
 import { ProductosGraphicsComponent } from './pages/productos-graphics/productos-graphics/productos-graphics.component';
+import { HomeFinanzasComponent } from './pages/home-finanzas/home-finanzas.component';
 @NgModule({
   declarations: [
     HomeGraphicsComponent,
     ClientGraphicsComponent,
     VentasGraphicsComponent,
-    ProductosGraphicsComponent
+    ProductosGraphicsComponent,
+    HomeFinanzasComponent
   ],
   imports: [
     CommonModule,
