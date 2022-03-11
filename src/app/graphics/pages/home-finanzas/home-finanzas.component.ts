@@ -122,6 +122,7 @@ export class HomeFinanzasComponent implements OnInit {
       
       this.gastoId = 0;
     } 
+    window.location.reload()
     return 1
   }
   close(){
@@ -129,14 +130,16 @@ export class HomeFinanzasComponent implements OnInit {
   }
 
   getFinanzas(){
-    this.service.getFinanzas().subscribe(
-      (res:any)=>{
-        if(res.data){
-          this.newFinanzas = res.data
-          this.newFinanzas.estadoFinanciero = this.newFinanzas.ganancias-this.newFinanzas.totalGastos
-          console.log(this.newFinanzas)
+    return new Promise((resolve,reject)=>{
+      this.service.getFinanzas().subscribe(
+        (res:any)=>{
+          if(res.data){
+            this.newFinanzas = res.data
+            this.newFinanzas.estadoFinanciero = this.newFinanzas.ganancias-this.newFinanzas.totalGastos
+          }
         }
-      }
-    )
+      )
+      resolve("Terminado")
+    })
   }
 }
