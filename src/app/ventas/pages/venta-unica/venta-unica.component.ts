@@ -134,7 +134,7 @@ export class VentaUnicaComponent implements OnInit {
             icon: 'success',
           })
           this.newSuma(this.rut)
-          this.router.navigate(['/clientes'])
+          this.router.navigate(['/ventas'])
         }
         else{
           Swal.fire({
