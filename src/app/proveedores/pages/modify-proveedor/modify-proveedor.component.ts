@@ -67,14 +67,7 @@ export class ModifyProveedorComponent implements OnInit {
       atencion: ['', [Validators.required]],
       correoa: ['', [Validators.required, Validators.email]],
       retira: ['', [Validators.required]],
-      nguia: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.pattern('^[0-9]+'),
-        ],
-      ],
+     
     });
   }
 
