@@ -1,216 +1,193 @@
 .container-general{
-
-    /* contenedor master */
-    width: 100vw !important;
-    height: 90%;
+    width: 100vw;
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    transform: translateY(53px);
+}
+.detail-container{
+    width: 80%;
+    height: 100%;
+}
+form{
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: translate(0, 53px);
-    overflow: hidden;
-    opacity: 1;
-    color: white;
 }
-.input-nombre{
-    margin-top: 29px;
-    width: 290px;
-    height: 58px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+div{
+    font-size: 98%;
+}
+.data-container{
+    width: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
-    opacity: 0.9;
 }
-.input-error{
-  position: absolute;
-
-  color: red;
-}
-.nav-nombre{
+.BOX-1, .BOX-2{
     width: 100%;
     height: 50%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #F25C05;
+    flex-direction: column;
 }
-input{
+.name-box, .data-propertie, .description-box{
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+}
+.name-box, .properties-box, .description-box{
+    margin-top: 8%;
+}
+.name-box{
+    width: 100%;
+    height: 22%;
+}
+.name, .type, .data, .categoria{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.name, .type, .description{
+    background: #F25C05 0% 0% no-repeat padding-box;
+}
+.data, .categoria, .data-info, .IMG{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    color: #000;
+    opacity: 0.8;
+    border: none;
+}
+.properties-box{
+    width: 100%;
+    height: 60%;
+    display: grid;
+    grid-template-columns: repeat(2, 47%);
+    grid-template-rows: repeat(2, 43%);
+    grid-row-gap: 13%;
+    grid-column-gap: 6%
+}
+.description-box{
+    width: 100%;
+    height: 35%;
+}
+.description, .data-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.description{
+    width: 100%;
+    height: 30%;
+}
+.data-info{
+    width: 100%;
+    height: 70%;
+}
+.IMG{
+    width: 100%;
     height: 45%;
-    width: 100%;
-    border: none;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    text-align: center;
-    opacity: 0.9;
-}
-.par-input{
-    margin-top: 29px;
-    width: 290px;
-    height: 58px;
+    margin-top: 6%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.input-precio{
-    width: 45%;
-    height: 100%;
+.IMG div{
+    height: 25%;
+    font-weight: bold;
 }
-.input-color{
-    margin-left: 10%;
-    width: 45%;
-    height: 100%;
+.buttons{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
-.nav-precio{
+.butt-save, .butt-cancel{
     width: 100%;
     height: 55%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #F25C05;
 }
-.nav-color{
+.butt-save{
+    align-items: center;
+}
+.butt-cancel{
+    align-items: flex-start;
+}
+button{
     width: 100%;
-    height: 55%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #F25C05;
-}
-.categoria{
-  width: 100%;
-  height: 45%;
-}
-.input-descripcion{
-    height:88px ;
-    width: 290px;
-    margin-top: 24px;
-}
-textarea{
-    width: 290px;
     height: 50%;
-}
-.input-img{
-    height:88px ;
-    width: 290px;
-    margin-top: 24px;
-    display: flex;
-
-}
-.file-input{
-    height:88px ;
-    width: 290px;
-    margin-top: 24px;
-}
-#name-error{
-  margin-top: 62px;
-}
-.file-input input{
-    padding:7px;
-    color: black;
-}
-.guardar{
-    top: 554px;
-    left: 37px;
-    width: 302px;
-    height: 32px;
     background: #F25C05 0% 0% no-repeat padding-box;
     border-radius: 16px;
+    color: #FFFFFF;
     border: none;
-    color: white;
-    margin-top: 21px;
-    opacity: 1;
 }
-.cancelar{
-    top: 554px;
-    left: 37px;
-    width: 302px;
-    height: 32px;
-    background: #F25C05 0% 0% no-repeat padding-box;
-    border-radius: 16px;
-    border: none;
-    color: white;
-    margin-top: 21px;
-    opacity: 1;
+button a{
+    color: #FFFFFF;
 }
 
-@media screen and (min-width:768px){
-    .guardar {
-        width: 400px;
-        height: 30px;
+@media screen and (min-width: 550px){
+    .detail-container{
+        width: 445px;
     }
-    .cancelar {
-        width: 400px;
-        height: 30px;
+}
+@media screen and (min-width: 1024px){
+    .detail-container{
+        width: 1050px;
     }
-    .file-input{
-        height:100px ;
-        width: 400px;
-        margin-top: 24px;
-    }
-
-    .input-descripcion{
-        height:100px ;
-        width: 400px;
-        margin-top: 24px;
-    }
-    textarea{
-        width: 400px;
-    }
-    #name-error{
-      margin-top: 103px;
-    }
-    .par-input{
-        width: 400px;
-        height: 100px;
-        display: flex;
+    .data-container{
         flex-direction: row;
+        justify-content: center;
+        height: 70%;
     }
-    .input-nombre{
-        width: 400px;
-        height: 100px;
+    .BOX-1, .BOX-2{
+        width: 45%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
     }
-    input{
-        font-size: 17px;
+    .name-box, .properties-box, .description-box{
+        margin-top: 12%;
     }
-}
-
-@media screen and (min-width:1024px){
-    .container-general{
-        width: 100vw !important;
-        height: 90%;
+    .name-box, .properties-box, .description-box, .IMG{
+        width: 80%;
     }
-    .left{
-        transform: translate(-300px);
-        margin-top: 100px;
+    .name-box{
+        height: 15%;
     }
-    .rigth{
-        transform: translate(200px,-380px);
+    .properties-box{
+        height: 40%;
+        grid-template-columns: repeat(2, 43%);
+        grid-template-rows: repeat(2, 40%);
+        grid-row-gap: 20%;
+        grid-column-gap: 14%;
     }
-    .input-descripcion{
-        height: 189px;
+    .description-box{
+        height: 30%;
     }
-    .nav-nombre{
-        height: 40px;
+    .IMG{
+        height: 25%;
+        margin-top: 12%;
     }
-    .file-input{
-        height: 100px;
+    .buttons{
+        width: 50%;
+        height: 30%;
+        flex-direction: row;
+        align-items: flex-start;
     }
-    textarea{
-        height: 80%;
+    .butt-save, .butt-cancel{
+        width: 100%;
+        height: 55%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    .guardar{
-        position: fixed;
-        height: 40px;
-        transform: translate(430px);
+    button{
+        width: 80%;
+        height: 35%;
     }
-    .cancelar{
-        position: fixed;
-        height: 40px;
-        transform: translate(930px);
-    }
-    .input-nombre input{
-        height: 64%;
-    }
-
-
-
-
-
 }
