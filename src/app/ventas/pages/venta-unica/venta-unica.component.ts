@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { VentasService } from '../../services/ventas.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-import { delay } from 'rxjs/operators';
+import { delay, ignoreElements } from 'rxjs/operators';
 
 import { ClienteService } from 'src/app/clientes/service/cliente.service';
 import { PdfService } from '../../services/pdf.service';
 import { ReturnStatement } from '@angular/compiler';
 import { FormControl, Validators } from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
+import { GraphicsService } from 'src/app/graphics/services/graphics.service';
 @Component({
   selector: 'app-venta-unica',
   templateUrl: './venta-unica.component.html',
@@ -19,7 +20,7 @@ export class VentaUnicaComponent implements OnInit {
   id:any="";
   comentario:FormControl;
   comentarioVenta:string =''
-  constructor( private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
+  constructor( private serviceFinanzas: GraphicsService,private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
     localStorage.setItem('dataToken',this.rut);
@@ -49,6 +50,7 @@ export class VentaUnicaComponent implements OnInit {
 
     this.service.getVentaAndCliente(this.id,this.rut).subscribe(
       (res:any)=>{
+        console.log(res)
         if(res.status == 404){
           Swal.fire({
             title: 'Error :(',
@@ -59,7 +61,7 @@ export class VentaUnicaComponent implements OnInit {
         }
         else{
 
-          this.cliente = res.data
+          this.cliente = res.dataVenta.cliente
           this.ventaProductos = res.dataVenta
           this.dataIndicador = 1
           this.estado = this.ventaProductos.estado
@@ -89,6 +91,7 @@ export class VentaUnicaComponent implements OnInit {
             if(res.status == 200){
               this.ingresoModificacion = 1;
               if(this.ingresoModificacion == 1){
+                
                 this.actualizarProducto(this.estado,this.id).then(
                   (val)=>{
                     console.log(val)
@@ -99,7 +102,7 @@ export class VentaUnicaComponent implements OnInit {
                 text: 'Modificacion correcta!',
                 icon: 'success',
               })
-              
+             this.addToFinanzas(idVenta,this.estado)
               setTimeout(()=>{
                 window.location.reload()
               },3000)
@@ -131,7 +134,7 @@ export class VentaUnicaComponent implements OnInit {
             icon: 'success',
           })
           this.newSuma(this.rut)
-          this.router.navigate(['/clientes'])
+          this.router.navigate(['/ventas'])
         }
         else{
           Swal.fire({
@@ -183,6 +186,49 @@ export class VentaUnicaComponent implements OnInit {
   }
 
 
+
+
+
+
+
+  // addFinanza al gestor de finanzas
+
+  addToFinanzas(idVenta:any,estado:string){
+    console.log(estado)
+    return new Promise((resolve,reject)=>{
+      if(estado === 'pendiente'){
+        // cambiamos de estado a enviado
+        this.serviceFinanzas.addVenta(idVenta).subscribe(
+          (res:any)=>{
+            console.log(res)
+            resolve(res)
+          }
+        )
+      }
+      else if(estado === 'pagado'){
+        // cambiamos de estado a pendiente
+        this.serviceFinanzas.removeVenta(idVenta).subscribe(
+          (res:any)=>{
+            console.log(res)
+            resolve(res)
+
+          }
+        )
+      }
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   actualizarProducto(estado:any,id:any){
     return new Promise((resolve,reject)=>{
       if(estado=='pagado'){
@@ -199,6 +245,7 @@ export class VentaUnicaComponent implements OnInit {
           }
         )
       }
+      resolve("hola mundo")
     })
 
   }

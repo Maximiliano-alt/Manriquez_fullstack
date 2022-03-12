@@ -1,0 +1,84 @@
+<app-navbar [var]="{route:'/pp',title:'Finanzas'}" ></app-navbar>
+
+<div class="container-general">
+
+
+    <!-- fixed ingresar gastos! -->
+
+    
+    <div class="open-view" *ngIf="this.gastoId == 1">
+        <div class="close">
+            <mat-icon (click)="close()">close</mat-icon>
+        </div>
+       <div class="input">
+        <label>Seleccione tipo de gasto</label>
+        <select  [(ngModel)]="this.newGasto.tipo" name="gastoTipo" id="cars" >
+            <option value="Sueldo Empleado">Sueldo Empleado</option>
+            <option value="Nueva venta">Nueva venta</option>
+            <option value="Costo adicional">Costo adicional</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="input" *ngIf="this.newGasto.tipo  === 'Otro'">
+                <label>Ingrese nombre del gasto</label>
+                <input [(ngModel)]="this.tipoAux"  name="gasto" type="text" placeholder="Nombre tipo de gasto">
+        </div>
+
+        <div class="input" >
+            <label>Ingrese valor de gasto</label>
+            <input [(ngModel)]="this.newGasto.total"  name="aux" type="number" placeholder="Ingrese el total del gasto">
+       
+        </div>
+
+        <button (click)="sendGasto()">Enviar nuevo gasto</button>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="container-data" *ngIf="this.gastoId == 0">
+        <div class="estado-financiero">
+            <label>
+                Estado financiero
+            </label>
+            <div class="data">
+                <strong>${{this.newFinanzas.estadoFinanciero}}</strong>
+            </div>
+        </div>
+        <div class="ganancias">
+            <img src="../../../../assets/page/ganancias 2.svg" alt="">    
+            <strong>
+                Ganancias
+            </strong>
+            <div class="data">
+                <strong>${{this.newFinanzas.ganancias}}</strong>
+            </div>
+        </div>
+        <div class="gastos">
+            <div class="valor-de-gasto">
+                <mat-icon>monetization_on</mat-icon>
+                <strong>Gastos</strong>
+                <div class="data">
+                    <strong>${{this.newFinanzas.totalGastos}}</strong>
+                </div>
+            </div>
+          
+            <button (click)="add_gasto()">Ingresar gastos</button>
+        </div>
+        <div class="redireccionamiento">
+            
+            <img src="../../../../assets/page/estadisticas.svg" alt="">
+            <strong>Estadísticas</strong>
+            <button [routerLink]="['/estadisticas/home']">Ver mas +</button>
+        </div>
+    </div>
+</div>
+
+

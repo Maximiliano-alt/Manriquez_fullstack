@@ -39,6 +39,7 @@ export class VentasService {
       delay(1000)
     )
   }
+  
 
   deleteProduct(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
 
@@ -70,9 +71,7 @@ export class VentasService {
   }
 
   getVentaAndCliente(data:string,rut:string){
-    return this.http.post(environment.baseUrl+'/get/venta/cliente',{data,rut}).pipe(
-
-    )
+    return this.http.post(environment.baseUrl+'/get/venta/cliente',{data,rut})
   }
 
   verify_amount(id:any){
@@ -98,7 +97,7 @@ export interface venta{
 
     ], //son objectos de productos
     fecha: number, //valor automatico en hora minuto segundo y fecha
-    servicios: string,
+    servicios:servicio[],
     porcentaje: number,
     totalDeVenta:number,
     envio:string,
@@ -113,6 +112,11 @@ export interface venta{
       retira: string;
     },
     comentario:string
+}
+
+export interface servicio{
+  nombre:string,
+  valor:number,
 }
 
 export interface productoComprado{
