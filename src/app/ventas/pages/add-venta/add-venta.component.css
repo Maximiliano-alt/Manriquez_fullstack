@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     overflow-y: auto;
+    overflow-x:hidden !important; 
 }
 form{
     width: 100%;
@@ -21,7 +22,7 @@ form{
 }
 .input-info{
     width: 100%;
-    height: 24%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -32,6 +33,7 @@ form{
     width: 100%;
     height: 25%;
     display: flex;
+    
     align-items: center;
     justify-content: center;
 }
@@ -123,7 +125,7 @@ input{
     justify-content: center;
     font-size: 12px;
     margin: 0;
-    width: 150px;
+    width: 100%;
     text-align: center;
 }
 
@@ -175,6 +177,8 @@ input{
   flex-direction: row;
   align-items: center;
 }
+
+
 .data{
     display: flex;
     flex-direction: column;
@@ -189,7 +193,7 @@ input{
     justify-content: left;
     font-size: 12px;
     margin: 0;
-    width: 150px;
+    width: 100%;
 }
 .button{
     display: flex;
@@ -199,6 +203,47 @@ input{
 .button mat-icon{
     color: white;
 }
+.servicios{
+    margin-top: 20px;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.servicios_input{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0 10px 0;
+    justify-content: center;
+
+}
+
+.servicios_input input{
+    margin: 0 0 0 10px;
+    border-radius: 20px;
+    border:none
+}
+
+.servicios button{
+    margin: 0 0 0 10px;
+    border-radius: 20px;
+    border:none;
+    background-color: #F25C05;
+    color: white;
+    width: 200px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .utilidad{
     width: 100%;
     height: 15%;
@@ -326,7 +371,7 @@ input{
     }
     .container-info{
         width: 100%;
-        height: 75%;
+        height: 50%;
         flex-direction: row;
     }
     .input-info{
@@ -342,8 +387,8 @@ input{
     .search-cliente, .search-productos{
         height: 20%;
     }
-    .data-cliente-container, .productos{
-        height: 60%;
+    .data-cliente-container, .productos,.proveedores{
+        height: 80%;
     }
     .navbar-productos{
         height: 20%
@@ -363,4 +408,19 @@ input{
 }
 @media screen and (min-width:1200px){
 
+}
+
+@media screen and (max-width:375px){
+    .servicios_input{
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      
+    }
+    .servicios_input strong{
+        margin-left: 20px;
+    }
+    .servicios_input input{
+        width: 250px;
+    }
 }
