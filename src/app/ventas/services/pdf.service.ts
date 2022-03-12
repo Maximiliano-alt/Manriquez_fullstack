@@ -41,13 +41,15 @@ export class PdfService {
     await this.findProveedor(id,rut);
     this.dateTime = new Date();
     const pdf = new PdfMakeWrapper();
-    pdf.pageSize('A4');
+
     pdf.defaultStyle({
       margin: 5,
-      fontSize: 15,
+      fontSize:15,
       alignment:'justify',
   });
 
+    if(type === 'orden'){
+      pdf.pageSize('A4');
     pdf.add( await new Img('../assets/page/Pisosmanriquez.logo-02.png').width(200).build());
     pdf.add(new Txt('\n\nME Construcción y Diseño de interiores Spa').color('#F25C05').relativePosition(0,-20).bold().end);
     pdf.add(new Txt('\n\n76.861.179-3').color('#F25C05').relativePosition(0,-5).bold().end);
@@ -62,9 +64,23 @@ export class PdfService {
     pdf.add(new Txt('\n\N° GUIA      : '+this.countNumberGuide(this.year)).decoration('underline').fontSize(20).relativePosition(30,290).bold().end);
     pdf.add(new Txt('\n\COMENTARIO: ').decoration('underline').fontSize(20).relativePosition(30,350).bold().end);
     pdf.add(new Txt('\n'+commentary).fontSize(15).relativePosition(60,400).bold().end);
-
-
     pdf.create().open();
+    pdf.create().download('Orden de compra para '+this.proveedor.nombre.toUpperCase())
+
+    }
+    if(type === 'cotizacion'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
+      pdf.pageSize('A3');
+      pdf.add( await new Img('../assets/page/Pisosmanriquez.logo-02.png').width(200).build());
+      pdf.add(new Txt('\n\nME Construcción y Diseño de interiores Spa').color('#F25C05').fontSize(25).relativePosition(215,-125).bold().end);
+      pdf.add(new Txt('\n\n76.861.179-3').color('#F25C05').fontSize(25).relativePosition(215,-100).bold().end);
+      pdf.add(new Txt('\n\nPisos Flotantes - Pisos Madera - Pisos Vinílicos - Ceramicos - Porcelanatos').relativePosition(215,-35).bold().end);
+      pdf.add(new Txt('\n\nPasto Sintetico - Alfombras - Cortinas Roller - Departamento de construcción ').relativePosition(215,-15).bold().end);
+      pdf.add(new Txt('\n\nPapeles Murales - Servicios Alfombras - Cierres de Terraza').relativePosition(215,5).bold().end);
+      pdf.create().open();
+    }
+
+
+
   }
 
   countNumberGuide(thisYear:number):number{
