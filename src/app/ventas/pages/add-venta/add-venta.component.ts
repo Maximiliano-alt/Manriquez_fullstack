@@ -24,6 +24,8 @@ export class AddVentaComponent implements OnInit {
   cliente:cliente={
     nombre: '',
     direccion: '',
+    comuna: '',
+    ciudad: '',
     telefono: '',
     correo: '',
     rut: '',
@@ -160,6 +162,8 @@ export class AddVentaComponent implements OnInit {
     this.cliente ={
       nombre: '',
       direccion: '',
+      comuna: '',
+      ciudad: '',
       telefono: '',
       correo: '',
       rut: '',

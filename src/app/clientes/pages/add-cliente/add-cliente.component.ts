@@ -21,6 +21,8 @@ export class AddClienteComponent implements OnInit {
   clienteDefault:cliente={
     nombre: '',
     direccion: '',
+    comuna: '',
+    ciudad: '',
     telefono: '',
     correo: '',
     rut: '',

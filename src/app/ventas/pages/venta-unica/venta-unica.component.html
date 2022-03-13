@@ -53,10 +53,10 @@
           <button class="button" [disabled]="comentario.invalid" (click)="createBuyOrder('orden')">Crear orden de compra</button>
           <p *ngIf="comentario.invalid" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
-        <button *ngIf="this.estado == 'pendiente'" class="button">
+        <button *ngIf="this.estado == 'pendiente'" class="button" (click)="createBuyOrder('cotizacion')">
             Crear cotizacion
         </button>
-        <button *ngIf="this.estado == 'pagado'"  class="button">
+        <button *ngIf="this.estado == 'pagado'"  class="button" (click)="createBuyOrder('guia')">
             Crear guia de venta
         </button>
         <button (click)="delete(this.id,this.rut)" class="button">
@@ -75,7 +75,7 @@
             <button (click)="modificarEstado(this.estado,this.rut,this.id)" style="margin-right: 31px;" class="button-par">
                 Modificar estado
             </button>
-            <button *ngIf="this.estado == 'pendiente'" class="button-par">
+            <button *ngIf="this.estado == 'pendiente'" class="button-par"(click)="createBuyOrder('guia')">
                 <!-- falta definicion de requerimiento -->
                 Crear Cotizacion
             </button>
@@ -85,7 +85,7 @@
         </div>
 
         <div class="button-pares">
-            <button  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
+            <button  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par"  (click)="createBuyOrder('guia')">
                 <!-- falta definicion del requerimiento -->
                 Crear guia de venta
             </button>
