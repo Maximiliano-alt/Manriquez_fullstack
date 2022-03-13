@@ -141,6 +141,8 @@ export interface producto{
 export interface cliente{
   nombre: '',
   direccion: '',
+  comuna: '',
+  ciudad: '',
   telefono: '',
   correo: '',
   rut: '',

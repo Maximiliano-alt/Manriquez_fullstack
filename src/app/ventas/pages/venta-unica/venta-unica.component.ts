@@ -20,6 +20,7 @@ export class VentaUnicaComponent implements OnInit {
   id:any="";
   comentario:FormControl;
   comentarioVenta:string =''
+
   constructor( private serviceFinanzas: GraphicsService,private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
@@ -102,6 +103,7 @@ export class VentaUnicaComponent implements OnInit {
                 text: 'Modificacion correcta!',
                 icon: 'success',
               })
+
              this.addToFinanzas(idVenta,this.estado)
               setTimeout(()=>{
                 window.location.reload()
@@ -118,11 +120,11 @@ export class VentaUnicaComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
-        
+
       }
-      
+
     })
-   
+
   }
   delete(idventa:string,rut:string):any{
     this.serviceCliente.deleteVenta(rut,idventa).subscribe(
@@ -146,7 +148,7 @@ export class VentaUnicaComponent implements OnInit {
         }
       }
     )
-    
+
   }
 
   newSuma(rut:string){
@@ -158,7 +160,7 @@ export class VentaUnicaComponent implements OnInit {
       )
 
     })
-   
+
   }
 
   updateVenta(id:string){
@@ -251,7 +253,7 @@ export class VentaUnicaComponent implements OnInit {
   }
 
   verify_amount(id:any){
-    
+
     return new Promise((resolve,reject)=>{
       this.service.verify_amount(id).subscribe(
         (res:any)=>{
