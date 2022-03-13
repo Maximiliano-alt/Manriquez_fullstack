@@ -82,6 +82,8 @@ export class ClienteService {
 export interface cliente{
   nombre: string,
   direccion: string,
+  comuna: string,
+  ciudad: string,
   telefono: string,
   correo: string,
   rut: string,
