@@ -27,10 +27,12 @@ export class VentaUnicaComponent implements OnInit {
   }
 
    getClienteAndVenta(){
-
+  
 
     this.service.getVentaAndCliente(this.id,this.rut).subscribe(
       (res:any)=>{
+
+        console.log(this.rut)
         if(res.status==404){
           Swal.fire({
             title: 'Error :(',
@@ -42,10 +44,12 @@ export class VentaUnicaComponent implements OnInit {
         else{
 
           this.cliente = res.data
+          
           this.ventaProductos = res.dataVenta
           this.dataIndicador = 1
           this.estado = this.ventaProductos.estado
         }
+        
       }
     )
 
