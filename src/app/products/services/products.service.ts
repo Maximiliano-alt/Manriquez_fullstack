@@ -52,6 +52,7 @@ export class ProductsService {
 export interface product{
   nombre: string,
   valor: number,
+  unidadMedida:string,
   descripcion: string,
   categoria:string,
   stock:number,

@@ -178,6 +178,7 @@ export class AddVentaComponent implements OnInit {
     var productoComprado:productoComprado={
       nombre: producto.nombre,
       valor: producto.valor,
+      unidadMedida:producto.unidadMedida,
       descripcion: producto.descripcion,
       cantidad: 1 ,//valor por default
     };
@@ -281,7 +282,7 @@ export class AddVentaComponent implements OnInit {
       this.venta.cliente.rut = this.cliente.rut
       this.venta.cliente.telefono = this.cliente.telefono
       this.venta.cliente.direccion = this.cliente.direccion
-      
+
       var suma = 0
       this.listaProductosEnLista.forEach((e)=>{
         suma = suma  + e.cantidad*e.valor;
@@ -342,7 +343,7 @@ export class AddVentaComponent implements OnInit {
 
 
   addServicio(nombre:string,valor:number):any{
-  
+
 
     if(nombre == "" || valor == 0){
       Swal.fire({
@@ -355,7 +356,7 @@ export class AddVentaComponent implements OnInit {
       return 0
     }
     else{
-      
+
       this.venta.servicios.push({nombre,valor});
       Swal.fire({
         position: 'top-end',
@@ -364,12 +365,12 @@ export class AddVentaComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       });
-    
-     
+
+
     }
-    
+
     return 1;
-  
+
   }
 
 

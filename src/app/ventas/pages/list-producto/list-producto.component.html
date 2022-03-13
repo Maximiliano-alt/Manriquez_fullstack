@@ -11,11 +11,11 @@
     <div  class="up">
        <button (click)=" nf_for_preview()"> <mat-icon >expand_less</mat-icon></button>
     </div>
-    
-        
-    
+
+
+
         <div class="container-productos">
-           
+
                 <div class="item" *ngFor="let venta of segmento">
                     <div class="data">
                         <div class="data-item">
@@ -31,8 +31,8 @@
                             <p>&nbsp;{{venta.valor}}</p>
                         </div>
                         <div class="data-item">
-                            <b>Unidad:</b><p>&nbsp;m2</p>
-                        </div>            
+                            <b>Unidad:</b><p>&nbsp;</p>
+                        </div>
                     </div>
                     <div class="button">
                         <!-- <b>Cantidad:</b><p>&nbsp;{{venta.cantidad}}</p> -->
@@ -58,18 +58,18 @@
                         <b>Eliminar</b>
                     </div>
                 </div>
-            
+
         </div>
-    
-    
-        
-    
+
+
+
+
 
     <div class="up">
         <button (click)="nf_for_next()"><mat-icon>expand_more</mat-icon></button>
-    </div> 
+    </div>
 
-    
+
 
     <div class="container-carrusel" *ngIf="this.array.length != 0">
         <div class="carrusel">
@@ -92,12 +92,12 @@
                             <p>&nbsp;{{venta.valor}}</p>
                         </div>
                         <div class="item-line">
-                            <b>Unidad: </b>  
-                            <p>&nbsp;m2</p>            
+                            <b>Unidad: </b>
+                            <p>&nbsp;</p>
                         </div>
                     </div>
                     <div class="item-button-grande">
-                       
+
                             <b>Cantidad:</b><p>&nbsp;{{venta.cantidad}}</p>
                             <!-- (click)="modify(this.array,venta,this.id,'R')" -->
                             <button (click)="modify(this.array,venta,this.id,'R')">
@@ -116,11 +116,11 @@
                                 <mat-icon>delete</mat-icon>
                             </button>
                             <b>Eliminar</b>
-                     
+
                     </div>
-                    
+
                 </div>
-                
+
             </div>
             <div (click)="nf_for_next()" class="button-next">
                 <mat-icon>expand_less</mat-icon>

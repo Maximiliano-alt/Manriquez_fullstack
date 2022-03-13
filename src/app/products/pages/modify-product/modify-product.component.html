@@ -1,12 +1,12 @@
 <app-navbar [var]="{route:'/productos',title:'Modificar Producto'}" ></app-navbar>
 
-<div class="container-general"> 
+<div class="container-general">
     <div class="container-inputs">
         <div class="title">
             <h3>Reemplaza los valores necesarios</h3>
         </div>
         <div class="form">
-    
+
             <div class="inputLine">
                 <label>
                    Nombre
@@ -15,9 +15,9 @@
             </div>
             <div class="inputLine">
                 <label>
-                    Medida
+                    Unidad de Medida
                 </label>
-                <input disabled value="metros cuadrados" name="medida" type="text" placeholder="Ingrese tipo de medida">
+                <input [(ngModel)]="newProducto.unidadMedida" name="medida" type="text" placeholder="Ingrese tipo de medida">
             </div>
             <div class="inputLine">
                 <label>
@@ -62,7 +62,7 @@
             </div>
             <div class="inputLine">
                 <label>
-                    Si quieres cambiar la imagen selecciona una 
+                    Si quieres cambiar la imagen selecciona una
                 </label>
                 <input  type="file" alife-file-to-base64  (onFileChanged)="onFileChanges($event)" placeholder="ingrese imagen">
             </div>
@@ -74,7 +74,7 @@
 
         </div>
 
-        
+
 
     </div>
 

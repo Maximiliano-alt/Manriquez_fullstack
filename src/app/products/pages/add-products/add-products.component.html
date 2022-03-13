@@ -16,6 +16,11 @@
                             <p  *ngIf="price.invalid && price.touched" class="input-error"><strong>* Campo requerido, solo numeros</strong> </p>
                         </div>
                         <div class="data-propertie">
+                          <div class="type">Unidad de medida</div>
+                          <input class ="data" [formControl]="uMedida" value="$" type="text">
+                          <p  *ngIf="uMedida.invalid && uMedida.touched" class="input-error"><strong>* Campo requerido</strong> </p>
+                      </div>
+                        <div class="data-propertie">
                             <div class="type">Color</div>
                             <input class ="data" [formControl]="color" type="text">
                             <p  *ngIf="color.invalid && color.touched" class="input-error"><strong>* Campo requerido</strong> </p>
@@ -52,7 +57,7 @@
                         <div>Imagen</div>
                         <input type="file" alife-file-to-base64  (onFileChanged)="onFileChanges($event)">
                     </div>
-                </div>      
+                </div>
             </div>
             <div class="buttons">
                 <div class="butt-save">

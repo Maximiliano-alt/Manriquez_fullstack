@@ -20,9 +20,10 @@ export class ModifyProductComponent implements OnInit {
     nombre:"",
     stock:0,
     valor:0,
+    unidadMedida:"",
     vecesComprado:0,
   }
- 
+
   constructor( private route:ActivatedRoute,private router:Router,private service: ProductsService) {
     this.id = this.route.snapshot.paramMap.get('id');
   }
@@ -35,7 +36,7 @@ export class ModifyProductComponent implements OnInit {
     this.service.getOneProduct(this.id).subscribe(
       (res:any)=>{
         if(res.status==200){
-          this.indicador = 1 
+          this.indicador = 1
           this.newProducto = res.data
         }
       }

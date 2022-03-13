@@ -8,6 +8,12 @@
 						<div class="name">Nombre</div>
 						<div class="data">&nbsp;{{this.newProducto.nombre}}</div>
 					</div>
+          <div class="properties-box">
+						<div class="data-propertie">
+							<div class="type">Unidad de medida</div>
+							<div class="data">&nbsp;{{this.newProducto.unidadMedida}}</div>
+						</div>
+          </div>
 					<div class="properties-box">
 						<div class="data-propertie">
 							<div class="type">Precio</div>
@@ -34,13 +40,13 @@
 						<div class="data-info">&nbsp;{{this.newProducto.descripcion}}</div>
 					</div>
 					<div class="IMG">
-						
+
 						<img src="{{this.newProducto.imagen}}" alt="">
 					</div>
-				</div>		
+				</div>
 			</div>
 			<div class="buttons">
-				
+
 				<div class="butt-cancel">
 					<button style="color: white;" [routerLink]="['/productos']">Cancelar</button>
 				</div>
