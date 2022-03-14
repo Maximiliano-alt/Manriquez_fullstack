@@ -85,6 +85,11 @@ div{
 	width: 100%;
 	height: 70%;
 }
+.data-info textarea{
+	width: 95%;
+    height: 90%;
+    border: none;
+}
 .IMG{
 	width: 100%;
 	height: 45%;
