@@ -68,6 +68,7 @@ export class AddVentaComponent implements OnInit {
     fecha: 0, //valor automatico en hora minuto segundo y fecha
     porcentaje: 0,
     totalDeVenta:0,
+    abono:0,
     envio:'pendiente',
     comentario:''
   } // aca se almacena la venta

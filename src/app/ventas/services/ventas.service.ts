@@ -100,6 +100,7 @@ export interface venta{
     servicios:servicio[],
     porcentaje: number,
     totalDeVenta:number,
+    abono:number,
     envio:string,
     proveedor:{
       nombre: string;
