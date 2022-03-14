@@ -1,5 +1,13 @@
 <app-navbar [var]="{route:'/ventas',title:'Agregar nueva venta'}" ></app-navbar>
- <div class="container-general" *ngIf="this.container==0">
+<div class="spiner" *ngIf="this.listaProductos.length == 0 && this.listaProveedores.length == 0" >
+    <div  class="spinner-border" role="status">
+    </div>
+    <span>Cargando datos ...</span>
+</div>
+
+
+
+<div class="container-general" *ngIf="this.listaProductos.length > 0 && this.listaProveedores.length > 0">
     <form>
         <div class="container-info">
             <div class="input-info" id="input-info-cliente">

@@ -18,7 +18,9 @@ export class VentasService {
 
   addVenta(data:venta){
     console.log(data);
-    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data)
+    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data).pipe(
+      delay(1000)
+    )
   }
 
   getCliente(rut:string){
