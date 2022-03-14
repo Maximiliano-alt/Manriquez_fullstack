@@ -43,7 +43,27 @@ export class ModifyProductComponent implements OnInit {
   }
 
   eliminar(value:any){
-    console.log(value)
+    this.service.deleteProduct(value).subscribe(
+      (res:any)=>{
+        if(res.status==200){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Eliminado exitosamente',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+        else if(res.status == 500){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'El producto no fue eliminado',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+      })
   }
 
   editar(){
