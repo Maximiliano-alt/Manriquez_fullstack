@@ -5,8 +5,9 @@ import { ITable } from 'pdfmake-wrapper';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { cliente, ClienteService } from 'src/app/clientes/service/cliente.service';
 import { Proveedor, ProveedorService } from 'src/app/proveedores/services/proveedor.service';
-import { VentasService,productoComprado } from './ventas.service';
+import { VentasService, servicio } from './ventas.service';
 import { HttpClient } from '@angular/common/http';
+import { RouterLinkWithHref } from '@angular/router';
 
 interface venta{
   id_Venta: number, //valor automatico en hora minuto segundo y fecha
@@ -19,11 +20,9 @@ interface venta{
         rut: string,
     }, //son objectos de Cliente
     estado: string,
-    productos:productoComprado[
-
-    ], //son objectos de productos
+    productos:productoComprado[], //son objectos de productos
     fecha: number, //valor automatico en hora minuto segundo y fecha
-    servicios: string,
+    servicios:servicio[],
     porcentaje: number,
     totalDeVenta:number,
     envio:string,
@@ -39,12 +38,20 @@ interface venta{
     },
     comentario:string
 }
+interface productoComprado{
+  nombre: String,
+  valor: number,
+  unidadMedida:String,
+  descripcion: String,
+  cantidad:number,
+}
 type TableRow = [number,number,string,string,string,number,number,number]
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfService {
+  infoData:any;
   dateTime: Date;
   year = 2022;
   countCot = 1;
@@ -86,7 +93,7 @@ export class PdfService {
 
     ], //son objectos de productos
     fecha: 0, //valor automatico en hora minuto segundo y fecha
-    servicios: '',
+    servicios: [],
     porcentaje: 0,
     totalDeVenta:0,
     envio:'',
@@ -185,16 +192,15 @@ export class PdfService {
   }
 
   createTable(data:any[]):ITable{
-    [{}]
     return new Table([
       [ 'Cant.', 'Código','U. ME','Descripción','Servicio','Valor','Desc.','Total     '],
       []
     ]).end;
   }
 
-  // extractData(data:venta[]):TableRow{
-
-  // }
+  extractData(data:venta[]):any{
+    return data.map(row => [row.productos.map(p => p.cantidad),row.id_Venta,row.productos.map(p => p.unidadMedida),row.productos.map(p => p.descripcion),row.servicios.map(s => s.nombre),row.productos.map(p => p.valor)]);
+  }
 
   // async fetchDataVenta():Promise<venta[]>{
 
