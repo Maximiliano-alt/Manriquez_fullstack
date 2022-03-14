@@ -45,7 +45,7 @@ export class ModifyProductComponent implements OnInit {
   eliminar(value:any){
     this.service.deleteProduct(value).subscribe(
       (res:any)=>{
-        if(res.status==200){
+        if(res.status == 200){
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -53,6 +53,7 @@ export class ModifyProductComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
+          this.router.navigate(['/productos/products-category'])
         }
         else if(res.status == 500){
           Swal.fire({
@@ -62,6 +63,7 @@ export class ModifyProductComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
+          this.router.navigate(['/productos/products-category'])
         }
       })
   }

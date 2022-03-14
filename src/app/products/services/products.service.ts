@@ -47,7 +47,7 @@ export class ProductsService {
     return this.http.post(environment.baseUrl+'/modifyProduct',data)
   }
   deleteProduct(id:any){
-    return this.http.delete(environment.baseUrl+'/delete/'+id)
+    return this.http.get(environment.baseUrl+'/delete/'+id)
   }
 
 }
