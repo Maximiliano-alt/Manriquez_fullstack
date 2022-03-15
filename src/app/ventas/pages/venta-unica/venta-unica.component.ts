@@ -6,7 +6,7 @@ import { delay, ignoreElements } from 'rxjs/operators';
 
 import { ClienteService } from 'src/app/clientes/service/cliente.service';
 import { PdfService } from '../../services/pdf.service';
-import { ReturnStatement } from '@angular/compiler';
+import { HtmlParser, ReturnStatement } from '@angular/compiler';
 import { FormControl, Validators } from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
 import { GraphicsService } from 'src/app/graphics/services/graphics.service';
@@ -16,7 +16,7 @@ import { GraphicsService } from 'src/app/graphics/services/graphics.service';
   styleUrls: ['./venta-unica.component.css']
 })
 export class VentaUnicaComponent implements OnInit {
-  estado=""; //pendiente o pagado
+  estado=""; //cotizado o pagado
   id:any="";
   comentario:FormControl;
   comentarioVenta:string =''
@@ -83,34 +83,47 @@ export class VentaUnicaComponent implements OnInit {
     return 0;
   }
   modificarEstado(estado:string,rut:string,idVenta:string):any{
+   
     this.verify_amount(this.id).then((data:any)=>{
       console.log(data)
       if(data.status == 200){
-        this.serviceCliente.modificarEstadoVenta(estado,rut,idVenta).subscribe(
-          (res:any)=>{
-            console.log("modificacion de estado!",res)
-            if(res.status == 200){
-              this.ingresoModificacion = 1;
-              if(this.ingresoModificacion == 1){
+        Swal.fire({
+          title: 'Modificar Estado',
+          input: 'radio',
+          inputOptions: {
+            'cotizado':'Cotizado',
+            'abonado':'Abonado',
+            'pagado':'Pagado'
+          },
+          showCancelButton: true,
+          confirmButtonText: "Confirmar",
+    
+        }).then(resultado =>{
+          this.estado = resultado.value;
+          this.serviceCliente.modificarEstadoVenta(resultado.value,rut,idVenta).subscribe(
+            (res:any)=>{
+              console.log("modificacion de estado!",res)
+              if(res.status == 200){
+                this.ingresoModificacion = 1;
+                if(this.ingresoModificacion == 1){
+                  
+                  this.actualizarProducto(resultado.value,this.id).then(
+                    (val)=>{
+                      console.log(val)
+                  })
+                }
+  
                 
-                this.actualizarProducto(this.estado,this.id).then(
-                  (val)=>{
-                    console.log(val)
-                })
+               this.addToFinanzas(idVenta,resultado.value)
+              //   setTimeout(()=>{
+              //     window.location.reload()
+              //   },3000)
               }
-              Swal.fire({
-                title: '',
-                text: 'Modificacion correcta!',
-                icon: 'success',
-              })
-
-             this.addToFinanzas(idVenta,this.estado)
-              setTimeout(()=>{
-                window.location.reload()
-              },3000)
             }
-          }
-        )
+          )
+        })
+    
+        
       }
       else if(data.status == 500){
         Swal.fire({
@@ -198,7 +211,7 @@ export class VentaUnicaComponent implements OnInit {
   addToFinanzas(idVenta:any,estado:string){
     console.log(estado)
     return new Promise((resolve,reject)=>{
-      if(estado === 'pendiente'){
+      if(estado === 'cotizado'){
         // cambiamos de estado a enviado
         this.serviceFinanzas.addVenta(idVenta).subscribe(
           (res:any)=>{
@@ -208,7 +221,7 @@ export class VentaUnicaComponent implements OnInit {
         )
       }
       else if(estado === 'pagado'){
-        // cambiamos de estado a pendiente
+        // cambiamos de estado a cotizado
         this.serviceFinanzas.removeVenta(idVenta).subscribe(
           (res:any)=>{
             console.log(res)
@@ -240,7 +253,7 @@ export class VentaUnicaComponent implements OnInit {
           }
         )
       }
-      else if(estado=='pendiente'){
+      else if(estado=='cotizado'){
         this.serviceCliente.actualizarProducto_add(id).subscribe(
           res=>{
             resolve(res)
