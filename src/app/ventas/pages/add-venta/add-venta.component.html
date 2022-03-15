@@ -91,7 +91,7 @@
 
                              <div class="add">
                                  <button (click)="proveedorSelected(proveedor)" (click)="changeColor(this.icoColor)">
-                                     <mat-icon [ngStyle]="{'color':this.icoColor}" id="mat-icon">add</mat-icon>
+                                     <mat-icon id="mat-icon">add</mat-icon>
                                  </button>
                              </div>
                          </div>
@@ -107,11 +107,11 @@
             <h3>Ingrese servicios si es necesario</h3>
             <div class="servicios_input">
                 <strong>Ingrese nombre del servicio</strong>
-                <input [(ngModel)]="this.newServicio.nombre" name="nombre" type="text" placeholder="nombre del servicio "> 
+                <input [(ngModel)]="this.newServicio.nombre" name="nombre" type="text" placeholder="nombre del servicio ">
             </div>
             <div class="servicios_input">
                 <strong>Ingrese valor del servicio</strong>
-                <input [(ngModel)]="this.newServicio.valor" name="valor"  type="number" placeholder="nombre del servicio "> 
+                <input [(ngModel)]="this.newServicio.valor" name="valor"  type="number" placeholder="nombre del servicio ">
             </div>
             <button (click)="this.addServicio(this.newServicio.nombre,this.newServicio.valor)">Agregar Servicio</button>
         </div>

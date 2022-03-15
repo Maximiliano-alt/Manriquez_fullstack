@@ -193,11 +193,24 @@ export class AddVentaComponent implements OnInit {
     if(existencia == 0){
       this.listaProductosEnLista.push(productoComprado)
     }
-
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Se añadió el producto',
+      showConfirmButton: false,
+      timer: 2000
+    })
   }
 
   proveedorSelected(proveedor:Proveedor){
     this.venta.proveedor = proveedor;
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Se añadió el proveedor',
+      showConfirmButton: false,
+      timer: 2000
+    })
   }
   verProducto(valor:number){
     //mostramos la compra que lleva!
@@ -281,7 +294,7 @@ export class AddVentaComponent implements OnInit {
       this.venta.cliente.rut = this.cliente.rut
       this.venta.cliente.telefono = this.cliente.telefono
       this.venta.cliente.direccion = this.cliente.direccion
-      
+
       var suma = 0
       this.listaProductosEnLista.forEach((e)=>{
         suma = suma  + e.cantidad*e.valor;
@@ -342,7 +355,7 @@ export class AddVentaComponent implements OnInit {
 
 
   addServicio(nombre:string,valor:number):any{
-  
+
 
     if(nombre == "" || valor == 0){
       Swal.fire({
@@ -355,7 +368,7 @@ export class AddVentaComponent implements OnInit {
       return 0
     }
     else{
-      
+
       this.venta.servicios.push({nombre,valor});
       Swal.fire({
         position: 'top-end',
@@ -364,12 +377,12 @@ export class AddVentaComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       });
-    
-     
+
+
     }
-    
+
     return 1;
-  
+
   }
 
 
