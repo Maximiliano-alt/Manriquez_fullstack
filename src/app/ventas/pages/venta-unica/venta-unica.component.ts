@@ -19,8 +19,9 @@ export class VentaUnicaComponent implements OnInit {
   estado=""; //pendiente o pagado
   id:any="";
   comentario:FormControl;
+  descuento:FormControl;
   comentarioVenta:string =''
-
+  descuentoVenta:number = 0
   constructor( private serviceFinanzas: GraphicsService,private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
@@ -32,6 +33,15 @@ export class VentaUnicaComponent implements OnInit {
         this.comentarioVenta = value
       }
     );
+
+    this.descuento = new FormControl('',[
+      Validators.pattern(/^[0-9]*$/)
+    ]);
+    this.descuento.valueChanges.subscribe(
+      value =>{
+        this.descuentoVenta = value
+      }
+    );
   }
 
   ingresoModificacion = 0;
@@ -40,6 +50,7 @@ export class VentaUnicaComponent implements OnInit {
   ventaProductos:any
   dataIndicador  = 0
   state:boolean = false;
+  stateCotizacion = false;
   ngOnInit(): void {
 
     this.getClienteAndVenta()
@@ -92,7 +103,7 @@ export class VentaUnicaComponent implements OnInit {
             if(res.status == 200){
               this.ingresoModificacion = 1;
               if(this.ingresoModificacion == 1){
-                
+
                 this.actualizarProducto(this.estado,this.id).then(
                   (val)=>{
                     console.log(val)
@@ -175,7 +186,7 @@ export class VentaUnicaComponent implements OnInit {
 
 
   createBuyOrder(type:string){
-    this.servicePdf.downloadPdf(type,this.id,this.rut,this.comentarioVenta);
+    this.servicePdf.downloadPdf(type,this.id,this.rut,this.comentarioVenta,this.descuentoVenta,this.ventaProductos);
   }
 
   activateCommentary(){
@@ -187,6 +198,14 @@ export class VentaUnicaComponent implements OnInit {
     }
   }
 
+  activateDesc(){
+    if(this.stateCotizacion == false){
+      this.stateCotizacion = true;
+    }
+    else{
+      this.stateCotizacion = false;
+    }
+  }
 
 
 

@@ -19,12 +19,13 @@ export class DetailProductsComponent implements OnInit {
     nombre:"",
     stock:0,
     valor:0,
+    unidadMedida:"",
     vecesComprado:0,
   }
 
   img = ""
 
-  constructor(private route:ActivatedRoute,private router:Router,private service:ProductsService) { 
+  constructor(private route:ActivatedRoute,private router:Router,private service:ProductsService) {
     this.id = this.route.snapshot.paramMap.get('id')
   }
 
@@ -35,9 +36,9 @@ export class DetailProductsComponent implements OnInit {
 
   getProduct(){
     this.service.getOneProduct(this.id).subscribe(
-      (res:any)=>{      
+      (res:any)=>{
         if(res.status==200){
-          this.indicador = 1 
+          this.indicador = 1
           this.newProducto = res.data
         }
       }

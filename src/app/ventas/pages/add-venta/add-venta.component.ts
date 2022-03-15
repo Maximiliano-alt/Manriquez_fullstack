@@ -179,6 +179,7 @@ export class AddVentaComponent implements OnInit {
     var productoComprado:productoComprado={
       nombre: producto.nombre,
       valor: producto.valor,
+      unidadMedida:producto.unidadMedida,
       descripcion: producto.descripcion,
       cantidad: 1 ,//valor por default
     };

@@ -5,8 +5,9 @@ import { ITable } from 'pdfmake-wrapper';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { cliente, ClienteService } from 'src/app/clientes/service/cliente.service';
 import { Proveedor, ProveedorService } from 'src/app/proveedores/services/proveedor.service';
-import { VentasService,productoComprado } from './ventas.service';
+import { VentasService, servicio } from './ventas.service';
 import { HttpClient } from '@angular/common/http';
+import { RouterLinkWithHref } from '@angular/router';
 
 interface venta{
   id_Venta: number, //valor automatico en hora minuto segundo y fecha
@@ -19,11 +20,9 @@ interface venta{
         rut: string,
     }, //son objectos de Cliente
     estado: string,
-    productos:productoComprado[
-
-    ], //son objectos de productos
+    productos:productoComprado[], //son objectos de productos
     fecha: number, //valor automatico en hora minuto segundo y fecha
-    servicios: string,
+    servicios:servicio[],
     porcentaje: number,
     totalDeVenta:number,
     envio:string,
@@ -39,12 +38,20 @@ interface venta{
     },
     comentario:string
 }
+interface productoComprado{
+  nombre: String,
+  valor: number,
+  unidadMedida:String,
+  descripcion: String,
+  cantidad:number,
+}
 type TableRow = [number,number,string,string,string,number,number,number]
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfService {
+  infoData:any;
   dateTime: Date;
   year = 2022;
   countCot = 1;
@@ -86,7 +93,7 @@ export class PdfService {
 
     ], //son objectos de productos
     fecha: 0, //valor automatico en hora minuto segundo y fecha
-    servicios: '',
+    servicios: [],
     porcentaje: 0,
     totalDeVenta:0,
     envio:'',
@@ -113,16 +120,19 @@ export class PdfService {
 
    }
    counter = 0;
+   descuento = 0;
   transformMonth(date: Date):string {
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     return monthNames[date.getMonth()];
   }
-  async downloadPdf(type:string,id:any,rut:any,commentary:string){
+  async downloadPdf(type:string,id:any,rut:any,commentary:string,desc:number,dataVenta:any){
+    console.log(dataVenta)
     await this.findProveedor(id,rut);
     await this.findCliente(id,rut);
     //const data = await this.fetchDataVenta();
     this.dateTime = new Date();
     const pdf = new PdfMakeWrapper();
+    this.descuento = desc;
 
     pdf.defaultStyle({
       margin: 5,
@@ -150,7 +160,7 @@ export class PdfService {
     pdf.create().download('Orden de compra para '+this.proveedor.nombre.toUpperCase())
 
     }
-    if(type === 'guia'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
+    if(type === 'cotizacion'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
       pdf.pageSize('A3');//C:\Users\maxes\OneDrive\Documentos\Pega\SoftwareMama\manriquez-fullstack\Frontend\src\assets\page\ICONO-EXPERIENCIA.svg
       pdf.add( await new Img('../assets/page/Pisosmanriquez.logo-02.png').width(200).build());
 
@@ -172,10 +182,7 @@ export class PdfService {
       pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
       pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
-      pdf.add(new Table([
-                        [ 'Cant.', 'Código','U. ME','Descripción','Valor','Desc.','Total     '],
-                        [ 1, 200,'m2','chupala','45000','10%','25000']
-              ]).relativePosition(45,375).end);
+      pdf.add(this.createTable(dataVenta));
       //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
       pdf.create().open();
     }
@@ -185,19 +192,18 @@ export class PdfService {
   }
 
   createTable(data:any[]):ITable{
-    [{}]
     return new Table([
-      [ 'Cant.', 'Código','U. ME','Descripción','Servicio','Valor','Desc.','Total     '],
-      []
+      [ 'Cant.', 'Código','U. ME','Descripción','Servicio','Valor','Desc.','Total'],
+      ...this.extractData(data)
     ]).end;
   }
+ // TableRow = [number,number,string,string,string,number,number,number]
+  extractData(data:venta[]):any{
+    return data.map(row => [row.productos.map(p => p.cantidad),row.id_Venta,row.productos.map(p => p.unidadMedida),row.productos.map(p => p.descripcion),row.servicios.map(s => s.nombre),row.productos.map(p => p.valor),this.descuento,row.totalDeVenta]);
+  }
 
-  // extractData(data:venta[]):TableRow{
-
-  // }
-
-  // async fetchDataVenta():Promise<venta[]>{
-
+  // async fetchDataVenta(id:string,rut:string):Promise<venta[]>{
+  //   return this.ventasService.getVentaAndCliente
   // }
   countNumberGuide(thisYear:number):number{
     if(thisYear != this.dateTime.getFullYear()){

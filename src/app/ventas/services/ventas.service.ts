@@ -41,7 +41,7 @@ export class VentasService {
       delay(1000)
     )
   }
-  
+
 
   deleteProduct(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
 
@@ -125,6 +125,7 @@ export interface servicio{
 export interface productoComprado{
   nombre: String,
   valor: number,
+  unidadMedida:String,
   descripcion: String,
   cantidad:number,
 }
@@ -133,6 +134,7 @@ export interface productoComprado{
 export interface producto{
   nombre: string,
   valor: number,
+  unidadMedida:string,
   descripcion: string,
   categoria:string,
   stock:number,
