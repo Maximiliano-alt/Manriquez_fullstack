@@ -1,92 +1,74 @@
 <app-navbar [var]="{route:'/productos',title:'Crear Producto'}" ></app-navbar>
-
-
 <div class="container-general">
-
-    <div class="left">
-        <div class="input-nombre">
-            <div class="nav-nombre">
-                Nombre
-            </div>
-            <input [formControl]="name" type="text">
-            <p id="name-error"  *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
-        </div>
-
-        <div class="par-input">
-
-            <div class="input-precio">
-                <div class="nav-precio">
-                    Precio
+    <div class="detail-container">
+        <form>
+            <div class="data-container">
+                <div class="BOX-1">
+                    <div class="name-box">
+                        <div class="name">Nombre</div>
+                        <input class ="data" [formControl]="name" type="text">
+                        <p id="name-error"  *ngIf="name.invalid && name.touched" class="input-error"><strong>* Campo requerido</strong> </p>
+                    </div>
+                    <div class="properties-box">
+                        <div class="data-propertie">
+                            <div class="type">Precio</div>
+                            <input class ="data" [formControl]="price" value="$" type="text">
+                            <p  *ngIf="price.invalid && price.touched" class="input-error"><strong>* Campo requerido, Solo números</strong> </p>
+                        </div>
+                        <div class="data-propertie">
+                          <div class="type">Unidad de medida</div>
+                          <input class ="data" [formControl]="uMedida" value="$" type="text">
+                          <p  *ngIf="uMedida.invalid && uMedida.touched" class="input-error"><strong>* Campo requerido</strong> </p>
+                      </div>
+                        <div class="data-propertie">
+                            <div class="type">Color</div>
+                            <input class ="data" [formControl]="color" type="text">
+                            <p  *ngIf="color.invalid && color.touched" class="input-error"><strong>* Campo requerido</strong> </p>
+                        </div>
+                        <div class="data-propertie">
+                            <div class="type">Stock</div>
+                            <input class ="data" [formControl]="stock" type="text">
+                            <p  *ngIf="stock.invalid && stock.touched" class="input-error"><strong>* Campo requerido, Solo números</strong> </p>
+                        </div>
+                        <div class="data-propertie">
+                            <div class="type">Categoría</div>
+                            <select [formControl]="category" name="categoria" class="categoria">
+                            <!--utilizar ngfor  -->
+                            <option value="PISOS FLOTANTES">PISOS FLOTANTES</option>
+                            <option value="PISOS MADERA">PISOS MADERA</option>
+                            <option value="PISOS VINILICOS">PISOS  VINÍLICOS</option>
+                            <option value="PASTO SINTETICO">PASTO SINTETICO</option>
+                            <option value="CERAMICOS-PORCELANATOS">CERAMICOS-PORCELANATOS</option>
+                            <option value="ALFOMBRAS">ALFOMBRAS</option>
+                            <option value="CORTINAS ROLLER">CORTINAS ROLLER</option>
+                            <option value="PAPELES MURALES">PAPELES MURALES</option>
+                          </select>
+                          <p  *ngIf="category.invalid && category.touched" class="input-error"><strong>* Campo requerido</strong> </p>
+                        </div>
+                    </div>
                 </div>
-                <input  [formControl]="price" value="$" type="text">
-                <p  *ngIf="price.invalid && price.touched" class="input-error"><strong>* Campo requerido, solo numeros</strong> </p>
-            </div>
-
-            <div class="input-color">
-                <div class="nav-color">
-                    Color
+                <div class="BOX-2">
+                    <div class="description-box">
+                        <div class="description">Descripción</div>
+                        <textarea class = "data-info" [formControl]="description" placeholder="ingrese descripcion" ></textarea>
+                        <p *ngIf="description.invalid && description.touched" class="input-error"><strong>* Campo requerido</strong> </p>
+                    </div>
+                    <div class="IMG">
+                        <div>Imagen</div>
+                        <input type="file" alife-file-to-base64  (onFileChanged)="onFileChanges($event)">
+                    </div>
                 </div>
-                <input [formControl]="color" type="text">
-                <p  *ngIf="color.invalid && color.touched" class="input-error"><strong>* Campo requerido</strong> </p>
             </div>
-        </div>
-
-        <div class="par-input">
-
-            <div class="input-precio">
-                <div class="nav-precio">
-                    Stock
+            <div class="buttons">
+                <div class="butt-save">
+                    <button (click)="createProduct(this.product)" [disabled]="name.invalid || price.invalid  || color.invalid || stock.invalid ||category.invalid || description.invalid" class="guardar">
+                    Guardar
+                    </button>
                 </div>
-                <input [formControl]="stock" type="text">
-                <p  *ngIf="stock.invalid && stock.touched" class="input-error"><strong>* Campo requerido, solo numeros</strong> </p>
-            </div>
-
-            <div class="input-color">
-                <div class="nav-color">
-                  Categoria
+                <div class="butt-cancel">
+                    <button [routerLink]="['/productos']">Cancelar</button>
                 </div>
-
-
-                  <select [formControl]="category" name="categoria" class="categoria">
-                    <!--utilizar ngfor  -->
-
-                    <option value="PISOS FLOTANTES">PISOS FLOTANTES</option>
-                    <option value="PISOS MADERA">PISOS MADERA</option>
-                    <option value="PISOS VINILICOS">PISOS  VINÍLICOS</option>
-                    <option value="PASTO SINTETICO">PASTO SINTETICO</option>
-                    <option value="CERAMICOS-PORCELANATOS">CERAMICOS-PORCELANATOS</option>
-                    <option value="ALFOMBRAS">ALFOMBRAS</option>
-                    <option value="CORTINAS ROLLER">CORTINAS ROLLER</option>
-                    <option value="PAPELES MURALES">PAPELES MURALES</option>
-                  </select>
-                  <p  *ngIf="category.invalid && category.touched" class="input-error"><strong>* Campo requerido</strong> </p>
             </div>
-        </div>
+        </form>
     </div>
-
-    <div class="rigth">
-        <div class="input-descripcion">
-        <div class="nav-nombre">
-            Descripcion
-        </div>
-        <textarea [formControl]="description" placeholder="ingrese descripcion" ></textarea>
-        <p style="margin-top: -4px;" *ngIf="description.invalid && description.touched" class="input-error"><strong>* Campo requerido</strong> </p>
-    </div>
-
-     <div class="file-input">
-        <div class="nav-nombre">
-            Imagen
-        </div>
-        <input type="file" alife-file-to-base64  (onFileChanged)="onFileChanges($event)">
-       
-    </div>
-    </div>
-
-    <button (click)="createProduct(this.product)" [disabled]="name.invalid || price.invalid  || color.invalid || stock.invalid ||category.invalid || description.invalid" class="guardar">
-        Guardar
-    </button>
-    <button class="cancelar">
-        Cancelar
-    </button>
-
 </div>

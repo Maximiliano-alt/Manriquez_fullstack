@@ -13,18 +13,20 @@ export class AddProductsComponent implements OnInit {
   product:product = {
     nombre: "",
     valor: 0,
+    unidadMedida:"",
     descripcion:"",
     categoria:"",
     stock:0,
     vecesComprado:0,
     color: "",
     imagen: "",
-    
+
   }
 
 
   name: FormControl;
   price: FormControl;
+  uMedida:FormControl;
   color:FormControl;
   stock:FormControl;
   category:FormControl;
@@ -50,6 +52,16 @@ export class AddProductsComponent implements OnInit {
     this.price.valueChanges.subscribe(
       value =>{
         this.product.valor = value
+      }
+    );
+
+    //unidad de medida
+    this.uMedida = new FormControl('',[
+      Validators.required,
+    ]);
+    this.uMedida.valueChanges.subscribe(
+      value =>{
+        this.product.unidadMedida = value
       }
     );
 
@@ -121,7 +133,7 @@ export class AddProductsComponent implements OnInit {
 
     }
   }
-  
+
   onFileChanges(event: any): void {
     this.product.imagen = event[0].base64;
     console.log(this.product.imagen)

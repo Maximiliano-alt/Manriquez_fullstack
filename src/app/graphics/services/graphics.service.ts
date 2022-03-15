@@ -31,23 +31,18 @@ export class GraphicsService {
 
   getCategoria(){
     return this.http.get<categoria[]>(environment.baseUrl+'/get/categoria').pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 
-
-
-
-
-  
   goGraphicsRange(dateIn:Date,dateOut:Date,data:ventas[]){
-    
+
     var dateAux1 = new Date(dateIn).getTime();
     var dateAux2 = new Date(dateOut).getTime();
     var diff = dateAux1 - dateAux2
-    
-    
-    
+
+
+
     if(dateIn == undefined || dateOut ==undefined){
       return null
     }
@@ -58,27 +53,27 @@ export class GraphicsService {
       return null
     }
     if(diff/(1000*60*60*24) != -7 ){
-      
+
       return null
     }
     else{
-     
+
       var aux = this.dateForRange(dateIn,dateOut,data)
       return aux
     }
-    
+
   }
 
   dateForRange(dateIn:Date,dateOut:Date,data:ventas[]){
     var dataLocal:ventas[] = []
-    
+
     data.forEach((e)=>{
-      
+
       if( new Date(dateIn).getTime() <= e.fecha && e.fecha <= new Date(dateOut).getTime()){
 
         dataLocal.push(e)
       }
-      
+
     })
     return dataLocal;
   }
@@ -91,6 +86,23 @@ export class GraphicsService {
     })
   }
 
+  addVenta(id:any){
+    console.log("estableciendo comunicacion con add")
+    return this.http.post(environment.baseUrl+'/add/venta/finanzas',{id})
+  }
+  removeVenta(id:any){
+    return this.http.post(environment.baseUrl+'/deleteVenta/finanzas',{id})
+  }
+
+
+  addGasto(data:any){
+    return this.http.post(environment.baseUrl+'/add/finanzas/gastos',data);
+  }
+
+
+  getFinanzas(){
+    return this.http.get(environment.baseUrl+'/get/finanzas');
+  }
 
 
 }
@@ -105,6 +117,18 @@ export interface resCliente{
   ]
 }
 
+export interface finanzas{
+  estadoFinanciero:number,
+  ganancias:number,
+  gastos:any[]
+  totalGastos:number,
+}
+
+export interface Gasto{
+  tipo:string,
+  total:number,
+}
+
 export interface cliente{
     nombre:string,
     totalDeCompra:number,
@@ -116,7 +140,7 @@ export interface ventasGraphics{
   data:[
     ventas
   ]
-   
+
 }
 export interface ventas{
   fecha:number,

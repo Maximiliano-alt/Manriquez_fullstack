@@ -1,5 +1,13 @@
 <app-navbar [var]="{route:'/ventas',title:'Agregar nueva venta'}" ></app-navbar>
- <div class="container-general" *ngIf="this.container==0">
+<div class="spiner" *ngIf="this.listaProductos.length == 0 && this.listaProveedores.length == 0" >
+    <div  class="spinner-border" role="status">
+    </div>
+    <span>Cargando datos ...</span>
+</div>
+
+
+
+<div class="container-general" *ngIf="this.listaProductos.length > 0 && this.listaProveedores.length > 0">
     <form>
         <div class="container-info">
             <div class="input-info" id="input-info-cliente">
@@ -13,6 +21,8 @@
                         <input [(ngModel)]="this.rut" name="rut" type="text" placeholder="Ingrese el rut del cliente" autocomplete="off">
                     </div>
                 </div>
+
+                <!-- clase importante -->
                 <div class="data-cliente-container">
                     <div class="nav-data" *ngIf="this.cliente.nombre!=''">
                         Cliente: {{this.cliente.nombre}}
@@ -89,7 +99,7 @@
 
                              <div class="add">
                                  <button (click)="proveedorSelected(proveedor)" (click)="changeColor(this.icoColor)">
-                                     <mat-icon [ngStyle]="{'color':this.icoColor}" id="mat-icon">add</mat-icon>
+                                     <mat-icon id="mat-icon">add</mat-icon>
                                  </button>
                              </div>
                          </div>
@@ -100,6 +110,18 @@
              </div>
             </div>
 
+        </div>
+        <div class="servicios">
+            <h3>Ingrese servicios si es necesario</h3>
+            <div class="servicios_input">
+                <strong>Ingrese nombre del servicio</strong>
+                <input [(ngModel)]="this.newServicio.nombre" name="nombre" type="text" placeholder="nombre del servicio ">
+            </div>
+            <div class="servicios_input">
+                <strong>Ingrese valor del servicio</strong>
+                <input [(ngModel)]="this.newServicio.valor" name="valor"  type="number" placeholder="nombre del servicio ">
+            </div>
+            <button (click)="this.addServicio(this.newServicio.nombre,this.newServicio.valor)">Agregar Servicio</button>
         </div>
         <div class="utilidad">
             <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>

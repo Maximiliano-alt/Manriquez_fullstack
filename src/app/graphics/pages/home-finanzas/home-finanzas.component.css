@@ -1,0 +1,290 @@
+.container-general{
+    transform: translate(0,53px);
+    width: 100vw;
+    height: 91vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.open-view{
+    background-color: #000000;
+    position: fixed;
+    width: 500px;
+    height: 50%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+  
+}
+.open-view .close{
+   width: 100%;
+   display: flex;
+   justify-content: end;
+  
+}
+
+.open-view .close mat-icon{
+    margin-right: 30px;
+    color: white;
+    cursor: pointer ;
+}
+
+.open-view .input{
+   display: flex;
+   flex-direction: row;
+   margin: 20px 0 20px 0;
+   display: flex;
+   justify-content: start;
+   opacity: 1;
+}
+
+.open-view .input label{
+    margin: 0 10px 0 0;
+    color: white;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.open-view .input select{
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    background-color: #F25C05;
+    color: white;
+    border: none;
+}
+
+.open-view .input input{
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    background-color: #F25C05;
+    color: white;
+    border: none;
+    
+}
+
+
+.open-view button{
+    width: 300px;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    height: 30px;
+    background-color: #F25C05;
+    margin-top: 30px;
+ 
+    
+}
+::placeholder { color: rgb(255, 255, 255); }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.container-data{
+    width: 302px;
+    height: 100%;
+ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.estado-financiero{
+    height: 79px;
+    width: 100%;
+    margin: 20px 0 20px 0;
+    background-color: rgb(197, 182, 182);
+    opacity: 0.84;
+}
+
+.estado-financiero label{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 31.6%;
+    background: #F25C05 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.estado-financiero .data{
+    height: 68.4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: black;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 0.8;
+}
+
+
+.ganancias
+{
+    height: 60px;
+    width: 100%;
+    margin: 0 0 20px 0;
+    background-color: rgb(197, 182, 182);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 0.8;
+}
+
+.ganancias img{
+    width: 29.6px;
+    height: 30.95px;
+}
+.ganancias strong{
+    width: 71px;
+    height: 20px;
+    margin: 0 0 0 12.94px;
+}
+.ganancias .data{
+    width: 152px;
+    height: 20px;
+    display: flex;
+    justify-content: end;
+    
+}
+
+
+
+.gastos{
+    height: 87px;
+    width: 100%;
+    margin: 20px 0 20px 0;
+    background-color: rgb(197, 182, 182);
+    display: flex;
+    flex-direction: column;
+    opacity: 0.9;
+}
+.gastos .valor-de-gasto{
+    height: 60%;
+    width: 100%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.gastos .valor-de-gasto mat-icon{
+    width: 31.73px;
+    height: 31.73px;
+    font-size: 31.73px;
+    background-color: white;
+}
+.gastos .valor-de-gasto strong{
+    height: 30px;
+    width: 49px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 21.39px;
+    
+}
+.gastos .valor-de-gasto .data{
+    width: 165px;
+    height: 22px;
+    display: flex;
+    justify-content: end;
+}
+.gastos .valor-de-gasto .data strong{
+    width: 72px;
+    height: 22px;
+   
+}
+
+
+.gastos button{
+  
+    width: 100%;
+    height: 40%;
+    border: none;
+    background: #F25C05 0% 0% no-repeat padding-box;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.redireccionamiento{
+    height: 60px;
+    width: 100%;
+    margin: 20px 0 20px 0;
+    background-color: rgb(197, 182, 182);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 0.84;
+}
+.redireccionamiento img {
+    width:32.75px;
+    height: 23.06;
+    font-size: 20px;
+    filter: grayscale(100%);
+}
+.redireccionamiento strong{
+    width: 86px;
+    height: 20px;
+    margin: 0 0 0 20.37px;
+}
+.redireccionamiento button{
+    width: 87px;
+    height: 27px;
+    margin: 0 0 0 48px;
+    border: none;
+    background: #F25C05 0% 0% no-repeat padding-box;
+    border-radius: 14px;
+    opacity: 1;
+    color: white;
+}
+
+
+@media screen and (max-width:528px) {
+    
+    .open-view{
+        width: 90vw;
+        height: 500px;
+    }
+    .open-view .input{
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0 20px 0;
+        display: flex;
+        justify-content: start;
+        opacity: 1;
+    }
+    .open-view button{
+        width: 80%;
+    }
+
+}

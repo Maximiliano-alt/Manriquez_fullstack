@@ -18,7 +18,9 @@ export class VentasService {
 
   addVenta(data:venta){
     console.log(data);
-    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data)
+    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data).pipe(
+      delay(1000)
+    )
   }
 
   getCliente(rut:string){
@@ -36,9 +38,10 @@ export class VentasService {
 
   getProductoForId(data:string){
     return this.http.get<productoComprado[]>(environment.baseUrl+'/venta/get/list/product/'+data).pipe(
-      delay(2000)
+      delay(1000)
     )
   }
+
 
   deleteProduct(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
 
@@ -70,9 +73,7 @@ export class VentasService {
   }
 
   getVentaAndCliente(data:string,rut:string){
-    return this.http.post(environment.baseUrl+'/get/venta/cliente',{data,rut}).pipe(
-      delay(2000)
-    )
+    return this.http.post(environment.baseUrl+'/get/venta/cliente',{data,rut})
   }
 
   verify_amount(id:any){
@@ -98,9 +99,10 @@ export interface venta{
 
     ], //son objectos de productos
     fecha: number, //valor automatico en hora minuto segundo y fecha
-    servicios: string,
+    servicios:servicio[],
     porcentaje: number,
     totalDeVenta:number,
+    abono:number,
     envio:string,
     proveedor:{
       nombre: string;
@@ -115,9 +117,15 @@ export interface venta{
     comentario:string
 }
 
+export interface servicio{
+  nombre:string,
+  valor:number,
+}
+
 export interface productoComprado{
   nombre: String,
   valor: number,
+  unidadMedida:String,
   descripcion: String,
   cantidad:number,
 }
@@ -126,6 +134,7 @@ export interface productoComprado{
 export interface producto{
   nombre: string,
   valor: number,
+  unidadMedida:string,
   descripcion: string,
   categoria:string,
   stock:number,
@@ -137,6 +146,8 @@ export interface producto{
 export interface cliente{
   nombre: '',
   direccion: '',
+  comuna: '',
+  ciudad: '',
   telefono: '',
   correo: '',
   rut: '',

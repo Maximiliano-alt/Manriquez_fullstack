@@ -30,11 +30,21 @@
 .text{
   display: none;
 }
+.text-desc{
+  display: none;
+}
 .text-small{
+  height: 60%;
+}
+.text-small-desc{
   height: 60%;
 }
 .text-small textarea{
   height: 50%;
+  width: 98%;
+}
+.text-desc-small input{
+  height: 30%;
   width: 98%;
 }
 .input-error{
@@ -140,13 +150,26 @@
     .text{
       display: initial;
     }
-    .text textarea{
+    .text-desc{
+      display: initial;
+    }
+    .text-desc input{
+      visibility: visible;
+      position: absolute;
+      transform: translate(-50%, 170%);
+    }
+    .text input{
       visibility: visible;
       height: 130px;
       position: absolute;
       transform: translate(-50%, 33%);
     }
     .input-error{
+      position: absolute;
+      color: red;
+      transform: translate(-114px, 21px);
+    }
+    .input-error-desc{
       position: absolute;
       color: red;
       transform: translate(-114px, 21px);
@@ -161,6 +184,13 @@
       visibility: visible;
       position: absolute;
       transform: translate(-50%, 570%);
+    }
+    #button-cotizacion{
+      max-width: 90%;
+      height: 4.5%;
+      visibility: visible;
+      position: absolute;
+      transform: translate(-50%, 259%);
     }
     .container-general{
 
