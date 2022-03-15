@@ -60,7 +60,7 @@ export class AddVentaComponent implements OnInit {
       correoAtencion: '',
       retira: '',
     },
-    estado: 'pendiente',
+    estado: 'cotizado',
     productos:[
 
     ],

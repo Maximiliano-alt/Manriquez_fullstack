@@ -51,7 +51,7 @@ export class VentaUnicaComponent implements OnInit {
 
     this.service.getVentaAndCliente(this.id,this.rut).subscribe(
       (res:any)=>{
-        console.log(res)
+        console.log(res.dataVenta)
         if(res.status == 404){
           Swal.fire({
             title: 'Error :(',
@@ -85,8 +85,12 @@ export class VentaUnicaComponent implements OnInit {
   modificarEstado(estado:string,rut:string,idVenta:string):any{
    
     this.verify_amount(this.id).then((data:any)=>{
-      console.log(data)
+     
       if(data.status == 200){
+        
+
+        // si el stock es el correcto para realizar la venta esto funciona
+
         Swal.fire({
           title: 'Modificar Estado',
           input: 'radio',
@@ -99,25 +103,29 @@ export class VentaUnicaComponent implements OnInit {
           confirmButtonText: "Confirmar",
     
         }).then(resultado =>{
-          this.estado = resultado.value;
+
+          
           this.serviceCliente.modificarEstadoVenta(resultado.value,rut,idVenta).subscribe(
             (res:any)=>{
-              console.log("modificacion de estado!",res)
+              
               if(res.status == 200){
+                // modificacion correcta
                 this.ingresoModificacion = 1;
                 if(this.ingresoModificacion == 1){
-                  
+                
                   this.actualizarProducto(resultado.value,this.id).then(
                     (val)=>{
-                      console.log(val)
+                      
                   })
                 }
   
+              
+                this.addToFinanzas(idVenta,resultado.value)
                 
-               this.addToFinanzas(idVenta,resultado.value)
-              //   setTimeout(()=>{
-              //     window.location.reload()
-              //   },3000)
+              
+                setTimeout(()=>{
+                  window.location.reload()
+                },3000)
               }
             }
           )
@@ -209,22 +217,31 @@ export class VentaUnicaComponent implements OnInit {
   // addFinanza al gestor de finanzas
 
   addToFinanzas(idVenta:any,estado:string){
-    console.log(estado)
+    
     return new Promise((resolve,reject)=>{
-      if(estado === 'cotizado'){
+      if(estado === 'pagado' && this.ventaProductos.estado != 'abonado' && this.ventaProductos.estado != 'pagado'){
         // cambiamos de estado a enviado
         this.serviceFinanzas.addVenta(idVenta).subscribe(
           (res:any)=>{
-            console.log(res)
+         
             resolve(res)
           }
         )
       }
-      else if(estado === 'pagado'){
+      else if(estado === 'abonado' && this.ventaProductos.estado != 'pagado' && this.ventaProductos.estado != 'abonado'){
+        // cambiamos de estado a enviado
+        this.serviceFinanzas.addVenta(idVenta).subscribe(
+          (res:any)=>{
+         
+            resolve(res)
+          }
+        )
+      }
+      else if(estado === 'cotizado' && this.ventaProductos.estado != 'cotizado'){
         // cambiamos de estado a cotizado
         this.serviceFinanzas.removeVenta(idVenta).subscribe(
           (res:any)=>{
-            console.log(res)
+            
             resolve(res)
 
           }
@@ -245,24 +262,33 @@ export class VentaUnicaComponent implements OnInit {
 
 
   actualizarProducto(estado:any,id:any){
+    console.log("metodo bonito")
     return new Promise((resolve,reject)=>{
-      if(estado=='pagado'){
-        this.serviceCliente.actualizarProducto_delete(id).subscribe(
-          res=>{
-            resolve(res)
-          }
-        )
+      console.log(this.ventaProductos.estado,"este metodo actualiza el producto")
+      if(estado=='pagado' && this.ventaProductos.estado == 'abonado'){
+        // yo no puedo modificar el stock
+        resolve(1)
       }
-      else if(estado=='cotizado'){
+      else if((this.ventaProductos.estado  == 'cotizado' && estado == 'pagado') || (this.ventaProductos.estado  == 'cotizado' && estado == 'abonado')){
+        // el estado anterior era cotizado y el nuevo estado es pagado o abonado  
+        
         this.serviceCliente.actualizarProducto_add(id).subscribe(
           res=>{
             resolve(res)
           }
+        ) 
+        
+      }
+      else if((this.ventaProductos.estado  == 'pagado' && estado  == 'cotizado') || (this.ventaProductos.estado  == 'abonado' && estado  == 'cotizado') ){
+        this.serviceCliente.actualizarProducto_delete(id).subscribe(
+          res=>{
+
+            resolve(res)
+          }
         )
       }
-      resolve("hola mundo")
+      resolve(1)
     })
-
   }
 
   verify_amount(id:any){

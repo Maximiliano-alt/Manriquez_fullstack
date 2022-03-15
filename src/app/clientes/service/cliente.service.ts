@@ -47,14 +47,7 @@ export class ClienteService {
   }
 
   modificarEstadoVenta(estado:string,rut:string,idVenta:string){
-    var aux = ''
-    if(estado == 'pagado'){
-      aux = 'pendiente'
-    }
-    if(estado =='pendiente'){
-      aux = 'pagado'
-    }
-    return this.http.post(environment.baseUrl+'/modificar/estado',{aux,rut,idVenta});
+    return this.http.post(environment.baseUrl+'/modificar/estado',{estado,rut,idVenta});
   }
 
   deleteVenta(rut:string,id:string){

@@ -52,7 +52,7 @@
         <button (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </button>
-        <button  *ngIf="this.estado == 'pagado' || 'abonado'" class="button" (click)="activateCommentary()">
+        <button  *ngIf="this.estado == 'pagado' || this.estado ==  'abonado'" class="button" (click)="activateCommentary()">
             Orden de compra
         </button>
         <div class="text-small" *ngIf="this.state">
@@ -86,13 +86,13 @@
                 <!-- falta definicion de requerimiento -->
                 Crear Cotizacion
             </button>
-            <button  *ngIf="this.estado == 'pagado'" class="button-par"   (click)="activateCommentary()">
-              Orden de compra
+            <button  *ngIf="this.estado == 'pagado' || this.estado == 'abonado' " class="button-par"   (click)="activateCommentary()">
+                Orden de compra
           </button>
         </div>
 
         <div class="button-pares">
-            <button  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par"  (click)="createBuyOrder('guia')">
+            <button  *ngIf="this.estado == 'pagado'  || this.estado == 'abonado' " style="margin-right: 31px;" class="button-par"  (click)="createBuyOrder('guia')">
                 <!-- falta definicion del requerimiento -->
                 Crear guia de venta
             </button>
@@ -106,7 +106,7 @@
             </button>
         </div>
 
-        <div *ngIf="this.estado == 'pagado'" style="margin: 0; width: 100%;"  class="button">
+        <div *ngIf="this.estado == 'pagado' || this.estado == 'abonado'" style="margin: 0; width: 100%;"  class="button">
            <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
            <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
         </div>
