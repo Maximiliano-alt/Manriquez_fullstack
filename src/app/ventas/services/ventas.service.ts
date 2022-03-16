@@ -17,29 +17,22 @@ export class VentasService {
   constructor(private http:HttpClient) { }
 
   addVenta(data:venta){
-    console.log(data);
-    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data).pipe(
-      delay(1000)
-    )
+    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data);
   }
 
   getCliente(rut:string){
-    return this.http.get<any>(environment.baseUrl+'/search/cliente/'+rut)
+    return this.http.get<any>(environment.baseUrl+'/search/cliente/'+rut);
   }
 
   getProductos(){
-    return this.http.get<producto[]>(environment.baseUrl+'/get/producto')
+    return this.http.get<producto[]>(environment.baseUrl+'/get/producto');
   }
   getVenta(){
-    return this.http.get<venta[]>(environment.baseUrl+'/get/ventas').pipe(
-      delay(1000)
-    )
+    return this.http.get<venta[]>(environment.baseUrl+'/get/ventas');
   }
 
   getProductoForId(data:string){
-    return this.http.get<productoComprado[]>(environment.baseUrl+'/venta/get/list/product/'+data).pipe(
-      delay(1000)
-    )
+    return this.http.get<productoComprado[]>(environment.baseUrl+'/venta/get/list/product/'+data);
   }
 
 
