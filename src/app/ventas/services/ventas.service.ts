@@ -73,6 +73,9 @@ export class VentasService {
     return this.http.post(environment.baseUrl+'/verify/cantidad',{id})
   }
 
+  addAbono(valorAbono:number,idVenta:any){
+    return this.http.post(environment.baseUrl+'/add/abono',{valorAbono,idVenta});
+  }
 
 }
 

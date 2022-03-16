@@ -115,35 +115,73 @@ export class VentaUnicaComponent implements OnInit {
     
         }).then(resultado =>{
 
-          
-          this.serviceCliente.modificarEstadoVenta(resultado.value,rut,idVenta).subscribe(
-            (res:any)=>{
-              
-              if(res.status == 200){
-                // modificacion correcta
-                this.ingresoModificacion = 1;
-                if(this.ingresoModificacion == 1){
+          if(resultado.value != undefined){
+            if(resultado.value=='abonado'){ //aca realizamos la logica de abonado
+              Swal.fire({
+                title: 'Ingresar Cantidar a abonar',
+                input:"number",
+                showCancelButton: true,
+              }).then(abono=>{
+                //agergar el abono a la venta
+                this.addAbono(abono.value,this.id)
+                .then(()=>{
+                  
                 
-                  this.actualizarProducto(resultado.value,this.id).then(
-                    (val)=>{
-                      
-                  })
-                }
-  
-              
-                this.addToFinanzas(idVenta,resultado.value)
-                
-              
-                setTimeout(()=>{
-                  window.location.reload()
-                },3000)
-              }
+                    this.serviceCliente.modificarEstadoVenta(resultado.value,rut,idVenta).subscribe(
+                      (res:any)=>{
+                        
+                        if(res.status == 200){
+                          // modificacion correcta
+                          this.ingresoModificacion = 1;
+                          if(this.ingresoModificacion == 1){
+                          
+                            this.actualizarProducto(resultado.value,this.id).then(
+                              (val)=>{
+                                
+                            })
+                          }
+                          this.addToFinanzas(idVenta,resultado.value)
+                          setTimeout(()=>{
+                            window.location.reload()
+                          },3000)
+                        }
+                      }
+                    )
+                  
+
+                })
+              })
             }
-          )
+            if(resultado.value!='abonado'){
+              this.serviceCliente.modificarEstadoVenta(resultado.value,rut,idVenta).subscribe(
+                (res:any)=>{
+                  
+                  if(res.status == 200){
+                    // modificacion correcta
+                    this.ingresoModificacion = 1;
+                    if(this.ingresoModificacion == 1){
+                    
+                      this.actualizarProducto(resultado.value,this.id).then(
+                        (val)=>{
+                          
+                      })
+                    }
+                    this.addToFinanzas(idVenta,resultado.value)
+                    setTimeout(()=>{
+                      window.location.reload()
+                    },3000)
+                  }
+                }
+              )
+            }
+            
+          }
+         
         })
     
         
       }
+      
       else if(data.status == 500){
         Swal.fire({
           position: 'top-end',
@@ -320,4 +358,32 @@ export class VentaUnicaComponent implements OnInit {
       )
     })
   }
+
+
+  //ABONO
+  addAbono(valorAbono:number,idVenta:any){
+    return new Promise((resolve,reject)=>{
+      this.service.addAbono(valorAbono,idVenta).subscribe(
+        (res:any)=>{
+          console.log(res)
+          if(res.status == 200){
+            console.log(res)
+            resolve(1)
+          }
+          else if(res.status == 500){
+            console.log(res)
+            resolve(0)
+          }
+        }
+      )
+    })
+  }
+
+
+
+
+
+
+
+
 }
