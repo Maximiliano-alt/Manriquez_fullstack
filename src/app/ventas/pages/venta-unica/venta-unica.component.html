@@ -24,12 +24,16 @@
                 <!-- <b>Estado: </b><p style="color: #007508;">&nbsp;pagado</p> -->
                 <b>Estado: </b><p style="color: #007508;">&nbsp;{{this.estado}}</p>
             </div>
-            <div *ngIf="this.estado == 'pendiente'" class="data-linea">
-                <!-- <b>Estado: </b><p style="color: #FF0000;">&nbsp;pendiente</p> -->
+            <div *ngIf="this.estado == 'cotizado'" class="data-linea">
+                <!-- <b>Estado: </b><p style="color: #FF0000;">&nbsp;cotizado</p> -->
                 <b>Estado: </b><p style="color: #FF0000;">&nbsp;{{this.estado}}</p>
             </div>
+            <div *ngIf="this.estado == 'abonado'" class="data-linea">
+                <!-- <b>Estado: </b><p style="color: #FF0000;">&nbsp;cotizado</p> -->
+                <b>Estado: </b><p style="color: #ffd900;">&nbsp;{{this.estado}}</p>
+            </div>
             <div class="data-linea">
-                <!-- <b>Envio: </b><p>&nbsp;pendiente</p> -->
+                <!-- <b>Envio: </b><p>&nbsp;cotizado</p> -->
                 <b>Envio: </b><p>&nbsp;{{ventaProductos.envio}}</p>
             </div>
         </div>
@@ -38,14 +42,17 @@
             ${{ventaProductos.totalDeVenta}}
         </div>
     </div>
-
+    <div class="input-abono">
+        <input type="text" *ngIf="this.estado == 'abonado'">
+    </div>
     <!-- botones -->
     <div class="separate-commentary">
       <div class="buttons">
+         
         <button (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </button>
-        <button  *ngIf="this.estado == 'pagado'" class="button" (click)="activateCommentary()">
+        <button  *ngIf="this.estado == 'pagado' || this.estado ==  'abonado'" class="button" (click)="activateCommentary()">
             Orden de compra
         </button>
         <div class="text-small" *ngIf="this.state">
@@ -53,15 +60,10 @@
           <button class="button" [disabled]="comentario.invalid" (click)="createBuyOrder('orden')">Crear orden de compra</button>
           <p *ngIf="comentario.invalid" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
-        <div class="text-desc-small" *ngIf="this.stateCotizacion">
-          <input name="comentario"  [formControl]="descuento" id="comentario" placeholder="Ingrese % de Descuento">
-          <button class="button" [disabled]="descuento.invalid" (click)="createBuyOrder('cotizacion')">Crear Cotizacion</button>
-          <p *ngIf="descuento.invalid && descuento.touched" class="input-error"><strong>* Solo números</strong> </p>
-        </div>
-        <button *ngIf="this.estado == 'pendiente'" class="button" (click)="activateDesc()">
-            Cotizacion
+        <button *ngIf="this.estado == 'cotizado'" class="button" (click)="createBuyOrder('cotizacion')">
+            Crear cotizacion
         </button>
-        <button *ngIf="this.estado == 'pagado'"  class="button" (click)="createBuyOrder('guia')">
+        <button *ngIf="this.estado == 'cotizado'"  class="button" (click)="createBuyOrder('guia')">
             Crear guia de venta
         </button>
         <button (click)="delete(this.id,this.rut)" class="button">
@@ -79,22 +81,22 @@
         <div class="button-pares">
             <button (click)="modificarEstado(this.estado,this.rut,this.id)" style="margin-right: 31px;" class="button-par">
                 Modificar estado
-            </button><!--createBuyOrder('guia')-->
-            <button *ngIf="this.estado == 'pendiente'" class="button-par"(click)="activateDesc()">
+            </button>
+            <button *ngIf="this.estado == 'cotizado'" class="button-par"(click)="createBuyOrder('cotizacion')">
                 <!-- falta definicion de requerimiento -->
                 Cotizacion
             </button>
-            <button  *ngIf="this.estado == 'pagado'" class="button-par"   (click)="activateCommentary()">
-              Orden de compra
+            <button  *ngIf="this.estado == 'pagado' || this.estado == 'abonado' " class="button-par"   (click)="activateCommentary()">
+                Orden de compra
           </button>
         </div>
 
         <div class="button-pares">
-            <button  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par"  (click)="createBuyOrder('guia')">
+            <button  *ngIf="this.estado == 'pagado'  || this.estado == 'abonado' " style="margin-right: 31px;" class="button-par"  (click)="createBuyOrder('orden')">
                 <!-- falta definicion del requerimiento -->
                 Crear guia de venta
             </button>
-            <button *ngIf="this.estado == 'pendiente'"   style="margin-right: 31px;"  class="button-par">
+            <button *ngIf="this.estado == 'cotizado'"   style="margin-right: 31px;"  class="button-par">
                 <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]">
                     Ver productos
                 </a>
@@ -104,7 +106,7 @@
             </button>
         </div>
 
-        <div *ngIf="this.estado == 'pagado'" style="margin: 0; width: 100%;"  class="button">
+        <div *ngIf="this.estado == 'pagado' || this.estado == 'abonado'" style="margin: 0; width: 100%;"  class="button">
            <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
            <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
         </div>
