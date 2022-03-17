@@ -87,7 +87,6 @@ export class GraphicsService {
   }
 
   addVenta(id:any){
-    console.log("estableciendo comunicacion con add")
     return this.http.post(environment.baseUrl+'/add/venta/finanzas',{id})
   }
   removeVenta(id:any){

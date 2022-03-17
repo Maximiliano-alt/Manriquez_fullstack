@@ -114,9 +114,8 @@ export class VentaUnicaComponent implements OnInit {
           confirmButtonText: "Confirmar",
     
         }).then(resultado =>{
-
           if(resultado.value != undefined){
-            if(resultado.value=='abonado'){ //aca realizamos la logica de abonado
+            if(resultado.value == 'abonado'){ //aca realizamos la logica de abonado
               Swal.fire({
                 title: 'Ingresar Cantidar a abonar',
                 input:"number",
@@ -124,7 +123,7 @@ export class VentaUnicaComponent implements OnInit {
               }).then(abono=>{
                 //agergar el abono a la venta
                 this.addAbono(abono.value,this.id)
-                .then(()=>{
+                .then((value)=>{
                   
                 
                     this.serviceCliente.modificarEstadoVenta(resultado.value,rut,idVenta).subscribe(
@@ -197,6 +196,7 @@ export class VentaUnicaComponent implements OnInit {
 
   }
   delete(idventa:string,rut:string):any{
+    this.serviceFinanzas.removeVenta(idventa)
     this.serviceCliente.deleteVenta(rut,idventa).subscribe(
       (res:any)=>{
         if(res.status==200){
@@ -365,13 +365,26 @@ export class VentaUnicaComponent implements OnInit {
     return new Promise((resolve,reject)=>{
       this.service.addAbono(valorAbono,idVenta).subscribe(
         (res:any)=>{
+          console.log("Esperando respuesta...")
           console.log(res)
           if(res.status == 200){
-            console.log(res)
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: res.mensaje,
+              showConfirmButton: false,
+              timer: 2000
+            })
             resolve(1)
           }
           else if(res.status == 500){
-            console.log(res)
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: res.mensaje,
+              showConfirmButton: false,
+              timer: 2000
+            })
             resolve(0)
           }
         }

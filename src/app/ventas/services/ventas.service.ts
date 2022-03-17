@@ -38,24 +38,21 @@ export class VentasService {
 
   deleteProduct(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
 
-    var aux:productoComprado[] = []
-    array.forEach((element:productoComprado)=>{
-      if(element!= producto){
+    var aux:productoComprado[] = [] //arreglo auxiliar
+    array.forEach((element:productoComprado)=>{ //recorremos el array de productos
+      if(element!= producto){ //si el elemento es distinto del que se esta edita pushealo
         aux.push(element)
       }
-      if(element == producto && operacion == 'A'){
+      if(element == producto && operacion == 'A'){ //si es suma añadele uno
         element.cantidad = element.cantidad + 1
-        console.log("entro a la +1")
-        aux.push(element)
+        aux.push(element) //luego pushealo
       }
-      if(element == producto && operacion == 'R'){
-        if(element.cantidad-1 == 0){
-          console.log("entro a la -1")
+      if(element == producto && operacion == 'R'){ //si es resta 
+        if(element.cantidad-1 == 0){ //ve si es 0 con la resta para que no las embarres
         }
-        else if(element.cantidad-1 > 0){
-          element.cantidad = element.cantidad  -1
-          console.log("entro a la -1 solita")
-          aux.push(element)
+        else if(element.cantidad-1 > 0){ //no es cero con la resta
+          element.cantidad = element.cantidad  -1 //restale entonces
+          aux.push(element)//pushealo
         }
       }
 
