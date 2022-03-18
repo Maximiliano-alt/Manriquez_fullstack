@@ -98,7 +98,7 @@ export class ModifyProveedorComponent implements OnInit {
         .updateProveedor(this.proveedorModify, this.params)
         .subscribe((res) => {
           if (res.status == 200) {
-            Swal.fire({ icon: 'success', text: 'Proveedor Actualizado con exito!!!' });
+            Swal.fire({ icon: 'success', text: 'Datos guardados con exito!!!' });
             this.router.navigate(['/proveedores/lista']);
           } else {
             Swal.fire({
