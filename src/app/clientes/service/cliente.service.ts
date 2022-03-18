@@ -24,11 +24,13 @@ export class ClienteService {
   }
 
   getOneClient(data:string){
-    return this.http.get<cliente>(environment.baseUrl+'/search/cliente/'+data).pipe(
-      delay(1000)
-    )
-  }
+    return this.http.get<cliente>(environment.baseUrl+'/search/cliente/'+data)
 
+  }
+  clientUpdate(data:cliente,id:any){
+    console.log(data,"data en el servicio")
+    return this.http.put<any>(environment.baseUrl+'/update/Cliente/'+id,data);
+  }
   getVentasClient(data:string){
     return this.http.get(environment.baseUrl+'/get/ventas/for/client/'+data).pipe(
       delay(1000)
@@ -45,16 +47,11 @@ export class ClienteService {
   deleteCliente(rut:string){
     return this.http.post(environment.baseUrl+'/delete/cliente',{rut});
   }
-
+  deleteOnlyCliente(data:cliente){
+    return this.http.post<any>(environment.baseUrl+'/delete/cliente',{data});
+  }
   modificarEstadoVenta(estado:string,rut:string,idVenta:string){
-    var aux = ''
-    if(estado == 'pagado'){
-      aux = 'pendiente'
-    }
-    if(estado =='pendiente'){
-      aux = 'pagado'
-    }
-    return this.http.post(environment.baseUrl+'/modificar/estado',{aux,rut,idVenta});
+    return this.http.post(environment.baseUrl+'/modificar/estado',{estado,rut,idVenta});
   }
 
   deleteVenta(rut:string,id:string){
@@ -77,6 +74,7 @@ export class ClienteService {
     return this.http.post(environment.baseUrl+'/modify/delete/cantidad',{id})
   }
 
+
 }
 
 export interface cliente{
@@ -87,7 +85,7 @@ export interface cliente{
   telefono: string,
   correo: string,
   rut: string,
-  totalDeCompra:number,
+  totalDeCompra?:number,
 
 }
 export interface ventaCliente{

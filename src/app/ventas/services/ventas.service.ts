@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 import { HttpClient } from '@angular/common/http';
-import { delay } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment';
 import { Proveedor } from 'src/app/proveedores/services/proveedor.service';
 
@@ -17,52 +17,42 @@ export class VentasService {
   constructor(private http:HttpClient) { }
 
   addVenta(data:venta){
-    console.log(data);
-    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data).pipe(
-      delay(1000)
-    )
+    return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data);
   }
 
   getCliente(rut:string){
-    return this.http.get<any>(environment.baseUrl+'/search/cliente/'+rut)
+    return this.http.get<any>(environment.baseUrl+'/search/cliente/'+rut);
   }
 
   getProductos(){
-    return this.http.get<producto[]>(environment.baseUrl+'/get/producto')
+    return this.http.get<producto[]>(environment.baseUrl+'/get/producto');
   }
   getVenta(){
-    return this.http.get<venta[]>(environment.baseUrl+'/get/ventas').pipe(
-      delay(1000)
-    )
+    return this.http.get<venta[]>(environment.baseUrl+'/get/ventas');
   }
 
   getProductoForId(data:string){
-    return this.http.get<productoComprado[]>(environment.baseUrl+'/venta/get/list/product/'+data).pipe(
-      delay(1000)
-    )
+    return this.http.get<productoComprado[]>(environment.baseUrl+'/venta/get/list/product/'+data);
   }
 
 
   deleteProduct(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
 
-    var aux:productoComprado[] = []
-    array.forEach((element:productoComprado)=>{
-      if(element!= producto){
+    var aux:productoComprado[] = [] //arreglo auxiliar
+    array.forEach((element:productoComprado)=>{ //recorremos el array de productos
+      if(element!= producto){ //si el elemento es distinto del que se esta edita pushealo
         aux.push(element)
       }
-      if(element == producto && operacion == 'A'){
+      if(element == producto && operacion == 'A'){ //si es suma añadele uno
         element.cantidad = element.cantidad + 1
-        console.log("entro a la +1")
-        aux.push(element)
+        aux.push(element) //luego pushealo
       }
-      if(element == producto && operacion == 'R'){
-        if(element.cantidad-1 == 0){
-          console.log("entro a la -1")
+      if(element == producto && operacion == 'R'){ //si es resta 
+        if(element.cantidad-1 == 0){ //ve si es 0 con la resta para que no las embarres
         }
-        else if(element.cantidad-1 > 0){
-          element.cantidad = element.cantidad  -1
-          console.log("entro a la -1 solita")
-          aux.push(element)
+        else if(element.cantidad-1 > 0){ //no es cero con la resta
+          element.cantidad = element.cantidad  -1 //restale entonces
+          aux.push(element)//pushealo
         }
       }
 
@@ -80,6 +70,9 @@ export class VentasService {
     return this.http.post(environment.baseUrl+'/verify/cantidad',{id})
   }
 
+  addAbono(valorAbono:number,idVenta:any){
+    return this.http.post(environment.baseUrl+'/add/abono',{valorAbono,idVenta});
+  }
 
 }
 

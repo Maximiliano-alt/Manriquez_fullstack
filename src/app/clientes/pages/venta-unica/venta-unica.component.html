@@ -44,9 +44,9 @@
         <div (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </div>
-        <div *ngIf="this.estado == 'pagado'" class="button">
-            Crear orden de compra
-        </div>
+        <button  *ngIf="this.estado == 'pagado' || this.estado ==  'abonado'" class="button" (click)="activateCommentary()">
+            Orden de compra
+        </button>
         <div *ngIf="this.estado == 'pendiente'" class="button">
             Crear cotizacion
         </div>

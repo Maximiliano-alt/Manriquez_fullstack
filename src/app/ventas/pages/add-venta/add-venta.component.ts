@@ -60,7 +60,7 @@ export class AddVentaComponent implements OnInit {
       correoAtencion: '',
       retira: '',
     },
-    estado: 'pendiente',
+    estado: 'cotizado',
     productos:[
 
     ],
@@ -298,16 +298,21 @@ export class AddVentaComponent implements OnInit {
       this.venta.cliente.direccion = this.cliente.direccion
 
       var suma = 0
+      
+      //sumando productos
       this.listaProductosEnLista.forEach((e)=>{
         suma = suma  + e.cantidad*e.valor;
       })
-      console.log("SUMA,",suma)
+
+      //sumando servicios!
       this.venta.servicios.forEach((servicio)=>{
         suma = suma + servicio.valor;
       })
-      console.log("Servicio,",suma)
+
+      //calculo de la suma total!
       this.venta.totalDeVenta = Math.trunc(suma + (suma * 0.19));
-      console.log("Total,",this.venta.totalDeVenta)
+      
+      
       this.listaProductosEnLista.forEach((e)=>{
         this.venta.productos.push(e);
       })
@@ -341,7 +346,6 @@ export class AddVentaComponent implements OnInit {
   newSuma(rut:string){
     this.serviceCliente.calcularTotalVenta(rut).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }
@@ -350,7 +354,6 @@ export class AddVentaComponent implements OnInit {
   updateVenta(id:string){
     this.serviceCliente.updateVenta(id).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }

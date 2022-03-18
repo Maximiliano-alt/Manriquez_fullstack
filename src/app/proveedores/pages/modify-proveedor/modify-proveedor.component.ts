@@ -28,9 +28,9 @@ export class ModifyProveedorComponent implements OnInit {
   getProveedor() {
     this.proveedorService.getProveedor(this.params).pipe(finalize(()=>this.llenarForm())).subscribe((res) => {
       this.proveedorModify = res['proveedor'];
-      this.nameProveedor = this.proveedorModify.nombre;      
+      this.nameProveedor = this.proveedorModify.nombre;
     });
-    
+
   }
 
   ngOnInit(): void {
@@ -66,7 +66,7 @@ export class ModifyProveedorComponent implements OnInit {
       atencion: ['', [Validators.required]],
       correoa: ['', [Validators.required, Validators.email]],
       retira: ['', [Validators.required]],
-     
+
     });
   }
 
@@ -98,7 +98,7 @@ export class ModifyProveedorComponent implements OnInit {
         .updateProveedor(this.proveedorModify, this.params)
         .subscribe((res) => {
           if (res.status == 200) {
-            Swal.fire({ icon: 'success', text: 'Proveedor Actualizado con exito!!!' });
+            Swal.fire({ icon: 'success', text: 'Datos guardados con exito!!!' });
             this.router.navigate(['/proveedores/lista']);
           } else {
             Swal.fire({

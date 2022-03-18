@@ -19,6 +19,8 @@ export class VentaUnicaComponent implements OnInit {
   rut!:string
   ventaProductos:any
   dataIndicador  = 0
+  state:boolean = false;
+  stateCotizacion = false;
 
   ngOnInit(): void {
     this.rut = localStorage.getItem('dataToken') || ""
@@ -115,6 +117,15 @@ export class VentaUnicaComponent implements OnInit {
     
       }
     )
+  }
+
+  activateCommentary(){
+    if(this.state == false){
+      this.state = true;
+    }
+    else{
+      this.state = false;
+    }
   }
 
 }

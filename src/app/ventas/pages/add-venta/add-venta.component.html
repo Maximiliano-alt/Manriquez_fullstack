@@ -1,13 +1,12 @@
 <app-navbar [var]="{route:'/ventas',title:'Agregar nueva venta'}" ></app-navbar>
-<div class="spiner" *ngIf="this.listaProductos.length == 0 && this.listaProveedores.length == 0" >
-    <div  class="spinner-border" role="status">
+
+<div class="spiner" *ngIf="this.marcadorListaProducto == 0">
+    <div  class="spinner-border" role="status" >
     </div>
-    <span>Cargando datos ...</span>
+    <span>Cargando clientes...</span>
 </div>
 
-
-
-<div class="container-general" *ngIf="this.listaProductos.length > 0 && this.listaProveedores.length > 0">
+ <div class="container-general" *ngIf="this.marcadorListaProducto == 1 && this.container==0" >
     <form>
         <div class="container-info">
             <div class="input-info" id="input-info-cliente">
@@ -54,8 +53,8 @@
                    <div class="productos-data">
                         <div class="producto" *ngFor="let product of listaProductos | filter:this.filtroProduct">
                             <div class="data">
-                                <p> <b>Nombre: </b> &nbsp;{{product.nombre}} </p>
-                                <p> <b>Valor: </b>&nbsp; ${{product.valor}} </p>
+                                <p><b>Nombre: </b> &nbsp;{{product.nombre}} </p>
+                                <p><b>Valor: </b>&nbsp; ${{product.valor}} </p>
                             </div>
                             <div class="button">
 
@@ -72,60 +71,57 @@
                         Ver productos
                    </div>
                 </div>
-
-
             </div>
-
             <div class="input-info"  id="input-info-proveedor">
-              <div class="search-proveedor">
-                <div class="button-search">
-                  <button >
-                      <mat-icon>search</mat-icon>
-                  </button>
+                <div class="search-proveedor">
+                    <div class="button-search">
+                      <button >
+                          <mat-icon>search</mat-icon>
+                      </button>
+                    </div>
+                    <div class="input-search">
+                      <input [(ngModel)]="this.filtroProveedor" name="filtroProveedor" type="text" placeholder=" Ingrese el nombre del proveedor" autocomplete="off">
+                    </div>
                 </div>
-                <div class="input-search">
-                  <input [(ngModel)]="this.filtroProveedor" name="filtroProveedor" type="text" placeholder="Ingrese el nombre del proveedor" autocomplete="off">
-                </div>
-              </div>
-              <div class="proveedores">
-                <div class="proveedores-data">
-                     <div class="proveedor" *ngFor="let proveedor of listaProveedores | filterProveedores:this.filtroProveedor">
-                         <div class="data">
+                <div class="proveedores">
+                    <div class="proveedores-data">
+                        <div class="proveedor" *ngFor="let proveedor of listaProveedores | filterProveedores:this.filtroProveedor">
+                            <div class="data">
                              <p *ngIf="this.listaProveedores.length == 0">Cargando proveedores... </p>
                              <p> <b>Nombre: </b> &nbsp;{{proveedor.nombre}} </p>
-                             <p> <b>Rut: </b>&nbsp; ${{proveedor.rut}} </p>
-                         </div>
-                         <div class="button">
-
-                             <div class="add">
-                                 <button (click)="proveedorSelected(proveedor)" (click)="changeColor(this.icoColor)">
-                                     <mat-icon id="mat-icon">add</mat-icon>
-                                 </button>
-                             </div>
-                         </div>
-                     </div>
-
-                 </div>
-
-             </div>
+                             <p> <b>Rut: </b>&nbsp; {{proveedor.rut}} </p>
+                            </div>
+                            <div class="button">
+                                <div class="add">
+                                    <button (click)="proveedorSelected(proveedor)" (click)="changeColor(this.icoColor)">
+                                        <mat-icon [ngStyle]="{'color':this.icoColor}" id="mat-icon">add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-        <div class="servicios">
-            <h3>Ingrese servicios si es necesario</h3>
-            <div class="servicios_input">
-                <strong>Ingrese nombre del servicio</strong>
-                <input [(ngModel)]="this.newServicio.nombre" name="nombre" type="text" placeholder="nombre del servicio ">
+        <div class="container-info2">
+            <div class="servicios">
+                <h3>Ingrese servicios si es necesario</h3>
+                <div class="servicios_input">
+                    <strong>Ingrese nombre del servicio</strong>
+                    <input class="name-service" [(ngModel)]="this.newServicio.nombre" name="nombre" type="text" placeholder="nombre del servicio "> 
+                </div>
+                <div class="servicios_input">
+                    <strong>Ingrese valor del servicio</strong>
+                    <input class="value-service"[(ngModel)]="this.newServicio.valor" name="valor"  type="number" placeholder="valor del servicio "> 
+                </div>
+                <div class="add-service">
+                    <button (click)="this.addServicio(this.newServicio.nombre,this.newServicio.valor)">Agregar Servicio</button>
+                </div>
             </div>
-            <div class="servicios_input">
-                <strong>Ingrese valor del servicio</strong>
-                <input [(ngModel)]="this.newServicio.valor" name="valor"  type="number" placeholder="nombre del servicio ">
+            <div class="utilidad">
+                <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
+                <input [(ngModel)]="this.venta.porcentaje" name="utilidad" type="number" placeholder="ingrese utilidad!" value="none">
             </div>
-            <button (click)="this.addServicio(this.newServicio.nombre,this.newServicio.valor)">Agregar Servicio</button>
-        </div>
-        <div class="utilidad">
-            <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
-            <input [(ngModel)]="this.venta.porcentaje" name="utilidad" type="number" placeholder="ingrese utilidad!" value="none">
         </div>
         <div class="buttons">
             <div class="button-footer">
@@ -141,9 +137,6 @@
         </div>
     </form>
 </div>
-
-
-
 
 <div class="slide" *ngIf="this.container == 1">
     <div class="button">

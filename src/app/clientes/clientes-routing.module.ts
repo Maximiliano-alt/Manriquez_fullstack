@@ -27,7 +27,7 @@ const routes: Routes=[
         path:'product/Venta/:rut/:id',component:ListProductVentaComponent
       },
       {
-        path:'modify/client/:id',component:ModifyClienteComponent
+        path:'modify/client/:rut',component:ModifyClienteComponent
       },
       {
         path:'cliente/venta/:id',component:VentaUnicaComponent
@@ -38,7 +38,7 @@ const routes: Routes=[
       }
     ]
   }
-  
+
 
 ]
 

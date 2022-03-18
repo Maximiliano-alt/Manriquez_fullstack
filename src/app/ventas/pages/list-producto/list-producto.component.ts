@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { VentasService,producto, productoComprado } from '../../services/ventas.service';
 import { ClienteService } from 'src/app/clientes/service/cliente.service';
 import Swal from 'sweetalert2';
+import { GraphicsService } from 'src/app/graphics/services/graphics.service';
 @Component({
   selector: 'app-list-producto',
   templateUrl: './list-producto.component.html',
@@ -24,7 +25,7 @@ export class ListProductoComponent implements OnInit {
 
   segmento:any=[]
   
-  constructor( private router:Router, private route: ActivatedRoute,private service: VentasService, private serviceCliente:ClienteService) {
+  constructor(private serviceFinanza:GraphicsService, private router:Router, private route: ActivatedRoute,private service: VentasService, private serviceCliente:ClienteService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = localStorage.getItem('dataToken') || "";
 
@@ -44,19 +45,25 @@ export class ListProductoComponent implements OnInit {
 
 
   modify(array:productoComprado[],producto:productoComprado,idVenta:string,operacion:string){
+    //la venta se actualiza pero no su total
     
     // operacion s r d
-    
+    this.serviceFinanza.removeVenta(idVenta).subscribe()
     this.service.deleteProduct(array,producto,idVenta,operacion).subscribe(
       (res:any)=>{
         if(res.status==200){
+          
           this.array = []
           this.indice_espera = 4;
           this.inicio_slice = 0;
-          this.actualizarCliente(this.id,this.rut,this.array,producto,operacion)
-          this.getData()
-          this.newSuma(this.rut)
-          this.updateVenta(this.id)
+          this.updateVenta(idVenta);
+         
+          this.actualizarCliente(this.id,this.rut,this.array,producto,operacion) //pasa la venta actualizada al cliente
+          this.getData() //traigo el nuevo array de productos
+          //la venta se actualiza pero no su total
+          this.newSuma(this.rut) //actualizamos al cliente con su nuevo valor de compra total
+        
+          this.serviceFinanza.addVenta(idVenta).subscribe()
         
         }
         else{

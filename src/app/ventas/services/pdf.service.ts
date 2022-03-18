@@ -126,7 +126,7 @@ export class PdfService {
     return monthNames[date.getMonth()];
   }
   async downloadPdf(type:string,id:any,rut:any,commentary:string,desc:number,dataVenta:any){
-    console.log(dataVenta)
+    console.log(dataVenta,"downloadPdf")
     await this.findProveedor(id,rut);
     await this.findCliente(id,rut);
     //const data = await this.fetchDataVenta();
@@ -182,7 +182,7 @@ export class PdfService {
       pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
       pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
-      pdf.add(this.createTable(dataVenta));
+      pdf.add(this.createTable(dataVenta,this.descuento));
       //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
       pdf.create().open();
     }
@@ -191,15 +191,31 @@ export class PdfService {
 
   }
 
-  createTable(data:any[]):ITable{
+  createTable(data:any,desc:any):(ITable){
     return new Table([
-      [ 'Cant.', 'Código','U. ME','Descripción','Servicio','Valor','Desc.','Total'],
-      ...this.extractData(data)
-    ]).end;
+      [ 'Cant.', 'Nombre','U. ME','Descripción','Servicio','Valor','Desc.','Total'],
+      ...this.extractData(data,desc)
+    ]).relativePosition(20,415).end;
   }
  // TableRow = [number,number,string,string,string,number,number,number]
-  extractData(data:venta[]):any{
-    return data.map(row => [row.productos.map(p => p.cantidad),row.id_Venta,row.productos.map(p => p.unidadMedida),row.productos.map(p => p.descripcion),row.servicios.map(s => s.nombre),row.productos.map(p => p.valor),this.descuento,row.totalDeVenta]);
+  extractData(data:any,desc:any):any{
+    console.log(data)
+    // data == venta
+    var productos = data.productos;
+    var row:TableRow[] = [];
+    productos.forEach((producto:any) => {
+      console.log(data,"venta en extrac data")
+      console.log(producto,"este es el producto")
+      row.push([producto.cantidad,producto.nombre,producto.unidadMedida,producto.descripcion,"Servicio",producto.valor,0,data.totalDeVenta]);
+      
+    });
+    if(data.productos.length == productos.length ){
+      console.log(row)
+      return row;
+    }
+
+    // return productos.map((row:any) => [row.productos.map((p:any) => p.cantidad),data.id_Venta,row.productos.map((p:any) => p.unidadMedida),row.productos.map((p:any) => p.descripcion),data.servicios.map((s:any) => {}),row.productos.map((p:any) => p.valor),this.descuento,row.totalDeVenta]);
+
   }
 
   // async fetchDataVenta(id:string,rut:string):Promise<venta[]>{
