@@ -57,7 +57,7 @@
                             <a style="text-decoration: none; color: black;"><img src="../../../../assets/page/proveedor 2.svg" alt="" /></a>
                         </button>
                     </div>
-                    <!-- cliente, proovedor o pendiente-->    
+                    <!-- cliente, proovedor o pendiente-->
                     <div class="item-number" *ngIf="this.input.indicador == 'proveedores'">
                         <div class="number">
                             <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
@@ -67,7 +67,7 @@
                                 <img src="assets\page\options_more_icon_208209.svg" alt="">
                             </button>
                         </div>
-                    </div>     
+                    </div>
                     <div class="item-number" *ngIf="this.input.indicador == 'pendientes'" >
                         <div class="number">
                             <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
@@ -75,10 +75,21 @@
                         <div class="more">
                             <button class="more-button">
                                 <a  [routerLink]="['/pendientes/modify/'+item._id]"> <img src="assets\page\options_more_icon_208209.svg" alt=""></a>
-                               
+
                             </button>
                         </div>
-                    </div>               
+                    </div>
+                    <div class="item-number" *ngIf="this.input.indicador == 'clientes'" >
+                      <div class="number">
+                          <b>N°</b> <b>{{this.input.data.indexOf(item)+1}}</b>
+                      </div>
+                      <div class="more">
+                          <button class="more-button">
+                              <a  [routerLink]="['/clientes/modify/client/'+item.rut]"> <img src="assets\page\options_more_icon_208209.svg" alt=""></a>
+
+                          </button>
+                      </div>
+                  </div>
                 </div>
                 <!-- category-productos, productos, list-compra, ventas-->
                 <div class="CPLV" *ngIf="this.limitador == 4">
@@ -118,7 +129,7 @@
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
                             <b>Medida:</b>&nbsp;{{item.unidadMedida}}
-                            
+
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <!-- <b>Cantidad:</b>&nbsp;5 producto(s) -->
@@ -172,7 +183,7 @@
                         </div>
                     </div>
 
-                </div>           
+                </div>
             </div>
 
         </div>
