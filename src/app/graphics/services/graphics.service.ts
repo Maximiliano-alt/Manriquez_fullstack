@@ -131,6 +131,7 @@ export interface Gasto{
 export interface cliente{
     nombre:string,
     totalDeCompra:number,
+    
   }
 
 
