@@ -51,6 +51,22 @@
         <!-- input nuevo -->
 
         <div class="form-input">
+          <div class="form-input-nav">
+              Comuna
+          </div>
+          <input [formControl]="comuna" [(ngModel)]="this.clienteDefault.comuna" type="text">
+          <p style="margin-top: 50px;" *ngIf="comuna.invalid && comuna.touched" class="input-error"><strong>* Campo requerido</strong></p>
+        </div>
+
+        <div class="form-input">
+          <div class="form-input-nav">
+              Ciudad
+          </div>
+          <input [formControl]="ciudad" [(ngModel)]="this.clienteDefault.ciudad" type="text">
+          <p style="margin-top: 50px;" *ngIf="ciudad.invalid && ciudad.touched" class="input-error"><strong>* Campo requerido</strong></p>
+        </div>
+
+        <div class="form-input">
             <div class="form-input-nav">
                 Rut
             </div>
@@ -114,6 +130,14 @@
         </div>
     </div>
     <div style="margin-top: 64px;" class="line-container">
+         <div class="input">
+            <div class="nav">
+                Comuna
+            </div>
+            <input [formControl]="comuna" [(ngModel)]="this.clienteDefault.comuna" type="text">
+            <p style="margin-top: 112px;" *ngIf="comuna.invalid && comuna.touched" class="input-error"><strong>* Campo requerido</strong></p>
+        </div>
+
         <div class="input">
             <div class="nav">
                 Rut
@@ -121,6 +145,14 @@
             <input [formControl]="rut" [(ngModel)]="this.clienteDefault.rut" type="text">
             <p style="margin-top: 112px;" *ngIf="rut.invalid && rut.touched" class="input-error"><strong>* Campo requerido</strong> ej: 12345678-1 </p>
         </div>
+
+        <div class="input">
+          <div class="nav">
+              Ciudad
+          </div>
+          <input [formControl]="ciudad" [(ngModel)]="this.clienteDefault.ciudad" type="text">
+          <p style="margin-top: 112px;" *ngIf="ciudad.invalid && ciudad.touched" class="input-error"><strong>* Campo requerido</strong></p>
+      </div>
 
     </div>
     <div style="margin-top: 72px;" class="buttons">
