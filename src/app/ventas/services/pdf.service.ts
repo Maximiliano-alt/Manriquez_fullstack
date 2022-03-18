@@ -193,7 +193,7 @@ export class PdfService {
 
   createTable(data:any):(ITable){
     return new Table([
-      [ 'Cant.', 'Código','U. ME','Descripción','Servicio','Valor','Desc.','Total'],
+      [ 'Cant.', 'Nombre','U. ME','Descripción','Servicio','Valor','Desc.','Total'],
       ...this.extractData(data)
     ]).relativePosition(20,415).end;
   }
@@ -205,7 +205,8 @@ export class PdfService {
     var row:TableRow[] = [];
     productos.forEach((producto:any) => {
       console.log(data,"venta en extrac data")
-      row.push([producto.cantidad,producto._id,producto.unidadMedida,producto.descripcion,"Servicio",producto.valor,0,data.totalDeVenta]);
+      console.log(producto,"este es el producto")
+      row.push([producto.cantidad,producto.nombre,producto.unidadMedida,producto.descripcion,"Servicio",producto.valor,0,data.totalDeVenta]);
       
     });
     if(data.productos.length == productos.length ){
