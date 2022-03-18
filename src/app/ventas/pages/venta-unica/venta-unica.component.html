@@ -42,11 +42,11 @@
             ${{ventaProductos.totalDeVenta}}
         </div>
     </div>
-    
+
     <!-- botones -->
     <div class="separate-commentary">
       <div class="buttons">
-         
+
         <button (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </button>
@@ -58,7 +58,7 @@
           <button class="button" [disabled]="comentario.invalid" (click)="createBuyOrder('orden')">Crear orden de compra</button>
           <p *ngIf="comentario.invalid" class="input-error"><strong>* Campo requerido</strong> </p>
         </div>
-        <button *ngIf="this.estado == 'cotizado'" class="button" (click)="createBuyOrder('cotizacion')">
+        <button *ngIf="this.estado == 'cotizado'" class="button" (click)="activateDesc()">
             Crear cotizacion
         </button>
         <button *ngIf="this.estado == 'cotizado'"  class="button" (click)="createBuyOrder('orden')">
@@ -80,7 +80,7 @@
             <button (click)="modificarEstado(this.estado,this.rut,this.id)" style="margin-right: 31px;" class="button-par">
                 Modificar estado
             </button>
-            <button *ngIf="this.estado == 'cotizado'" class="button-par"(click)="createBuyOrder('cotizacion')">
+            <button *ngIf="this.estado == 'cotizado'" class="button-par"(click)="activateDesc()">
                 <!-- falta definicion de requerimiento -->
                 Cotizacion
             </button>
@@ -116,8 +116,8 @@
     </div>
     <div class="text-desc" *ngIf="this.stateCotizacion">
       <input name="comentario"  [formControl]="descuento" id="comentario" placeholder="Ingrese % de Descuento">
-      <button class="button-par" id="button-cotizacion" [disabled]="descuento.invalid" (click)="createBuyOrder('cotizacion')">Crear Cotizacion</button>
-      <p class="input-error-desc" *ngIf="descuento.invalid && descuento.touched"><strong>* Solo números</strong> </p>
+      <button class="button-par" id="button-cotizacion" [disabled]="descuento.invalid" formnovalidate (click)="createBuyOrder('cotizacion')">Crear Cotizacion</button>
+      <p class="input-error-desc" *ngIf="descuento.invalid"><strong>* Solo números</strong> </p>
     </div>
     </div>
 

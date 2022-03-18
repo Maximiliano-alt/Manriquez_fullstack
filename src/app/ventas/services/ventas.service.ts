@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 import { HttpClient } from '@angular/common/http';
-import { delay } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment';
 import { Proveedor } from 'src/app/proveedores/services/proveedor.service';
 

@@ -55,7 +55,7 @@ export class VentasClienteComponent implements OnInit {
             text: 'Este usuario no se encuentra',
             icon: 'error',
           })
-          this.router.navigate(['/clientes/clientes'])    
+          this.router.navigate(['/clientes/clientes'])
         }
       }
     )
@@ -65,21 +65,21 @@ export class VentasClienteComponent implements OnInit {
   getVentasCliente(){
     this.service.getVentasClient(this.rut).subscribe(
       (res:any)=>{
-      
+
         if(res.historial){
           res.historial.forEach((element:venta) => {
             this.array.push(element);
           });
-         
+
           if(res.historial.length == 0){
             Swal.fire({
               title: '',
               text: 'Aun no se ingresan ventas a este cliente',
               icon: 'error',
             })
-            
+
           }
-          
+
           if(res.historial.length == this.array.length){
             this.nf_for_next()
           }
@@ -105,7 +105,7 @@ export class VentasClienteComponent implements OnInit {
 
       for (let index = (this.array.length-this.resto); index < this.array.length; index++) {
         if(this.array[index]!=undefined){
-          this.segmento.push(this.array.find((element:any)=>element==this.array[index])!) 
+          this.segmento.push(this.array.find((element:any)=>element==this.array[index])!)
         }
 
       }
@@ -122,12 +122,12 @@ export class VentasClienteComponent implements OnInit {
         return 0;
       }
       else{
-       
+
         for (let index = this.inicio_slice; index < this.indice_espera; index++) {
           if(this.array[index]!=undefined){
-            this.segmento.push(this.array.find((element:any)=>element==this.array[index])!) 
+            this.segmento.push(this.array.find((element:any)=>element==this.array[index])!)
           }
-  
+
         }
         //aniadimos 6 unidades par poder recorrer el ng-for con 6 ventas
        if(this.indice_espera<this.array.length){
@@ -144,12 +144,12 @@ export class VentasClienteComponent implements OnInit {
 
 
   }
-  
+
   nf_for_preview():any{
     var aux = this.segmento;
     this.segmento = [];
-    
-    
+
+
     if(this.indice_espera -4 <=0){
       this.segmento = aux;
       return 0;
@@ -163,12 +163,12 @@ export class VentasClienteComponent implements OnInit {
             this.segmento.push(element)
           }
         })
-        
+
       }
       return 1;
     }
-    
-   
+
+
   }
 
 

@@ -182,7 +182,7 @@ export class PdfService {
       pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
       pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
-      pdf.add(this.createTable(dataVenta));
+      pdf.add(this.createTable(dataVenta,this.descuento));
       //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
       pdf.create().open();
     }
@@ -191,14 +191,14 @@ export class PdfService {
 
   }
 
-  createTable(data:any):(ITable){
+  createTable(data:any,desc:any):(ITable){
     return new Table([
       [ 'Cant.', 'Nombre','U. ME','Descripción','Servicio','Valor','Desc.','Total'],
-      ...this.extractData(data)
+      ...this.extractData(data,desc)
     ]).relativePosition(20,415).end;
   }
  // TableRow = [number,number,string,string,string,number,number,number]
-  extractData(data:any):any{
+  extractData(data:any,desc:any):any{
     console.log(data)
     // data == venta
     var productos = data.productos;

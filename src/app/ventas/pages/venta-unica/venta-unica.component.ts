@@ -62,7 +62,6 @@ export class VentaUnicaComponent implements OnInit {
 
     this.service.getVentaAndCliente(this.id,this.rut).subscribe(
       (res:any)=>{
-        console.log(res.dataVenta)
         if(res.status == 404){
           Swal.fire({
             title: 'Error :(',
@@ -139,10 +138,13 @@ export class VentaUnicaComponent implements OnInit {
                                 
                             })
                           }
-                          this.addToFinanzas(idVenta,resultado.value)
-                          setTimeout(()=>{
+                          const x = new Promise((resolve,reject)=>{
+                            resolve(this.addToFinanzas(idVenta,resultado.value))
+                          })
+                          .then(()=>{
                             window.location.reload()
-                          },3000)
+                          })
+                        
                         }
                       }
                     )
@@ -319,9 +321,7 @@ export class VentaUnicaComponent implements OnInit {
 
 
   actualizarProducto(estado:any,id:any){
-    console.log("metodo bonito")
     return new Promise((resolve,reject)=>{
-      console.log(this.ventaProductos.estado,"este metodo actualiza el producto")
       if(estado=='pagado' && this.ventaProductos.estado == 'abonado'){
         // yo no puedo modificar el stock
         resolve(1)
@@ -365,8 +365,7 @@ export class VentaUnicaComponent implements OnInit {
     return new Promise((resolve,reject)=>{
       this.service.addAbono(valorAbono,idVenta).subscribe(
         (res:any)=>{
-          console.log("Esperando respuesta...")
-          console.log(res)
+
           if(res.status == 200){
             Swal.fire({
               position: 'top-end',
