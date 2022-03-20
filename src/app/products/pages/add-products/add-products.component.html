@@ -34,14 +34,8 @@
                             <div class="type">Categoría</div>
                             <select [formControl]="category" name="categoria" class="categoria">
                             <!--utilizar ngfor  -->
-                            <option value="PISOS FLOTANTES">PISOS FLOTANTES</option>
-                            <option value="PISOS MADERA">PISOS MADERA</option>
-                            <option value="PISOS VINILICOS">PISOS  VINÍLICOS</option>
-                            <option value="PASTO SINTETICO">PASTO SINTETICO</option>
-                            <option value="CERAMICOS-PORCELANATOS">CERAMICOS-PORCELANATOS</option>
-                            <option value="ALFOMBRAS">ALFOMBRAS</option>
-                            <option value="CORTINAS ROLLER">CORTINAS ROLLER</option>
-                            <option value="PAPELES MURALES">PAPELES MURALES</option>
+                            <option *ngFor="let categoria of this.categorias" value={{categoria.nombre}}>{{categoria.nombre}}</option>
+                           
                           </select>
                           <p  *ngIf="category.invalid && category.touched" class="input-error"><strong>* Campo requerido</strong> </p>
                         </div>
