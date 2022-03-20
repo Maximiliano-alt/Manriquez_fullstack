@@ -21,6 +21,7 @@ export class AddVentaComponent implements OnInit {
   rut!:string;
   icoColor = 'white';
   nombreProveedor!:string;
+  stateService = false;
   cliente:cliente={
     nombre: '',
     direccion: '',
@@ -98,7 +99,6 @@ export class AddVentaComponent implements OnInit {
     this.getProductos();
     this.getProveedores();
   }
-
   changeColor(color: string){
     if(color == 'white'){
       this.icoColor = '#F25C05';
@@ -298,7 +298,7 @@ export class AddVentaComponent implements OnInit {
       this.venta.cliente.direccion = this.cliente.direccion
 
       var suma = 0
-      
+
       //sumando productos
       this.listaProductosEnLista.forEach((e)=>{
         suma = suma  + e.cantidad*e.valor;
@@ -311,8 +311,8 @@ export class AddVentaComponent implements OnInit {
 
       //calculo de la suma total!
       this.venta.totalDeVenta = Math.trunc(suma + (suma * 0.19));
-      
-      
+
+
       this.listaProductosEnLista.forEach((e)=>{
         this.venta.productos.push(e);
       })

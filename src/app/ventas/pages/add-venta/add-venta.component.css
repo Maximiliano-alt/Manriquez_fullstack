@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     overflow-y: auto;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 .spiner{
     color: white;
@@ -94,7 +94,7 @@ input{
     border-radius: 15px;
     opacity: 0.8;
 }
-.data-cliente-container, .productos, .proveedores{
+.data-cliente-container, .productos{
     width: 80%;
     height: 72%;
     display: flex;
@@ -102,6 +102,24 @@ input{
     justify-content: flex-end;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     opacity: 0.8;
+}
+.servicios-list{
+    width: 25%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 0.8;
+    transform: translate(130%, -127%);
+}
+
+.proveedores{
+  width: 80%;
+  height: 72%;
+  justify-content: flex-end;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  opacity: 0.8;
 }
 .nav-data{
     height: 35px;
@@ -137,7 +155,7 @@ input{
     text-align: center;
 }
 
-.productos-data, .proveedores-data{
+.productos-data, .proveedores-data, .servicios-data,.servicios-data{
   width: 100%;
   height: 155px;
   display: flex;
@@ -163,7 +181,7 @@ input{
     transition: background .5s;
     cursor: pointer;
 }
-.producto{
+.producto,.servicio-one{
     width: 100%;
     min-height: 57px;
     background: #dcdbdb 0% 0% no-repeat padding-box;
@@ -238,10 +256,10 @@ strong{
 }
 
 .add-service{
-    width: 100%;
+    width: 45%;
     height: 20%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 .add-service button{
@@ -252,10 +270,10 @@ strong{
     color: white;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .utilidad{
@@ -265,6 +283,7 @@ input[type=number]::-webkit-outer-spin-button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transform: translateY(-130px);
 }
 .utilidad input{
     width: 25%;
@@ -276,7 +295,10 @@ input[type=number]::-webkit-outer-spin-button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transform: translateY(-160px);
 }
+
+
 .button-footer{
     width: 100%;
     height: 55px;
