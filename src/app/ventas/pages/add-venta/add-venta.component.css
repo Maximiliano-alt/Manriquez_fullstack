@@ -1,6 +1,6 @@
 .container-general{
     width: 100vw;
-    height: 100%;
+    min-height: 90vh;
     color: white;
     transform: translate(0,53px);
     display: flex;
@@ -23,7 +23,7 @@
 
 form{
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -34,6 +34,7 @@ form{
 }
 .container-info2{
     width: 100%;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     margin: 25px 0 25px 0;
@@ -230,10 +231,10 @@ input{
 }
 .servicios{
     width: 100%;
-    height: 75%;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 .servicios_input{
@@ -259,7 +260,7 @@ strong{
     width: 45%;
     height: 20%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 .add-service button{
@@ -281,9 +282,9 @@ input[type=number]::-webkit-outer-spin-button {
     height: 25%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    transform: translateY(-130px);
+    
 }
 .utilidad input{
     width: 25%;
@@ -295,7 +296,7 @@ input[type=number]::-webkit-outer-spin-button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateY(-160px);
+    
 }
 
 

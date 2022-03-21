@@ -104,6 +104,7 @@
             </div>
         </div>
         <div class="container-info2">
+
             <div class="servicios">
                 <h3>Ingrese servicios si es necesario</h3>
                 <div class="servicios_input">
@@ -116,45 +117,52 @@
                 </div>
                 <div class="add-service">
                     <button (click)="this.addServicio(this.newServicio.nombre,this.newServicio.valor)">Agregar Servicio</button>
-                    <button >Ver servicios</button>
-                </div>
-                <div  class="servicios-list">
-                  <div class="servicios-data">
-                       <div class="servicio-one">
-                           <div class="data">
-                               <p><b>Nombre: </b> &nbsp; </p>
-                               <p><b>Valor: </b>&nbsp; </p>
-                           </div>
-                           <div class="button">
+                
+                </div> 
+                
+                    <!-- <div  class="servicios-list">
+                        <div class="servicios-data">
+                        <div class="servicio-one">
+                            <div class="data">
+                                <p><b>Nombre: </b> &nbsp; </p>
+                                <p><b>Valor: </b>&nbsp; </p>
+                            </div>
+                            <div class="button">
 
-                               <div class="add">
-                                   <button>
-                                       <mat-icon>close</mat-icon>
-                                   </button>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
+                                <div class="add">
+                                    <button>
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div> -->
+            
+                <div class="utilidad">
+                    <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
+                    <input [(ngModel)]="this.venta.porcentaje" name="utilidad" type="number" placeholder="ingrese utilidad!" value="none">
+                </div>
+                
+                <div class="buttons">
+                    <div class="button-footer">
+                        <button (click)=" crearVenta()" style="color: white;">
+                            Crear venta
+                        </button>
+                    </div>
+                    <div class="button-footer">
+                        <button style="color: white;">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="utilidad">
-                <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
-                <input [(ngModel)]="this.venta.porcentaje" name="utilidad" type="number" placeholder="ingrese utilidad!" value="none">
-            </div>
+            
+            
         </div>
-        <div class="buttons">
-            <div class="button-footer">
-                <button (click)=" crearVenta()" style="color: white;">
-                    Crear venta
-                </button>
-            </div>
-            <div class="button-footer">
-                <button style="color: white;">
-                    Cancelar
-                </button>
-            </div>
-        </div>
+        
     </form>
+    
 </div>
 
 <div class="slide" *ngIf="this.container == 1">
