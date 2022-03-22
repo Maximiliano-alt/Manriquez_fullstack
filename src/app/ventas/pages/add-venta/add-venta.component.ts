@@ -346,6 +346,7 @@ export class AddVentaComponent implements OnInit {
   newSuma(rut:string){
     this.serviceCliente.calcularTotalVenta(rut).subscribe(
       res=>{
+        
       }
     )
   }

@@ -1,5 +1,5 @@
 .container-general{
- 
+
     width: 100vw;
     min-height: 91vh;
     transform: translate(0,70px);
@@ -40,7 +40,7 @@ h3{
     letter-spacing: 0px;
     color: #FFFFFF;
     opacity: 1;
-    
+
 
 }
 .form{
@@ -55,13 +55,17 @@ h3{
     justify-content: center;
     padding: 20px;
 }
+
+
+
+
 .inputLine{
-    margin: 5px 0 5px 0;
+    margin: 10px 0 5px 0;
     width: 90%;
     height: 70px;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 label{
@@ -103,6 +107,7 @@ img{
 .inputLine textarea{
     height: 100px;
 }
+
 
 @media screen  and (min-width:768px){
     .container-inputs{

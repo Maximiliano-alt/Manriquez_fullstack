@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService,user } from 'src/app/auth/service/auth.service';
 import Swal from 'sweetalert2';
 
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  constructor(private service:AuthService) {
+  constructor(private service:AuthService,private router:Router) {
     this.name = new FormControl('',[
       Validators.required,
     ]);
@@ -103,6 +104,10 @@ export class RegisterComponent implements OnInit {
             console.log(res.status)
             if(res.status == 200){
               Swal.fire({icon: 'success',text: 'Agregado con exito'})
+              setTimeout(()=>{
+                this.router.navigate(['/app'])
+              },2000)
+
             }
             else{
               Swal.fire({icon: 'warning',title: 'Oops...',text: 'Usuario existente'});

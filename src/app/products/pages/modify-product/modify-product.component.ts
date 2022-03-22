@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { ProductsService ,product} from '../../services/products.service';
+import { ProductsService ,product, categoria} from '../../services/products.service';
 
 @Component({
   selector: 'app-modify-product',
@@ -23,6 +23,7 @@ export class ModifyProductComponent implements OnInit {
     unidadMedida:"",
     vecesComprado:0,
   }
+  categorias:categoria[]=[]
 
   constructor( private route:ActivatedRoute,private router:Router,private service: ProductsService) {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -30,6 +31,16 @@ export class ModifyProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProduct()
+    this.getCategoria()
+
+  }
+
+  getCategoria(){
+    this.service.getCategoria().subscribe(
+      (res:any)=>{
+        res.map((cat:categoria)=>{this.categorias.push(cat)})
+      }
+    )
   }
 
   getProduct(){
@@ -81,7 +92,7 @@ export class ModifyProductComponent implements OnInit {
             timer: 2000
           })
           setTimeout(()=>{
-            window.location.reload()
+            this.router.navigate(['/productos/products-category/',this.newProducto.categoria])
           },2000)
         }
         else if(res.status == 500){
