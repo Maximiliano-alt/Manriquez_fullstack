@@ -89,7 +89,6 @@ export class VentaUnicaComponent implements OnInit {
   }
 
   cotizacion():number{
-    console.log("crear cotizacion again");
     return 0;
   }
   modificarEstado(estado:string,rut:string,idVenta:string):any{

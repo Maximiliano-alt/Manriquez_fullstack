@@ -101,7 +101,6 @@ export class RegisterComponent implements OnInit {
        ) {
         this.service.register(data).subscribe(
           res=>{
-            console.log(res.status)
             if(res.status == 200){
               Swal.fire({icon: 'success',text: 'Agregado con exito'})
               setTimeout(()=>{

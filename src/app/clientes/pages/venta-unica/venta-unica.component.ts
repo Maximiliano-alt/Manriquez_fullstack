@@ -34,7 +34,6 @@ export class VentaUnicaComponent implements OnInit {
     this.service.getVentaAndCliente(this.id,this.rut).subscribe(
       (res:any)=>{
 
-        console.log(this.rut)
         if(res.status==404){
           Swal.fire({
             title: 'Error :(',
@@ -59,7 +58,6 @@ export class VentaUnicaComponent implements OnInit {
 
   
   cotizacion():number{
-    console.log("crear cotizacion again");
     return 0;
   }
   modificarEstado(estado:string,rut:string,idVenta:string):number{

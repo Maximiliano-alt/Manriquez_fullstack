@@ -81,9 +81,7 @@ export class NewProveedorComponent implements OnInit {
             });
           }
         });
-      console.log('info enviada');
     } catch (error) {
-      console.log(error);
     }
   }
 }

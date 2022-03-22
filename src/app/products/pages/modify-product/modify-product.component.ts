@@ -109,7 +109,6 @@ export class ModifyProductComponent implements OnInit {
   }
   onFileChanges(event: any): void {
     this.newProducto.imagen = event[0].base64;
-    console.log(this.newProducto.imagen)
   }
 
 }

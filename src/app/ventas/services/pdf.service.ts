@@ -126,7 +126,6 @@ export class PdfService {
     return monthNames[date.getMonth()];
   }
   async downloadPdf(type:string,id:any,rut:any,commentary:string,desc:number,dataVenta:any){
-    console.log(dataVenta,"downloadPdf")
     await this.findProveedor(id,rut);
     await this.findCliente(id,rut);
     //const data = await this.fetchDataVenta();
@@ -199,18 +198,14 @@ export class PdfService {
   }
  // TableRow = [number,number,string,string,string,number,number,number]
   extractData(data:any,desc:any):any{
-    console.log(data)
     // data == venta
     var productos = data.productos;
     var row:TableRow[] = [];
     productos.forEach((producto:any) => {
-      console.log(data,"venta en extrac data")
-      console.log(producto,"este es el producto")
       row.push([producto.cantidad,producto.nombre,producto.unidadMedida,producto.descripcion,"Servicio",producto.valor,0,data.totalDeVenta]);
       
     });
     if(data.productos.length == productos.length ){
-      console.log(row)
       return row;
     }
 

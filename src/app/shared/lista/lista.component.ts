@@ -40,7 +40,6 @@ export class ListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.input.data,"holi")
     if(this.input.indicador == 'clientes' ||
     this.input.indicador == 'pendientes' ||
     this.input.indicador == 'proveedores')
