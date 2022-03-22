@@ -10,7 +10,7 @@ import { ProductsService,product } from '../../services/products.service';
 export class DetailProductsComponent implements OnInit {
   id:any="";
   indicador = 0;
-
+ 
   newProducto:product={
     categoria:"",
     color:"",
@@ -22,7 +22,7 @@ export class DetailProductsComponent implements OnInit {
     unidadMedida:"",
     vecesComprado:0,
   }
-
+  ruta ='/productos/products-category/'+this.newProducto.categoria
   img = ""
 
   constructor(private route:ActivatedRoute,private router:Router,private service:ProductsService) {

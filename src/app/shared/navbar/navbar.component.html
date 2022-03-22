@@ -1,11 +1,14 @@
 <nav class="navbar navbar-light  fixed-top">
+  
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <i class="fas fa-list"></i>
       </button>
       <a class="navbar-brand" >{{this.var.title}}</a>
       <button class="navbar-toggler" type="button"  aria-controls="offcanvasNavbar">
-        <a *ngIf="this.var.route != 'null'" routerLink="{{this.var.route}}"><img src="../../../assets/page/atras.svg"></a>
+        <a *ngIf="this.var.route != 'null' && this.var.category == '' " routerLink="{{this.var.route}}"><img src="../../../assets/page/atras.svg"></a>
+        <a *ngIf="this.var.route != 'null' && this.var.category != '' " [routerLink]="[this.var.route,this.var.category]"><img src="../../../assets/page/atras.svg"></a>
+
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
@@ -40,6 +43,12 @@
                 </div>
                 <div class="menu-item-bar">
                   <a routerLink="/clientes" style="text-decoration: none;">Clientes</a>
+                </div>
+                <div class="menu-item-bar">
+                  <a routerLink="/auth/register" style="text-decoration: none;">Registrar</a>
+                </div>
+                <div (click)=logOut() class="menu-item-bar">
+                  Cerrar Sesion
                 </div>
             </div>
         </div>

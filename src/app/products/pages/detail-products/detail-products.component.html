@@ -1,4 +1,4 @@
-<app-navbar [var]="{route:'/productos/category',title:'Productos'}" ></app-navbar>
+<app-navbar [var]="{route:'/productos/products-category/',title:'Productos',category:this.newProducto.categoria}" ></app-navbar>
 <div class="container-general">
 	<div class="detail-container" *ngIf="indicador==1">
 		<form>
@@ -50,7 +50,7 @@
 			<div class="buttons">
 
 				<div class="butt-cancel">
-					<button style="color: white;" [routerLink]="['/productos']">Cancelar</button>
+					<button style="color: white;" [routerLink]="['/productos/products-category/',this.newProducto.categoria]">Cancelar</button>
 				</div>
 			</div>
 		</form>

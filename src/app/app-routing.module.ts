@@ -16,28 +16,35 @@ const routes: Routes = [
   },
   {
     path: 'proveedores', loadChildren:()=>import('./proveedores/proveedores.module').then(modulo=> modulo.ProveedoresModule)
+    ,canActivate:[AuthGuard],canLoad:[AuthGuard]
   },
   {
     path:'app',loadChildren:()=> import('./home/home.module').then(modulo =>modulo.HomeModule)
+    ,canActivate:[AuthGuard],canLoad:[AuthGuard]
   },
   {
     path:'ventas',loadChildren:()=> import('./ventas/ventas.module').then(modulo => modulo.VentasModule)
+    ,canActivate:[AuthGuard],canLoad:[AuthGuard]
   },
    {
     path:'pendientes',loadChildren:()=> import('./pendientes/pendientes.module').then(modulo => modulo.PendientesModule)
+    ,canActivate:[AuthGuard],canLoad:[AuthGuard]
   },
  {
     path:'clientes',loadChildren:()=> import('./clientes/clientes.module').then(modulo => modulo.ClientesModule)
+    ,canActivate:[AuthGuard],canLoad:[AuthGuard]
   },
   {
     path:'productos',loadChildren:()=> import('./products/products.module').then(modulo=>modulo.ProductsModule)
+    ,canActivate:[AuthGuard],canLoad:[AuthGuard]
   },
   {
     path:'estadisticas',loadChildren:()=>import('./graphics/graphics.module').then(m=>m.GraphicsModule)
+    ,canActivate:[AuthGuard],canLoad:[AuthGuard]
   },
   {
     // para rutas inexistentes redirecciona hacia auth
-    path:'**',redirectTo:'/auth',pathMatch:"full"
+    path:'**',redirectTo:'/app',pathMatch:"full"
   },
 ];
 

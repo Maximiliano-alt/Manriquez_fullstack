@@ -20,6 +20,10 @@ img{
     justify-content: center;
     flex-direction: row;
 }
+.menu-item-bar{
+    cursor: pointer;
+    height: 5%;
+}
 .container-fluid a{
     width: 60%;
     text-align: center;
@@ -44,7 +48,7 @@ img{
     background: #F25C05 0% 0% no-repeat padding-box;
     border-radius: 30px;
     width: 200px;
-    height: 50px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;

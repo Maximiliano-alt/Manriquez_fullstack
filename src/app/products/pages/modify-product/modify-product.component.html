@@ -1,13 +1,12 @@
-<app-navbar [var]="{route:'/productos',title:'Modificar Producto'}" ></app-navbar>
-
+<app-navbar [var]="{route:'/productos/products-category/',title:'Modificar Producto',category:this.newProducto.categoria}" ></app-navbar>
 <div class="container-general">
     <div class="container-inputs">
         <div class="title">
             <h3>Reemplaza los valores necesarios</h3>
         </div>
-        <div class="form">
+         <div class="form">
 
-            <div class="inputLine">
+            <div class="inputLine"> 
                 <label>
                    Nombre
                 </label>
@@ -35,14 +34,13 @@
                 <label>
                     Descripcion
                 </label>
-                <textarea [(ngModel)]="newProducto.descripcion" name="descripcion" id="" cols="30" rows="10" placeholder="Ingrese descripcion"></textarea>
+                <textarea [(ngModel)]="newProducto.descripcion" name="descripcion" placeholder="Ingrese descripcion"></textarea>
             </div>
             <div class="inputLine">
                 <label>
                     Categoria
                 </label>
                 <select style="text-align: center;" [(ngModel)]="newProducto.categoria" name="categoria" class="categoria" >
-                    <!--utilizar ngfor  -->
                     <option hidden selected>{{newProducto.categoria}}</option>
                     <option value="PISOS FLOTANTESs">PISOS FLOTANTES</option>
                     <option value="PISOS MADERA">PISOS MADERA</option>
@@ -70,9 +68,9 @@
 
             <button (click)="this.eliminar(this.id)">Eliminar</button>
             <button (click)="this.editar()">Editar</button>
-            <button [routerLink]="['/productos']">Cancelar</button>
+            <button [routerLink]="['/productos/products-category/',this.newProducto.categoria]">Cancelar</button>
 
-        </div>
+        </div> 
 
 
 

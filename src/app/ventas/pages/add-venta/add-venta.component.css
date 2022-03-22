@@ -2,9 +2,12 @@
     width: 100vw;
     min-height: 90vh;
     color: white;
-    transform: translate(0,53px);
+    margin-top: 50px;
+    /* transform: translate(0,53px); */
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -442,9 +445,7 @@ input[type=number]::-webkit-outer-spin-button {
         width: 70%;
         flex-direction: row;
     }
-    .button-footer{
-
-    }
+  
     .button-footer button{
         width: 80%;
     }
