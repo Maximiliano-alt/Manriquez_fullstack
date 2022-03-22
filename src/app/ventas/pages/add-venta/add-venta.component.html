@@ -93,8 +93,8 @@
                             </div>
                             <div class="button">
                                 <div class="add">
-                                    <button (click)="proveedorSelected(proveedor)" (click)="changeColor(this.icoColor)">
-                                        <mat-icon [ngStyle]="{'color':this.icoColor}" id="mat-icon">add</mat-icon>
+                                    <button (click)="proveedorSelected(proveedor)">
+                                        <mat-icon id="mat-icon">add</mat-icon>
                                     </button>
                                 </div>
                             </div>
@@ -117,9 +117,9 @@
                 </div>
                 <div class="add-service">
                     <button (click)="this.addServicio(this.newServicio.nombre,this.newServicio.valor)">Agregar Servicio</button>
-                
-                </div> 
-                
+
+                </div>
+
                     <!-- <div  class="servicios-list">
                         <div class="servicios-data">
                         <div class="servicio-one">
@@ -136,14 +136,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div> -->
-            
+
                 <div class="utilidad">
                     <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
                     <input [(ngModel)]="this.venta.porcentaje" name="utilidad" type="number" placeholder="ingrese utilidad!" value="none">
                 </div>
-                
+
                 <div class="buttons">
                     <div class="button-footer">
                         <button (click)=" crearVenta()" style="color: white;">
@@ -157,13 +157,13 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
         </div>
     </form>
-    
-    
-    
+
+
+
 </div>
 
 <div class="slide" *ngIf="this.container == 1">
