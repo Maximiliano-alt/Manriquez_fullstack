@@ -90,6 +90,8 @@ export interface cliente{
 export interface ventaCliente{
   nombre: string,
   direccion: string,
+  comuna: string,
+  ciudad: string,
   telefono: string,
   correo: string,
   rut: string,

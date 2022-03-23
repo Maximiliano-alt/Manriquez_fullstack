@@ -47,6 +47,8 @@ export class AddVentaComponent implements OnInit {
         nombre: '',
         apellidos: '',
         direccion: '',
+        comuna: '',
+        ciudad: '',
         telefono: '',
         correo: '',
         rut: '',
@@ -151,6 +153,8 @@ export class AddVentaComponent implements OnInit {
   asignacionCliente(data:cliente){
     this.cliente.nombre = data.nombre
     this.cliente.direccion = data.direccion
+    this.cliente.comuna = data.comuna
+    this.cliente.ciudad = data.ciudad
     this.cliente.telefono = data.telefono
     this.cliente.correo = data.correo
     this.cliente.rut = data.rut
@@ -292,6 +296,8 @@ export class AddVentaComponent implements OnInit {
       //guardamos al cliente en venta!
 
       this.venta.cliente.nombre = this.cliente.nombre
+      this.venta.cliente.comuna = this.cliente.comuna
+      this.venta.cliente.ciudad = this.cliente.nombre
       this.venta.cliente.correo = this.cliente.correo
       this.venta.cliente.rut = this.cliente.rut
       this.venta.cliente.telefono = this.cliente.telefono
@@ -346,7 +352,7 @@ export class AddVentaComponent implements OnInit {
   newSuma(rut:string){
     this.serviceCliente.calcularTotalVenta(rut).subscribe(
       res=>{
-        
+
       }
     )
   }

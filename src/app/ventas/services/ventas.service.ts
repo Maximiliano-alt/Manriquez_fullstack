@@ -47,7 +47,7 @@ export class VentasService {
         element.cantidad = element.cantidad + 1
         aux.push(element) //luego pushealo
       }
-      if(element == producto && operacion == 'R'){ //si es resta 
+      if(element == producto && operacion == 'R'){ //si es resta
         if(element.cantidad-1 == 0){ //ve si es 0 con la resta para que no las embarres
         }
         else if(element.cantidad-1 > 0){ //no es cero con la resta
@@ -83,6 +83,8 @@ export interface venta{
         nombre: string,
         apellidos: string,
         direccion: string,
+        comuna:string,
+        ciudad:string,
         telefono: string,
         correo: string,
         rut: string,

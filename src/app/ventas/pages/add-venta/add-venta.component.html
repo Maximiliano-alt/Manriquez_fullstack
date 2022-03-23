@@ -3,7 +3,7 @@
 <div class="spiner" *ngIf="this.marcadorListaProducto == 0">
     <div  class="spinner-border" role="status" >
     </div>
-    <span>Cargando clientes...</span>
+    <span>Cargando venta...</span>
 </div>
 
  <div class="container-general" *ngIf="this.marcadorListaProducto == 1 && this.container==0" >
@@ -93,8 +93,8 @@
                             </div>
                             <div class="button">
                                 <div class="add">
-                                    <button (click)="proveedorSelected(proveedor)" (click)="changeColor(this.icoColor)">
-                                        <mat-icon [ngStyle]="{'color':this.icoColor}" id="mat-icon">add</mat-icon>
+                                    <button (click)="proveedorSelected(proveedor)">
+                                        <mat-icon id="mat-icon">add</mat-icon>
                                     </button>
                                 </div>
                             </div>

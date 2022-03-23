@@ -59,8 +59,8 @@
             </div>
 
 
-            <button (click)="this.eliminar(this.id)">Eliminar</button>
-            <button (click)="this.editar()">Editar</button>
+            <button (click)="this.eliminar(this.id)" [routerLink]="['/productos/products-category/',this.newProducto.categoria]">Eliminar</button>
+            <button (click)="this.editar()" [routerLink]="['/productos/products-category/',this.newProducto.categoria]">Editar</button>
             <button [routerLink]="['/productos/products-category/',this.newProducto.categoria]">Cancelar</button>
 
         </div>

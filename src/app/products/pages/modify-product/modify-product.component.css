@@ -2,11 +2,11 @@
 
     width: 100vw;
     min-height: 91vh;
-    transform: translate(0,70px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: sticky;
 
 }
 img:hover{
@@ -113,5 +113,14 @@ img{
     .container-inputs{
         width: 400px;
         min-height: 450px;
+        margin: 70px 0 30px 0;
+    }
+}
+
+@media screen  and (max-width:768px){
+    img:hover{
+        transform: scale(2.1);
+        transition: all 2s ;
+
     }
 }
