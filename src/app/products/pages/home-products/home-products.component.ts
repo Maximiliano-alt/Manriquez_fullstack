@@ -34,12 +34,11 @@ export class HomeProductsComponent implements OnInit {
           Swal.fire({
             position: 'top-end',
             icon: 'warning',
-            title: 'No existen productos en esta categoria',
+            title: 'No existen productos en esta categoria, ingrese productos',
             showConfirmButton: false,
             timer: 2000
           })
           setTimeout(()=>{
-            this.router.navigate(['/productos'])
           },2000)
         }
         res.forEach((e:product)=>{

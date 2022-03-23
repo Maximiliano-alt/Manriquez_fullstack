@@ -115,7 +115,7 @@ export class VentaUnicaComponent implements OnInit {
       this.observacion = resultado.value
       this.createBuyOrder('cotizacion')
       setTimeout(()=>{
-        //window.location.reload()
+        window.location.reload()
       },2000)
     }).catch(err =>{
       console.log(err)
