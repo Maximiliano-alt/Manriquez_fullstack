@@ -117,9 +117,9 @@
                 </div>
                 <div class="add-service">
                     <button (click)="this.addServicio(this.newServicio.nombre,this.newServicio.valor)">Agregar Servicio</button>
-                
-                </div> 
-                
+
+                </div>
+
                     <!-- <div  class="servicios-list">
                         <div class="servicios-data">
                         <div class="servicio-one">
@@ -136,14 +136,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div> -->
-            
+
                 <div class="utilidad">
                     <label style="margin: 10px;" for="">Porcentaje de utilidad de la compra</label>
                     <input [(ngModel)]="this.venta.porcentaje" name="utilidad" type="number" placeholder="ingrese utilidad!" value="none">
                 </div>
-                
+
                 <div class="buttons">
                     <div class="button-footer">
                         <button (click)=" crearVenta()" style="color: white;">
@@ -157,13 +157,13 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
         </div>
     </form>
-    
-    
-    
+
+
+
 </div>
 
 <div class="slide" *ngIf="this.container == 1">
@@ -193,7 +193,7 @@
             <button (click)="deleteCantidad(product)">
                 <mat-icon>remove</mat-icon>
             </button>
-            <input type="number" disabled value={{product.cantidad}}>
+            <input type="number" [(ngModel)]="product.cantidad">
             <button (click)="addCantidad(product)">
                 <mat-icon>add</mat-icon>
             </button>
