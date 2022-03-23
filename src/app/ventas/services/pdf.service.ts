@@ -121,6 +121,7 @@ export class PdfService {
    }
    counter = 0;
    descuento = 0;
+   rowHeight = 40;
   transformMonth(date: Date):string {
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     return monthNames[date.getMonth()];
@@ -183,10 +184,9 @@ export class PdfService {
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
       var tablaDes = this.createTable(dataVenta,this.descuento)
       pdf.add( tablaDes);
-      console.log(tablaDes.table.body.length)
       pdf.add(new Table([ ['Observacion: '+observacion]]).heights(rowIndex =>{
-        return rowIndex = 40
-      }).relativePosition(20, 415 + ((tablaDes.table.body.length)*(40+tablaDes.table.body.length+2))).end);
+        return rowIndex = this.rowHeight
+      }).relativePosition(20, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end);
      // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
 
       //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
@@ -219,7 +219,7 @@ export class PdfService {
       },
     })
     .heights(rowIndex =>{
-      return rowIndex = 40
+      return rowIndex = this.rowHeight
     })
     .relativePosition(20,415).end;
   }
