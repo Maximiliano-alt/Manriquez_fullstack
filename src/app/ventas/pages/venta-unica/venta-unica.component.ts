@@ -22,7 +22,7 @@ export class VentaUnicaComponent implements OnInit {
   descuento:FormControl;
   comentarioVenta:string =''
   descuentoVenta:number = 0
-  observacion = ""
+  observacion = " "
   constructor( private serviceFinanzas: GraphicsService,private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
@@ -115,7 +115,7 @@ export class VentaUnicaComponent implements OnInit {
       this.observacion = resultado.value
       this.createBuyOrder('cotizacion')
       setTimeout(()=>{
-        window.location.reload()
+       // window.location.reload()
       },2000)
     }).catch(err =>{
       console.log(err)

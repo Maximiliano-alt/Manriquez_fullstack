@@ -15,6 +15,8 @@ interface venta{
         nombre: string,
         apellidos: string,
         direccion: string,
+        comuna:string,
+        ciudad:string,
         telefono: string,
         correo: string,
         rut: string,
@@ -84,6 +86,8 @@ export class PdfService {
         nombre: '',
         apellidos: '',
         direccion: '',
+        comuna:'',
+        ciudad:'',
         telefono: '',
         correo: '',
         rut: '',
@@ -129,6 +133,7 @@ export class PdfService {
   async downloadPdf(type:string,id:any,rut:any,commentary:string,desc:number,dataVenta:any,observacion:any){
     await this.findProveedor(id,rut);
     await this.findCliente(id,rut);
+    console.log(this.cliente);
     //const data = await this.fetchDataVenta();
     this.dateTime = new Date();
     const pdf = new PdfMakeWrapper();
@@ -183,10 +188,10 @@ export class PdfService {
       pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
       var tablaDes = this.createTable(dataVenta,this.descuento)
+      var tablaObs = this.createTableObservacion(observacion,tablaDes)
       pdf.add( tablaDes);
-      pdf.add(new Table([ ['Observacion: '+observacion]]).heights(rowIndex =>{
-        return rowIndex = this.rowHeight
-      }).relativePosition(20, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end);
+      pdf.add( tablaObs);
+
      // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
 
       //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
@@ -195,7 +200,40 @@ export class PdfService {
       //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
       pdf.create().open();
     }
+    if(type === 'guia'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
+      pdf.pageSize('A3');//C:\Users\maxes\OneDrive\Documentos\Pega\SoftwareMama\manriquez-fullstack\Frontend\src\assets\page\ICONO-EXPERIENCIA.svg
+      pdf.add( await new Img('../assets/page/Pisosmanriquez.logo-02.png').width(200).build());
 
+      pdf.add(new Txt('\n\nME Construcción y Diseño de interiores Spa').color('#F25C05').fontSize(25).relativePosition(215,-125).bold().end);
+      pdf.add(new Txt('\n\nRUT: 76.861.179-3').color('#F25C05').fontSize(25).relativePosition(215,-100).bold().end);
+      pdf.add(new Txt('\n\nPisos Flotantes - Pisos Madera - Pisos Vinílicos - Ceramicos - Porcelanatos').relativePosition(215,-35).italics().end);
+      pdf.add(new Txt('\n\nPasto Sintetico - Alfombras - Cortinas Roller - Departamento de construcción ').relativePosition(215,-15).italics().end);
+      pdf.add(new Txt('\n\nPapeles Murales - Servicios Alfombras - Cierres de Terraza').relativePosition(215,5).italics().end);
+      pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
+      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688- Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
+      pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
+      pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(65,115).bold().end);
+      pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(65,135).bold().end);
+      pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+this.dateTime.getMonth()+1+'/'+this.dateTime.getFullYear()).relativePosition(65,155).bold().end);
+      pdf.add(new Txt('\n\nCOTIZACIÓN').relativePosition(330,185).fontSize(20).bold().end);
+      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).end);
+      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).end);
+      pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).end);
+      pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
+      pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
+      pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
+      var tablaDes = this.createTable(dataVenta,this.descuento)
+      var tablaObs = this.createTableObservacion(observacion,tablaDes)
+      pdf.add( tablaDes);
+      pdf.add( tablaObs);
+     // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
+
+      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
+
+
+      //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
+      pdf.create().open();
+    }
 
 
   }
@@ -242,7 +280,12 @@ export class PdfService {
     // return productos.map((row:any) => [row.productos.map((p:any) => p.cantidad),data.id_Venta,row.productos.map((p:any) => p.unidadMedida),row.productos.map((p:any) => p.descripcion),data.servicios.map((s:any) => {}),row.productos.map((p:any) => p.valor),this.descuento,row.totalDeVenta]);
 
   }
-
+  createTableObservacion(observacion:any, tablaDes:any):(ITable){
+    return new Table([ ['Observacion: '+observacion]]).heights(rowIndex =>{
+      return rowIndex = this.rowHeight
+    }).widths(['*',-9])
+    .relativePosition(20, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
+  }
   // async fetchDataVenta(id:string,rut:string):Promise<venta[]>{
   //   return this.ventasService.getVentaAndCliente
   // }
