@@ -22,6 +22,7 @@ export class VentaUnicaComponent implements OnInit {
   descuento:FormControl;
   comentarioVenta:string =''
   descuentoVenta:number = 0
+  observacion = ""
   constructor( private serviceFinanzas: GraphicsService,private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
     this.id = this.route.snapshot.paramMap.get('id')
     this.rut = this.route.snapshot.paramMap.get('rut')
@@ -30,7 +31,6 @@ export class VentaUnicaComponent implements OnInit {
     this.comentario = new FormControl('',[Validators.required,]);
     this.comentario.valueChanges.subscribe(
       value =>{
-        this.comentarioVenta = value
       }
     );
 
@@ -88,18 +88,72 @@ export class VentaUnicaComponent implements OnInit {
     return 0;
   }
 
-  cotizacion():number{
-    return 0;
+  cotizacion():any{
+    //descuento
+    Swal.fire({
+      title: 'Ingrese % de descuento',
+      input: 'number',
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+    }).then((resultado:any) => {
+      this.cotizacion = resultado.value
+      this.getObservacion()
+    }).catch(err =>{
+      console.log(err)
+    });
+
+
+  }
+  getObservacion(){
+     //observacion
+     Swal.fire({
+      title: 'Ingrese observacion',
+      input: 'text',
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+    }).then((resultado:any) => {
+      this.observacion = resultado.value
+      this.createBuyOrder('cotizacion')
+      setTimeout(()=>{
+        //window.location.reload()
+      },2000)
+    }).catch(err =>{
+      console.log(err)
+    })
+  }
+  ordenDeCompra():any{
+    Swal.fire({
+      title: 'Ingrese comentario para la orden',
+      input: 'textarea',
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+      customClass: {
+        validationMessage: 'my-validation-message'
+      },
+      preConfirm: (value) => {
+        if (!value) {
+          Swal.showValidationMessage(
+            ' El comentario es requerido'
+          )
+        }
+      }
+    }).then((resultado:any) => {
+      this.comentarioVenta = resultado.value
+      this.createBuyOrder('orden')
+      setTimeout(()=>{
+        window.location.reload()
+      },1000)
+    }).catch(err =>{
+      console.log(err)
+    }
+    )
   }
   modificarEstado(estado:string,rut:string,idVenta:string):any{
-   
+
     this.verify_amount(this.id).then((data:any)=>{
-     
+
       if(data.status == 200){
-        
-
         // si el stock es el correcto para realizar la venta esto funciona
-
         Swal.fire({
           title: 'Modificar Estado',
           input: 'radio',
@@ -110,7 +164,7 @@ export class VentaUnicaComponent implements OnInit {
           },
           showCancelButton: true,
           confirmButtonText: "Confirmar",
-    
+
         }).then(resultado =>{
           if(resultado.value != undefined){
             if(resultado.value == 'abonado'){ //aca realizamos la logica de abonado
@@ -122,19 +176,19 @@ export class VentaUnicaComponent implements OnInit {
                 //agergar el abono a la venta
                 this.addAbono(abono.value,this.id)
                 .then((value)=>{
-                  
-                
+
+
                     this.serviceCliente.modificarEstadoVenta(resultado.value,rut,idVenta).subscribe(
                       (res:any)=>{
-                        
+
                         if(res.status == 200){
                           // modificacion correcta
                           this.ingresoModificacion = 1;
                           if(this.ingresoModificacion == 1){
-                          
+
                             this.actualizarProducto(resultado.value,this.id).then(
                               (val)=>{
-                                
+
                             })
                           }
                           const x = new Promise((resolve,reject)=>{
@@ -143,11 +197,11 @@ export class VentaUnicaComponent implements OnInit {
                           .then(()=>{
                             window.location.reload()
                           })
-                        
+
                         }
                       }
                     )
-                  
+
 
                 })
               })
@@ -155,15 +209,15 @@ export class VentaUnicaComponent implements OnInit {
             if(resultado.value!='abonado'){
               this.serviceCliente.modificarEstadoVenta(resultado.value,rut,idVenta).subscribe(
                 (res:any)=>{
-                  
+
                   if(res.status == 200){
                     // modificacion correcta
                     this.ingresoModificacion = 1;
                     if(this.ingresoModificacion == 1){
-                    
+
                       this.actualizarProducto(resultado.value,this.id).then(
                         (val)=>{
-                          
+
                       })
                     }
                     this.addToFinanzas(idVenta,resultado.value)
@@ -174,14 +228,14 @@ export class VentaUnicaComponent implements OnInit {
                 }
               )
             }
-            
+
           }
-         
+
         })
-    
-        
+
+
       }
-      
+
       else if(data.status == 500){
         Swal.fire({
           position: 'top-end',
@@ -196,6 +250,7 @@ export class VentaUnicaComponent implements OnInit {
     })
 
   }
+
   delete(idventa:string,rut:string):any{
     this.serviceFinanzas.removeVenta(idventa)
     this.serviceCliente.deleteVenta(rut,idventa).subscribe(
@@ -246,7 +301,7 @@ export class VentaUnicaComponent implements OnInit {
 
 
   createBuyOrder(type:string){
-    this.servicePdf.downloadPdf(type,this.id,this.rut,this.comentarioVenta,this.descuentoVenta,this.ventaProductos);
+    this.servicePdf.downloadPdf(type,this.id,this.rut,this.comentarioVenta,this.descuentoVenta,this.ventaProductos,this.observacion);
   }
 
   activateCommentary(){
@@ -275,13 +330,13 @@ export class VentaUnicaComponent implements OnInit {
   // addFinanza al gestor de finanzas
 
   addToFinanzas(idVenta:any,estado:string){
-    
+
     return new Promise((resolve,reject)=>{
       if(estado === 'pagado' && this.ventaProductos.estado != 'abonado' && this.ventaProductos.estado != 'pagado'){
         // cambiamos de estado a enviado
         this.serviceFinanzas.addVenta(idVenta).subscribe(
           (res:any)=>{
-         
+
             resolve(res)
           }
         )
@@ -290,7 +345,7 @@ export class VentaUnicaComponent implements OnInit {
         // cambiamos de estado a enviado
         this.serviceFinanzas.addVenta(idVenta).subscribe(
           (res:any)=>{
-         
+
             resolve(res)
           }
         )
@@ -299,7 +354,7 @@ export class VentaUnicaComponent implements OnInit {
         // cambiamos de estado a cotizado
         this.serviceFinanzas.removeVenta(idVenta).subscribe(
           (res:any)=>{
-            
+
             resolve(res)
 
           }
@@ -326,14 +381,14 @@ export class VentaUnicaComponent implements OnInit {
         resolve(1)
       }
       else if((this.ventaProductos.estado  == 'cotizado' && estado == 'pagado') || (this.ventaProductos.estado  == 'cotizado' && estado == 'abonado')){
-        // el estado anterior era cotizado y el nuevo estado es pagado o abonado  
-        
+        // el estado anterior era cotizado y el nuevo estado es pagado o abonado
+
         this.serviceCliente.actualizarProducto_add(id).subscribe(
           res=>{
             resolve(res)
           }
-        ) 
-        
+        )
+
       }
       else if((this.ventaProductos.estado  == 'pagado' && estado  == 'cotizado') || (this.ventaProductos.estado  == 'abonado' && estado  == 'cotizado') ){
         this.serviceCliente.actualizarProducto_delete(id).subscribe(

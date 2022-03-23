@@ -50,15 +50,10 @@
         <button (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </button>
-        <button  *ngIf="this.estado == 'pagado' || this.estado ==  'abonado'" class="button" (click)="activateCommentary()">
+        <button  *ngIf="this.estado == 'pagado' || this.estado ==  'abonado'" class="button" (click)="ordenDeCompra()">
             Orden de compra
         </button>
-        <div class="text-small" *ngIf="this.state">
-          <textarea [formControl]="comentario" name="comentario" id="comentario-orden" cols="30" placeholder="Ingrese comentario para la orden de compra" rows="10"></textarea>
-          <button class="button" [disabled]="comentario.invalid" (click)="createBuyOrder('orden')">Crear orden de compra</button>
-          <p *ngIf="comentario.invalid" class="input-error"><strong>* Campo requerido</strong> </p>
-        </div>
-        <button *ngIf="this.estado == 'cotizado'" class="button" (click)="activateDesc()">
+        <button *ngIf="this.estado == 'cotizado'" class="button" (click)="cotizacion()">
             Crear cotizacion
         </button>
         <button *ngIf="this.estado == 'cotizado'"  class="button" (click)="createBuyOrder('orden')">
@@ -80,11 +75,11 @@
             <button (click)="modificarEstado(this.estado,this.rut,this.id)" style="margin-right: 31px;" class="button-par">
                 Modificar estado
             </button>
-            <button *ngIf="this.estado == 'cotizado'" class="button-par"(click)="activateDesc()">
+            <button *ngIf="this.estado == 'cotizado'" class="button-par"(click)="cotizacion()" >
                 <!-- falta definicion de requerimiento -->
                 Cotizacion
             </button>
-            <button  *ngIf="this.estado == 'pagado' || this.estado == 'abonado' " class="button-par"   (click)="activateCommentary()">
+            <button  *ngIf="this.estado == 'pagado' || this.estado == 'abonado' " class="button-par"   (click)="ordenDeCompra()">
                 Orden de compra
           </button>
         </div>
@@ -108,16 +103,6 @@
            <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
            <a style="text-decoration: none; color: white;" [routerLink]="['/ventas/productos/'+this.id]" > Ver productos</a>
         </div>
-    </div>
-    <div class="text" *ngIf="this.state">
-      <textarea [formControl]="comentario" name="comentario" id="comentario-orden" cols="30" placeholder="Ingrese comentario para la orden de compra" rows="10"></textarea>
-      <button class="button-par" [disabled]="comentario.invalid" id="button-order" (click)="createBuyOrder('orden')">Crear orden de compra</button>
-      <p *ngIf="comentario.invalid" class="input-error"><strong>* Campo requerido</strong> </p>
-    </div>
-    <div class="text-desc" *ngIf="this.stateCotizacion">
-      <input name="comentario"  [formControl]="descuento" id="comentario" placeholder="Ingrese % de Descuento">
-      <button class="button-par" id="button-cotizacion" [disabled]="descuento.invalid" formnovalidate (click)="createBuyOrder('cotizacion')">Crear Cotizacion</button>
-      <p class="input-error-desc" *ngIf="descuento.invalid"><strong>* Solo números</strong> </p>
     </div>
     </div>
 

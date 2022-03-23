@@ -45,7 +45,7 @@ interface productoComprado{
   descripcion: String,
   cantidad:number,
 }
-type TableRow = [number,number,string,string,string,number,number,number]
+type TableRow = [number,number,string,string,number,number]
 
 @Injectable({
   providedIn: 'root'
@@ -125,7 +125,7 @@ export class PdfService {
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     return monthNames[date.getMonth()];
   }
-  async downloadPdf(type:string,id:any,rut:any,commentary:string,desc:number,dataVenta:any){
+  async downloadPdf(type:string,id:any,rut:any,commentary:string,desc:number,dataVenta:any,observacion:any){
     await this.findProveedor(id,rut);
     await this.findCliente(id,rut);
     //const data = await this.fetchDataVenta();
@@ -181,7 +181,17 @@ export class PdfService {
       pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
       pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
-      pdf.add(this.createTable(dataVenta,this.descuento));
+      var tablaDes = this.createTable(dataVenta,this.descuento)
+      pdf.add( tablaDes);
+      console.log(tablaDes.table.body.length)
+      pdf.add(new Table([ ['Observacion: '+observacion]]).heights(rowIndex =>{
+        return rowIndex = 40
+      }).relativePosition(20, 415 + ((tablaDes.table.body.length)*(40+tablaDes.table.body.length+2))).end);
+     // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
+
+      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
+
+
       //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
       pdf.create().open();
     }
@@ -191,19 +201,39 @@ export class PdfService {
   }
 
   createTable(data:any,desc:any):(ITable){
+    var dataTable = this.extractData(data,desc)
     return new Table([
-      [ 'Cant.', 'Nombre','U. ME','Descripción','Servicio','Valor','Desc.','Total'],
-      ...this.extractData(data,desc)
-    ]).relativePosition(20,415).end;
+      [ 'Cant.', 'Nombre','U. ME','Descripción','Valor producto','Total'],
+      ...dataTable,
+      //['Observacion', '','','','','Total']
+    ])
+    .layout({
+      hLineColor:(rowIndex:any,node:any,columnIndex:any) =>{
+        return rowIndex != 0 && rowIndex != 1  && rowIndex != dataTable.length+1 ? rowIndex='#FFFFFF':rowIndex='#000000';
+      },
+      fillColor: (rowIndex:any,node:any,columnIndex:any) => {
+        return rowIndex ===0 ? '#CCCCCC':'';
+      },
+      hLineWidth: (rowIndex:any) => {
+        return rowIndex = 1;
+      },
+    })
+    .heights(rowIndex =>{
+      return rowIndex = 40
+    })
+    .relativePosition(20,415).end;
   }
  // TableRow = [number,number,string,string,string,number,number,number]
   extractData(data:any,desc:any):any{
     // data == venta
     var productos = data.productos;
+
     var row:TableRow[] = [];
     productos.forEach((producto:any) => {
-      row.push([producto.cantidad,producto.nombre,producto.unidadMedida,producto.descripcion,"Servicio",producto.valor,0,data.totalDeVenta]);
-      
+      var totalProductos = producto.valor*producto.cantidad;
+
+      row.push([producto.cantidad,producto.nombre,producto.unidadMedida,producto.descripcion,producto.valor,totalProductos]);
+
     });
     if(data.productos.length == productos.length ){
       return row;
