@@ -80,7 +80,6 @@ export class ListProductoComponent implements OnInit {
   getData(){
     this.service.getProductoForId(this.id).subscribe(
       res=>{
-        console.log(res)
         res.forEach((e:productoComprado)=>{
           this.array.push(e)
           if(this.array.length == res.length){
@@ -188,7 +187,6 @@ export class ListProductoComponent implements OnInit {
   newSuma(rut:string){
     this.serviceCliente.calcularTotalVenta(rut).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }
@@ -197,7 +195,6 @@ export class ListProductoComponent implements OnInit {
   updateVenta(id:string){
     this.serviceCliente.updateVenta(id).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }

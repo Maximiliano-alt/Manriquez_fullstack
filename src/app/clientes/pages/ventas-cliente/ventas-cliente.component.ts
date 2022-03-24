@@ -192,7 +192,6 @@ export class VentasClienteComponent implements OnInit {
   newSuma(rut:string){
     this.service.calcularTotalVenta(rut).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }

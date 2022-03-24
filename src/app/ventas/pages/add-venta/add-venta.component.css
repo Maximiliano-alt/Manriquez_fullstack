@@ -1,12 +1,15 @@
 .container-general{
     width: 100vw;
-    height: 90%;
+    min-height: 90vh;
     color: white;
-    transform: translate(0,53px);
+    margin-top: 50px;
+    /* transform: translate(0,53px); */
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     overflow-y: auto;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 .spiner{
     color: white;
@@ -23,25 +26,25 @@
 
 form{
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
 }
 .container-info{
     width: 100%;
-    height: 65%;
     display: flex;
     flex-direction: column;
 }
 .container-info2{
     width: 100%;
-    height: 70%;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
+    margin: 25px 0 25px 0;
 }
 .input-info{
     width: 100%;
-    height: 33.3%;
+    height: 260px;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -104,14 +107,23 @@ input{
     background: #FFFFFF 0% 0% no-repeat padding-box;
     opacity: 0.8;
 }
-.proveedores{
-    width: 80%;
-    height: 62%;
+.servicios-list{
+    width: 25%;
+    height: 40%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-end;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     opacity: 0.8;
+    transform: translate(130%, -127%);
+}
+
+.proveedores{
+  width: 80%;
+  height: 72%;
+  justify-content: flex-end;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  opacity: 0.8;
 }
 .nav-data{
     height: 35px;
@@ -147,17 +159,18 @@ input{
     text-align: center;
 }
 
-.productos-data, .proveedores-data{
+.productos-data, .proveedores-data, .servicios-data,.servicios-data{
   width: 100%;
+  height: 155px;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
   padding: 10px;
 }
-.navbar-productos{
+.navbar-productos, .navbar-provedoores{
     width: 100%;
-    height: 94%;
+    height: 30px;
     background: #F25C05 0% 0% no-repeat padding-box;
     opacity: 1;
     display: flex;
@@ -172,7 +185,7 @@ input{
     transition: background .5s;
     cursor: pointer;
 }
-.producto{
+.producto,.servicio-one{
     width: 100%;
     min-height: 57px;
     background: #dcdbdb 0% 0% no-repeat padding-box;
@@ -221,15 +234,15 @@ input{
 }
 .servicios{
     width: 100%;
-    height: 75%;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 .servicios_input{
     width: 100%;
-    height: 30%;
+    height: 75px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -247,24 +260,24 @@ strong{
 }
 
 .add-service{
-    width: 100%;
+    width: 45%;
     height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .add-service button{
+    width: 200px;
     border-radius: 20px;
     border:none;
     background-color: #F25C05;
     color: white;
-    width: 200px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .utilidad{
@@ -272,8 +285,9 @@ input[type=number]::-webkit-outer-spin-button {
     height: 25%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    
 }
 .utilidad input{
     width: 25%;
@@ -281,27 +295,28 @@ input[type=number]::-webkit-outer-spin-button {
 
 .buttons{
     width: 100%;
-    height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
+
+
 .button-footer{
     width: 100%;
-    height: 35%;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .button-footer button{
-    width: 80%;
-    height: 65%;
+    width: 70%;
+    height: 55%;
     background: #F25C05 0% 0% no-repeat padding-box;
     border-radius: 16px;
     opacity: 1;
 }
-
 
 .slide{
     width: 100vw;
@@ -340,15 +355,12 @@ input[type=number]::-webkit-outer-spin-button {
     display: flex;
     flex-direction: row;
     align-items: center;
-
     padding: 10px;
 }
 .itemAgregado input{
-
     width: 40px;
     text-align: center;
 }
-
 
 .dataProduct{
     display: flex;
@@ -369,7 +381,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media screen and (min-width:425px){
     .button-footer button{
-        width: 340px;
+        width: 330px;
     }
     .listadoAgregado{
         width: 410px;
@@ -379,6 +391,9 @@ input[type=number]::-webkit-outer-spin-button {
     }
     .value-service{
         width: 170px;
+    }
+    .add-service button{
+        width: 210px;
     }
     .utilidad input{
         width: 110px;
@@ -394,8 +409,7 @@ input[type=number]::-webkit-outer-spin-button {
         width: 500px;
     }
     .button-footer{
-        height: 40%;
-        align-items: flex-end;
+        height: 65px;
     }
 }
 
@@ -404,29 +418,16 @@ input[type=number]::-webkit-outer-spin-button {
         width: 975px;
         align-items: center;
     }
-    .data-cliente{
-        height: 95%;
-    }
     .container-info{
         width: 100%;
-        height: 50%;
         flex-direction: row;
+        margin-top: 25px;
     }
     .input-info{
-      width: 35%;
-      height: 100%;
+        height: 300px;
     }
-    .search-proveedor{
-      height: 20%;
-    }
-    .search-cliente, .search-productos{
-        height: 20%;
-    }
-    .data-cliente-container, .productos, .proveedores{
-        height: 67%;
-    }
-    .navbar-productos{
-        height: 35%
+    .productos-data, .proveedores-data{
+        height: 190px;
     }
     .producto .data, .proveedor .data{
         width: 90%;
@@ -442,13 +443,9 @@ input[type=number]::-webkit-outer-spin-button {
     }
     .buttons{
         width: 70%;
-        height: 25%;
         flex-direction: row;
     }
-    .button-footer{
-        width: 50%;
-        align-items: center;
-    }
+  
     .button-footer button{
         width: 80%;
     }

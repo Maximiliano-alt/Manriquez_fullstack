@@ -29,7 +29,6 @@ export class ListClientesComponent implements OnInit {
   getData(){
     this.service.getClientes().subscribe(
       (res:any)=>{
-        console.log(res)
         if(res.status==200){
           res.clientes.forEach((e:cliente) => {
             this.array.push(e)

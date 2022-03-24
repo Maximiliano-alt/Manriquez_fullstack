@@ -3,6 +3,7 @@ import { Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { product,ProductsService } from '../../services/products.service';
 import { Router } from '@angular/router';
+import { category } from '../add-products/interfaz'
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
@@ -23,6 +24,7 @@ export class AddProductsComponent implements OnInit {
 
   }
 
+  categorias:category[]=[]
 
   name: FormControl;
   price: FormControl;
@@ -106,10 +108,13 @@ export class AddProductsComponent implements OnInit {
       }
     );
 
+    
+
 
   }
 
   ngOnInit(): void {
+    this.changeCategory()
   }
 
   createProduct(data:product){
@@ -136,6 +141,18 @@ export class AddProductsComponent implements OnInit {
 
   onFileChanges(event: any): void {
     this.product.imagen = event[0].base64;
-    console.log(this.product.imagen)
   }
-}
+ 
+  changeCategory(){
+    
+    this.service.getCategoria().subscribe(
+      (res:category[])=>{
+        res.map((e:category)=>{
+          this.categorias.push(e)
+        })
+      }
+    )
+    
+  }
+
+}  

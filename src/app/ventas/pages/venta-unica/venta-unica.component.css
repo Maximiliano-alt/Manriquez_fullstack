@@ -1,3 +1,12 @@
+.my-validation-message::before {
+  display: none;
+}
+
+.my-validation-message i {
+  margin: 0 .4em;
+  color: #f27474;
+  font-size: 1.4em;
+}
 .container-general{
     width: 100vw;
     min-height: 91.5%;
@@ -144,7 +153,7 @@
         flex-direction: column;
         margin-top: 42px;
         align-items: center;
-        transform: translateX(-29%);
+        transform: translateX(-28%);
     }
 
     .text{
@@ -167,7 +176,7 @@
     .input-error{
       position: absolute;
       color: red;
-      transform: translate(-114px, 21px);
+      transform: translate(0, 21px);
     }
     .input-error-desc{
       position: absolute;
@@ -183,7 +192,7 @@
       height: 4.5%;
       visibility: visible;
       position: absolute;
-      transform: translate(-50%, 570%);
+      transform: translate(0, 40%);
     }
     #button-cotizacion{
       max-width: 90%;

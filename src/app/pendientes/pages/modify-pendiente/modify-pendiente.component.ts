@@ -30,9 +30,7 @@ export class ModifyPendienteComponent implements OnInit {
   getPendienteForId(){
     this.service.getPendienteForId(this.id).subscribe(
       (res:any)=>{
-        console.log(res)
         if(res){
-          
           this.indicadorRespuesta = 1
           this.newPendiente = res.data
         }

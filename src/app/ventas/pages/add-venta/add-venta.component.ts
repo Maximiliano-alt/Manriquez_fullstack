@@ -21,6 +21,7 @@ export class AddVentaComponent implements OnInit {
   rut!:string;
   icoColor = 'white';
   nombreProveedor!:string;
+  stateService = false;
   cliente:cliente={
     nombre: '',
     direccion: '',
@@ -46,6 +47,8 @@ export class AddVentaComponent implements OnInit {
         nombre: '',
         apellidos: '',
         direccion: '',
+        comuna: '',
+        ciudad: '',
         telefono: '',
         correo: '',
         rut: '',
@@ -98,7 +101,6 @@ export class AddVentaComponent implements OnInit {
     this.getProductos();
     this.getProveedores();
   }
-
   changeColor(color: string){
     if(color == 'white'){
       this.icoColor = '#F25C05';
@@ -110,15 +112,10 @@ export class AddVentaComponent implements OnInit {
     this.marcadorListaProducto = 0;
     this.service.getProductos().subscribe(
       res=>{
-
-        res.forEach(element => {
-          this.listaProductos.push(element)
-
+        this.listaProductos = res
           if(this.listaProductos.length == res.length){
             this.marcadorListaProducto = 1
           }
-        });
-
       }
     )
   }
@@ -127,13 +124,10 @@ export class AddVentaComponent implements OnInit {
     this.marcadorListaProveedor = 0;
     this.serviceProveedor.getAllProveedores().subscribe(
       res=>{
-        res.proveedores.forEach((element: Proveedor) => {
-          this.listaProveedores.push(element)
-          if(this.listaProveedores.length == res.length){
-            this.marcadorListaProducto = 1
-          }
-        });
-
+        this.listaProveedores = res.proveedores
+        if(this.listaProveedores.length == res.length){
+          this.marcadorListaProducto = 1
+        }
       }
     )
   }
@@ -151,6 +145,8 @@ export class AddVentaComponent implements OnInit {
   asignacionCliente(data:cliente){
     this.cliente.nombre = data.nombre
     this.cliente.direccion = data.direccion
+    this.cliente.comuna = data.comuna
+    this.cliente.ciudad = data.ciudad
     this.cliente.telefono = data.telefono
     this.cliente.correo = data.correo
     this.cliente.rut = data.rut
@@ -292,13 +288,15 @@ export class AddVentaComponent implements OnInit {
       //guardamos al cliente en venta!
 
       this.venta.cliente.nombre = this.cliente.nombre
+      this.venta.cliente.comuna = this.cliente.comuna
+      this.venta.cliente.ciudad = this.cliente.nombre
       this.venta.cliente.correo = this.cliente.correo
       this.venta.cliente.rut = this.cliente.rut
       this.venta.cliente.telefono = this.cliente.telefono
       this.venta.cliente.direccion = this.cliente.direccion
 
       var suma = 0
-      
+
       //sumando productos
       this.listaProductosEnLista.forEach((e)=>{
         suma = suma  + e.cantidad*e.valor;
@@ -311,8 +309,8 @@ export class AddVentaComponent implements OnInit {
 
       //calculo de la suma total!
       this.venta.totalDeVenta = Math.trunc(suma + (suma * 0.19));
-      
-      
+
+
       this.listaProductosEnLista.forEach((e)=>{
         this.venta.productos.push(e);
       })
@@ -346,6 +344,7 @@ export class AddVentaComponent implements OnInit {
   newSuma(rut:string){
     this.serviceCliente.calcularTotalVenta(rut).subscribe(
       res=>{
+
       }
     )
   }

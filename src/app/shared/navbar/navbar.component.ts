@@ -1,4 +1,5 @@
 import { Component, OnInit,EventEmitter,Input,Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 
@@ -13,9 +14,20 @@ export class NavbarComponent {
 
   @Input()
   var:any={
-    route:'',
-    title:''
+    route:"",
+    title:"",
+    category:""
   }
+  
   @Output()
   emit: EventEmitter<any> = new EventEmitter();
+
+  constructor(private router:Router){
+
+  }
+
+  logOut(){
+    localStorage.removeItem('_pipo')
+    this.router.navigate(['/'])
+  }
 }

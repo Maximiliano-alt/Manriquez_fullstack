@@ -28,7 +28,6 @@ export class ClienteService {
 
   }
   clientUpdate(data:cliente,id:any){
-    console.log(data,"data en el servicio")
     return this.http.put<any>(environment.baseUrl+'/update/Cliente/'+id,data);
   }
   getVentasClient(data:string){
@@ -91,6 +90,8 @@ export interface cliente{
 export interface ventaCliente{
   nombre: string,
   direccion: string,
+  comuna: string,
+  ciudad: string,
   telefono: string,
   correo: string,
   rut: string,

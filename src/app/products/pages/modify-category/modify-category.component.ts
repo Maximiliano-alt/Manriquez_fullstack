@@ -21,7 +21,15 @@ export class ModifyCategoryComponent implements OnInit {
   modifyCategoria(){
     this.service.modifyCategory(this.id,this.newName).subscribe(
       (res:any)=>{
-        console.log(res)
+        if(res.status==200){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Categoria Actualizada',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
       }
     )
   }

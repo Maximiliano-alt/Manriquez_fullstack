@@ -108,9 +108,7 @@ export class ModifyProveedorComponent implements OnInit {
             });
           }
         });
-      console.log('info enviada');
     } catch (error) {
-      console.log(error);
     }
   }
 

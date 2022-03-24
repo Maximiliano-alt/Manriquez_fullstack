@@ -15,6 +15,8 @@ interface venta{
         nombre: string,
         apellidos: string,
         direccion: string,
+        comuna:string,
+        ciudad:string,
         telefono: string,
         correo: string,
         rut: string,
@@ -45,8 +47,8 @@ interface productoComprado{
   descripcion: String,
   cantidad:number,
 }
-type TableRow = [number,number,string,string,string,number,number,number]
-
+type TableRow = [number,number,string,string,number,number]
+type TableRowServices = [string,number]
 @Injectable({
   providedIn: 'root'
 })
@@ -84,6 +86,8 @@ export class PdfService {
         nombre: '',
         apellidos: '',
         direccion: '',
+        comuna:'',
+        ciudad:'',
         telefono: '',
         correo: '',
         rut: '',
@@ -121,12 +125,13 @@ export class PdfService {
    }
    counter = 0;
    descuento = 0;
+   rowHeight = 40;
   transformMonth(date: Date):string {
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     return monthNames[date.getMonth()];
   }
-  async downloadPdf(type:string,id:any,rut:any,commentary:string,desc:number,dataVenta:any){
-    console.log(dataVenta,"downloadPdf")
+
+  async downloadPdf(type:string,id:any,rut:any,commentary:string,desc:number,dataVenta:any,observacion:any){
     await this.findProveedor(id,rut);
     await this.findCliente(id,rut);
     //const data = await this.fetchDataVenta();
@@ -174,7 +179,7 @@ export class PdfService {
       pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
       pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(65,115).bold().end);
       pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(65,135).bold().end);
-      pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+this.dateTime.getMonth()+1+'/'+this.dateTime.getFullYear()).relativePosition(65,155).bold().end);
+      pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(65,155).bold().end);
       pdf.add(new Txt('\n\nCOTIZACIÓN').relativePosition(330,185).fontSize(20).bold().end);
       pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).end);
       pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).end);
@@ -182,41 +187,148 @@ export class PdfService {
       pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
       pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
-      pdf.add(this.createTable(dataVenta,this.descuento));
+      var tablaDes = this.createTable(dataVenta,this.descuento)
+      var tablaObs = this.createTableObservacion(observacion,tablaDes)
+      var tablaServices = this.createTableServices(dataVenta)
+      pdf.add( tablaDes);
+      pdf.add( tablaServices);
+      pdf.add( tablaObs);
+
+     // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
+
+      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
+
+
+      //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
+      pdf.create().open();
+    }
+    if(type === 'guia'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
+      pdf.pageSize('A3');//C:\Users\maxes\OneDrive\Documentos\Pega\SoftwareMama\manriquez-fullstack\Frontend\src\assets\page\ICONO-EXPERIENCIA.svg
+      pdf.add( await new Img('../assets/page/Pisosmanriquez.logo-02.png').width(200).build());
+
+      pdf.add(new Txt('\n\nME Construcción y Diseño de interiores Spa').color('#F25C05').fontSize(25).relativePosition(215,-125).bold().end);
+      pdf.add(new Txt('\n\nRUT: 76.861.179-3').color('#F25C05').fontSize(25).relativePosition(215,-100).bold().end);
+      pdf.add(new Txt('\n\nPisos Flotantes - Pisos Madera - Pisos Vinílicos - Ceramicos - Porcelanatos').relativePosition(215,-35).italics().end);
+      pdf.add(new Txt('\n\nPasto Sintetico - Alfombras - Cortinas Roller - Departamento de construcción ').relativePosition(215,-15).italics().end);
+      pdf.add(new Txt('\n\nPapeles Murales - Servicios Alfombras - Cierres de Terraza').relativePosition(215,5).italics().end);
+      pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
+      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688- Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
+      pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
+      pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(65,115).bold().end);
+      pdf.add(new Txt('\n\nEstado    Pagado').relativePosition(65,135).bold().end);
+      pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+this.dateTime.getMonth()+1+'/'+this.dateTime.getFullYear()).relativePosition(65,155).bold().end);
+      pdf.add(new Txt('\n\nGUIA DE VENTA').relativePosition(330,110).fontSize(20).bold().end);
+      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).end);
+      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).end);
+      pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).end);
+      pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
+      pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
+      pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
+      var tablaDes = this.createTable(dataVenta,this.descuento)
+      var tablaObs = this.createTableObservacion(observacion,tablaDes)
+      var tablaServices = this.createTableServices(dataVenta)
+      pdf.add( tablaDes);
+      pdf.add( tablaServices);
+      pdf.add( tablaObs);
+     // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
+
+      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
+
+
       //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
       pdf.create().open();
     }
 
 
-
   }
 
   createTable(data:any,desc:any):(ITable){
+    var dataTable = this.extractData(data,desc)
     return new Table([
-      [ 'Cant.', 'Nombre','U. ME','Descripción','Servicio','Valor','Desc.','Total'],
-      ...this.extractData(data,desc)
-    ]).relativePosition(20,415).end;
+      [ 'Cant.', 'Nombre','U. ME','Descripción','Valor producto','Total'],
+      ...dataTable,
+      //['Observacion', '','','','','Total']
+    ]).widths([38,125,40,370,67,67])
+    .layout({
+      hLineColor:(rowIndex:any,node:any,columnIndex:any) =>{
+        return rowIndex != 0 && rowIndex != 1  && rowIndex != dataTable.length+1 ? rowIndex='#FFFFFF':rowIndex='#000000';
+      },
+      fillColor: (rowIndex:any,node:any,columnIndex:any) => {
+        return rowIndex ===0 ? '#CCCCCC':'';
+      },
+      hLineWidth: (rowIndex:any) => {
+        return rowIndex = 1;
+      },
+    })
+    .heights(rowIndex =>{
+      return rowIndex = this.rowHeight
+    }).relativePosition(20,415).end;
   }
  // TableRow = [number,number,string,string,string,number,number,number]
   extractData(data:any,desc:any):any{
-    console.log(data)
     // data == venta
     var productos = data.productos;
     var row:TableRow[] = [];
     productos.forEach((producto:any) => {
-      console.log(data,"venta en extrac data")
-      console.log(producto,"este es el producto")
-      row.push([producto.cantidad,producto.nombre,producto.unidadMedida,producto.descripcion,"Servicio",producto.valor,0,data.totalDeVenta]);
-      
+      var totalProductos = producto.valor*producto.cantidad;
+
+      row.push([producto.cantidad,producto.nombre,producto.unidadMedida,producto.descripcion,producto.valor,totalProductos]);
+
     });
-    if(data.productos.length == productos.length ){
-      console.log(row)
+
+      return row;
+
+    // return productos.map((row:any) => [row.productos.map((p:any) => p.cantidad),data.id_Venta,row.productos.map((p:any) => p.unidadMedida),row.productos.map((p:any) => p.descripcion),data.servicios.map((s:any) => {}),row.productos.map((p:any) => p.valor),this.descuento,row.totalDeVenta]);
+
+  }
+
+  createTableServices(data:any):(ITable){
+    var dataTable= this.extractDataServices(data)
+    return new Table([
+      ['Servicios','Valor servicio'],
+      ...dataTable]).heights(rowIndex =>{
+      return rowIndex = this.rowHeight
+    }).layout({
+      fillColor: (rowIndex:any,node:any,columnIndex:any) => {
+        return rowIndex ===0 ? '#CCCCCC':'';
+      },
+    })
+    .relativePosition(20, 800).end
+   // .relativePosition(500, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
+  }
+  extractDataServices(data:any):any{
+    // data == servicios
+    var servicios = data.servicios;
+    console.log(servicios)
+    var row:TableRowServices[] = [];
+
+
+    servicios.forEach((service:any) => {
+      console.log(service.nombre)
+      row.push([service.nombre,service.valor]);
+    });
+    if(servicios.length == servicios.length ){
       return row;
     }
 
     // return productos.map((row:any) => [row.productos.map((p:any) => p.cantidad),data.id_Venta,row.productos.map((p:any) => p.unidadMedida),row.productos.map((p:any) => p.descripcion),data.servicios.map((s:any) => {}),row.productos.map((p:any) => p.valor),this.descuento,row.totalDeVenta]);
 
   }
+  createTableObservacion(observacion:any, tablaDes:any):(ITable){
+
+    return new Table([ ['Observacion: '+observacion]]).heights(rowIndex =>{
+      return rowIndex = this.rowHeight
+    }).widths(['*',-9])
+    .relativePosition(20, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
+
+  }
+  // createTableTotal(){
+
+  //   return new Table([ ['Observacion: ']]).heights(rowIndex =>{
+  //     return rowIndex
+  //   }).widths(['*',-200])
+  //  // .relativePosition(500, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
+  // }
 
   // async fetchDataVenta(id:string,rut:string):Promise<venta[]>{
   //   return this.ventasService.getVentaAndCliente

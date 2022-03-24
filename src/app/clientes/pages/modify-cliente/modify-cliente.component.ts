@@ -61,7 +61,6 @@ export class ModifyClienteComponent implements OnInit {
     // )
     this.service.getOneClient(this.id).pipe(finalize(()=>this.llenarForm())).subscribe((res:any) => {
       this.clientModify = res.data;
-     console.log(res,"Data entrega")
       this.nameClient = this.clientModify.nombre;
     });
   }
@@ -129,9 +128,7 @@ export class ModifyClienteComponent implements OnInit {
             });
           }
         });
-      console.log('info enviada');
     } catch (error) {
-      console.log(error);
     }
   }
 

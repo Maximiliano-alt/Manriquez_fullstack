@@ -41,11 +41,7 @@ export class CatProductsComponent implements OnInit {
       setTimeout(()=>{
         this.estadoDeSearch = 1
       },1)
-    }
-
-    
-    
-    
+    } 
   }
 
 }

@@ -17,7 +17,8 @@ export class AddClienteComponent implements OnInit {
   phone:FormControl;
   email:FormControl;
   direction:FormControl;
-
+  comuna: FormControl;
+  ciudad: FormControl;
   clienteDefault:cliente={
     nombre: '',
     direccion: '',
@@ -53,7 +54,22 @@ export class AddClienteComponent implements OnInit {
         this.clienteDefault.rut = value
       }
     );
-
+    this.comuna = new FormControl('',[
+      Validators.required,
+    ]);
+    this.comuna.valueChanges.subscribe(
+      value =>{
+        this.clienteDefault.comuna = value
+      }
+    );
+    this.ciudad = new FormControl('',[
+      Validators.required,
+    ]);
+    this.ciudad.valueChanges.subscribe(
+      value =>{
+        this.clienteDefault.ciudad = value
+      }
+    );
     this.phone = new FormControl('',[
       Validators.required,
       Validators.pattern(/[0-9].*$/)
@@ -91,7 +107,7 @@ export class AddClienteComponent implements OnInit {
 
   add_cliente(){
     if(this.name.valid && this.rut.valid && this.phone.valid
-      && this.email.valid && this.direction.valid){
+      && this.email.valid && this.direction.valid && this.ciudad.valid && this.comuna.valid){
         this.service.add_cliente(this.clienteDefault).subscribe(
           (res:any)=>{
             if(res.status == 200){

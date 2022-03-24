@@ -15,21 +15,16 @@ export class ProductsService {
   }
 
   getCategoria(){
-    return this.http.get<categoria[]>(environment.baseUrl+'/get/categoria').pipe(
-      delay(1000)
-    )
+    return this.http.get<categoria[]>(environment.baseUrl+'/get/categoria')
   }
 
   getProduct(data:string){
-    return this.http.post<product[]>(environment.baseUrl+'/get/producto/category',{data}).pipe(
-      delay(1000)
-    )
+    return this.http.post<product[]>(environment.baseUrl+'/get/producto/category',{data})
   }
 
   modifyCategory(value:any,newName:any){
-    return this.http.post(environment.baseUrl+'/modify/category',{value,newName}).pipe(
-      delay(1000)
-    )
+    return this.http.post(environment.baseUrl+'/modify/category',{value,newName})
+    
   }
 
   deleteCategory(value:any){

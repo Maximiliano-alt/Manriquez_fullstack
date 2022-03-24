@@ -21,7 +21,14 @@ export class AuthGuard implements CanActivate,  CanLoad {
       return false
     }
     else{
-    
+      this.service.validarToken({token:data}).subscribe(
+        (res:any)=>{
+          if(res.status == 200){
+            localStorage.setItem('_pipo',res.mensaje)
+            console.log(res)
+          }
+        }
+      )
       return true
     }
 
