@@ -56,7 +56,7 @@
         <button *ngIf="this.estado == 'cotizado'" class="button" (click)="cotizacion()">
             Crear cotizacion
         </button>
-        <button *ngIf="this.estado == 'cotizado'"  class="button" (click)="createBuyOrder('orden')">
+        <button *ngIf="this.estado == 'cotizado'"  class="button" (click)="guiaVenta()">
             Crear guia de venta
         </button>
         <button (click)="delete(this.id,this.rut)" class="button">
@@ -85,7 +85,7 @@
         </div>
 
         <div class="button-pares">
-            <button  *ngIf="this.estado == 'pagado'  || this.estado == 'abonado' " style="margin-right: 31px;" class="button-par"  (click)="createBuyOrder('orden')">
+            <button  *ngIf="this.estado == 'pagado'  || this.estado == 'abonado' " style="margin-right: 31px;" class="button-par"  (click)="guiaVenta()">
                 <!-- falta definicion del requerimiento -->
                 Crear guia de venta
             </button>

@@ -148,6 +148,39 @@ export class VentaUnicaComponent implements OnInit {
     }
     )
   }
+  guiaVenta():any{
+    //descuento
+    Swal.fire({
+      title: 'Ingrese % de descuento',
+      input: 'number',
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+    }).then((resultado:any) => {
+      this.guiaVenta = resultado.value
+      this.getObservacionGuia()
+    }).catch(err =>{
+      console.log(err)
+    });
+
+
+  }
+  getObservacionGuia(){
+     //observacion
+     Swal.fire({
+      title: 'Ingrese observacion',
+      input: 'text',
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+    }).then((resultado:any) => {
+      this.observacion = resultado.value
+      this.createBuyOrder('guia')
+      setTimeout(()=>{
+       // window.location.reload()
+      },2000)
+    }).catch(err =>{
+      console.log(err)
+    })
+  }
   modificarEstado(estado:string,rut:string,idVenta:string):any{
 
     this.verify_amount(this.id).then((data:any)=>{
