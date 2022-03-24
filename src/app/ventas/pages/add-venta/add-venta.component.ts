@@ -112,15 +112,10 @@ export class AddVentaComponent implements OnInit {
     this.marcadorListaProducto = 0;
     this.service.getProductos().subscribe(
       res=>{
-
-        res.forEach(element => {
-          this.listaProductos.push(element)
-
+        this.listaProductos = res
           if(this.listaProductos.length == res.length){
             this.marcadorListaProducto = 1
           }
-        });
-
       }
     )
   }
@@ -129,13 +124,10 @@ export class AddVentaComponent implements OnInit {
     this.marcadorListaProveedor = 0;
     this.serviceProveedor.getAllProveedores().subscribe(
       res=>{
-        res.proveedores.forEach((element: Proveedor) => {
-          this.listaProveedores.push(element)
-          if(this.listaProveedores.length == res.length){
-            this.marcadorListaProducto = 1
-          }
-        });
-
+        this.listaProveedores = res.proveedores
+        if(this.listaProveedores.length == res.length){
+          this.marcadorListaProducto = 1
+        }
       }
     )
   }
