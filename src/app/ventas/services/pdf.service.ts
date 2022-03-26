@@ -193,7 +193,6 @@ export class PdfService {
       var tablaProduct = this.createTable(dataVenta,this.descuento)
       var tablaObs = this.createTableObservacion(observacion, tablaProduct.table.body.length)
       var tablaServices = this.createTableServices(dataVenta, tablaProduct.table.body.length)
-      //console.log(tablaServices.table.body.length)
       var tablaTotal = this.createTableTotal(dataVenta,this.descuento, tablaProduct.table.body.length)
       pdf.add( tablaProduct );
       pdf.add( tablaObs );
@@ -218,7 +217,7 @@ export class PdfService {
       pdf.add( await new Img('../assets/page/winter.jpg').width(100).height(50).relativePosition(495,jumper).build());
       pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,jumper).build());
       pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,jumper).build());
-      //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
+      pdf.create().download('Cotizacion para '+dataVenta.cliente.nombre.toUpperCase())
       pdf.create().open();
     }
     if(type === 'guia'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
@@ -233,6 +232,7 @@ export class PdfService {
       pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
       pdf.add(new Txt('\n\nTeléfono: +56 2 33058688- Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
       pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
+
       pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(50,115).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(50,135).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(50,155).fontSize(15).bold().end);
@@ -270,10 +270,7 @@ export class PdfService {
       pdf.add( await new Img('../assets/page/winter.jpg').width(100).height(50).relativePosition(495,jumper).build());
       pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,jumper).build());
       pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,jumper).build());
-
-      //this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
-      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
-      //pdf.create().download('Nota de venta de '+this.proveedor.nombre.toUpperCase())
+      pdf.create().download('Nota de venta de '+dataVenta.cliente.nombre.toUpperCase())
       pdf.create().open();
     }
 

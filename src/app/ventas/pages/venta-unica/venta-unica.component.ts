@@ -18,7 +18,6 @@ import { GraphicsService } from 'src/app/graphics/services/graphics.service';
 export class VentaUnicaComponent implements OnInit {
   estado=""; //cotizado o pagado
   id:any="";
-  comentario:FormControl;
   comentarioVenta:string =''
   descuentoVenta:number = 0
   observacion = " "
@@ -27,11 +26,6 @@ export class VentaUnicaComponent implements OnInit {
     this.rut = this.route.snapshot.paramMap.get('rut')
     localStorage.setItem('dataToken',this.rut);
 
-    this.comentario = new FormControl('',[Validators.required,]);
-    this.comentario.valueChanges.subscribe(
-      value =>{
-      }
-    );
   }
 
   ingresoModificacion = 0;
@@ -105,7 +99,7 @@ export class VentaUnicaComponent implements OnInit {
       this.observacion = resultado.value
       this.createBuyOrder('cotizacion')
       setTimeout(()=>{
-       // window.location.reload()
+        window.location.reload()
       },2000)
     }).catch(err =>{
       console.log(err)
@@ -146,7 +140,7 @@ export class VentaUnicaComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: "Confirmar",
     }).then((resultado:any) => {
-      this.guiaVenta = resultado.value
+      this.descuentoVenta = resultado.value
       this.getObservacionGuia()
     }).catch(err =>{
       console.log(err)
@@ -165,7 +159,7 @@ export class VentaUnicaComponent implements OnInit {
       this.observacion = resultado.value
       this.createBuyOrder('guia')
       setTimeout(()=>{
-       // window.location.reload()
+        window.location.reload()
       },2000)
     }).catch(err =>{
       console.log(err)
