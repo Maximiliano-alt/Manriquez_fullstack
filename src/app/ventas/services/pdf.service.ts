@@ -1,5 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Injectable } from '@angular/core';
+import { destroyPlatform, Injectable } from '@angular/core';
 import { Img, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import { ITable } from 'pdfmake-wrapper';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -60,6 +60,7 @@ export class PdfService {
   proveedorService: ProveedorService;
   ventasService:VentasService;
   clienteService:ClienteService;
+  lengthService:any;
   proveedor:Proveedor ={
     nombre: "",
     rut: "",
@@ -189,14 +190,28 @@ export class PdfService {
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
       var tablaDes = this.createTable(dataVenta,this.descuento)
       var tablaObs = this.createTableObservacion(observacion,tablaDes)
-      var tablaServices = this.createTableServices(dataVenta)
+      var tablaServices = this.createTableServices(dataVenta,tablaDes)
+      var tablaTotal = this.createTableTotal( dataVenta,this.descuento,tablaServices)
       pdf.add( tablaDes);
       pdf.add( tablaServices);
       pdf.add( tablaObs);
+      pdf.add(tablaTotal);
+      pdf.add(new Txt('\nCondiciones generales').bold().relativePosition(20,600).end);
+      pdf.add(new Txt('\nForma de pago: 60% inicio trabajos, saldo al finalizar').relativePosition(25,620).end);
+      pdf.add(new Txt('\nTransferencia bancaria() , tarjetas de credito, debito,\n webpay.').relativePosition(25,640).end);
+      pdf.add(new Txt('\nValidez cotizacion: 15 dias habiles.').relativePosition(25,675).end);
+      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(20,715).build());
+      pdf.add(new Txt('\nPOLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica\n (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la \n fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha \nutilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o\n cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.').relativePosition(25,750).end);
 
-     // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
-
-      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
+      pdf.add( await new Img('../assets/page/pyramid.png').width(100).height(50).relativePosition(0,1000).build());
+      pdf.add( await new Img('../assets/page/bs.png').width(100).height(50).relativePosition(100,1000).build());
+      pdf.add( await new Img('../assets/page/multicarpet.jpg').width(100).height(50).relativePosition(180,1000).build());
+      pdf.add( await new Img('../assets/page/carpenter.jpg').width(50).height(50).relativePosition(280,1000).build());
+      pdf.add( await new Img('../assets/page/feltex.png').width(50).height(50).relativePosition(340,1000).build());
+      pdf.add( await new Img('../assets/page/logo-ducasse.png').width(100).height(50).relativePosition(400,1000).build());
+      pdf.add( await new Img('../assets/page/winter.jpg').width(100).height(50).relativePosition(495,1000).build());
+      pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,1000).build());
+      pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,1000).build());
 
 
       //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
@@ -226,16 +241,33 @@ export class PdfService {
       pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
       var tablaDes = this.createTable(dataVenta,this.descuento)
       var tablaObs = this.createTableObservacion(observacion,tablaDes)
-      var tablaServices = this.createTableServices(dataVenta)
+      var tablaServices = this.createTableServices(dataVenta,tablaDes)
+      var tablaTotal = this.createTableTotal( dataVenta,this.descuento,tablaServices)
       pdf.add( tablaDes);
       pdf.add( tablaServices);
       pdf.add( tablaObs);
-     // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
+      pdf.add(tablaTotal);
+      pdf.add(new Txt('\nCondiciones generales').bold().relativePosition(20,600).end);
+      pdf.add(new Txt('\nForma de pago: 60% inicio trabajos, saldo al finalizar').relativePosition(25,620).end);
+      pdf.add(new Txt('\nTransferencia bancaria() , tarjetas de credito, debito,\n webpay.').relativePosition(25,640).end);
+      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(20,715).build());
+      pdf.add(new Txt('\nPOLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica\n (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la \n fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha \nutilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o\n cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.').relativePosition(25,750).end);
+
+      pdf.add( await new Img('../assets/page/pyramid.png').width(100).height(50).relativePosition(0,1000).build());
+      pdf.add( await new Img('../assets/page/bs.png').width(100).height(50).relativePosition(100,1000).build());
+      pdf.add( await new Img('../assets/page/multicarpet.jpg').width(100).height(50).relativePosition(180,1000).build());
+      pdf.add( await new Img('../assets/page/carpenter.jpg').width(50).height(50).relativePosition(280,1000).build());
+      pdf.add( await new Img('../assets/page/feltex.png').width(50).height(50).relativePosition(340,1000).build());
+      pdf.add( await new Img('../assets/page/logo-ducasse.png').width(100).height(50).relativePosition(400,1000).build());
+      pdf.add( await new Img('../assets/page/winter.jpg').width(100).height(50).relativePosition(495,1000).build());
+      pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,1000).build());
+      pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,1000).build());
+      // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
 
       //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
 
 
-      //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
+      //pdf.create().download('Nota de venta de '+this.proveedor.nombre.toUpperCase())
       pdf.create().open();
     }
 
@@ -267,6 +299,7 @@ export class PdfService {
  // TableRow = [number,number,string,string,string,number,number,number]
   extractData(data:any,desc:any):any{
     // data == venta
+
     var productos = data.productos;
     var row:TableRow[] = [];
     productos.forEach((producto:any) => {
@@ -282,8 +315,22 @@ export class PdfService {
 
   }
 
-  createTableServices(data:any):(ITable){
+  createTableServices(data:any,tablaDes:any):any{
     var dataTable= this.extractDataServices(data)
+    if(this.lengthService === 0){
+      return new Table([
+        ['Servicios','Valor servicio'],
+        ['NO HAY SERVICIOS','0']
+      ]
+        ).heights(rowIndex =>{
+        return rowIndex = this.rowHeight
+      }).layout({
+        fillColor: (rowIndex:any,node:any,columnIndex:any) => {
+          return rowIndex ===0 ? '#CCCCCC':'';
+        },
+      }).widths([300,67])
+      .relativePosition(763-300-67,  420+this.rowHeight+((this.rowHeight+5)*tablaDes.table.body.length)).end
+    }
     return new Table([
       ['Servicios','Valor servicio'],
       ...dataTable]).heights(rowIndex =>{
@@ -292,20 +339,21 @@ export class PdfService {
       fillColor: (rowIndex:any,node:any,columnIndex:any) => {
         return rowIndex ===0 ? '#CCCCCC':'';
       },
-    })
-    .relativePosition(20, 800).end
+    }).widths([300,67])
+    .relativePosition(763-300-67,  420+this.rowHeight+((this.rowHeight+5)*tablaDes.table.body.length)).end
    // .relativePosition(500, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
   }
   extractDataServices(data:any):any{
     // data == servicios
     var servicios = data.servicios;
+
     console.log(servicios)
     var row:TableRowServices[] = [];
 
-
+    this.lengthService = servicios.length
+    console.log(this.lengthService)
     servicios.forEach((service:any) => {
-      console.log(service.nombre)
-      row.push([service.nombre,service.valor]);
+            row.push([service.nombre,service.valor]);
     });
     if(servicios.length == servicios.length ){
       return row;
@@ -322,13 +370,20 @@ export class PdfService {
     .relativePosition(20, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
 
   }
-  // createTableTotal(){
+  createTableTotal( dataVenta:any,descuento:any,tablaServ:any):(ITable){
+    //const IVA = 0.19
+    var Sub = dataVenta.totalDeVenta
+    var desc =  Math.round( Sub*(descuento/100) )
+    var NETO = Sub - desc
+    var IVA = Math.round( NETO*0.19 )
+    var TOTAL = NETO + IVA
+    // return new Table([
+    //   ['Servicios','Valor servicio'],
+    return new Table([ ['Sub Total',Sub],['Descuento %'+descuento,desc],['NETO',NETO],['IVA 19%',IVA],['TOTAL',TOTAL]
 
-  //   return new Table([ ['Observacion: ']]).heights(rowIndex =>{
-  //     return rowIndex
-  //   }).widths(['*',-200])
-  //  // .relativePosition(500, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
-  // }
+    ]).widths([70,67])
+    .relativePosition(763-68.5*2, 595+((this.rowHeight+5)*tablaServ.table.body.length)).end
+  }
 
   // async fetchDataVenta(id:string,rut:string):Promise<venta[]>{
   //   return this.ventasService.getVentaAndCliente

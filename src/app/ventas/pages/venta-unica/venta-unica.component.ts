@@ -19,7 +19,6 @@ export class VentaUnicaComponent implements OnInit {
   estado=""; //cotizado o pagado
   id:any="";
   comentario:FormControl;
-  descuento:FormControl;
   comentarioVenta:string =''
   descuentoVenta:number = 0
   observacion = " "
@@ -31,15 +30,6 @@ export class VentaUnicaComponent implements OnInit {
     this.comentario = new FormControl('',[Validators.required,]);
     this.comentario.valueChanges.subscribe(
       value =>{
-      }
-    );
-
-    this.descuento = new FormControl('',[
-      Validators.pattern(/^[0-9]*$/)
-    ]);
-    this.descuento.valueChanges.subscribe(
-      value =>{
-        this.descuentoVenta = value
       }
     );
   }
@@ -96,7 +86,7 @@ export class VentaUnicaComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: "Confirmar",
     }).then((resultado:any) => {
-      this.cotizacion = resultado.value
+      this.descuentoVenta = resultado.value
       this.getObservacion()
     }).catch(err =>{
       console.log(err)

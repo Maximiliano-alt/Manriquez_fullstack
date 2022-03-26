@@ -308,7 +308,7 @@ export class AddVentaComponent implements OnInit {
       })
 
       //calculo de la suma total!
-      this.venta.totalDeVenta = Math.trunc(suma + (suma * 0.19));
+      this.venta.totalDeVenta = Math.trunc(suma);
 
 
       this.listaProductosEnLista.forEach((e)=>{
