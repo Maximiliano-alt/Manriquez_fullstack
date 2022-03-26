@@ -93,6 +93,12 @@ export class GraphicsService {
     return this.http.post(environment.baseUrl+'/deleteVenta/finanzas',{id})
   }
 
+  addAbono(id:any){
+    return this.http.post(environment.baseUrl+'/add/abono/venta',{id});
+  }
+  removeAbono(id:any){
+    return this.http.post(environment.baseUrl+'/delete/abono/venta',{id});
+  }
 
   addGasto(data:any){
     return this.http.post(environment.baseUrl+'/add/finanzas/gastos',data);
@@ -131,7 +137,7 @@ export interface Gasto{
 export interface cliente{
     nombre:string,
     totalDeCompra:number,
-    
+
   }
 
 

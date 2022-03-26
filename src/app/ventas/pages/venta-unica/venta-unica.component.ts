@@ -355,35 +355,89 @@ export class VentaUnicaComponent implements OnInit {
   addToFinanzas(idVenta:any,estado:string){
 
     return new Promise((resolve,reject)=>{
-      if(estado === 'pagado' && this.ventaProductos.estado != 'abonado' && this.ventaProductos.estado != 'pagado'){
-        // cambiamos de estado a enviado
-        this.serviceFinanzas.addVenta(idVenta).subscribe(
-          (res:any)=>{
+      // && this.ventaProductos.estado != "abonado"
+      if(estado == "abonado" ){ //cambiamos a abonado
 
-            resolve(res)
-          }
-        )
+        //revisamos el historial pasado
+        if(this.ventaProductos.estado == "cotizado"){
+          //aca viene desde cotizado
+          //agregamos abono
+          this.serviceFinanzas.addAbono(this.id).subscribe()
+        }
+        else if(this.ventaProductos.estado == "pagado"){
+          //aca viene de pagado
+          // restamos el total de venta y añadimos el abono
+          this.serviceFinanzas.removeVenta(this.id).subscribe(
+            (res)=>{
+
+              this.serviceFinanzas.addAbono(this.id).subscribe(
+                (res)=>{
+                  console.log(res)
+                }
+              )
+            }
+          )
+
+
+        }
+
       }
-      else if(estado === 'abonado' && this.ventaProductos.estado != 'pagado' && this.ventaProductos.estado != 'abonado'){
-        // cambiamos de estado a enviado
-        this.serviceFinanzas.addVenta(idVenta).subscribe(
-          (res:any)=>{
 
-            resolve(res)
-          }
-        )
+      // && this.ventaProductos.estado != "pagado"
+      else if(estado == "pagado" ){ //cambiamos a pagado
+
+        //revisamos el historial pasado
+
+        if(this.ventaProductos.estado == "abonado"){
+          //aca viene de abonado
+          // borramos todo el abono y ingresamos el total de compra
+
+          this.serviceFinanzas.removeAbono(this.id).subscribe(
+            (res)=>{
+              console.log(res)
+              this.serviceFinanzas.addVenta(this.id).subscribe(
+                (res)=>{console.log(res)}
+              )
+            }
+          )
+
+
+        }
+        else if(this.ventaProductos.estado == "cotizado"){
+          //aca viene de cotizado
+          //agregar el valor completo con la formula hacia la finanza
+          this.serviceFinanzas.addVenta(this.id).subscribe()
+        }
+
       }
-      else if(estado === 'cotizado' && this.ventaProductos.estado != 'cotizado'){
-        // cambiamos de estado a cotizado
-        this.serviceFinanzas.removeVenta(idVenta).subscribe(
-          (res:any)=>{
 
-            resolve(res)
+      // && this.ventaProductos.estado != "cotizado"
+      else if(estado == "cotizado" ){ //cambiamos a cotizado
 
-          }
-        )
+        //revisamos el historial pasado
+        if(this.ventaProductos.estado == "abonado"){
+          //aca viene de abonado
+          // por ende se resta el abono de finanza
+          this.serviceFinanzas.removeAbono(this.id).subscribe(
+
+          )
+
+
+        }
+        else if(this.ventaProductos.estado == "pagado"){
+          //aca viene de pagado, por ende se resta del abono de finanza
+          this.serviceFinanzas.removeVenta(this.id).subscribe(
+
+          )
+
+        }
+
+
       }
+
+      resolve(1)
     })
+
   }
 
 
