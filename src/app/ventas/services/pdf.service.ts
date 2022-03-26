@@ -1,5 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Injectable } from '@angular/core';
+import { destroyPlatform, Injectable } from '@angular/core';
 import { Img, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import { ITable } from 'pdfmake-wrapper';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -60,6 +60,7 @@ export class PdfService {
   proveedorService: ProveedorService;
   ventasService:VentasService;
   clienteService:ClienteService;
+  lengthService:any;
   proveedor:Proveedor ={
     nombre: "",
     rut: "",
@@ -125,7 +126,9 @@ export class PdfService {
    }
    counter = 0;
    descuento = 0;
-   rowHeight = 40;
+   originPosition = 370;
+   rowHeight = 25;
+   fontSizeData = 10
   transformMonth(date: Date):string {
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     return monthNames[date.getMonth()];
@@ -177,29 +180,44 @@ export class PdfService {
       pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
       pdf.add(new Txt('\n\nTeléfono: +56 2 33058688- Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
       pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
-      pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(65,115).bold().end);
-      pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(65,135).bold().end);
-      pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(65,155).bold().end);
-      pdf.add(new Txt('\n\nCOTIZACIÓN').relativePosition(330,185).fontSize(20).bold().end);
-      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).end);
-      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).end);
-      pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).end);
-      pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
-      pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
-      pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
-      var tablaDes = this.createTable(dataVenta,this.descuento)
-      var tablaObs = this.createTableObservacion(observacion,tablaDes)
-      var tablaServices = this.createTableServices(dataVenta)
-      pdf.add( tablaDes);
-      pdf.add( tablaServices);
-      pdf.add( tablaObs);
+      pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(50,115).fontSize(15).bold().end);
+      pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(50,135).fontSize(15).bold().end);
+      pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(50,155).fontSize(15).bold().end);
+      pdf.add(new Txt('\n\nCOTIZACIÓN').relativePosition(330,150).fontSize(18).bold().end);
+      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).fontSize(12).end);
+      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).fontSize(12).end);
+      pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).fontSize(12).end);
+      pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).fontSize(12).end);
+      pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).fontSize(12).end);
+      pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).fontSize(12).end);
+      var tablaProduct = this.createTable(dataVenta,this.descuento)
+      var tablaObs = this.createTableObservacion(observacion, tablaProduct.table.body.length)
+      var tablaServices = this.createTableServices(dataVenta, tablaProduct.table.body.length)
+      var tablaTotal = this.createTableTotal(dataVenta,this.descuento, tablaProduct.table.body.length)
+      pdf.add( tablaProduct );
+      pdf.add( tablaObs );
+      pdf.add( tablaServices );
+      pdf.add( tablaTotal );
+      var countRowsTBS = tablaProduct.table.body.length + tablaServices.table.body.length;
+      var jumper = this.originPosition+(this.rowHeight+this.rowHeight/2)+((this.rowHeight+5)*countRowsTBS);
+      pdf.add(new Txt('\nCondiciones generales').bold().relativePosition(20, jumper).fontSize(15).end);
+      pdf.add(new Txt('\nForma de pago: 60% inicio trabajos, saldo al finalizar').relativePosition(20,jumper+25).fontSize(12).end);
+      pdf.add(new Txt('\nTransferencia bancaria() , tarjetas de credito, debito, webpay.').relativePosition(20,jumper+40).fontSize(12).end);
+      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(370,jumper+20).build());
 
-     // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
+      pdf.add(new Table([['POLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha utilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.']]).widths(['*',-9]).relativePosition(20,jumper+80).fontSize(12).end);
 
-      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
-
-
-      //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
+      jumper += 230;
+      pdf.add( await new Img('../assets/page/pyramid.png').width(100).height(50).relativePosition(0,jumper).build());
+      pdf.add( await new Img('../assets/page/bs.png').width(100).height(50).relativePosition(100,jumper).build());
+      pdf.add( await new Img('../assets/page/multicarpet.jpg').width(100).height(50).relativePosition(180,jumper).build());
+      pdf.add( await new Img('../assets/page/carpenter.jpg').width(50).height(50).relativePosition(280,jumper).build());
+      pdf.add( await new Img('../assets/page/feltex.png').width(50).height(50).relativePosition(340,jumper).build());
+      pdf.add( await new Img('../assets/page/logo-ducasse.png').width(100).height(50).relativePosition(400,jumper).build());
+      pdf.add( await new Img('../assets/page/winter.jpg').width(100).height(50).relativePosition(495,jumper).build());
+      pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,jumper).build());
+      pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,jumper).build());
+      pdf.create().download('Cotizacion para '+dataVenta.cliente.nombre.toUpperCase())
       pdf.create().open();
     }
     if(type === 'guia'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
@@ -214,28 +232,45 @@ export class PdfService {
       pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
       pdf.add(new Txt('\n\nTeléfono: +56 2 33058688- Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
       pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
-      pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(65,115).bold().end);
-      pdf.add(new Txt('\n\nEstado    Pagado').relativePosition(65,135).bold().end);
-      pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+this.dateTime.getMonth()+1+'/'+this.dateTime.getFullYear()).relativePosition(65,155).bold().end);
-      pdf.add(new Txt('\n\nGUIA DE VENTA').relativePosition(330,110).fontSize(20).bold().end);
-      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).end);
-      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).end);
-      pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).end);
-      pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).end);
-      pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).end);
-      pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).end);
-      var tablaDes = this.createTable(dataVenta,this.descuento)
-      var tablaObs = this.createTableObservacion(observacion,tablaDes)
-      var tablaServices = this.createTableServices(dataVenta)
-      pdf.add( tablaDes);
+
+      pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(50,115).fontSize(15).bold().end);
+      pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(50,135).fontSize(15).bold().end);
+      pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(50,155).fontSize(15).bold().end);
+      pdf.add(new Txt('\n\nGUIA DE VENTA').relativePosition(330,150).fontSize(18).bold().end);
+      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).fontSize(12).end);
+      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).fontSize(12).end);
+      pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).fontSize(12).end);
+      pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).fontSize(12).end);
+      pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).fontSize(12).end);
+      pdf.add(new Txt('\n\Teléfono        :      '+this.cliente.telefono).relativePosition(450,315).fontSize(12).end);
+      var tablaProduct = this.createTable(dataVenta,this.descuento)
+      var tablaObs = this.createTableObservacion(observacion, tablaProduct.table.body.length)
+      var tablaServices = this.createTableServices(dataVenta, tablaProduct.table.body.length)
+      var tablaTotal = this.createTableTotal(dataVenta,this.descuento, tablaProduct.table.body.length)
+      pdf.add( tablaProduct);
       pdf.add( tablaServices);
-      pdf.add( tablaObs);
-     // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
+      pdf.add( tablaObs );
+      pdf.add( tablaTotal );
+      var countRowsTBS = tablaProduct.table.body.length + tablaServices.table.body.length;
+      var jumper = this.originPosition+(this.rowHeight+this.rowHeight/2)+((this.rowHeight+5)*countRowsTBS);
+      pdf.add(new Txt('\nCondiciones generales').bold().relativePosition(20, jumper).fontSize(15).end);
+      pdf.add(new Txt('\nForma de pago: 60% inicio trabajos, saldo al finalizar').relativePosition(20,jumper+25).fontSize(12).end);
+      pdf.add(new Txt('\nTransferencia bancaria() , tarjetas de credito, debito, webpay.').relativePosition(20,jumper+40).fontSize(12).end);
+      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(370,jumper+20).build());
+      
+      pdf.add(new Table([['POLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha utilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.']]).widths(['*',-9]).relativePosition(20,jumper+80).fontSize(12).end);
 
-      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
-
-
-      //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
+      jumper += 230;
+      pdf.add( await new Img('../assets/page/pyramid.png').width(100).height(50).relativePosition(0,jumper).build());
+      pdf.add( await new Img('../assets/page/bs.png').width(100).height(50).relativePosition(100,jumper).build());
+      pdf.add( await new Img('../assets/page/multicarpet.jpg').width(100).height(50).relativePosition(180,jumper).build());
+      pdf.add( await new Img('../assets/page/carpenter.jpg').width(50).height(50).relativePosition(280,jumper).build());
+      pdf.add( await new Img('../assets/page/feltex.png').width(50).height(50).relativePosition(340,jumper).build());
+      pdf.add( await new Img('../assets/page/logo-ducasse.png').width(100).height(50).relativePosition(400,jumper).build());
+      pdf.add( await new Img('../assets/page/winter.jpg').width(100).height(50).relativePosition(495,jumper).build());
+      pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,jumper).build());
+      pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,jumper).build());
+      pdf.create().download('Nota de venta de '+dataVenta.cliente.nombre.toUpperCase())
       pdf.create().open();
     }
 
@@ -262,11 +297,10 @@ export class PdfService {
     })
     .heights(rowIndex =>{
       return rowIndex = this.rowHeight
-    }).relativePosition(20,415).end;
+    }).relativePosition(20, this.originPosition).fontSize(this.fontSizeData).end;
   }
- // TableRow = [number,number,string,string,string,number,number,number]
+
   extractData(data:any,desc:any):any{
-    // data == venta
     var productos = data.productos;
     var row:TableRow[] = [];
     productos.forEach((producto:any) => {
@@ -282,8 +316,31 @@ export class PdfService {
 
   }
 
-  createTableServices(data:any):(ITable){
+  createTableObservacion(observacion:any, countRows_TBProducts:number):(ITable){
+
+    return new Table([ ['Observacion: '+observacion]]).heights(rowIndex =>{
+      return rowIndex = this.rowHeight
+    }).widths(['*',-9])
+    .relativePosition(20, this.originPosition+((this.rowHeight+5)*countRows_TBProducts)).fontSize(this.fontSizeData).end
+
+  }
+
+  createTableServices(data:any, countRows_TBProducts:number):any{
     var dataTable= this.extractDataServices(data)
+    if(this.lengthService === 0){
+      return new Table([
+        ['Servicios','Valor servicio'],
+        ['NO HAY SERVICIOS','0']
+      ]
+        ).heights(rowIndex =>{
+        return rowIndex = this.rowHeight
+      }).layout({
+        fillColor: (rowIndex:any,node:any,columnIndex:any) => {
+          return rowIndex ===0 ? '#CCCCCC':'';
+        },
+      }).widths([300,67])
+      .relativePosition(20, (this.originPosition+5)+(this.rowHeight+this.rowHeight/2)+((this.rowHeight+5)*countRows_TBProducts)).fontSize(this.fontSizeData).end
+    }
     return new Table([
       ['Servicios','Valor servicio'],
       ...dataTable]).heights(rowIndex =>{
@@ -292,20 +349,18 @@ export class PdfService {
       fillColor: (rowIndex:any,node:any,columnIndex:any) => {
         return rowIndex ===0 ? '#CCCCCC':'';
       },
-    })
-    .relativePosition(20, 800).end
-   // .relativePosition(500, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
+    }).widths([300,67])
+    .relativePosition(20, (this.originPosition+5)+(this.rowHeight+this.rowHeight/2)+((this.rowHeight+5)*countRows_TBProducts)).fontSize(this.fontSizeData).end
   }
+
   extractDataServices(data:any):any{
     // data == servicios
     var servicios = data.servicios;
-    console.log(servicios)
     var row:TableRowServices[] = [];
 
-
+    this.lengthService = servicios.length
     servicios.forEach((service:any) => {
-      console.log(service.nombre)
-      row.push([service.nombre,service.valor]);
+            row.push([service.nombre,service.valor]);
     });
     if(servicios.length == servicios.length ){
       return row;
@@ -314,21 +369,20 @@ export class PdfService {
     // return productos.map((row:any) => [row.productos.map((p:any) => p.cantidad),data.id_Venta,row.productos.map((p:any) => p.unidadMedida),row.productos.map((p:any) => p.descripcion),data.servicios.map((s:any) => {}),row.productos.map((p:any) => p.valor),this.descuento,row.totalDeVenta]);
 
   }
-  createTableObservacion(observacion:any, tablaDes:any):(ITable){
+  createTableTotal(dataVenta:any, descuento:any, countRows_TBProducts:number):(ITable){
+    //const IVA = 0.19
+    var Sub = dataVenta.totalDeVenta
+    var desc =  Math.round( Sub*(descuento/100) )
+    var NETO = Sub - desc
+    var IVA = Math.round( NETO*0.19 )
+    var TOTAL = NETO + IVA
+    // return new Table([
+    //   ['Servicios','Valor servicio'],
+    return new Table([ ['Sub Total',Sub],['Descuento %'+descuento,desc],['NETO',NETO],['IVA 19%',IVA],['TOTAL $',TOTAL]
 
-    return new Table([ ['Observacion: '+observacion]]).heights(rowIndex =>{
-      return rowIndex = this.rowHeight
-    }).widths(['*',-9])
-    .relativePosition(20, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
-
+    ]).widths([73,67])
+    .relativePosition(367+150, (this.originPosition+5)+(this.rowHeight+this.rowHeight/2)+((this.rowHeight+5)*countRows_TBProducts)).fontSize(this.fontSizeData).end
   }
-  // createTableTotal(){
-
-  //   return new Table([ ['Observacion: ']]).heights(rowIndex =>{
-  //     return rowIndex
-  //   }).widths(['*',-200])
-  //  // .relativePosition(500, 415+((this.rowHeight+5)*tablaDes.table.body.length)).end
-  // }
 
   // async fetchDataVenta(id:string,rut:string):Promise<venta[]>{
   //   return this.ventasService.getVentaAndCliente

@@ -18,8 +18,6 @@ import { GraphicsService } from 'src/app/graphics/services/graphics.service';
 export class VentaUnicaComponent implements OnInit {
   estado=""; //cotizado o pagado
   id:any="";
-  comentario:FormControl;
-  descuento:FormControl;
   comentarioVenta:string =''
   descuentoVenta:number = 0
   observacion = " "
@@ -28,20 +26,6 @@ export class VentaUnicaComponent implements OnInit {
     this.rut = this.route.snapshot.paramMap.get('rut')
     localStorage.setItem('dataToken',this.rut);
 
-    this.comentario = new FormControl('',[Validators.required,]);
-    this.comentario.valueChanges.subscribe(
-      value =>{
-      }
-    );
-
-    this.descuento = new FormControl('',[
-      Validators.pattern(/^[0-9]*$/)
-    ]);
-    this.descuento.valueChanges.subscribe(
-      value =>{
-        this.descuentoVenta = value
-      }
-    );
   }
 
   ingresoModificacion = 0;
@@ -96,7 +80,7 @@ export class VentaUnicaComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: "Confirmar",
     }).then((resultado:any) => {
-      this.cotizacion = resultado.value
+      this.descuentoVenta = resultado.value
       this.getObservacion()
     }).catch(err =>{
       console.log(err)
@@ -115,7 +99,7 @@ export class VentaUnicaComponent implements OnInit {
       this.observacion = resultado.value
       this.createBuyOrder('cotizacion')
       setTimeout(()=>{
-       // window.location.reload()
+        window.location.reload()
       },2000)
     }).catch(err =>{
       console.log(err)
@@ -156,7 +140,7 @@ export class VentaUnicaComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: "Confirmar",
     }).then((resultado:any) => {
-      this.guiaVenta = resultado.value
+      this.descuentoVenta = resultado.value
       this.getObservacionGuia()
     }).catch(err =>{
       console.log(err)
@@ -175,7 +159,7 @@ export class VentaUnicaComponent implements OnInit {
       this.observacion = resultado.value
       this.createBuyOrder('guia')
       setTimeout(()=>{
-       // window.location.reload()
+        window.location.reload()
       },2000)
     }).catch(err =>{
       console.log(err)
@@ -365,35 +349,89 @@ export class VentaUnicaComponent implements OnInit {
   addToFinanzas(idVenta:any,estado:string){
 
     return new Promise((resolve,reject)=>{
-      if(estado === 'pagado' && this.ventaProductos.estado != 'abonado' && this.ventaProductos.estado != 'pagado'){
-        // cambiamos de estado a enviado
-        this.serviceFinanzas.addVenta(idVenta).subscribe(
-          (res:any)=>{
+      // && this.ventaProductos.estado != "abonado"
+      if(estado == "abonado" ){ //cambiamos a abonado
 
-            resolve(res)
-          }
-        )
+        //revisamos el historial pasado
+        if(this.ventaProductos.estado == "cotizado"){
+          //aca viene desde cotizado
+          //agregamos abono
+          this.serviceFinanzas.addAbono(this.id).subscribe()
+        }
+        else if(this.ventaProductos.estado == "pagado"){
+          //aca viene de pagado
+          // restamos el total de venta y añadimos el abono
+          this.serviceFinanzas.removeVenta(this.id).subscribe(
+            (res)=>{
+
+              this.serviceFinanzas.addAbono(this.id).subscribe(
+                (res)=>{
+                  console.log(res)
+                }
+              )
+            }
+          )
+
+
+        }
+
       }
-      else if(estado === 'abonado' && this.ventaProductos.estado != 'pagado' && this.ventaProductos.estado != 'abonado'){
-        // cambiamos de estado a enviado
-        this.serviceFinanzas.addVenta(idVenta).subscribe(
-          (res:any)=>{
 
-            resolve(res)
-          }
-        )
+      // && this.ventaProductos.estado != "pagado"
+      else if(estado == "pagado" ){ //cambiamos a pagado
+
+        //revisamos el historial pasado
+
+        if(this.ventaProductos.estado == "abonado"){
+          //aca viene de abonado
+          // borramos todo el abono y ingresamos el total de compra
+
+          this.serviceFinanzas.removeAbono(this.id).subscribe(
+            (res)=>{
+              console.log(res)
+              this.serviceFinanzas.addVenta(this.id).subscribe(
+                (res)=>{console.log(res)}
+              )
+            }
+          )
+
+
+        }
+        else if(this.ventaProductos.estado == "cotizado"){
+          //aca viene de cotizado
+          //agregar el valor completo con la formula hacia la finanza
+          this.serviceFinanzas.addVenta(this.id).subscribe()
+        }
+
       }
-      else if(estado === 'cotizado' && this.ventaProductos.estado != 'cotizado'){
-        // cambiamos de estado a cotizado
-        this.serviceFinanzas.removeVenta(idVenta).subscribe(
-          (res:any)=>{
 
-            resolve(res)
+      // && this.ventaProductos.estado != "cotizado"
+      else if(estado == "cotizado" ){ //cambiamos a cotizado
 
-          }
-        )
+        //revisamos el historial pasado
+        if(this.ventaProductos.estado == "abonado"){
+          //aca viene de abonado
+          // por ende se resta el abono de finanza
+          this.serviceFinanzas.removeAbono(this.id).subscribe(
+
+          )
+
+
+        }
+        else if(this.ventaProductos.estado == "pagado"){
+          //aca viene de pagado, por ende se resta del abono de finanza
+          this.serviceFinanzas.removeVenta(this.id).subscribe(
+
+          )
+
+        }
+
+
       }
+
+      resolve(1)
     })
+
   }
 
 
