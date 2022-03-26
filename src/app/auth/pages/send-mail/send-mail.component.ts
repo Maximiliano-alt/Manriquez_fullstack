@@ -30,6 +30,7 @@ export class SendMailComponent implements OnInit {
   rePass:FormControl;
 
   constructor(private service:AuthService,private router:Router) { 
+    
     this.email = new FormControl('',[
       Validators.required,
       Validators.email,
@@ -83,6 +84,8 @@ export class SendMailComponent implements OnInit {
     if(this.indicador == undefined){
       this.indicador = 0
     }
+    this.indicador = 0
+
   }
 
   sendMail(){
@@ -111,13 +114,16 @@ export class SendMailComponent implements OnInit {
             Swal.fire({icon: 'success',text: 'Codigo correcto! Cambia tu contraseña y pon una que recuerdes'})
             this.indicador = 2;
           }
+          else if(res.status==500){
+            Swal.fire({icon: 'error',text: 'Codigo incorrecto'})
+          }
         }
       )
     }
   }
 
   modificarPass(){
-   if(this.pass.valid && this.rePass.valid && this.pass.value == this.rePass.value){
+   if((this.pass.valid && this.rePass.valid) && (this.pass.value == this.rePass.value)){
     this.service.modifyPassword(this.user.rut,this.pass.value).subscribe(
       res=>{
         if(res.status==200){
