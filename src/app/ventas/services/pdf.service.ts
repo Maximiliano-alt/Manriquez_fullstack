@@ -214,7 +214,7 @@ export class PdfService {
       pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,1000).build());
 
 
-      //pdf.create().download('Cotizacion para '+this.proveedor.nombre.toUpperCase())
+      pdf.create().download('Cotizacion para '+dataVenta.cliente.nombre.toUpperCase())
       pdf.create().open();
     }
     if(type === 'guia'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
@@ -232,7 +232,7 @@ export class PdfService {
       pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(65,115).bold().end);
       pdf.add(new Txt('\n\nEstado    Pagado').relativePosition(65,135).bold().end);
       pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+this.dateTime.getMonth()+1+'/'+this.dateTime.getFullYear()).relativePosition(65,155).bold().end);
-      pdf.add(new Txt('\n\nGUIA DE VENTA').relativePosition(330,110).fontSize(20).bold().end);
+      pdf.add(new Txt('\n\nNOTA DE VENTA').relativePosition(330,110).fontSize(20).bold().end);
       pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).end);
       pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).end);
       pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).end);
@@ -262,12 +262,8 @@ export class PdfService {
       pdf.add( await new Img('../assets/page/winter.jpg').width(100).height(50).relativePosition(495,1000).build());
       pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,1000).build());
       pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,1000).build());
-      // this.createTable(dataVenta,this.descuento).table.heights?(columnIndex:any) => console.log(columnIndex);
 
-      //var heightFila = this.createTable(dataVenta,this.descuento).table.heights()
-
-
-      //pdf.create().download('Nota de venta de '+this.proveedor.nombre.toUpperCase())
+      pdf.create().download('Nota de venta de '+dataVenta.cliente.nombre.toUpperCase())
       pdf.create().open();
     }
 
