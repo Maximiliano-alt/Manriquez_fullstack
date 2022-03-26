@@ -203,7 +203,7 @@ export class PdfService {
       pdf.add(new Txt('\nCondiciones generales').bold().relativePosition(20, jumper).fontSize(15).end);
       pdf.add(new Txt('\nForma de pago: 60% inicio trabajos, saldo al finalizar').relativePosition(20,jumper+25).fontSize(12).end);
       pdf.add(new Txt('\nTransferencia bancaria() , tarjetas de credito, debito, webpay.').relativePosition(20,jumper+40).fontSize(12).end);
-      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(550,jumper+20).build());
+      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(370,jumper+20).build());
 
       pdf.add(new Table([['POLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha utilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.']]).widths(['*',-9]).relativePosition(20,jumper+80).fontSize(12).end);
 
@@ -256,7 +256,7 @@ export class PdfService {
       pdf.add(new Txt('\nCondiciones generales').bold().relativePosition(20, jumper).fontSize(15).end);
       pdf.add(new Txt('\nForma de pago: 60% inicio trabajos, saldo al finalizar').relativePosition(20,jumper+25).fontSize(12).end);
       pdf.add(new Txt('\nTransferencia bancaria() , tarjetas de credito, debito, webpay.').relativePosition(20,jumper+40).fontSize(12).end);
-      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(550,jumper+20).build());
+      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(370,jumper+20).build());
       
       pdf.add(new Table([['POLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha utilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.']]).widths(['*',-9]).relativePosition(20,jumper+80).fontSize(12).end);
 
