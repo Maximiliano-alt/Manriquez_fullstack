@@ -25,7 +25,6 @@ export class AuthGuard implements CanActivate,  CanLoad {
         (res:any)=>{
           if(res.status == 200){
             localStorage.setItem('_pipo',res.mensaje)
-            console.log(res)
           }
         }
       )

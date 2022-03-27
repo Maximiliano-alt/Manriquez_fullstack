@@ -289,7 +289,7 @@ export class AddVentaComponent implements OnInit {
 
       this.venta.cliente.nombre = this.cliente.nombre
       this.venta.cliente.comuna = this.cliente.comuna
-      this.venta.cliente.ciudad = this.cliente.nombre
+      this.venta.cliente.ciudad = this.cliente.ciudad
       this.venta.cliente.correo = this.cliente.correo
       this.venta.cliente.rut = this.cliente.rut
       this.venta.cliente.telefono = this.cliente.telefono
