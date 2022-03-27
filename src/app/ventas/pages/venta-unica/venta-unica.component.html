@@ -56,8 +56,8 @@
         <button *ngIf="this.estado == 'cotizado'" class="button" (click)="cotizacion()">
             Crear cotizacion
         </button>
-        <button *ngIf="this.estado == 'cotizado'"  class="button" (click)="guiaVenta()">
-            Crear guia de venta
+        <button *ngIf="this.estado == 'pagado' || this.estado == 'abonado'"  class="button" (click)="guiaVenta()">
+            Crear nota de venta
         </button>
         <button (click)="delete(this.id,this.rut)" class="button">
             Eliminar
