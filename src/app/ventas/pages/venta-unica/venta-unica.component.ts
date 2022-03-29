@@ -18,7 +18,7 @@ import { GraphicsService } from 'src/app/graphics/services/graphics.service';
 export class VentaUnicaComponent implements OnInit {
   estado=""; //cotizado o pagado
   id:any="";
-  comentarioVenta:string =''
+  comentarioVenta:string =' '
   descuentoVenta:number = 0
   observacion = " "
   constructor( private serviceFinanzas: GraphicsService,private router:Router, private serviceCliente:ClienteService,private route: ActivatedRoute,private service: VentasService,private servicePdf:PdfService) {
@@ -142,6 +142,7 @@ export class VentaUnicaComponent implements OnInit {
       confirmButtonText: "Confirmar",
     }).then((resultado:any) => {
       this.descuentoVenta = resultado.value
+
       this.getObservacionGuia()
     }).catch(err =>{
       console.log(err)

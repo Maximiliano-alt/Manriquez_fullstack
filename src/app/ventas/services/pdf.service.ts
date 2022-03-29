@@ -57,6 +57,7 @@ export class PdfService {
   dateTime: Date;
   year = 2022;
   countCot = 1;
+  countNote = 1;
   proveedorService: ProveedorService;
   ventasService:VentasService;
   clienteService:ClienteService;
@@ -178,9 +179,10 @@ export class PdfService {
       pdf.add(new Txt('\n\nPasto Sintetico - Alfombras - Cortinas Roller - Departamento de construcción ').relativePosition(215,-15).italics().end);
       pdf.add(new Txt('\n\nPapeles Murales - Servicios Alfombras - Cierres de Terraza').relativePosition(215,5).italics().end);
       pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
-      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688- Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
+      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688 - +56973763087 - Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
       pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
       pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(50,115).fontSize(15).bold().end);
+      console.log(this.countCot)
       pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(50,135).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(50,155).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nCOTIZACIÓN').relativePosition(330,150).fontSize(18).bold().end);
@@ -230,10 +232,10 @@ export class PdfService {
       pdf.add(new Txt('\n\nPasto Sintetico - Alfombras - Cortinas Roller - Departamento de construcción ').relativePosition(215,-15).italics().end);
       pdf.add(new Txt('\n\nPapeles Murales - Servicios Alfombras - Cierres de Terraza').relativePosition(215,5).italics().end);
       pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
-      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688- Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
+      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688 - +56973763087 - Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
       pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
 
-      pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(50,115).fontSize(15).bold().end);
+      pdf.add(new Txt('\n\nN° nota de Venta '+this.countNumberCot()).relativePosition(50,115).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(50,135).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(50,155).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nNOTA DE VENTA').relativePosition(330,150).fontSize(18).bold().end);
@@ -371,7 +373,8 @@ export class PdfService {
   }
   createTableTotal(dataVenta:any, descuento:any, countRows_TBProducts:number):(ITable){
     //const IVA = 0.19
-    var Sub = dataVenta.totalDeVenta //viene con iva
+
+    var Sub = dataVenta.totalDeVenta/1.19;
     var desc =  Math.round( Sub*(descuento/100) )
     var NETO = Sub - desc
     var IVA = Math.round( NETO*0.19 )
@@ -399,7 +402,9 @@ export class PdfService {
   countNumberCot():number{
     return this.countCot++;
   }
-
+  countNumberNote():number{
+    return this.countNote++;
+  }
   findProveedor(id:any,rut:any):any{
     return new Promise((resolve,reject)=>{
       this.ventasService.getVentaAndCliente(id,rut).subscribe(
