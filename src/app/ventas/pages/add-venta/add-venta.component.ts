@@ -262,13 +262,13 @@ export class AddVentaComponent implements OnInit {
       })
     }
 
-    if(this.listaProductosEnLista.length == 0){
-      Swal.fire({
-        title: '',
-        text: 'Debes seleccionar al menos un producto!',
-        icon: 'warning',
-      })
-    }
+    // if(this.listaProductosEnLista.length == 0){
+    //   Swal.fire({
+    //     title: '',
+    //     text: 'Debes seleccionar al menos un producto!',
+    //     icon: 'warning',
+    //   })
+    // }
     if(this.venta.porcentaje == 0){
       Swal.fire({
         title: '',
@@ -283,7 +283,7 @@ export class AddVentaComponent implements OnInit {
         icon: 'warning',
       })
     }
-    else if(this.venta.porcentaje > 0 && this.listaProductosEnLista.length != 0 && this.cliente.nombre != "" && this.venta.proveedor.nombre != ""){
+    else if(this.venta.porcentaje > 0  && this.cliente.nombre != "" && this.venta.proveedor.nombre != ""){
 
       //guardamos al cliente en venta!
 
@@ -308,7 +308,7 @@ export class AddVentaComponent implements OnInit {
       })
 
       //calculo de la suma total!
-      this.venta.totalDeVenta = Math.trunc(suma);
+      this.venta.totalDeVenta = Math.trunc(suma + suma*0.19);
 
 
       this.listaProductosEnLista.forEach((e)=>{
@@ -331,7 +331,7 @@ export class AddVentaComponent implements OnInit {
           else{
             Swal.fire({
               title: '',
-              text: 'Ingreso fallido de la venta intenta mas tarde',
+              text: 'Ingreso fallido de la venta, intenta mas tarde',
               icon: 'error',
             })
           }
