@@ -133,7 +133,11 @@
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <!-- <b>Cantidad:</b>&nbsp;5 producto(s) -->
-                            <b>Cantidad:</b>&nbsp;{{item.productos.length}} producto(s)
+                            <b>Cantidad productos:</b>&nbsp;{{item.productos.length}} 
+                        </div>
+                        <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
+                            <!-- <b>Envío:</b>&nbsp;pendiente -->
+                            <b>Cantidad servicios:</b>&nbsp;{{item.servicios.length}}
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'products'">
                             <!-- <b>Stock:</b>&nbsp;18 -->
@@ -147,10 +151,7 @@
                             <!-- <b>Precio:</b>&nbsp;$15.000 -->
                             <b>Precio:</b>&nbsp;{{item.valor}}
                         </div>
-                        <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
-                            <!-- <b>Envío:</b>&nbsp;pendiente -->
-                            <b>Envío:</b>&nbsp;{{item.envio}}
-                        </div>
+                        
                          <div class="data-line2" *ngIf="this.input.indicador == 'products'">
                             <!-- <b>Vendidos:</b>&nbsp;9 -->
                             <b>Vendidos:</b>&nbsp;{{item.vecesComprado}}

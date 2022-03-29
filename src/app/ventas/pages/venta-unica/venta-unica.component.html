@@ -18,7 +18,11 @@
         <div class="data-contenido">
             <div class="data-linea">
                 <!-- <b>Cantidad: </b><p>&nbsp;5 productos(s)</p> -->
-                <b>Cantidad: </b><p>&nbsp;{{ventaProductos.productos.length}} productos(s)</p>
+                <b>Cantidad productos: </b><p>&nbsp;{{ventaProductos.productos.length}} </p>
+            </div>
+            <div class="data-linea">
+                <!-- <b>Envio: </b><p>&nbsp;cotizado</p> -->
+                <b>Cantidad Servicios: </b><p>&nbsp;{{ventaProductos.servicios.length}}</p>
             </div>
             <div *ngIf="this.estado == 'pagado'" class="data-linea">
                 <!-- <b>Estado: </b><p style="color: #007508;">&nbsp;pagado</p> -->
@@ -32,10 +36,7 @@
                 <!-- <b>Estado: </b><p style="color: #FF0000;">&nbsp;cotizado</p> -->
                 <b>Estado: </b><p style="color: #ffd900;">&nbsp;{{this.estado}}</p>
             </div>
-            <div class="data-linea">
-                <!-- <b>Envio: </b><p>&nbsp;cotizado</p> -->
-                <b>Envio: </b><p>&nbsp;{{ventaProductos.envio}}</p>
-            </div>
+            
         </div>
         <div class="data-valor">
             <!-- $12000 -->
