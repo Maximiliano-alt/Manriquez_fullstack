@@ -373,6 +373,7 @@ export class PdfService {
   }
   createTableTotal(dataVenta:any, descuento:any, countRows_TBProducts:number):(ITable){
     //const IVA = 0.19
+
     var Sub = dataVenta.totalDeVenta/1.19;
     var desc =  Math.round( Sub*(descuento/100) )
     var NETO = Sub - desc

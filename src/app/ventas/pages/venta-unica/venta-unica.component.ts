@@ -52,10 +52,11 @@ export class VentaUnicaComponent implements OnInit {
             text: 'Usuario no encontrado',
             icon: 'error',
           })
+        
           this.router.navigate(['/clientes/clientes'])
         }
         else{
-
+         
           this.cliente = res.dataVenta.cliente
           this.ventaProductos = res.dataVenta
           this.dataIndicador = 1

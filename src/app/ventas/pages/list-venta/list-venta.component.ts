@@ -46,6 +46,7 @@ export class ListVentaComponent implements OnInit {
         }
         res.forEach((e)=>{
           this.array.push(e)
+          console.log(e,"Estas son las ventas")
         })
       }
     )
