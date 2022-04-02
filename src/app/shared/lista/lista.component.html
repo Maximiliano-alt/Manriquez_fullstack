@@ -54,7 +54,7 @@
                     <!-- proveedor-->
                     <div class="item-book" *ngIf="this.input.indicador == 'proveedores'">
                         <button class="edit">
-                            <a style="text-decoration: none; color: black;"><img src="../../../../assets/page/proveedor 2.svg" alt="" /></a>
+                            <a style="text-decoration: none; color: black;cursor: initial;"><img src="../../../../assets/page/proveedor 2.svg" alt="" /></a>
                         </button>
                     </div>
                     <!-- cliente, proovedor o pendiente-->
@@ -133,7 +133,7 @@
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <!-- <b>Cantidad:</b>&nbsp;5 producto(s) -->
-                            <b>Cantidad productos:</b>&nbsp;{{item.productos.length}} 
+                            <b>Cantidad productos:</b>&nbsp;{{item.productos.length}}
                         </div>
                         <div class="data-line2" *ngIf="this.input.indicador == 'ventas'">
                             <!-- <b>Envío:</b>&nbsp;pendiente -->
@@ -151,7 +151,7 @@
                             <!-- <b>Precio:</b>&nbsp;$15.000 -->
                             <b>Precio:</b>&nbsp;{{item.valor}}
                         </div>
-                        
+
                          <div class="data-line2" *ngIf="this.input.indicador == 'products'">
                             <!-- <b>Vendidos:</b>&nbsp;9 -->
                             <b>Vendidos:</b>&nbsp;{{item.vecesComprado}}
