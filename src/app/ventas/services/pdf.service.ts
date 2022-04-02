@@ -178,16 +178,17 @@ export class PdfService {
       pdf.add(new Txt('\n\nPisos Flotantes - Pisos Madera - Pisos Vinílicos - Ceramicos - Porcelanatos').relativePosition(215,-35).italics().end);
       pdf.add(new Txt('\n\nPasto Sintetico - Alfombras - Cortinas Roller - Departamento de construcción ').relativePosition(215,-15).italics().end);
       pdf.add(new Txt('\n\nPapeles Murales - Servicios Alfombras - Cierres de Terraza').relativePosition(215,5).italics().end);
-      pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
-      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688 - +56973763087 - Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
+      pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(215,45).italics().end);
+      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688 - +56973763087 - Sitio web: https://www.pisosmanriquez.cl').relativePosition(215,65).italics().end);
       pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
       pdf.add(new Txt('\n\nN° de Cot  '+this.countNumberCot()).relativePosition(50,115).fontSize(15).bold().end);
       console.log(this.countCot)
       pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(50,135).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(50,155).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nCOTIZACIÓN').relativePosition(330,150).fontSize(18).bold().end);
-      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).fontSize(12).end);
-      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).fontSize(12).end);
+      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,230).fontSize(12).end);
+      pdf.add(new Txt('\n\Correo          :      '+this.cliente.correo).relativePosition(50,255).fontSize(12).end);
+      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,230).fontSize(12).end);
       pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).fontSize(12).end);
       pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).fontSize(12).end);
       pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).fontSize(12).end);
@@ -204,10 +205,10 @@ export class PdfService {
       var jumper = this.originPosition+(this.rowHeight+this.rowHeight/2)+((this.rowHeight+5)*countRowsTBS);
       pdf.add(new Txt('\nCondiciones generales').bold().relativePosition(20, jumper).fontSize(15).end);
       pdf.add(new Txt('\nForma de pago: 60% inicio trabajos, saldo al finalizar').relativePosition(20,jumper+25).fontSize(12).end);
-      pdf.add(new Txt('\nTransferencia bancaria() , tarjetas de credito, debito, webpay.').relativePosition(20,jumper+40).fontSize(12).end);
-      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(370,jumper+20).build());
+      pdf.add(new Txt('\nTransferencia bancaria(ME Construccion y Diseño Spa, RUT: 76.861.179-3, Cta: Vista chequera electronica Banco Estado, 3517117525-7, cmanriquez491@gmail.com) , tarjetas de credito, debito, webpay.').relativePosition(20,jumper+40).fontSize(12).end);
+      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(680,jumper-30).build());
 
-      pdf.add(new Table([['POLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha utilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.']]).widths(['*',-9]).relativePosition(20,jumper+80).fontSize(12).end);
+      pdf.add(new Table([['POLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha utilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.']]).widths(['*',-9]).relativePosition(20,jumper+90).fontSize(12).end);
 
       jumper += 230;
       pdf.add( await new Img('../assets/page/pyramid.png').width(100).height(50).relativePosition(0,jumper).build());
@@ -231,16 +232,17 @@ export class PdfService {
       pdf.add(new Txt('\n\nPisos Flotantes - Pisos Madera - Pisos Vinílicos - Ceramicos - Porcelanatos').relativePosition(215,-35).italics().end);
       pdf.add(new Txt('\n\nPasto Sintetico - Alfombras - Cortinas Roller - Departamento de construcción ').relativePosition(215,-15).italics().end);
       pdf.add(new Txt('\n\nPapeles Murales - Servicios Alfombras - Cierres de Terraza').relativePosition(215,5).italics().end);
-      pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(240,45).italics().end);
-      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688 - +56973763087 - Sitio web: https://www.pisosmanriquez.cl').relativePosition(240,65).italics().end);
+      pdf.add(new Txt('\n\nDirección: Isabel la Católica 6020, Las Condes, Santiago').relativePosition(215,45).italics().end);
+      pdf.add(new Txt('\n\nTeléfono: +56 2 33058688 - +56973763087 - Sitio web: https://www.pisosmanriquez.cl').relativePosition(215,65).italics().end);
       pdf.add( await new Img('../assets/page/ICONO-EXPERIENCIA.jpeg').width(125).height(125).relativePosition(40,25).build());
 
       pdf.add(new Txt('\n\nN° nota de Venta '+this.countNumberCot()).relativePosition(50,115).fontSize(15).bold().end);
-      pdf.add(new Txt('\n\nEstado    Pendiente').relativePosition(50,135).fontSize(15).bold().end);
+      pdf.add(new Txt('\n\nEstado    Pagado').relativePosition(50,135).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nFecha    '+this.dateTime.getUTCDate()+'/'+(this.dateTime.getMonth()+1)+'/'+this.dateTime.getFullYear()).relativePosition(50,155).fontSize(15).bold().end);
       pdf.add(new Txt('\n\nNOTA DE VENTA').relativePosition(330,150).fontSize(18).bold().end);
-      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,255).fontSize(12).end);
-      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,255).fontSize(12).end);
+      pdf.add(new Txt('\n\Nombre       :      '+this.cliente.nombre).relativePosition(50,230).fontSize(12).end);
+      pdf.add(new Txt('\n\Correo          :      '+this.cliente.correo).relativePosition(50,255).fontSize(12).end);
+      pdf.add(new Txt('\n\RUT Cliente   :      '+this.cliente.rut).relativePosition(450,230).fontSize(12).end);
       pdf.add(new Txt('\n\Dirección     :      '+this.cliente.direccion).relativePosition(50,285).fontSize(12).end);
       pdf.add(new Txt('\n\Comuna         :      '+this.cliente.comuna).relativePosition(450,285).fontSize(12).end);
       pdf.add(new Txt('\n\Ciudad         :      '+this.cliente.ciudad).relativePosition(50,315).fontSize(12).end);
@@ -257,10 +259,10 @@ export class PdfService {
       var jumper = this.originPosition+(this.rowHeight+this.rowHeight/2)+((this.rowHeight+5)*countRowsTBS);
       pdf.add(new Txt('\nCondiciones generales').bold().relativePosition(20, jumper).fontSize(15).end);
       pdf.add(new Txt('\nForma de pago: 60% inicio trabajos, saldo al finalizar').relativePosition(20,jumper+25).fontSize(12).end);
-      pdf.add(new Txt('\nTransferencia bancaria() , tarjetas de credito, debito, webpay.').relativePosition(20,jumper+40).fontSize(12).end);
-      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(370,jumper+20).build());
+      pdf.add(new Txt('\nTransferencia bancaria(ME Construccion y Diseño Spa, RUT: 76.861.179-3, Cta: Vista chequera electronica Banco Estado, 3517117525-7, cmanriquez491@gmail.com) , tarjetas de credito, debito, webpay.').relativePosition(20,jumper+40).fontSize(12).end);
+      pdf.add( await new Img('../assets/page/webpay.png').width(100).height(50).relativePosition(680,jumper-30).build());
 
-      pdf.add(new Table([['POLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha utilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.']]).widths(['*',-9]).relativePosition(20,jumper+80).fontSize(12).end);
+      pdf.add(new Table([['POLÍTICA DE DEVOLUCIÓN DE PRODUCTO\n* La devolución del producto es válida SOLO cuando existe una falla de fábrica (Esto lo evalúan nuestros técnicos especializados) 2 días habiles.\n* Pisos Manriquez entrega 10 días habiles como plazo máximo desde la fecha de compra para la devolución por los motivos antes mencionados. \n* Dicha devolución NO SE LLEVARÁ A CABO si el producto en cuestión se ha utilizado, estropeado o no es entregado en su embalaje original.\n* No se aceptan devoluciones por motivos tales como sobrante de material, y/o cambio de colores en todas nuestras lineas de productos.\n* No se aceptará la devolución del producto si el cliente no presenta la Factura o Boleta de este.']]).widths(['*',-9]).relativePosition(20,jumper+90).fontSize(12).end);
 
       jumper += 230;
       pdf.add( await new Img('../assets/page/pyramid.png').width(100).height(50).relativePosition(0,jumper).build());
@@ -374,7 +376,7 @@ export class PdfService {
   createTableTotal(dataVenta:any, descuento:any, countRows_TBProducts:number):(ITable){
     //const IVA = 0.19
 
-    var Sub = dataVenta.totalDeVenta/1.19;
+    var Sub = Math.round( dataVenta.totalDeVenta/1.19 )
     var desc =  Math.round( Sub*(descuento/100) )
     var NETO = Sub - desc
     var IVA = Math.round( NETO*0.19 )
