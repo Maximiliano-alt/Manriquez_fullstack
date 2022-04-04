@@ -40,7 +40,7 @@
     color: #FFFFFF;
 }
 
-.lista{ 
+.lista{
     width: 100%;
     height: 90%;
     display: grid;
@@ -243,7 +243,7 @@
     background-color: transparent;
 }
 .edit a , .edit img{
-    width: 27px; 
+    width: 27px;
 }
 
 @media screen and (min-width: 1024px) {
@@ -259,7 +259,7 @@
         transform: translate(-290px, -2px);
     }
     .edit a , .edit img{
-        width: 45px; 
+        width: 45px;
     }
 }
 
@@ -365,7 +365,7 @@
     }
     .item-edit button img{
         width: 30px;
-    }  
+    }
 }
 
 /* PRODUCTS ****************************************************************************/
@@ -438,6 +438,7 @@
     .data-line2{
         font-size: 100%;
         height: 16%;
+        width: 90%;
     }
     .item-number2 .number2{
         justify-content: center;
