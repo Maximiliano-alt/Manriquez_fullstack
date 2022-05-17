@@ -6,10 +6,10 @@
         </a>
     </div>
     <div class="input">
-        <input style="text-align: center;" [(ngModel)]="this.filterListVenta" name="filter" type="text" autocomplete="off" placeholder="Ingrese nombre del cliente"> 
+        <input style="text-align: center;cursor: pointer;" [(ngModel)]="this.filterListVenta" name="filter" type="text" autocomplete="off" placeholder="Ingrese nombre del cliente">
     </div>
     <div class="search-button">
-        <mat-icon (click)="search(0)">search</mat-icon>
+        <mat-icon style="cursor: pointer;" (click)="search(0)">search</mat-icon>
     </div>
 </div>
 

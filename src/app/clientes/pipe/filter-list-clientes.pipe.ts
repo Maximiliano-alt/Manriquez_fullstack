@@ -1,14 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Injectable } from '@angular/core';
-
 @Injectable({
   providedIn: 'root',
 })
 @Pipe({
-  name: 'filterListVenta'
+  name: 'filterListClientes'
 })
-export class FilterListVentaPipe implements PipeTransform {
+export class FilterListClientesPipe implements PipeTransform {
 
   transform(value: any[], args: string): any {
     var lista : any[] = [] ;
@@ -17,28 +16,23 @@ export class FilterListVentaPipe implements PipeTransform {
       return value;
     }
     else{
-
+      //agregar a una lista vacia los valores que coincidan con el filtro
       value.forEach((element: any) => {
         indicador = 0;
-        console.log(element.cliente.nombre)
-        var aux = element.cliente.nombre.toLowerCase().split('');
-
+        var aux = element.nombre.toLowerCase().split('');
         var aux2 = args.toLowerCase().split('');
-
         for (let index = 0; index < aux2.length; index++) {
-
           if(aux[index] != aux2[index]){
             indicador = 1
           }
-
-
         }
         if(indicador==0){
           lista.push(element)
         }
-
-
       });
+
+
+
       if(lista.length == 0){
         Swal.fire({
           position: 'top-end',

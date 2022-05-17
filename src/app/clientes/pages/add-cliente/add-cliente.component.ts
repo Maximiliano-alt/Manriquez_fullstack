@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -44,14 +44,14 @@ export class AddClienteComponent implements OnInit {
     );
 
     this.rut = new FormControl('',[
-      Validators.required,
-      Validators.minLength(9),
-      Validators.maxLength(10),
-      Validators.pattern(/[0-9].-[0-9].*$/)
+
     ]);
     this.rut.valueChanges.subscribe(
       value =>{
-        this.clienteDefault.rut = value
+
+          this.clienteDefault.rut = value
+
+
       }
     );
     this.comuna = new FormControl('',[
@@ -106,7 +106,15 @@ export class AddClienteComponent implements OnInit {
   }
 
   add_cliente(){
-    if(this.name.valid && this.rut.valid && this.phone.valid
+    let rand:any = Math.random()* (9999999 - 1111111) + 1111111;
+    Math.round(rand)
+    if(this.clienteDefault.rut == ''){
+      this.clienteDefault.rut = rand
+    }
+    console.log(this.clienteDefault.rut)
+
+
+    if(this.name.valid  && this.phone.valid
       && this.email.valid && this.direction.valid && this.ciudad.valid && this.comuna.valid){
         this.service.add_cliente(this.clienteDefault).subscribe(
           (res:any)=>{

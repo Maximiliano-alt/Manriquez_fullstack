@@ -5,7 +5,7 @@
 
     <!-- fixed ingresar gastos! -->
 
-    
+
     <div class="open-view" *ngIf="this.gastoId == 1">
         <div class="close">
             <mat-icon (click)="close()">close</mat-icon>
@@ -28,7 +28,7 @@
         <div class="input" >
             <label>Ingrese valor de gasto</label>
             <input [(ngModel)]="this.newGasto.total"  name="aux" type="number" placeholder="Ingrese el total del gasto">
-       
+
         </div>
 
         <button (click)="sendGasto()">Enviar nuevo gasto</button>
@@ -46,16 +46,16 @@
     <div class="container-data" *ngIf="this.gastoId == 0">
         <div class="estado-financiero">
             <label>
-                Estado financiero
+                Ingreso de Venta
             </label>
             <div class="data">
                 <strong>${{this.newFinanzas.estadoFinanciero}}</strong>
             </div>
         </div>
         <div class="ganancias">
-            <img src="../../../../assets/page/ganancias 2.svg" alt="">    
+            <img src="../../../../assets/page/ganancias 2.svg" alt="">
             <strong>
-                Ganancias
+                Utilidad
             </strong>
             <div class="data">
                 <strong>${{this.newFinanzas.ganancias}}</strong>
@@ -64,16 +64,16 @@
         <div class="gastos">
             <div class="valor-de-gasto">
                 <mat-icon>monetization_on</mat-icon>
-                <strong>Gastos</strong>
+                <strong>Costos</strong>
                 <div class="data">
                     <strong>${{this.newFinanzas.totalGastos}}</strong>
                 </div>
             </div>
-          
-            <button (click)="add_gasto()">Ingresar gastos</button>
+
+            <button (click)="add_gasto()">Ingresar Costos</button>
         </div>
         <div class="redireccionamiento">
-            
+
             <img src="../../../../assets/page/estadisticas.svg" alt="">
             <strong>Estadísticas</strong>
             <button [routerLink]="['/estadisticas/home']">Ver mas +</button>

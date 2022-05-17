@@ -21,7 +21,7 @@ export class ListVentaComponent implements OnInit {
   // inicio:any=0;
   filterListVenta = ""
 
-  
+
   // array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
   // constructor() { }
   constructor(private servicio: VentasService,private router:Router,private filterVenta:FilterListVentaPipe){}
@@ -46,17 +46,16 @@ export class ListVentaComponent implements OnInit {
         }
         res.forEach((e)=>{
           this.array.push(e)
-          console.log(e,"Estas son las ventas")
+
         })
       }
     )
-  }  
-  
+  }
+
 
   search(value:number){
-
     this.arrayAux = this.filterVenta.transform(this.array,this.filterListVenta)
-    
+
     if(this.estadoDeSearch==1){
       this.estadoDeSearch = value
       setTimeout(()=>{

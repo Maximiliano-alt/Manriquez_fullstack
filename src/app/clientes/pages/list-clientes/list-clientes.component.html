@@ -1,9 +1,5 @@
 <app-navbar [var]="{route:'/app/home',title:'Clientes'}" ></app-navbar>
 
-
-
-
-
 <div class="search">
     <div class="icon">
         <a style="text-decoration: none;" routerLink="/clientes/add/cliente">
@@ -11,10 +7,10 @@
         </a>
     </div>
     <div class="input">
-        <input type="text">
+        <input type="text" style="text-align: center;" [(ngModel)]="this.filterListCliente" name="filter" placeholder="ingrese nombre del cliente">
     </div>
     <div class="search-button">
-        <mat-icon>search</mat-icon>
+        <mat-icon style="cursor: pointer;" (click)="search(0)">search</mat-icon>
     </div>
 </div>
 
@@ -26,4 +22,4 @@
 </div>
 
 
-<app-lista *ngIf="this.array.length != 0" [input]="{indicador:'clientes',data:array}"></app-lista>
+<app-lista *ngIf="this.array.length != 0 && this.estadoDeSearch == 1" [input]="{indicador:'clientes',data:arrayAux}"></app-lista>
