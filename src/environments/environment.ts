@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://pisos-manriquez.herokuapp.com/api',
+  baseUrl: 'https://appmanriquez.onrender.com/api',
   // baseUrl:'http://localhost:4000/api',                    
 };
 /*
