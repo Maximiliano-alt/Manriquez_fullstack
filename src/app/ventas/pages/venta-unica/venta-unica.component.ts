@@ -52,11 +52,11 @@ export class VentaUnicaComponent implements OnInit {
             text: 'Usuario no encontrado',
             icon: 'error',
           })
-        
+
           this.router.navigate(['/clientes/clientes'])
         }
         else{
-         
+
           this.cliente = res.dataVenta.cliente
           this.ventaProductos = res.dataVenta
           this.dataIndicador = 1
@@ -127,7 +127,7 @@ export class VentaUnicaComponent implements OnInit {
       this.createBuyOrder('orden')
       setTimeout(()=>{
         window.location.reload()
-      },1000)
+      },2000)
     }).catch(err =>{
       console.log(err)
     }

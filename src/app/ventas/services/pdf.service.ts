@@ -169,9 +169,7 @@ export class PdfService {
     pdf.add(new Txt('\n\N° GUIA      : '+this.countNumberGuide(this.year)).decoration('underline').fontSize(20).relativePosition(30,290).bold().end);
     pdf.add(new Txt('\n\COMENTARIO: ').decoration('underline').fontSize(20).relativePosition(30,350).bold().end);
     pdf.add(new Txt('\n'+commentary).fontSize(15).relativePosition(60,400).bold().end);
-    pdf.create().open();
-    pdf.create().download('Orden de compra para '+this.proveedor.nombre.toUpperCase())
-
+    pdf.create().download('Orden de compra para '+this.proveedor.nombre.toUpperCase());
     }
     if(type === 'cotizacion'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
       pdf.pageSize('A3');//C:\Users\maxes\OneDrive\Documentos\Pega\SoftwareMama\manriquez-fullstack\Frontend\src\assets\page\ICONO-EXPERIENCIA.svg
@@ -225,7 +223,8 @@ export class PdfService {
       pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,jumper).build());
       pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,jumper).build());
       pdf.create().download('Cotizacion para '+dataVenta.cliente.nombre.toUpperCase())
-      pdf.create().open();
+
+
     }
     if(type === 'guia'){// - Ceramicos - Porcelanatos - Pasto Sintetico -
       pdf.pageSize('A3');//C:\Users\maxes\OneDrive\Documentos\Pega\SoftwareMama\manriquez-fullstack\Frontend\src\assets\page\ICONO-EXPERIENCIA.svg
@@ -279,7 +278,6 @@ export class PdfService {
       pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,jumper).build());
       pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,jumper).build());
       pdf.create().download('Nota de venta de '+dataVenta.cliente.nombre.toUpperCase())
-      pdf.create().open();
     }
 
 
