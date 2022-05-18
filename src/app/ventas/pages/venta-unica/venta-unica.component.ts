@@ -100,7 +100,7 @@ export class VentaUnicaComponent implements OnInit {
       this.observacion = resultado.value
       this.createBuyOrder('cotizacion')
       setTimeout(()=>{
-        window.location.reload()
+
       },2000)
     }).catch(err =>{
       console.log(err)
@@ -126,7 +126,7 @@ export class VentaUnicaComponent implements OnInit {
       this.comentarioVenta = resultado.value
       this.createBuyOrder('orden')
       setTimeout(()=>{
-        window.location.reload()
+
       },2000)
     }).catch(err =>{
       console.log(err)
@@ -161,7 +161,7 @@ export class VentaUnicaComponent implements OnInit {
       this.observacion = resultado.value
       this.createBuyOrder('guia')
       setTimeout(()=>{
-        window.location.reload()
+
       },2000)
     }).catch(err =>{
       console.log(err)

@@ -44,13 +44,13 @@
         <div (click)="modificarEstado(this.estado,this.rut,this.id)" class="button">
             Modificar estado
         </div>
-        <button  *ngIf="this.estado == 'pagado' || this.estado ==  'abonado'" class="button" (click)="activateCommentary()">
+        <button  *ngIf="this.estado == 'pagado' || this.estado ==  'abonado'" class="button" (click)="activateCommentary()" (click)="ordenDeCompra()">
             Orden de compra
         </button>
-        <div *ngIf="this.estado == 'pendiente'" class="button">
+        <div *ngIf="this.estado == 'pendiente'" class="button"  (click)="cotizacion()">
             Crear cotizacion
         </div>
-        <div *ngIf="this.estado == 'pagado'"  class="button">
+        <div *ngIf="this.estado == 'pagado'"  class="button" (click)="guiaVenta()">
             Crear Nota de venta
         </div>
         <div (click)="delete(this.id,this.rut)"   class="button">
@@ -69,17 +69,17 @@
             <div (click)="modificarEstado(this.estado,this.rut,this.id)" style="margin-right: 31px;" class="button-par">
                 Modificar estado
             </div>
-            <div *ngIf="this.estado == 'pendiente'" class="button-par">
+            <div *ngIf="this.estado == 'pendiente'" class="button-par" (click)="cotizacion()">
                 <!-- falta definicion de requerimiento -->
                 Crear Cotizacion
             </div>
-            <div *ngIf="this.estado == 'pagado'" class="button-par">
+            <div *ngIf="this.estado == 'pagado'" class="button-par" (click)="ordenDeCompra()">
                 <!-- falta definicion de requerimiento -->
                 Crear orden de compra
             </div>
         </div>
         <div class="button-pares">
-            <div  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par">
+            <div  *ngIf="this.estado == 'pagado'" style="margin-right: 31px;" class="button-par" (click)="guiaVenta()">
                 <!-- falta definicion del requerimiento -->
                 Crear Nota de venta
             </div>
