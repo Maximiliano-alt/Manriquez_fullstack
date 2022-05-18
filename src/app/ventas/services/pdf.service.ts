@@ -279,7 +279,7 @@ export class PdfService {
       pdf.add( await new Img('../assets/page/etersol.png').width(100).height(50).relativePosition(595,jumper).build());
       pdf.add( await new Img('../assets/page/wiener.png').width(80).height(50).relativePosition(700,jumper).build());
       pdf.create().download('Nota de venta de '+dataVenta.cliente.nombre.toUpperCase())
-      pdf.create().open('Nota de venta de '+dataVenta.cliente.nombre.toUpperCase())
+      pdf.create().open()
     }
 
 
