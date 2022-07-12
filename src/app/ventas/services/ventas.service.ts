@@ -19,7 +19,9 @@ export class VentasService {
   addVenta(data:venta){
     return this.http.post(environment.baseUrl+'/newGuiaDeVenta',data);
   }
-
+  updateVenta(data:venta){
+    return this.http.post(environment.baseUrl+'/update/venta',data);
+  }
   getCliente(rut:string){
     return this.http.get<any>(environment.baseUrl+'/search/cliente/'+rut);
   }
@@ -33,6 +35,10 @@ export class VentasService {
 
   getProductoForId(data:string){
     return this.http.get<productoComprado[]>(environment.baseUrl+'/venta/get/list/product/'+data);
+  }
+
+  newVenta(newClient:cliente,newVenta:venta){
+    return this.http.post(environment.baseUrl+'/new/venta',{newClient,newVenta});
   }
 
 

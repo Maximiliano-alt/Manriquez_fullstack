@@ -1,0 +1,25 @@
+<app-navbar [var]="{route:'/ventas/modifyVenta',title:'Modificar venta'}" ></app-navbar>
+<div class="container-general">
+  <div class="spiner" *ngIf="this.marcadorListaProducto == 0">
+    <div  class="spinner-border" role="status" >
+    </div>
+    <span>Cargando venta...</span>
+  </div>
+  <div class="data-cliente-container">
+    <div class="nav-data" *ngIf="this.cliente.nombre!=''">
+        Cliente: {{this.cliente.nombre}}
+    </div>
+    <div class="data-cliente" *ngIf="this.cliente.nombre!=''">
+        <p><b>Rut:</b> &nbsp;{{this.cliente.rut}}</p>
+        <p> <b>Direccion:</b> &nbsp; {{this.cliente.direccion}} </p>
+        <p> <b>Comuna:</b> &nbsp; {{this.cliente.comuna}} </p>
+        <p> <b>Telefono:</b>&nbsp; {{this.cliente.telefono}} </p>
+        <p><b>Correo:</b>&nbsp; {{this.cliente.correo}} </p>
+
+    </div>
+    <h1 style="color:black; font-size: 20px; margin: auto; text-align: center" *ngIf="this.cliente.nombre=='' && this.buscado == 1">Cargando...</h1>
+  </div>
+  <button type="button" class="button-edit-client">
+    <a style="text-decoration:none; color:white;" [routerLink]="'/ventas/modifyVentaClient/'+this.rut">Editar información</a>
+  </button>
+</div>

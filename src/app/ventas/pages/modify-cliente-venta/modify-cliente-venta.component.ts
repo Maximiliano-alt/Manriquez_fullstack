@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-import { VentasService } from 'src/app/ventas/services/ventas.service';
+import { venta, VentasService } from 'src/app/ventas/services/ventas.service';
 import Swal from 'sweetalert2';
-import { cliente, ClienteService } from '../../service/cliente.service';
+import { ClienteService,cliente, ventaCliente } from 'src/app/clientes/service/cliente.service';
 
 @Component({
-  selector: 'app-modify-cliente',
-  templateUrl: './modify-cliente.component.html',
-  styleUrls: ['./modify-cliente.component.css']
+  selector: 'app-modify-cliente-venta',
+  templateUrl: './modify-cliente-venta.component.html',
+  styleUrls: ['./modify-cliente-venta.component.css']
 })
-export class ModifyClienteComponent implements OnInit {
+export class ModifyClienteVentaComponent implements OnInit {
   id : any = "";
   nameClient = "";
   modifyClienteForm!: FormGroup;
   clientModify!: cliente;
   nameCliente: string= "";
+
+
 
   constructor(private route: ActivatedRoute, private service: ClienteService, private router:Router,private fb: FormBuilder,private ventaService: VentasService) {
     this.id = this.route.snapshot.paramMap.get('rut')
@@ -25,7 +27,7 @@ export class ModifyClienteComponent implements OnInit {
   ngOnInit(): void {
     this.modifyClienteForm = this.initForm();
     this.getClient();
-    console.log(this.modifyClienteForm.invalid)
+
   }
   initForm(): FormGroup {
     return this.fb.group({

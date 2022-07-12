@@ -36,7 +36,7 @@
                 <!-- <b>Estado: </b><p style="color: #FF0000;">&nbsp;cotizado</p> -->
                 <b>Estado: </b><p style="color: #ffd900;">&nbsp;{{this.estado}}</p>
             </div>
-            
+
         </div>
         <div class="data-valor">
             <!-- $12000 -->
@@ -62,6 +62,9 @@
         </button>
         <button (click)="delete(this.id,this.rut)" class="button">
             Eliminar
+        </button>
+        <button *ngIf="this.estado == 'cotizado'" class="button" type="button">
+            <a  style="text-decoration: none; color: white;" [routerLink]="['/ventas/modifyVenta/'+this.id]">Editar</a>
         </button>
         <div style="margin: 0;" class="button">
            <!-- <a style="text-decoration: none; color: white;" [routerLink]="['/clientes/product/Venta/'+this.rut+'/'+this.id]" > Ver productos</a> -->
