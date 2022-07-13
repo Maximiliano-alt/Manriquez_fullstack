@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://appmanriquez.onrender.com/api',
-  // baseUrl:'http://localhost:4000/api',                    
+  baseUrl: 'https://pisosmanriquez.herokuapp.com/api',
+  // baseUrl:'http://localhost:4000/api',
 };
 /*
  * For easier debugging in development mode, you can import the following file
